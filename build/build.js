@@ -72,7 +72,7 @@ getDirs(source).forEach(function(demoName){
           files:[],
           bundleSize: fsx.readFileSync(implpath+'bundle.js')+''.length,
           size:0,
-          url: demoName+'_'+frameworkName+'_'+implName+'_app.html',
+          url: demoName+'_'+frameworkName+'_'+implName+'_info.html',
           bundleName: demoName+'_'+frameworkName+'_'+implName+'.js'
         }
       );
