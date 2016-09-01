@@ -1,14 +1,16 @@
 <h2><span><a href="../index.html">JS Comp</a> &gt; </span>{{folderName}}</h2>
 
 {{{description}}}
-{{#each frameworks}}
-  <h4>{{name}}</h4>
-  <ul>
-  {{#each implementations}}
-    <li>
-      <a href="{{url}}">{{title}}</a> by 
-      <a href="http://github.com/{{author}}" target="_blank">{{author}}</a>
-    </li>
+
+<dt>
+  {{#each frameworks}}
+    <dt>{{name}}</dt>
+    {{#each implementations}}
+      <dd>
+        <a href="{{url}}">{{title}}</a>
+        (src {{size}}b, bundle {{bundleSize}}b)
+        by <a href="http://github.com/{{author}}" target="_blank">{{author}}</a>
+      </dd>
+    {{/each}}
   {{/each}}
-  </ul>
-{{/each}}
+</dt>

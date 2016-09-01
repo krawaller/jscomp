@@ -3,38 +3,40 @@
 
 <head>
     <title>React - Vanilla</title>
+    <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
 </head>
 
 <body>
-    <h2>
-        <span>
+    <div class="container-fluid">
+        <h2>
+            <span>
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="composition.html">composition</a> &gt;
     react &gt;
   </span> Vanilla
-    </h2>
+        </h2>
 
-    <ul class="links">
-        <li class="">
-            <a href="composition_react_vanilla_info.html">info</a>
-        </li>
-        <li class="active">
-            <a href="composition_react_vanilla_app.html">app.js</a>
-        </li>
-        <li class="">
-            <a href="composition_react_vanilla_bootstrap.html">bootstrap.js</a>
-        </li>
-        <li class="">
-            <a href="composition_react_vanilla_confirm.html">confirm.js</a>
-        </li>
-        <li class="">
-            <a href="composition_react_vanilla_field.html">field.js</a>
-        </li>
-    </ul>
-    <h4>Code file app.js</h4>
-    <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+        <ul class="links">
+            <li class="">
+                <a href="composition_react_vanilla_info.html">info</a>
+            </li>
+            <li class="active">
+                <a href="composition_react_vanilla_app.html">app.js</a>
+            </li>
+            <li class="">
+                <a href="composition_react_vanilla_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="">
+                <a href="composition_react_vanilla_confirm.html">confirm.js</a>
+            </li>
+            <li class="">
+                <a href="composition_react_vanilla_field.html">field.js</a>
+            </li>
+        </ul>
+        <h4>Code file app.js</h4>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 
 <span class="hljs-keyword">let</span> App = React.createClass({
@@ -51,9 +53,9 @@
 })
 
 export default App</span></code></pre>
-    <h4>Corresponding file in other implementations</h4>
-    <h5>Angular2 - <a href="composition_angular2_vanilla_info.html">A vanilla implementation</a></h5>
-    <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Output} from <span class="hljs-string">'@angular/core'</span>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="composition_angular2_vanilla_info.html">A vanilla implementation</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Output} from <span class="hljs-string">'@angular/core'</span>
 <span class="hljs-keyword">import</span> {Field} from <span class="hljs-string">'./field.ts'</span>
 
 @Component({
@@ -70,8 +72,8 @@ export default App</span></code></pre>
     <span class="hljs-keyword">this</span>.submission = txt;
   }
 }</code></pre>
-    <h5>Cycle - <a href="composition_cycle_comphelper_info.html">With a composition helper</a></h5>
-    <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+        <h5>Cycle - <a href="composition_cycle_comphelper_info.html">With a composition helper</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div, p} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 <span class="hljs-keyword">import</span> withComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
@@ -94,7 +96,8 @@ export default App</span></code></pre>
 
 
 
-    <footer></footer>
+        <footer></footer>
+    </div>
 </body>
 
 </html>

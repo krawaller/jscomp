@@ -3,38 +3,40 @@
 
 <head>
     <title>Angular2 - A vanilla implementation</title>
+    <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
 </head>
 
 <body>
-    <h2>
-        <span>
+    <div class="container-fluid">
+        <h2>
+            <span>
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="composition.html">composition</a> &gt;
     angular2 &gt;
   </span> A vanilla implementation
-    </h2>
+        </h2>
 
-    <ul class="links">
-        <li class="">
-            <a href="composition_angular2_vanilla_info.html">info</a>
-        </li>
-        <li class="">
-            <a href="composition_angular2_vanilla_app.html">app.ts</a>
-        </li>
-        <li class="">
-            <a href="composition_angular2_vanilla_bootstrap.html">bootstrap.ts</a>
-        </li>
-        <li class="active">
-            <a href="composition_angular2_vanilla_confirm.html">confirm.ts</a>
-        </li>
-        <li class="">
-            <a href="composition_angular2_vanilla_field.html">field.ts</a>
-        </li>
-    </ul>
-    <h4>Code file confirm.ts</h4>
-    <pre><code><span class="hljs-keyword">import</span> {Component,Input,Output,EventEmitter} from <span class="hljs-string">'@angular/core'</span>;
+        <ul class="links">
+            <li class="">
+                <a href="composition_angular2_vanilla_info.html">info</a>
+            </li>
+            <li class="">
+                <a href="composition_angular2_vanilla_app.html">app.ts</a>
+            </li>
+            <li class="">
+                <a href="composition_angular2_vanilla_bootstrap.html">bootstrap.ts</a>
+            </li>
+            <li class="active">
+                <a href="composition_angular2_vanilla_confirm.html">confirm.ts</a>
+            </li>
+            <li class="">
+                <a href="composition_angular2_vanilla_field.html">field.ts</a>
+            </li>
+        </ul>
+        <h4>Code file confirm.ts</h4>
+        <pre><code><span class="hljs-keyword">import</span> {Component,Input,Output,EventEmitter} from <span class="hljs-string">'@angular/core'</span>;
 
 @Component({
   selector: <span class="hljs-string">'confirm'</span>,
@@ -61,9 +63,9 @@
     <span class="hljs-keyword">this</span>.mode = <span class="hljs-string">'waiting'</span>
   }
 }</code></pre>
-    <h4>Corresponding file in other implementations</h4>
-    <h5>Cycle - <a href="composition_cycle_comphelper_info.html">With a composition helper</a></h5>
-    <pre><code><span class="hljs-keyword">import</span> {span, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Cycle - <a href="composition_cycle_comphelper_info.html">With a composition helper</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {span, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
 <span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 
 <span class="hljs-keyword">const</span> intent = sources=&gt; xs.merge(
@@ -96,8 +98,8 @@
     confirm$: action$.filter(i =&gt; i === <span class="hljs-string">'CONFIRM'</span>)
   }
 }</code></pre>
-    <h5>React - <a href="composition_react_vanilla_info.html">Vanilla</a></h5>
-    <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+        <h5>React - <a href="composition_react_vanilla_info.html">Vanilla</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> Confirm = React.createClass({
   getInitialState: ()=&gt; ({mode:<span class="hljs-string">'waiting'</span>}),
@@ -121,7 +123,8 @@
 
 
 
-    <footer></footer>
+        <footer></footer>
+    </div>
 </body>
 
 </html>

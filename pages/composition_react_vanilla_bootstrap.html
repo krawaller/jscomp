@@ -3,46 +3,48 @@
 
 <head>
     <title>React - Vanilla</title>
+    <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
 </head>
 
 <body>
-    <h2>
-        <span>
+    <div class="container-fluid">
+        <h2>
+            <span>
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="composition.html">composition</a> &gt;
     react &gt;
   </span> Vanilla
-    </h2>
+        </h2>
 
-    <ul class="links">
-        <li class="">
-            <a href="composition_react_vanilla_info.html">info</a>
-        </li>
-        <li class="">
-            <a href="composition_react_vanilla_app.html">app.js</a>
-        </li>
-        <li class="active">
-            <a href="composition_react_vanilla_bootstrap.html">bootstrap.js</a>
-        </li>
-        <li class="">
-            <a href="composition_react_vanilla_confirm.html">confirm.js</a>
-        </li>
-        <li class="">
-            <a href="composition_react_vanilla_field.html">field.js</a>
-        </li>
-    </ul>
-    <h4>Code file bootstrap.js</h4>
-    <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+        <ul class="links">
+            <li class="">
+                <a href="composition_react_vanilla_info.html">info</a>
+            </li>
+            <li class="">
+                <a href="composition_react_vanilla_app.html">app.js</a>
+            </li>
+            <li class="active">
+                <a href="composition_react_vanilla_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="">
+                <a href="composition_react_vanilla_confirm.html">confirm.js</a>
+            </li>
+            <li class="">
+                <a href="composition_react_vanilla_field.html">field.js</a>
+            </li>
+        </ul>
+        <h4>Code file bootstrap.js</h4>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
 
 <span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./app'</span>
 
 ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
-    <h4>Corresponding file in other implementations</h4>
-    <h5>Angular2 - <a href="composition_angular2_vanilla_info.html">A vanilla implementation</a></h5>
-    <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'core-js'</span>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="composition_angular2_vanilla_info.html">A vanilla implementation</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'core-js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
 
@@ -50,8 +52,8 @@ ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-
 <span class="hljs-keyword">import</span> {App} from <span class="hljs-string">'./app.ts'</span>;
 bootstrap(App);
 </code></pre>
-    <h5>Cycle - <a href="composition_cycle_comphelper_info.html">With a composition helper</a></h5>
-    <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+        <h5>Cycle - <a href="composition_cycle_comphelper_info.html">With a composition helper</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
 <span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
@@ -61,7 +63,8 @@ run(App, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) });</code
 
 
 
-    <footer></footer>
+        <footer></footer>
+    </div>
 </body>
 
 </html>

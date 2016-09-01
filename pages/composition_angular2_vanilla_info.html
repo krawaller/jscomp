@@ -3,78 +3,81 @@
 
 <head>
     <title>Angular2 - A vanilla implementation</title>
+    <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
 </head>
 
 <body>
-    <h2>
-        <span>
+    <div class="container-fluid">
+        <h2>
+            <span>
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="composition.html">composition</a> &gt;
     angular2 &gt;
   </span> A vanilla implementation
-    </h2>
+        </h2>
 
-    <ul class="links">
-        <li class="active">
-            <a href="composition_angular2_vanilla_info.html">info</a>
-        </li>
-        <li class="">
-            <a href="composition_angular2_vanilla_app.html">app.ts</a>
-        </li>
-        <li class="">
-            <a href="composition_angular2_vanilla_bootstrap.html">bootstrap.ts</a>
-        </li>
-        <li class="">
-            <a href="composition_angular2_vanilla_confirm.html">confirm.ts</a>
-        </li>
-        <li class="">
-            <a href="composition_angular2_vanilla_field.html">field.ts</a>
-        </li>
-    </ul>
-    <h4>Data</h4>
-    <dl>
-        <dt>Author</dt>
-        <dd><a href="http://github.com/krawaller" target="_blank">krawaller</a></dd>
-        <dt>Source size</dt>
-        <dd>1911</dd>
-        <dt>Bundle size</dt>
-        <dd>2603504</dd>
-        <dt>Source on Github</dt>
-        <dd><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/composition/angular2/vanilla" target="_blank">http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/composition/angular2/vanilla</a></dd>
-        <dt>Framework</dt>
-        <dd>Angular2</dd>
-    </dl>
-    <h4>Description</h4>
-    <p>This is an idiomatic Angular 2 solution without any surprises. All communication is clearly defined through the <code>@Input</code> and <code>@Output</code> decorators.</p>
-    <p>I opted not to actively store the field value in my model, instead I fetch it from the DOM using a <code>@ViewChild</code> reference upon submission. This seems to be a typical Angular approach.</p>
-
-    <div class="deps">
-        <h4>Dependencies</h4>
-        <ul>
-            <li><a href="http://npmjs.org/package/@angular/common" target="_blank">@angular/common</a> (2.0.0-rc.4)</li>
-            <li><a href="http://npmjs.org/package/@angular/compiler" target="_blank">@angular/compiler</a> (2.0.0-rc.4)</li>
-            <li><a href="http://npmjs.org/package/@angular/core" target="_blank">@angular/core</a> (2.0.0-rc.4)</li>
-            <li><a href="http://npmjs.org/package/@angular/forms" target="_blank">@angular/forms</a> (0.2.0)</li>
-            <li><a href="http://npmjs.org/package/@angular/http" target="_blank">@angular/http</a> (2.0.0-rc.4)</li>
-            <li><a href="http://npmjs.org/package/@angular/platform-browser" target="_blank">@angular/platform-browser</a> (2.0.0-rc.4)</li>
-            <li><a href="http://npmjs.org/package/@angular/platform-browser-dynamic" target="_blank">@angular/platform-browser-dynamic</a> (2.0.0-rc.4)</li>
-            <li><a href="http://npmjs.org/package/@angular/router" target="_blank">@angular/router</a> (3.0.0-beta.2)</li>
-            <li><a href="http://npmjs.org/package/core-js" target="_blank">core-js</a> (^2.4.1)</li>
-            <li><a href="http://npmjs.org/package/es6-shim" target="_blank">es6-shim</a> (^0.35.0)</li>
-            <li><a href="http://npmjs.org/package/reflect-metadata" target="_blank">reflect-metadata</a> (0.1.3)</li>
-            <li><a href="http://npmjs.org/package/rxjs" target="_blank">rxjs</a> (5.0.0-beta.6)</li>
-            <li><a href="http://npmjs.org/package/zone.js" target="_blank">zone.js</a> (0.6.12)</li>
+        <ul class="links">
+            <li class="active">
+                <a href="composition_angular2_vanilla_info.html">info</a>
+            </li>
+            <li class="">
+                <a href="composition_angular2_vanilla_app.html">app.ts</a>
+            </li>
+            <li class="">
+                <a href="composition_angular2_vanilla_bootstrap.html">bootstrap.ts</a>
+            </li>
+            <li class="">
+                <a href="composition_angular2_vanilla_confirm.html">confirm.ts</a>
+            </li>
+            <li class="">
+                <a href="composition_angular2_vanilla_field.html">field.ts</a>
+            </li>
         </ul>
+        <h4>Data</h4>
+        <dl>
+            <dt>Author</dt>
+            <dd><a href="http://github.com/krawaller" target="_blank">krawaller</a></dd>
+            <dt>Source size</dt>
+            <dd>1911</dd>
+            <dt>Bundle size</dt>
+            <dd>2603504</dd>
+            <dt>Source on Github</dt>
+            <dd><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/composition/angular2/vanilla" target="_blank">link</a></dd>
+            <dt>Framework</dt>
+            <dd>Angular2</dd>
+        </dl>
+        <h4>Description</h4>
+        <p>This is an idiomatic Angular 2 solution without any surprises. All communication is clearly defined through the <code>@Input</code> and <code>@Output</code> decorators.</p>
+        <p>I opted not to actively store the field value in my model, instead I fetch it from the DOM using a <code>@ViewChild</code> reference upon submission. This seems to be a typical Angular approach.</p>
+
+        <div class="deps">
+            <h4>Dependencies</h4>
+            <ul>
+                <li><a href="http://npmjs.org/package/@angular/common" target="_blank">@angular/common</a> (2.0.0-rc.4)</li>
+                <li><a href="http://npmjs.org/package/@angular/compiler" target="_blank">@angular/compiler</a> (2.0.0-rc.4)</li>
+                <li><a href="http://npmjs.org/package/@angular/core" target="_blank">@angular/core</a> (2.0.0-rc.4)</li>
+                <li><a href="http://npmjs.org/package/@angular/forms" target="_blank">@angular/forms</a> (0.2.0)</li>
+                <li><a href="http://npmjs.org/package/@angular/http" target="_blank">@angular/http</a> (2.0.0-rc.4)</li>
+                <li><a href="http://npmjs.org/package/@angular/platform-browser" target="_blank">@angular/platform-browser</a> (2.0.0-rc.4)</li>
+                <li><a href="http://npmjs.org/package/@angular/platform-browser-dynamic" target="_blank">@angular/platform-browser-dynamic</a> (2.0.0-rc.4)</li>
+                <li><a href="http://npmjs.org/package/@angular/router" target="_blank">@angular/router</a> (3.0.0-beta.2)</li>
+                <li><a href="http://npmjs.org/package/core-js" target="_blank">core-js</a> (^2.4.1)</li>
+                <li><a href="http://npmjs.org/package/es6-shim" target="_blank">es6-shim</a> (^0.35.0)</li>
+                <li><a href="http://npmjs.org/package/reflect-metadata" target="_blank">reflect-metadata</a> (0.1.3)</li>
+                <li><a href="http://npmjs.org/package/rxjs" target="_blank">rxjs</a> (5.0.0-beta.6)</li>
+                <li><a href="http://npmjs.org/package/zone.js" target="_blank">zone.js</a> (0.6.12)</li>
+            </ul>
+        </div>
+        <h4>Try live</h4>
+        <div id='app'></div>
+        <script src="scripts/composition_angular2_vanilla.js"></script>
+
+
+
+        <footer></footer>
     </div>
-    <h4>Try live</h4>
-    <div id='app'></div>
-    <script src="scripts/composition_angular2_vanilla.js"></script>
-
-
-
-    <footer></footer>
 </body>
 
 </html>

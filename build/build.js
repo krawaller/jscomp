@@ -193,6 +193,7 @@ var codeFile = fsx.readFileSync('./node_modules/highlight.js/styles/'+highlightT
 fsx.writeFileSync(output+'code.css',codeFile.replace(/\.hljs\s*\{/,'pre > code {'))
 
 fsx.copySync('./style.css',output+'style.css')
+fsx.copySync('./bootstrap.css',output+'bootstrap.css')
 
 
 
