@@ -39,31 +39,36 @@
     <h4>Data</h4>
     <dl>
         <dt>Author</dt>
-        <dd>
-            <a href="http://github.com/krawaller target=" _blank ">krawaller</a></dd>
-    <dt>Source size</dt><dd>3483</dd>
-    <dt>Bundle size</dt><dd>229579</dd>
-    <dt>Source on Github</dt><dd><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/composition/cycle/comphelper " target="_blank ">http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/composition/cycle/comphelper</a></dd>
-    <dt>Framework</dt><dd>Cycle</dd>
-  </dl>
-  <h4>Description</h4>
-  <p>This CycleJS implementation of the app leans heavily on the composition helper introduced <a href="https://twitter.com/krawaller/status/743150786117517312 ">here</a>.</p>
-<p>This means that the parent-&gt;child communications are visible in the <code>withComponent</code> calls. For instance here&#39;s the corresponding line from the <code>field</code> component...</p>
-<pre><code><span class="hljs-title ">export</span> <span class="hljs-keyword ">default</span> withComponent(<span class="hljs-type ">Field</span>,<span class="hljs-type ">Confirm</span>,'<span class="hljs-title ">disabled</span>$')
-</code></pre><p>...showing how <code>Field</code> will pass the <code>disabled$</code> sink as a source to <code>Confirm</code>.</p>
+        <dd><a href="http://github.com/krawaller" target="_blank">krawaller</a></dd>
+        <dt>Source size</dt>
+        <dd>3483</dd>
+        <dt>Bundle size</dt>
+        <dd>229579</dd>
+        <dt>Source on Github</dt>
+        <dd><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/composition/cycle/comphelper" target="_blank">http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/composition/cycle/comphelper</a></dd>
+        <dt>Framework</dt>
+        <dd>Cycle</dd>
+    </dl>
+    <h4>Description</h4>
+    <p>This CycleJS implementation of the app leans heavily on the composition helper introduced <a href="https://twitter.com/krawaller/status/743150786117517312">here</a>.</p>
+    <p>This means that the parent-&gt;child communications are visible in the <code>withComponent</code> calls. For instance here&#39;s the corresponding line from the <code>field</code> component...</p>
+    <pre><code><span class="hljs-title">export</span> <span class="hljs-keyword">default</span> withComponent(<span class="hljs-type">Field</span>,<span class="hljs-type">Confirm</span>,'<span class="hljs-title">disabled</span>$')
+</code></pre>
+    <p>...showing how <code>Field</code> will pass the <code>disabled$</code> sink as a source to <code>Confirm</code>.</p>
 
-  <div class="deps ">
-    <h4>Dependencies</h4>
-    <ul>
-        <li><a href="http://npmjs.org/package/xstream " target="_blank ">xstream</a> (5.1.0)</li>
-        <li><a href="http://npmjs.org/package/@cycle/dom " target="_blank ">@cycle/dom</a> (10.0.5)</li>
-        <li><a href="http://npmjs.org/package/@cycle/xstream-run " target="_blank ">@cycle/xstream-run</a> (3.0.3)</li>
-    </ul>
-  </div>
-  <h4>Try live</h4>
-  <div id='app'></div>
-  <script src="scripts/composition_cycle_comphelper.js "></script>
+    <div class="deps">
+        <h4>Dependencies</h4>
+        <ul>
+            <li><a href="http://npmjs.org/package/xstream" target="_blank">xstream</a> (5.1.0)</li>
+            <li><a href="http://npmjs.org/package/@cycle/dom" target="_blank">@cycle/dom</a> (10.0.5)</li>
+            <li><a href="http://npmjs.org/package/@cycle/xstream-run" target="_blank">@cycle/xstream-run</a> (3.0.3)</li>
+        </ul>
+    </div>
+    <h4>Try live</h4>
+    <div id='app'></div>
+    <script src="scripts/composition_cycle_comphelper.js"></script>
 
-<footer></footer>
+    <footer></footer>
 </body>
+
 </html>

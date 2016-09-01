@@ -17,7 +17,7 @@
 {{#if isInfo}}
   <h4>Data</h4>
   <dl>
-    <dt>Author</dt><dd><a href="http://github.com/{{author}} target="_blank">{{author}}</a></dd>
+    <dt>Author</dt><dd><a href="http://github.com/{{author}}" target="_blank">{{author}}</a></dd>
     <dt>Source size</dt><dd>{{size}}</dd>
     <dt>Bundle size</dt><dd>{{bundleSize}}</dd>
     <dt>Source on Github</dt><dd><a href="{{githubUrl}}" target="_blank">{{githubUrl}}</a></dd>
