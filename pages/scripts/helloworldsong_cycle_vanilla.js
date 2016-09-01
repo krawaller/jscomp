@@ -8718,7 +8718,7 @@
 
 	function App(sources) {
 	  var song$ = _xstream2.default.periodic(1500).startWith(-1).map(function (n) {
-	    return console.log("WTF", n, (n + 1) % 4) || lyrics[(n + 1) % 4];
+	    return lyrics[(n + 1) % 4];
 	  });
 	  return {
 	    DOM: song$.map(function (line) {
