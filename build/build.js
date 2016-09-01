@@ -4,6 +4,7 @@ var fm = require('front-matter')
 var hljs = require('highlight.js')
 var uniq = require('lodash/uniq')
 var map = require('lodash/map')
+var reduce = require('lodash/reduce')
 var beautify = require('js-beautify')
 
 var marked = require('marked')
@@ -47,7 +48,6 @@ getDirs(source).forEach(function(demoName){
     description: marked(demoReadme.body),
     folderName: demoName
   },demoReadme.attributes)
-
   getDirs(demopath).forEach(function(frameworkName){
     data.frameworks = uniq(data.frameworks.concat(frameworkName))
     var niceFrameworkName = frameworkName[0].toUpperCase()+frameworkName.substr(1)
@@ -99,7 +99,22 @@ getDirs(source).forEach(function(demoName){
   })
   demo.frameworks.forEach(function(framework){
     framework.implementations.forEach(function(impl){
-
+      impl.files.forEach(function(file){
+        file.others = reduce(demo.frameworks,function(mem,f){
+          f.implementations.forEach(function(i){
+            if (i.url !== impl.url){
+              var fpos = i.files.findIndex(function(testFile){
+                return testFile.filename === file.filename
+              })
+              mem.push(Object.assign({
+                url: i.url,
+                framework: i.niceFrameworkName,
+              },i.files[fpos]))
+            }
+          })
+          return mem;
+        },[])
+      })
     })
   })
   data.demos.push(demo)
