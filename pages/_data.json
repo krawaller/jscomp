@@ -2,7 +2,7 @@
     "dcount": 2,
     "frameworks": ["angular2", "cycle", "react"],
     "icount": 5,
-    "tlength": 8097,
+    "tlength": 8109,
     "demos": [{
         "frameworks": [{
             "name": "Angular2",
@@ -707,8 +707,8 @@
                         "framework": "React",
                         "filename": "app",
                         "suffix": ".js",
-                        "size": 367,
-                        "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> lyrics = [<span class=\"hljs-string\">'Eeexiiit light'</span>,<span class=\"hljs-string\">'Eeenteeer niight'</span>,<span class=\"hljs-string\">'Taaake my haaand'</span>,<span class=\"hljs-string\">'Where off to never never land'</span>]\n\n<span class=\"hljs-keyword\">let</span> App = React.createClass({\n  getInitialState: ()=&gt; ({pos:<span class=\"hljs-number\">0</span>}),\n  componentDidMount: ()=&gt; setInterval(()=&gt;<span class=\"hljs-keyword\">this</span>.setState({pos:(<span class=\"hljs-keyword\">this</span>.state.pos+<span class=\"hljs-number\">1</span>)%<span class=\"hljs-number\">4</span>})),\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>{lyrics[this.state.pos]}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> App"
+                        "size": 379,
+                        "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> lyrics = [<span class=\"hljs-string\">'Eeexiiit light'</span>,<span class=\"hljs-string\">'Eeenteeer niight'</span>,<span class=\"hljs-string\">'Taaake my haaand'</span>,<span class=\"hljs-string\">'Where off to never never land'</span>]\n\n<span class=\"hljs-keyword\">let</span> App = React.createClass({\n  getInitialState: ()=&gt; ({pos:<span class=\"hljs-number\">0</span>}),\n  componentDidMount() {\n    setInterval(()=&gt;<span class=\"hljs-keyword\">this</span>.setState({pos:(<span class=\"hljs-keyword\">this</span>.state.pos+<span class=\"hljs-number\">1</span>)%<span class=\"hljs-number\">4</span>}), <span class=\"hljs-number\">1500</span>)\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>{lyrics[this.state.pos]}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> App"
                     }]
                 }, {
                     "filename": "bootstrap",
@@ -752,8 +752,8 @@
                 "files": [{
                     "filename": "app",
                     "suffix": ".js",
-                    "size": 367,
-                    "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> lyrics = [<span class=\"hljs-string\">'Eeexiiit light'</span>,<span class=\"hljs-string\">'Eeenteeer niight'</span>,<span class=\"hljs-string\">'Taaake my haaand'</span>,<span class=\"hljs-string\">'Where off to never never land'</span>]\n\n<span class=\"hljs-keyword\">let</span> App = React.createClass({\n  getInitialState: ()=&gt; ({pos:<span class=\"hljs-number\">0</span>}),\n  componentDidMount: ()=&gt; setInterval(()=&gt;<span class=\"hljs-keyword\">this</span>.setState({pos:(<span class=\"hljs-keyword\">this</span>.state.pos+<span class=\"hljs-number\">1</span>)%<span class=\"hljs-number\">4</span>})),\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>{lyrics[this.state.pos]}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> App",
+                    "size": 379,
+                    "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> lyrics = [<span class=\"hljs-string\">'Eeexiiit light'</span>,<span class=\"hljs-string\">'Eeenteeer niight'</span>,<span class=\"hljs-string\">'Taaake my haaand'</span>,<span class=\"hljs-string\">'Where off to never never land'</span>]\n\n<span class=\"hljs-keyword\">let</span> App = React.createClass({\n  getInitialState: ()=&gt; ({pos:<span class=\"hljs-number\">0</span>}),\n  componentDidMount() {\n    setInterval(()=&gt;<span class=\"hljs-keyword\">this</span>.setState({pos:(<span class=\"hljs-keyword\">this</span>.state.pos+<span class=\"hljs-number\">1</span>)%<span class=\"hljs-number\">4</span>}), <span class=\"hljs-number\">1500</span>)\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>{lyrics[this.state.pos]}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> App",
                     "others": [{
                         "url": "helloworldsong_cycle_vanilla_info.html",
                         "title": "A straight-forward implementation",
@@ -768,8 +768,8 @@
                             "framework": "React",
                             "filename": "app",
                             "suffix": ".js",
-                            "size": 367,
-                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> lyrics = [<span class=\"hljs-string\">'Eeexiiit light'</span>,<span class=\"hljs-string\">'Eeenteeer niight'</span>,<span class=\"hljs-string\">'Taaake my haaand'</span>,<span class=\"hljs-string\">'Where off to never never land'</span>]\n\n<span class=\"hljs-keyword\">let</span> App = React.createClass({\n  getInitialState: ()=&gt; ({pos:<span class=\"hljs-number\">0</span>}),\n  componentDidMount: ()=&gt; setInterval(()=&gt;<span class=\"hljs-keyword\">this</span>.setState({pos:(<span class=\"hljs-keyword\">this</span>.state.pos+<span class=\"hljs-number\">1</span>)%<span class=\"hljs-number\">4</span>})),\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>{lyrics[this.state.pos]}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> App"
+                            "size": 379,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> lyrics = [<span class=\"hljs-string\">'Eeexiiit light'</span>,<span class=\"hljs-string\">'Eeenteeer niight'</span>,<span class=\"hljs-string\">'Taaake my haaand'</span>,<span class=\"hljs-string\">'Where off to never never land'</span>]\n\n<span class=\"hljs-keyword\">let</span> App = React.createClass({\n  getInitialState: ()=&gt; ({pos:<span class=\"hljs-number\">0</span>}),\n  componentDidMount() {\n    setInterval(()=&gt;<span class=\"hljs-keyword\">this</span>.setState({pos:(<span class=\"hljs-keyword\">this</span>.state.pos+<span class=\"hljs-number\">1</span>)%<span class=\"hljs-number\">4</span>}), <span class=\"hljs-number\">1500</span>)\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>{lyrics[this.state.pos]}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> App"
                         }]
                     }]
                 }, {
@@ -796,8 +796,8 @@
                         }]
                     }]
                 }],
-                "bundleSize": 739444,
-                "size": 510,
+                "bundleSize": 739459,
+                "size": 522,
                 "url": "helloworldsong_react_vanilla_info.html",
                 "bundleName": "helloworldsong_react_vanilla.js",
                 "githubUrl": "http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/helloworldsong/react/vanilla"

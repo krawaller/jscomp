@@ -36,7 +36,9 @@
 
 <span class="hljs-keyword">let</span> App = React.createClass({
   getInitialState: ()=&gt; ({pos:<span class="hljs-number">0</span>}),
-  componentDidMount: ()=&gt; setInterval(()=&gt;<span class="hljs-keyword">this</span>.setState({pos:(<span class="hljs-keyword">this</span>.state.pos+<span class="hljs-number">1</span>)%<span class="hljs-number">4</span>})),
+  componentDidMount() {
+    setInterval(()=&gt;<span class="hljs-keyword">this</span>.setState({pos:(<span class="hljs-keyword">this</span>.state.pos+<span class="hljs-number">1</span>)%<span class="hljs-number">4</span>}), <span class="hljs-number">1500</span>)
+  },
   render() {
     <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{lyrics[this.state.pos]}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
   }

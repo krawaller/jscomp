@@ -21458,9 +21458,11 @@
 	    return { pos: 0 };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    return setInterval(function () {
-	      return undefined.setState({ pos: (undefined.state.pos + 1) % 4 });
-	    });
+	    var _this = this;
+
+	    setInterval(function () {
+	      return _this.setState({ pos: (_this.state.pos + 1) % 4 });
+	    }, 1500);
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
