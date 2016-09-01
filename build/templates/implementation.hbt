@@ -37,5 +37,13 @@
   <div id='app'></div>
   <script src="scripts/{{bundleName}}"></script>
 {{else}}
+  <h4>Code file {{filename}}{{suffix}}</h4>
   <pre><code>{{{code}}}</code></pre>
+  <h4>Corresponding file in other implementations</h4>
+  {{#each others}}
+    <h5>{{framework}} - <a href="{{url}}">{{title}}</a></h5>
+    <pre><code>{{{code}}}</code></pre>
+  {{/each}}
 {{/if}}
+
+

@@ -33,6 +33,7 @@
             <a href="composition_angular2_vanilla_field.html">field.ts</a>
         </li>
     </ul>
+    <h4>Code file field.ts</h4>
     <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Input,Output} from <span class="hljs-string">'@angular/core'</span>
 <span class="hljs-keyword">import</span> {Confirm} from <span class="hljs-string">'./confirm.ts'</span>
 
@@ -53,6 +54,79 @@
     <span class="hljs-keyword">this</span>.input.nativeElement.value = <span class="hljs-string">''</span>
   }
 }</code></pre>
+    <h4>Corresponding file in other implementations</h4>
+    <h5>Cycle - <a href="composition_cycle_comphelper_info.html">With a composition helper</a></h5>
+    <pre><code><span class="hljs-keyword">import</span> {div, input, p} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+<span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
+<span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+<span class="hljs-keyword">import</span> withComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
+
+<span class="hljs-keyword">const</span> intent = (DOM,confirm$)=&gt; {
+  <span class="hljs-keyword">const</span> input$ = DOM.select(<span class="hljs-string">'.field'</span>).events(<span class="hljs-string">'input'</span>)
+  <span class="hljs-keyword">const</span> newValue$ = input$
+    .map(e =&gt; ({type:<span class="hljs-string">'INPUT'</span>, data:e.target.value}))
+  <span class="hljs-keyword">const</span> submit$ = input$
+    .map(i=&gt; confirm$.map(s=&gt;({type:<span class="hljs-string">'SUBMIT'</span>, data:i.target.value})))
+    .flatten()
+  <span class="hljs-keyword">return</span> xs.merge(submit$,newValue$)
+}
+
+<span class="hljs-keyword">const</span> model = action$ =&gt; action$.fold((state, action)=&gt; {
+  <span class="hljs-keyword">switch</span>(action.type){
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'INPUT'</span>: <span class="hljs-keyword">return</span> {...state, input: action.data}
+    <span class="hljs-keyword">case</span> <span class="hljs-string">'SUBMIT'</span>: <span class="hljs-keyword">return</span> {submission: action.data, input: <span class="hljs-string">''</span>}
+    <span class="hljs-keyword">default</span>: <span class="hljs-keyword">return</span> state
+  }
+}, {submission:<span class="hljs-string">''</span>,input:<span class="hljs-string">''</span>} )
+
+<span class="hljs-keyword">const</span> view = (state$,confirmvtree$,instruction$)=&gt;
+  xs.combine(state$,confirmvtree$,instruction$).map(([state,confirmvtree,instruction])=&gt;
+    div(<span class="hljs-string">'.child'</span>,[
+      instruction+<span class="hljs-string">': '</span>,
+      input(<span class="hljs-string">'.field'</span>, {props:{value: state.input}}),
+      confirmvtree
+    ])
+  )
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Field</span>(<span class="hljs-params">sources</span>)</span>{
+  <span class="hljs-keyword">const</span> action$ = intent(sources.DOM, sources.childsinks.confirm$)
+  <span class="hljs-keyword">const</span> state$ = model(action$)
+  <span class="hljs-keyword">const</span> vtree$ = view(state$, sources.childsinks.DOM, sources.instruction$)
+  <span class="hljs-keyword">return</span> {
+    DOM: vtree$,
+    submit$: action$.filter(a =&gt; a.type === <span class="hljs-string">'SUBMIT'</span>).map(a=&gt;a.data),
+    disabled$: action$.map(a =&gt; a.type === <span class="hljs-string">'SUBMIT'</span> || !a.data)
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(Field,Confirm,<span class="hljs-string">'disabled$'</span>)
+</code></pre>
+    <h5>React - <a href="composition_react_vanilla_info.html">Vanilla</a></h5>
+    <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
+
+<span class="hljs-keyword">let</span> Field = React.createClass({
+  getInitialState: ()=&gt; ({field:<span class="hljs-string">''</span>}),
+  onConfirm() {
+    <span class="hljs-keyword">this</span>.props.onSubmission(<span class="hljs-keyword">this</span>.state.field);
+    <span class="hljs-keyword">this</span>.setState({field:<span class="hljs-string">''</span>});
+  },
+  onChange(e) {
+    <span class="hljs-keyword">this</span>.setState({field:e.target.value});
+  },
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;
+        {this.props.instruction}: &lt;input value={this.state.field} onChange={this.onChange}/&gt;
+        &lt;Confirm disabled={!this.state.field} confirm={this.onConfirm}/&gt;
+      &lt;/div&gt;
+    )
+  }
+})
+
+export default Field</code></pre>
+
+
 
     <footer></footer>
 </body>

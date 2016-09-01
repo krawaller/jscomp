@@ -108,8 +108,9 @@ getDirs(source).forEach(function(demoName){
               })
               mem.push(Object.assign({
                 url: i.url,
+                title: i.title,
                 framework: i.niceFrameworkName,
-              },i.files[fpos]))
+              }, i.files[fpos] || {missing:true}))
             }
           })
           return mem;
