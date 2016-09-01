@@ -130,7 +130,6 @@ var write = function(path,title,content,root){
 /***** Index file ******/
 var indexCtx = Object.assign(data,{
   maintext: marked(fsx.readFileSync('mainpage.md')+''),
-  isIndex: true
 })
 write('../index.html','JS Comp',indexTmpl(indexCtx),true)
 

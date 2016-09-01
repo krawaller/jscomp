@@ -2,8 +2,8 @@
 <html>
 <head>
   <title>{{TITLE}}</title>
-  {{#if isIndex}}
-    <link rel="stylesheet" href="pages/styles.css">
+  {{#if root}}
+    <link rel="stylesheet" href="pages/style.css">
   {{else}}
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
