@@ -50,8 +50,9 @@ getDirs(source).forEach(function(demoName){
 
   getDirs(demopath).forEach(function(frameworkName){
     data.frameworks = uniq(data.frameworks.concat(frameworkName))
+    var niceFrameworkName = frameworkName[0].toUpperCase()+frameworkName.substr(1)
     var framework = {
-      name: frameworkName[0].toUpperCase()+frameworkName.substr(1),
+      name: niceFrameworkName,
       folderName: frameworkName,
       implementations: []
     }
@@ -65,23 +66,27 @@ getDirs(source).forEach(function(demoName){
           folderName: implName,
           demoName: demoName,
           framework: frameworkName,
+          niceFrameworkName: niceFrameworkName,
           deps: map(require(implpath+'package.json').dependencies,function(v,pkg){
             return {package:pkg,version:v}
           }),
           explanation: marked( readme.body.replace(/^\s*|\s*$/g,'') ),
           files:[],
-          bundleSize: fsx.readFileSync(implpath+'bundle.js')+''.length,
+          bundleSize: (fsx.readFileSync(implpath+'bundle.js')+'').length,
           size:0,
           url: demoName+'_'+frameworkName+'_'+implName+'_info.html',
-          bundleName: demoName+'_'+frameworkName+'_'+implName+'.js'
+          bundleName: demoName+'_'+frameworkName+'_'+implName+'.js',
+          githubUrl: 'http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/'+demoName+'/'+frameworkName+'/'+implName
         }
       );
       getFiles(implpath + '/src').forEach(function(file){
         var content = fsx.readFileSync(implpath+'/src/'+file)+''
         var filebasename = file.replace(/\.[^.]*$/,'')
+        var suffix = file.match(/\.([^.]*)$/,'')[1]
         demo.filenames = uniq(demo.filenames.concat(filebasename))
         impl.files.push({
           filename: filebasename,
+          suffix: '.'+suffix,
           size: content.length,
           code: hljs.highlight(readme.attributes.language || 'javascript',content).value
         })
@@ -124,7 +129,8 @@ var write = function(path,title,content,root){
 
 /***** Index file ******/
 var indexCtx = Object.assign(data,{
-  maintext: marked(fsx.readFileSync('mainpage.md')+'')
+  maintext: marked(fsx.readFileSync('mainpage.md')+''),
+  isIndex: true
 })
 write('../index.html','JS Comp',indexTmpl(indexCtx),true)
 
@@ -146,7 +152,7 @@ data.demos.forEach(function(demo){
         var ctx = Object.assign({
           links: files.map(function(linkTo){
             return {
-              to:linkTo.filename,
+              to:linkTo.filename+(linkTo.suffix || ''),
               active:linkTo.filename===file.filename,
               url: demo.folderName+'_'+impl.framework+'_'+impl.folderName+'_'+linkTo.filename+'.html'
             };
@@ -163,12 +169,15 @@ data.demos.forEach(function(demo){
 
 
 
-/***** And some fixes for the highlightJS style ****/
+/***** CSS files ****/
+
+
+
 var highlightTheme = 'zenburn.css'
 var codeFile = fsx.readFileSync('./node_modules/highlight.js/styles/'+highlightTheme)+''
 fsx.writeFileSync(output+'code.css',codeFile.replace(/\.hljs\s*\{/,'pre > code {'))
 
-
+fsx.copySync('./style.css',output+'style.css')
 
 
 

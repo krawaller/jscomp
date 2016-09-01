@@ -15,8 +15,15 @@
   {{/each}}
 </ul>
 {{#if isInfo}}
-  <h4>Information</h4>
-  <p>Created by <a href="http://github.com/{{author}} target="_blank">{{author}}</a>.</p>
+  <h4>Data</h4>
+  <dl>
+    <dt>Author</dt><dd><a href="http://github.com/{{author}} target="_blank">{{author}}</a></dd>
+    <dt>Source size</dt><dd>{{size}}</dd>
+    <dt>Bundle size</dt><dd>{{bundleSize}}</dd>
+    <dt>Source on Github</dt><dd><a href="{{githubUrl}}" target="_blank">{{githubUrl}}</a></dd>
+    <dt>Framework</dt><dd>{{niceFrameworkName}}</dd>
+  </dl>
+  <h4>Description</h4>
   {{{explanation}}}
   <div class="deps">
     <h4>Dependencies</h4>

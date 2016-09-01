@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html>
-<head><title>{{TITLE}}</title></head>
+<head>
+  <title>{{TITLE}}</title>
+  {{#if isIndex}}
+    <link rel="stylesheet" href="pages/styles.css">
+  {{else}}
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+  {{/if}}
+</head>
 <body>
 {{{MAINCONTENT}}}
 <footer></footer>
