@@ -1,0 +1,7 @@
+<h2>JS Comp</h2>
+{{{ maintext }}}
+<ul>
+{{#each demos}}
+  <li><strong><a href="pages/{{folderName}}.html">{{name}}</a></strong>: {{ summary }}</li>
+{{/each}}
+</ul>

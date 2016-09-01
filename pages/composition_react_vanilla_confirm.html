@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React - Vanilla</title>
+</head>
+
+<body>
+    <h2>
+        <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="composition.html">composition</a> &gt;
+    react &gt;
+  </span> Vanilla
+    </h2>
+
+    <ul class="links">
+        <li class="">
+            <a href="composition_react_vanilla_info.html">info</a>
+        </li>
+        <li class="">
+            <a href="composition_react_vanilla_app.html">app</a>
+        </li>
+        <li class="">
+            <a href="composition_react_vanilla_bootstrap.html">bootstrap</a>
+        </li>
+        <li class="active">
+            <a href="composition_react_vanilla_confirm.html">confirm</a>
+        </li>
+        <li class="">
+            <a href="composition_react_vanilla_field.html">field</a>
+        </li>
+    </ul>
+    <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+
+<span class="hljs-keyword">let</span> Confirm = React.createClass({
+  getInitialState: ()=&gt; ({mode:<span class="hljs-string">'waiting'</span>}),
+  maybe() { <span class="hljs-keyword">this</span>.setState({mode:<span class="hljs-string">'confirm'</span>}) },
+  changedmymind() { <span class="hljs-keyword">this</span>.setState({mode:<span class="hljs-string">'waiting'</span>}) },
+  yesimsure() {
+    <span class="hljs-keyword">this</span>.props.confirm();
+    <span class="hljs-keyword">this</span>.setState({mode:<span class="hljs-string">'waiting'</span>})
+  },
+  render() {
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.state.mode !== <span class="hljs-string">'confirm'</span>
+    ? <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.maybe}</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">{this.props.disabled}</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
+    : <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.changedmymind}</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.yesimsure}</span>&gt;</span>Confirm<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+  }
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Confirm</code></pre>
+
+    <footer></footer>
+</body>
+
+</html>

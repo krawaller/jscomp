@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React - Vanilla</title>
+</head>
+
+<body>
+    <h2>
+        <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="composition.html">composition</a> &gt;
+    react &gt;
+  </span> Vanilla
+    </h2>
+
+    <ul class="links">
+        <li class="">
+            <a href="composition_react_vanilla_info.html">info</a>
+        </li>
+        <li class="">
+            <a href="composition_react_vanilla_app.html">app</a>
+        </li>
+        <li class="">
+            <a href="composition_react_vanilla_bootstrap.html">bootstrap</a>
+        </li>
+        <li class="">
+            <a href="composition_react_vanilla_confirm.html">confirm</a>
+        </li>
+        <li class="active">
+            <a href="composition_react_vanilla_field.html">field</a>
+        </li>
+    </ul>
+    <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
+
+<span class="hljs-keyword">let</span> Field = React.createClass({
+  getInitialState: ()=&gt; ({field:<span class="hljs-string">''</span>}),
+  onConfirm() {
+    <span class="hljs-keyword">this</span>.props.onSubmission(<span class="hljs-keyword">this</span>.state.field);
+    <span class="hljs-keyword">this</span>.setState({field:<span class="hljs-string">''</span>});
+  },
+  onChange(e) {
+    <span class="hljs-keyword">this</span>.setState({field:e.target.value});
+  },
+  render() {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;
+        {this.props.instruction}: &lt;input value={this.state.field} onChange={this.onChange}/&gt;
+        &lt;Confirm disabled={!this.state.field} confirm={this.onConfirm}/&gt;
+      &lt;/div&gt;
+    )
+  }
+})
+
+export default Field</code></pre>
+
+    <footer></footer>
+</body>
+
+</html>

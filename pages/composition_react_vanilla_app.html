@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React - Vanilla</title>
+</head>
+
+<body>
+    <h2>
+        <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="composition.html">composition</a> &gt;
+    react &gt;
+  </span> Vanilla
+    </h2>
+
+    <ul class="links">
+        <li class="">
+            <a href="composition_react_vanilla_info.html">info</a>
+        </li>
+        <li class="active">
+            <a href="composition_react_vanilla_app.html">app</a>
+        </li>
+        <li class="">
+            <a href="composition_react_vanilla_bootstrap.html">bootstrap</a>
+        </li>
+        <li class="">
+            <a href="composition_react_vanilla_confirm.html">confirm</a>
+        </li>
+        <li class="">
+            <a href="composition_react_vanilla_field.html">field</a>
+        </li>
+    </ul>
+    <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
+
+<span class="hljs-keyword">let</span> App = React.createClass({
+  getInitialState: ()=&gt; ({submission:<span class="hljs-string">'Steve'</span>}),
+  onSubmission(txt) { <span class="hljs-keyword">this</span>.setState({submission:txt}) },
+  render() {
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Field</span> <span class="hljs-attr">instruction</span>=<span class="hljs-string">"Enter name"</span> <span class="hljs-attr">onSubmission</span>=<span class="hljs-string">{this.onSubmission}</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Submitted value: {this.state.submission}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+    )
+  }
+})
+
+export default App</span></code></pre>
+
+    <footer></footer>
+</body>
+
+</html>

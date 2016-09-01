@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Angular2 - A vanilla implementation</title>
+</head>
+
+<body>
+    <h2>
+        <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="composition.html">composition</a> &gt;
+    angular2 &gt;
+  </span> A vanilla implementation
+    </h2>
+
+    <ul class="links">
+        <li class="">
+            <a href="composition_angular2_vanilla_info.html">info</a>
+        </li>
+        <li class="">
+            <a href="composition_angular2_vanilla_app.html">app</a>
+        </li>
+        <li class="">
+            <a href="composition_angular2_vanilla_bootstrap.html">bootstrap</a>
+        </li>
+        <li class="active">
+            <a href="composition_angular2_vanilla_confirm.html">confirm</a>
+        </li>
+        <li class="">
+            <a href="composition_angular2_vanilla_field.html">field</a>
+        </li>
+    </ul>
+    <pre><code><span class="hljs-keyword">import</span> {Component,Input,Output,EventEmitter} from <span class="hljs-string">'@angular/core'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'confirm'</span>,
+  template: <span class="hljs-string">`
+    &lt;span *ngIf="mode !== 'confirm'"&gt;
+      &lt;button (click)="maybe()" [disabled]="mode === 'disabled'"&gt;Submit&lt;/button&gt;
+    &lt;/span&gt;
+    &lt;span *ngIf="mode === 'confirm'"&gt;
+      &lt;button (click)="changedmymind()"&gt;Cancel&lt;/button&gt;
+      &lt;button (click)="yesimsure()"&gt;Confirm&lt;/button&gt;
+    &lt;/span&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Confirm {
+  mode: <span class="hljs-built_in">string</span> = <span class="hljs-string">'waiting'</span>
+  @Output() confirm = <span class="hljs-keyword">new</span> EventEmitter&lt;<span class="hljs-built_in">void</span>&gt;()
+  @Input() <span class="hljs-keyword">set</span> disabled(bool: <span class="hljs-built_in">boolean</span>){
+    <span class="hljs-keyword">this</span>.mode = bool ? <span class="hljs-string">'disabled'</span> : <span class="hljs-string">'waiting'</span>
+  }
+  maybe() { <span class="hljs-keyword">this</span>.mode = <span class="hljs-string">'confirm'</span> }
+  changedmymind() { <span class="hljs-keyword">this</span>.mode = <span class="hljs-string">'waiting'</span> }
+  yesimsure() {
+    <span class="hljs-keyword">this</span>.confirm.emit();
+    <span class="hljs-keyword">this</span>.mode = <span class="hljs-string">'waiting'</span>
+  }
+}</code></pre>
+
+    <footer></footer>
+</body>
+
+</html>

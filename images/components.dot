@@ -1,0 +1,41 @@
+digraph {
+  rankdir = LR
+  bgcolor = transparent
+  compound = true
+
+
+  subgraph cluster_app {
+    label = "app"
+    current [style=dashed]
+    bogus1
+  }
+
+  subgraph cluster_field {
+    label = "field"
+    field [style=dashed]
+    bogus2
+  }
+
+  subgraph cluster_confirm {
+    label = "confirm"
+    mode [style=dashed]
+    bogus3
+  }
+
+  bogus1, bogus2, bogus3 [color=transparent,fontcolor=transparent]
+
+  current -> instruction [ltail=cluster_app, dir=none]
+  instruction -> field [lhead=cluster_field]
+
+  field -> disabled [ltail=cluster_field, dir=none]
+  disabled -> mode [lhead=cluster_confirm]
+
+  bogus3 -> confirmation [ltail=cluster_confirm, dir=none, constraint=none]
+  confirmation -> bogus2 [lhead=cluster_field]
+
+  bogus2 -> submission [ltail=cluster_field, dir=none, constraint=none]
+  submission -> bogus1 [lhead=cluster_app]
+
+  {rank=same; disabled, confirmation}
+  {rank=same; instruction, submission}
+}

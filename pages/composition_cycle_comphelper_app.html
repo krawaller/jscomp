@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cycle - With a composition helper</title>
+</head>
+
+<body>
+    <h2>
+        <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="composition.html">composition</a> &gt;
+    cycle &gt;
+  </span> With a composition helper
+    </h2>
+
+    <ul class="links">
+        <li class="">
+            <a href="composition_cycle_comphelper_info.html">info</a>
+        </li>
+        <li class="active">
+            <a href="composition_cycle_comphelper_app.html">app</a>
+        </li>
+        <li class="">
+            <a href="composition_cycle_comphelper_bootstrap.html">bootstrap</a>
+        </li>
+        <li class="">
+            <a href="composition_cycle_comphelper_confirm.html">confirm</a>
+        </li>
+        <li class="">
+            <a href="composition_cycle_comphelper_extras.html">extras</a>
+        </li>
+        <li class="">
+            <a href="composition_cycle_comphelper_field.html">field</a>
+        </li>
+    </ul>
+    <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+<span class="hljs-keyword">import</span> {div, p} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+<span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
+<span class="hljs-keyword">import</span> withComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">view</span>(<span class="hljs-params">{childsinks:{submit$,DOM}}</span>)</span>{
+  <span class="hljs-keyword">return</span> xs.combine(submit$.startWith(<span class="hljs-string">'Steve'</span>),DOM).map(([submission,childvtree])=&gt; div([
+    childvtree,
+    p(<span class="hljs-string">'Submitted value: '</span>+submission)
+  ]))
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params">sources</span>)</span>{
+  <span class="hljs-keyword">return</span> {
+    DOM: view(sources),
+    instruction$: xs.of(<span class="hljs-string">'Enter name'</span>)
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(App,Field,<span class="hljs-string">'instruction$'</span>)</code></pre>
+
+    <footer></footer>
+</body>
+
+</html>

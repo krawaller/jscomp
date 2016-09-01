@@ -1,0 +1,34 @@
+<h2>
+  <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="{{demoName}}.html">{{demoName}}</a> &gt;
+    {{framework}} &gt;
+  </span>
+  {{title}} 
+</h2>
+
+<ul class="links">
+  {{#each links}}
+    <li class="{{#if active}}active{{/if}}">
+      <a href="{{url}}">{{to}}</a>
+    </li>
+  {{/each}}
+</ul>
+{{#if isInfo}}
+  <h4>Information</h4>
+  <p>Created by <a href="http://github.com/{{author}} target="_blank">{{author}}</a>.</p>
+  {{{explanation}}}
+  <div class="deps">
+    <h4>Dependencies</h4>
+    <ul>
+      {{#each deps}}
+        <li><a href="http://npmjs.org/package/{{package}}" target="_blank">{{package}}</a> ({{version}})</li>
+      {{/each}}
+    </ul>
+  </div>
+  <h4>Try live</h4>
+  <div id='app'></div>
+  <script src="scripts/{{bundleName}}"></script>
+{{else}}
+  <pre><code>{{{code}}}</code></pre>
+{{/if}}

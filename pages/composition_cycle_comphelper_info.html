@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cycle - With a composition helper</title>
+</head>
+
+<body>
+    <h2>
+        <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="composition.html">composition</a> &gt;
+    cycle &gt;
+  </span> With a composition helper
+    </h2>
+
+    <ul class="links">
+        <li class="active">
+            <a href="composition_cycle_comphelper_info.html">info</a>
+        </li>
+        <li class="">
+            <a href="composition_cycle_comphelper_app.html">app</a>
+        </li>
+        <li class="">
+            <a href="composition_cycle_comphelper_bootstrap.html">bootstrap</a>
+        </li>
+        <li class="">
+            <a href="composition_cycle_comphelper_confirm.html">confirm</a>
+        </li>
+        <li class="">
+            <a href="composition_cycle_comphelper_extras.html">extras</a>
+        </li>
+        <li class="">
+            <a href="composition_cycle_comphelper_field.html">field</a>
+        </li>
+    </ul>
+    <h4>Information</h4>
+    <p>Created by
+        <a href="http://github.com/krawaller target=" _blank ">krawaller</a>.</p>
+  <p>This CycleJS implementation of the app leans heavily on the composition helper introduced <a href="https://twitter.com/krawaller/status/743150786117517312 ">here</a>.</p>
+<p>This means that the parent-&gt;child communications are visible in the <code>withComponent</code> calls. For instance here&#39;s the corresponding line from the <code>field</code> component...</p>
+<pre><code><span class="hljs-title ">export</span> <span class="hljs-keyword ">default</span> withComponent(<span class="hljs-type ">Field</span>,<span class="hljs-type ">Confirm</span>,'<span class="hljs-title ">disabled</span>$')
+</code></pre><p>...showing how <code>Field</code> will pass the <code>disabled$</code> sink as a source to <code>Confirm</code>.</p>
+
+  <div class="deps ">
+    <h4>Dependencies</h4>
+    <ul>
+        <li><a href="http://npmjs.org/package/xstream " target="_blank ">xstream</a> (5.1.0)</li>
+        <li><a href="http://npmjs.org/package/@cycle/dom " target="_blank ">@cycle/dom</a> (10.0.5)</li>
+        <li><a href="http://npmjs.org/package/@cycle/xstream-run " target="_blank ">@cycle/xstream-run</a> (3.0.3)</li>
+    </ul>
+  </div>
+  <h4>Try live</h4>
+  <div id='app'></div>
+  <script src="scripts/composition_cycle_comphelper.js "></script>
+
+<footer></footer>
+</body>
+</html>
