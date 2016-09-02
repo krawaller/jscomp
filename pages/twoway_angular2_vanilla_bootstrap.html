@@ -55,6 +55,14 @@
 platformBrowserDynamic().bootstrapModule(AppModule);
 </code></pre>
         <h4>Corresponding file in other implementations</h4>
+        <h5>Cycle - <a href="twoway_cycle_vanilla_info.html">A straight-forward implementation</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+<span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
+<span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
+
+<span class="hljs-keyword">import</span> Phonebooth <span class="hljs-keyword">from</span> <span class="hljs-string">'./phonebooth'</span>
+
+run(Phonebooth, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) });</code></pre>
         <h5>React - <a href="twoway_react_vanilla_info.html">Straightforward React</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>

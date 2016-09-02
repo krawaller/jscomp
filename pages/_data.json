@@ -1,8 +1,8 @@
 {
     "dcount": 3,
     "frameworks": ["angular2", "cycle", "react", "preact", "vue"],
-    "icount": 10,
-    "tlength": 11682,
+    "icount": 11,
+    "tlength": 12430,
     "demos": [{
         "frameworks": [{
             "name": "Angular2",
@@ -2985,6 +2985,14 @@
                     "size": 627,
                     "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { FormsModule }   from <span class=\"hljs-string\">'@angular/forms'</span>;\n<span class=\"hljs-keyword\">import</span> { Phonebooth } from <span class=\"hljs-string\">'./phonebooth.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;phonebooth&gt;&lt;/phonebooth&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule, FormsModule ],\n    declarations: [ Phonebooth,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
                     "others": [{
+                        "url": "twoway_cycle_vanilla_info.html",
+                        "title": "A straight-forward implementation",
+                        "framework": "Cycle",
+                        "filename": "bootstrap",
+                        "suffix": ".js",
+                        "size": 193,
+                        "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nrun(Phonebooth, { DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>) });"
+                    }, {
                         "url": "twoway_react_vanilla_info.html",
                         "title": "Straightforward React",
                         "framework": "React",
@@ -2999,6 +3007,14 @@
                     "size": 313,
                     "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'phonebooth'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;input [(ngModel)]=\"name\"&gt;&lt;br/&gt;\n    &lt;p&gt;Your name is {{name}}.&lt;/p&gt;\n    &lt;button (click)=\"change()\"&gt;Put on costume&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Phonebooth {\n  name = <span class=\"hljs-string\">'Steve'</span>\n  change() {\n    <span class=\"hljs-keyword\">this</span>.name = <span class=\"hljs-string\">'Batman'</span>\n  }\n}",
                     "others": [{
+                        "url": "twoway_cycle_vanilla_info.html",
+                        "title": "A straight-forward implementation",
+                        "framework": "Cycle",
+                        "filename": "phonebooth",
+                        "suffix": ".js",
+                        "size": 555,
+                        "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,input,p,button} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">intent</span>(<span class=\"hljs-params\">{DOM}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> type$ = DOM.select(<span class=\"hljs-string\">'input'</span>)\n    .events(<span class=\"hljs-string\">'input'</span>)\n    .map(e =&gt; e.target.value)\n    .startWith(<span class=\"hljs-string\">'Steve'</span>);\n  <span class=\"hljs-keyword\">const</span> button$ = DOM.select(<span class=\"hljs-string\">'button'</span>)\n    .events(<span class=\"hljs-string\">'click'</span>)\n    .mapTo(<span class=\"hljs-string\">'Batman'</span>)\n  <span class=\"hljs-keyword\">return</span> xs.merge(type$,button$)\n}\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Phonebooth</span>(<span class=\"hljs-params\">sources</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> name$ = intent(sources)\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: name$.map(name=&gt;div([\n      input({props:{value:name}}),\n      p([name]),\n      button([<span class=\"hljs-string\">'Put on costume'</span>])\n    ]))\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Phonebooth"
+                    }, {
                         "url": "twoway_react_vanilla_info.html",
                         "title": "Straightforward React",
                         "framework": "React",
@@ -3013,6 +3029,114 @@
                 "url": "twoway_angular2_vanilla_info.html",
                 "bundleName": "twoway_angular2_vanilla.js",
                 "githubUrl": "http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/twoway/angular2/vanilla"
+            }]
+        }, {
+            "name": "Cycle",
+            "folderName": "cycle",
+            "implementations": [{
+                "title": "A straight-forward implementation",
+                "author": "krawaller",
+                "maindep": "@cycle/dom",
+                "folderName": "vanilla",
+                "demoName": "twoway",
+                "framework": "cycle",
+                "niceFrameworkName": "Cycle",
+                "deps": [{
+                    "package": "@cycle/dom",
+                    "version": "^12.2.2"
+                }, {
+                    "package": "@cycle/xstream-run",
+                    "version": "^3.1.0"
+                }, {
+                    "package": "xstream",
+                    "version": "^6.2.0"
+                }],
+                "frameworkVersion": "12.2.2",
+                "explanation": "<p>A no-frills implementation of the demo app.</p>\n",
+                "files": [{
+                    "filename": "bootstrap",
+                    "suffix": ".js",
+                    "size": 193,
+                    "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nrun(Phonebooth, { DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>) });",
+                    "others": [{
+                        "url": "twoway_angular2_vanilla_info.html",
+                        "title": "A vanilla implementation",
+                        "framework": "Angular2",
+                        "filename": "bootstrap",
+                        "suffix": ".ts",
+                        "size": 627,
+                        "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { FormsModule }   from <span class=\"hljs-string\">'@angular/forms'</span>;\n<span class=\"hljs-keyword\">import</span> { Phonebooth } from <span class=\"hljs-string\">'./phonebooth.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;phonebooth&gt;&lt;/phonebooth&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule, FormsModule ],\n    declarations: [ Phonebooth,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
+                        "others": [{
+                            "url": "twoway_cycle_vanilla_info.html",
+                            "title": "A straight-forward implementation",
+                            "framework": "Cycle",
+                            "filename": "bootstrap",
+                            "suffix": ".js",
+                            "size": 193,
+                            "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nrun(Phonebooth, { DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>) });"
+                        }, {
+                            "url": "twoway_react_vanilla_info.html",
+                            "title": "Straightforward React",
+                            "framework": "React",
+                            "filename": "bootstrap",
+                            "suffix": ".js",
+                            "size": 164,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Phonebooth</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                        }]
+                    }, {
+                        "url": "twoway_react_vanilla_info.html",
+                        "title": "Straightforward React",
+                        "framework": "React",
+                        "filename": "bootstrap",
+                        "suffix": ".js",
+                        "size": 164,
+                        "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Phonebooth</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                    }]
+                }, {
+                    "filename": "phonebooth",
+                    "suffix": ".js",
+                    "size": 555,
+                    "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,input,p,button} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">intent</span>(<span class=\"hljs-params\">{DOM}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> type$ = DOM.select(<span class=\"hljs-string\">'input'</span>)\n    .events(<span class=\"hljs-string\">'input'</span>)\n    .map(e =&gt; e.target.value)\n    .startWith(<span class=\"hljs-string\">'Steve'</span>);\n  <span class=\"hljs-keyword\">const</span> button$ = DOM.select(<span class=\"hljs-string\">'button'</span>)\n    .events(<span class=\"hljs-string\">'click'</span>)\n    .mapTo(<span class=\"hljs-string\">'Batman'</span>)\n  <span class=\"hljs-keyword\">return</span> xs.merge(type$,button$)\n}\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Phonebooth</span>(<span class=\"hljs-params\">sources</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> name$ = intent(sources)\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: name$.map(name=&gt;div([\n      input({props:{value:name}}),\n      p([name]),\n      button([<span class=\"hljs-string\">'Put on costume'</span>])\n    ]))\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Phonebooth",
+                    "others": [{
+                        "url": "twoway_angular2_vanilla_info.html",
+                        "title": "A vanilla implementation",
+                        "framework": "Angular2",
+                        "filename": "phonebooth",
+                        "suffix": ".ts",
+                        "size": 313,
+                        "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'phonebooth'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;input [(ngModel)]=\"name\"&gt;&lt;br/&gt;\n    &lt;p&gt;Your name is {{name}}.&lt;/p&gt;\n    &lt;button (click)=\"change()\"&gt;Put on costume&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Phonebooth {\n  name = <span class=\"hljs-string\">'Steve'</span>\n  change() {\n    <span class=\"hljs-keyword\">this</span>.name = <span class=\"hljs-string\">'Batman'</span>\n  }\n}",
+                        "others": [{
+                            "url": "twoway_cycle_vanilla_info.html",
+                            "title": "A straight-forward implementation",
+                            "framework": "Cycle",
+                            "filename": "phonebooth",
+                            "suffix": ".js",
+                            "size": 555,
+                            "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,input,p,button} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">intent</span>(<span class=\"hljs-params\">{DOM}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> type$ = DOM.select(<span class=\"hljs-string\">'input'</span>)\n    .events(<span class=\"hljs-string\">'input'</span>)\n    .map(e =&gt; e.target.value)\n    .startWith(<span class=\"hljs-string\">'Steve'</span>);\n  <span class=\"hljs-keyword\">const</span> button$ = DOM.select(<span class=\"hljs-string\">'button'</span>)\n    .events(<span class=\"hljs-string\">'click'</span>)\n    .mapTo(<span class=\"hljs-string\">'Batman'</span>)\n  <span class=\"hljs-keyword\">return</span> xs.merge(type$,button$)\n}\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Phonebooth</span>(<span class=\"hljs-params\">sources</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> name$ = intent(sources)\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: name$.map(name=&gt;div([\n      input({props:{value:name}}),\n      p([name]),\n      button([<span class=\"hljs-string\">'Put on costume'</span>])\n    ]))\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Phonebooth"
+                        }, {
+                            "url": "twoway_react_vanilla_info.html",
+                            "title": "Straightforward React",
+                            "framework": "React",
+                            "filename": "phonebooth",
+                            "suffix": ".js",
+                            "size": 476,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> Phonebooth = React.createClass({\n  getInitialState: ()=&gt; ({name:<span class=\"hljs-string\">'Steve'</span>}),\n  change() {\n    <span class=\"hljs-keyword\">this</span>.setState({name:<span class=\"hljs-string\">'Batman'</span>})\n  },\n  type(e) {\n    <span class=\"hljs-keyword\">this</span>.setState({name:e.target.value})\n  },\n  render() {\n    <span class=\"hljs-keyword\">let</span> name = <span class=\"hljs-keyword\">this</span>.state.name\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">input</span> <span class=\"hljs-attr\">onChange</span>=<span class=\"hljs-string\">{this.type}</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">{name}</span> /&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>Your name is {name}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.change}</span>&gt;</span>Put on costume<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n  }\n})\n\nexport default Phonebooth</span>"
+                        }]
+                    }, {
+                        "url": "twoway_react_vanilla_info.html",
+                        "title": "Straightforward React",
+                        "framework": "React",
+                        "filename": "phonebooth",
+                        "suffix": ".js",
+                        "size": 476,
+                        "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> Phonebooth = React.createClass({\n  getInitialState: ()=&gt; ({name:<span class=\"hljs-string\">'Steve'</span>}),\n  change() {\n    <span class=\"hljs-keyword\">this</span>.setState({name:<span class=\"hljs-string\">'Batman'</span>})\n  },\n  type(e) {\n    <span class=\"hljs-keyword\">this</span>.setState({name:e.target.value})\n  },\n  render() {\n    <span class=\"hljs-keyword\">let</span> name = <span class=\"hljs-keyword\">this</span>.state.name\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">input</span> <span class=\"hljs-attr\">onChange</span>=<span class=\"hljs-string\">{this.type}</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">{name}</span> /&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>Your name is {name}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.change}</span>&gt;</span>Put on costume<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n  }\n})\n\nexport default Phonebooth</span>"
+                    }]
+                }],
+                "bundleSize": 271436,
+                "size": 748,
+                "url": "twoway_cycle_vanilla_info.html",
+                "bundleName": "twoway_cycle_vanilla.js",
+                "githubUrl": "http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/twoway/cycle/vanilla"
             }]
         }, {
             "name": "React",
@@ -3048,6 +3172,56 @@
                         "size": 627,
                         "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { FormsModule }   from <span class=\"hljs-string\">'@angular/forms'</span>;\n<span class=\"hljs-keyword\">import</span> { Phonebooth } from <span class=\"hljs-string\">'./phonebooth.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;phonebooth&gt;&lt;/phonebooth&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule, FormsModule ],\n    declarations: [ Phonebooth,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
                         "others": [{
+                            "url": "twoway_cycle_vanilla_info.html",
+                            "title": "A straight-forward implementation",
+                            "framework": "Cycle",
+                            "filename": "bootstrap",
+                            "suffix": ".js",
+                            "size": 193,
+                            "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nrun(Phonebooth, { DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>) });"
+                        }, {
+                            "url": "twoway_react_vanilla_info.html",
+                            "title": "Straightforward React",
+                            "framework": "React",
+                            "filename": "bootstrap",
+                            "suffix": ".js",
+                            "size": 164,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Phonebooth</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                        }]
+                    }, {
+                        "url": "twoway_cycle_vanilla_info.html",
+                        "title": "A straight-forward implementation",
+                        "framework": "Cycle",
+                        "filename": "bootstrap",
+                        "suffix": ".js",
+                        "size": 193,
+                        "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nrun(Phonebooth, { DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>) });",
+                        "others": [{
+                            "url": "twoway_angular2_vanilla_info.html",
+                            "title": "A vanilla implementation",
+                            "framework": "Angular2",
+                            "filename": "bootstrap",
+                            "suffix": ".ts",
+                            "size": 627,
+                            "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { FormsModule }   from <span class=\"hljs-string\">'@angular/forms'</span>;\n<span class=\"hljs-keyword\">import</span> { Phonebooth } from <span class=\"hljs-string\">'./phonebooth.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;phonebooth&gt;&lt;/phonebooth&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule, FormsModule ],\n    declarations: [ Phonebooth,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
+                            "others": [{
+                                "url": "twoway_cycle_vanilla_info.html",
+                                "title": "A straight-forward implementation",
+                                "framework": "Cycle",
+                                "filename": "bootstrap",
+                                "suffix": ".js",
+                                "size": 193,
+                                "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nrun(Phonebooth, { DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>) });"
+                            }, {
+                                "url": "twoway_react_vanilla_info.html",
+                                "title": "Straightforward React",
+                                "framework": "React",
+                                "filename": "bootstrap",
+                                "suffix": ".js",
+                                "size": 164,
+                                "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Phonebooth <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./phonebooth'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Phonebooth</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                            }]
+                        }, {
                             "url": "twoway_react_vanilla_info.html",
                             "title": "Straightforward React",
                             "framework": "React",
@@ -3071,6 +3245,56 @@
                         "size": 313,
                         "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'phonebooth'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;input [(ngModel)]=\"name\"&gt;&lt;br/&gt;\n    &lt;p&gt;Your name is {{name}}.&lt;/p&gt;\n    &lt;button (click)=\"change()\"&gt;Put on costume&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Phonebooth {\n  name = <span class=\"hljs-string\">'Steve'</span>\n  change() {\n    <span class=\"hljs-keyword\">this</span>.name = <span class=\"hljs-string\">'Batman'</span>\n  }\n}",
                         "others": [{
+                            "url": "twoway_cycle_vanilla_info.html",
+                            "title": "A straight-forward implementation",
+                            "framework": "Cycle",
+                            "filename": "phonebooth",
+                            "suffix": ".js",
+                            "size": 555,
+                            "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,input,p,button} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">intent</span>(<span class=\"hljs-params\">{DOM}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> type$ = DOM.select(<span class=\"hljs-string\">'input'</span>)\n    .events(<span class=\"hljs-string\">'input'</span>)\n    .map(e =&gt; e.target.value)\n    .startWith(<span class=\"hljs-string\">'Steve'</span>);\n  <span class=\"hljs-keyword\">const</span> button$ = DOM.select(<span class=\"hljs-string\">'button'</span>)\n    .events(<span class=\"hljs-string\">'click'</span>)\n    .mapTo(<span class=\"hljs-string\">'Batman'</span>)\n  <span class=\"hljs-keyword\">return</span> xs.merge(type$,button$)\n}\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Phonebooth</span>(<span class=\"hljs-params\">sources</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> name$ = intent(sources)\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: name$.map(name=&gt;div([\n      input({props:{value:name}}),\n      p([name]),\n      button([<span class=\"hljs-string\">'Put on costume'</span>])\n    ]))\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Phonebooth"
+                        }, {
+                            "url": "twoway_react_vanilla_info.html",
+                            "title": "Straightforward React",
+                            "framework": "React",
+                            "filename": "phonebooth",
+                            "suffix": ".js",
+                            "size": 476,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> Phonebooth = React.createClass({\n  getInitialState: ()=&gt; ({name:<span class=\"hljs-string\">'Steve'</span>}),\n  change() {\n    <span class=\"hljs-keyword\">this</span>.setState({name:<span class=\"hljs-string\">'Batman'</span>})\n  },\n  type(e) {\n    <span class=\"hljs-keyword\">this</span>.setState({name:e.target.value})\n  },\n  render() {\n    <span class=\"hljs-keyword\">let</span> name = <span class=\"hljs-keyword\">this</span>.state.name\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">input</span> <span class=\"hljs-attr\">onChange</span>=<span class=\"hljs-string\">{this.type}</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">{name}</span> /&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>Your name is {name}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.change}</span>&gt;</span>Put on costume<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n  }\n})\n\nexport default Phonebooth</span>"
+                        }]
+                    }, {
+                        "url": "twoway_cycle_vanilla_info.html",
+                        "title": "A straight-forward implementation",
+                        "framework": "Cycle",
+                        "filename": "phonebooth",
+                        "suffix": ".js",
+                        "size": 555,
+                        "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,input,p,button} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">intent</span>(<span class=\"hljs-params\">{DOM}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> type$ = DOM.select(<span class=\"hljs-string\">'input'</span>)\n    .events(<span class=\"hljs-string\">'input'</span>)\n    .map(e =&gt; e.target.value)\n    .startWith(<span class=\"hljs-string\">'Steve'</span>);\n  <span class=\"hljs-keyword\">const</span> button$ = DOM.select(<span class=\"hljs-string\">'button'</span>)\n    .events(<span class=\"hljs-string\">'click'</span>)\n    .mapTo(<span class=\"hljs-string\">'Batman'</span>)\n  <span class=\"hljs-keyword\">return</span> xs.merge(type$,button$)\n}\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Phonebooth</span>(<span class=\"hljs-params\">sources</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> name$ = intent(sources)\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: name$.map(name=&gt;div([\n      input({props:{value:name}}),\n      p([name]),\n      button([<span class=\"hljs-string\">'Put on costume'</span>])\n    ]))\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Phonebooth",
+                        "others": [{
+                            "url": "twoway_angular2_vanilla_info.html",
+                            "title": "A vanilla implementation",
+                            "framework": "Angular2",
+                            "filename": "phonebooth",
+                            "suffix": ".ts",
+                            "size": 313,
+                            "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'phonebooth'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;input [(ngModel)]=\"name\"&gt;&lt;br/&gt;\n    &lt;p&gt;Your name is {{name}}.&lt;/p&gt;\n    &lt;button (click)=\"change()\"&gt;Put on costume&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Phonebooth {\n  name = <span class=\"hljs-string\">'Steve'</span>\n  change() {\n    <span class=\"hljs-keyword\">this</span>.name = <span class=\"hljs-string\">'Batman'</span>\n  }\n}",
+                            "others": [{
+                                "url": "twoway_cycle_vanilla_info.html",
+                                "title": "A straight-forward implementation",
+                                "framework": "Cycle",
+                                "filename": "phonebooth",
+                                "suffix": ".js",
+                                "size": 555,
+                                "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,input,p,button} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">intent</span>(<span class=\"hljs-params\">{DOM}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> type$ = DOM.select(<span class=\"hljs-string\">'input'</span>)\n    .events(<span class=\"hljs-string\">'input'</span>)\n    .map(e =&gt; e.target.value)\n    .startWith(<span class=\"hljs-string\">'Steve'</span>);\n  <span class=\"hljs-keyword\">const</span> button$ = DOM.select(<span class=\"hljs-string\">'button'</span>)\n    .events(<span class=\"hljs-string\">'click'</span>)\n    .mapTo(<span class=\"hljs-string\">'Batman'</span>)\n  <span class=\"hljs-keyword\">return</span> xs.merge(type$,button$)\n}\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Phonebooth</span>(<span class=\"hljs-params\">sources</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> name$ = intent(sources)\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: name$.map(name=&gt;div([\n      input({props:{value:name}}),\n      p([name]),\n      button([<span class=\"hljs-string\">'Put on costume'</span>])\n    ]))\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Phonebooth"
+                            }, {
+                                "url": "twoway_react_vanilla_info.html",
+                                "title": "Straightforward React",
+                                "framework": "React",
+                                "filename": "phonebooth",
+                                "suffix": ".js",
+                                "size": 476,
+                                "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> Phonebooth = React.createClass({\n  getInitialState: ()=&gt; ({name:<span class=\"hljs-string\">'Steve'</span>}),\n  change() {\n    <span class=\"hljs-keyword\">this</span>.setState({name:<span class=\"hljs-string\">'Batman'</span>})\n  },\n  type(e) {\n    <span class=\"hljs-keyword\">this</span>.setState({name:e.target.value})\n  },\n  render() {\n    <span class=\"hljs-keyword\">let</span> name = <span class=\"hljs-keyword\">this</span>.state.name\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">input</span> <span class=\"hljs-attr\">onChange</span>=<span class=\"hljs-string\">{this.type}</span> <span class=\"hljs-attr\">value</span>=<span class=\"hljs-string\">{name}</span> /&gt;</span><span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>Your name is {name}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.change}</span>&gt;</span>Put on costume<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span>\n  }\n})\n\nexport default Phonebooth</span>"
+                            }]
+                        }, {
                             "url": "twoway_react_vanilla_info.html",
                             "title": "Straightforward React",
                             "framework": "React",
@@ -3090,7 +3314,7 @@
         }],
         "filenames": ["bootstrap", "phonebooth"],
         "description": "<p>bla bla two way data binding</p>\n",
-        "icount": 2,
+        "icount": 3,
         "folderName": "twoway",
         "name": "Twoway",
         "summary": "Demonstrating two-way data binding"
