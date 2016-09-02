@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Interval</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2><span><a href="../index.html">JS Comp</a> &gt; </span>interval</h2>
+
+        <p>This is a simple hello-worldish demo, where we declare a single component that loops through the lyrics of a song:</p>
+        <pre><code><span class="hljs-keyword">let</span> <span class="hljs-attr">lyrics</span> = [<span class="hljs-string">"Eeexiiit light"</span>,<span class="hljs-string">"Eeenteeer niight"</span>,<span class="hljs-string">"Taaake my haaand"</span>,<span class="hljs-string">"We're off to never never land"</span>]
+</code></pre>
+        <p>Here&#39;re the ground rules:</p>
+        <ul>
+            <li>Define a <code>Singer</code> component in a <code>singer</code> file</li>
+            <li>It should render a single line of the song</li>
+            <li>That component should have a <code>pos</code> data tracking which line we are on (0,1,...)</li>
+            <li>After pos 3 we should loop back to 0</li>
+            <li>Each line should be displayed 1500 ms</li>
+        </ul>
+        <p>This demo aims to show off:</p>
+        <ul>
+            <li>Setting and getting state</li>
+            <li>Lifecycle hooks (since we need to start the interval somewhere)</li>
+            <li>Computed properties</li>
+        </ul>
+
+
+        <table>
+            <thead>
+                <th>Framework</th>
+                <th>Implementation</th>
+                <th>Code size</th>
+                <th>Bundle size</th>
+                <th>Author</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Cycle</td>
+                    <td><a href="interval_cycle_vanilla_info.html">A straight-forward implementation</a></td>
+                    <td>515</td>
+                    <td>271210</td>
+                    <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
+                </tr>
+                <tr>
+                    <td>Preact</td>
+                    <td><a href="interval_preact_vanilla_info.html">Straightforward Preact</a></td>
+                    <td>535</td>
+                    <td>29823</td>
+                    <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
+                </tr>
+                <tr>
+                    <td>React</td>
+                    <td><a href="interval_react_vanilla_info.html">Straightforward React</a></td>
+                    <td>537</td>
+                    <td>739480</td>
+                    <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
+                </tr>
+                <tr>
+                    <td>Vue</td>
+                    <td><a href="interval_vue_vanilla_info.html">Straightforward Vue</a></td>
+                    <td>475</td>
+                    <td>272609</td>
+                    <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
+                </tr>
+            </tbody>
+        </table>
+        <footer></footer>
+    </div>
+</body>
+
+</html>
