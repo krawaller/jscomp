@@ -36,18 +36,26 @@
             </li>
         </ul>
         <h4>Data</h4>
-        <dl>
-            <dt>Author</dt>
-            <dd><a href="http://github.com/krawaller" target="_blank">krawaller</a></dd>
-            <dt>Source size</dt>
-            <dd>1693</dd>
-            <dt>Bundle size</dt>
-            <dd>726780</dd>
-            <dt>Source on Github</dt>
-            <dd><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/composition/react/vanilla" target="_blank">link</a></dd>
-            <dt>Framework</dt>
-            <dd>React</dd>
-        </dl>
+
+        <table>
+            <thead>
+                <th>Framework</th>
+                <th>Code size</th>
+                <th>Bundle size</th>
+                <th>Author</th>
+                <th>Github</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>React</td>
+                    <td>1693</td>
+                    <td>726780</td>
+                    <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
+                    <td><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/composition/react/vanilla" target="_blank">link</a></td>
+                </tr>
+            </tbody>
+        </table>
+
         <h4>Description</h4>
         <p>No surprises here, this is a vanilla React implementation with no helpers. All components are stateful. I used <code>React.createClass</code> over ES6 classes because of personal preference, no real reasons. </p>
         <p>I opted to have a <a href="https://facebook.github.io/react/docs/forms.html#controlled-components">controlled input</a> for the <code>Field</code> instead of relying on the DOM for storage.</p>
