@@ -51,26 +51,21 @@
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div,input,p,button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">intent</span>(<span class="hljs-params">{DOM}</span>)</span>{
-  <span class="hljs-keyword">const</span> type$ = DOM.select(<span class="hljs-string">'input'</span>)
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span>(<span class="hljs-params">{DOM:{select}}</span>)</span>{
+  <span class="hljs-keyword">const</span> type$ = select(<span class="hljs-string">'input'</span>)
     .events(<span class="hljs-string">'input'</span>)
     .map(e =&gt; e.target.value)
     .startWith(<span class="hljs-string">'Steve'</span>);
-  <span class="hljs-keyword">const</span> button$ = DOM.select(<span class="hljs-string">'button'</span>)
+  <span class="hljs-keyword">const</span> click$ = select(<span class="hljs-string">'button'</span>)
     .events(<span class="hljs-string">'click'</span>)
     .mapTo(<span class="hljs-string">'Batman'</span>)
-  <span class="hljs-keyword">return</span> xs.merge(type$,button$)
-}
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span>(<span class="hljs-params">sources</span>)</span>{
-  <span class="hljs-keyword">const</span> name$ = intent(sources)
   <span class="hljs-keyword">return</span> {
-    DOM: name$.map(name=&gt;div([
+    DOM: xs.merge(type$,button$).map(name=&gt;div([
       input({props:{value:name}}),
-      p([name]),
+      p([<span class="hljs-string">'Your name is '</span>+name+<span class="hljs-string">'.'</span>]),
       button([<span class="hljs-string">'Put on costume'</span>])
     ]))
-  }
+  };
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Phonebooth</code></pre>

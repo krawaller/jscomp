@@ -8714,21 +8714,16 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function intent(_ref) {
-	  var DOM = _ref.DOM;
+	function Phonebooth(_ref) {
+	  var select = _ref.DOM.select;
 
-	  var type$ = DOM.select('input').events('input').map(function (e) {
+	  var type$ = select('input').events('input').map(function (e) {
 	    return e.target.value;
 	  }).startWith('Steve');
-	  var button$ = DOM.select('button').events('click').mapTo('Batman');
-	  return _xstream2.default.merge(type$, button$);
-	}
-
-	function Phonebooth(sources) {
-	  var name$ = intent(sources);
+	  var click$ = select('button').events('click').mapTo('Batman');
 	  return {
-	    DOM: name$.map(function (name) {
-	      return (0, _dom.div)([(0, _dom.input)({ props: { value: name } }), (0, _dom.p)([name]), (0, _dom.button)(['Put on costume'])]);
+	    DOM: _xstream2.default.merge(type$, button$).map(function (name) {
+	      return (0, _dom.div)([(0, _dom.input)({ props: { value: name } }), (0, _dom.p)(['Your name is ' + name + '.']), (0, _dom.button)(['Put on costume'])]);
 	    })
 	  };
 	}
