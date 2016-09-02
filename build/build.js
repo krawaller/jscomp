@@ -46,6 +46,7 @@ getDirs(source).forEach(function(demoName){
     frameworks:[],
     filenames:[],
     description: marked(demoReadme.body),
+    icount: 0,
     folderName: demoName
   },demoReadme.attributes)
   getDirs(demopath).forEach(function(frameworkName){
@@ -59,6 +60,7 @@ getDirs(source).forEach(function(demoName){
     var framepath = demopath + frameworkName + '/'
     getDirs(framepath).forEach(function(implName){
       data.icount += 1
+      demo.icount += 1
       var implpath = framepath + implName + '/'
       var readme = fm(fsx.readFileSync(implpath+'README.md')+'')
       var impl = Object.assign(

@@ -671,6 +671,7 @@
         }],
         "filenames": ["app", "bootstrap", "confirm", "field", "extras"],
         "description": "<p>This shows off how to do compositions yada blah</p>\n<p><img src=\"../images/components.svg\" alt=\"\"></p>\n",
+        "icount": 3,
         "folderName": "composition",
         "name": "Composition",
         "summary": "How to do composition"
@@ -2915,6 +2916,7 @@
         }],
         "filenames": ["bootstrap", "singer"],
         "description": "<p>This is a simple hello-worldish demo, where we declare a single component that loops through the lyrics of a song:</p>\n<pre><code><span class=\"hljs-keyword\">let</span> <span class=\"hljs-attr\">lyrics</span> = [<span class=\"hljs-string\">\"Eeexiiit light\"</span>,<span class=\"hljs-string\">\"Eeenteeer niight\"</span>,<span class=\"hljs-string\">\"Taaake my haaand\"</span>,<span class=\"hljs-string\">\"We're off to never never land\"</span>]\n</code></pre><p>Here&#39;re the ground rules:</p>\n<ul>\n<li>Define a <code>Singer</code> component in a <code>singer</code> file</li>\n<li>It should render a single line of the song</li>\n<li>That component should have a <code>pos</code> data tracking which line we are on (0,1,...)</li>\n<li>After pos 3 we should loop back to 0</li>\n<li>Each line should be displayed 1500 ms</li>\n</ul>\n<p>This demo aims to show off:</p>\n<ul>\n<li>Setting and getting state</li>\n<li>Lifecycle hooks (since we need to start the interval somewhere)</li>\n<li>Computed properties</li>\n</ul>\n",
+        "icount": 5,
         "folderName": "interval",
         "name": "Interval",
         "summary": "Looping through the lyrics of a song"

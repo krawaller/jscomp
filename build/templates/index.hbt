@@ -1,7 +1,12 @@
 <h2>JS Comp</h2>
 {{{ maintext }}}
+
+<p>
+  There are a total of {{icount}} implementations covering {{frameworks}}.
+</p>
+
 <ul>
 {{#each demos}}
-  <li><strong><a href="pages/{{folderName}}.html">{{name}}</a></strong>: {{ summary }}</li>
+  <li><strong><a href="pages/{{folderName}}.html">{{name}}</a></strong>: {{ summary }} ({{icount}} implementations)</li>
 {{/each}}
 </ul>
