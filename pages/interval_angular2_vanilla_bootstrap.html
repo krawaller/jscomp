@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Preact - Straightforward Preact</title>
+    <title>Angular2 - A vanilla implementation</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,29 +14,22 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="interval.html">interval</a> &gt;
-    preact &gt;
-  </span> Straightforward Preact
+    angular2 &gt;
+  </span> A vanilla implementation
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="interval_preact_vanilla_info.html">info</a>
+                <a href="interval_angular2_vanilla_info.html">info</a>
             </li>
             <li class="active">
-                <a href="interval_preact_vanilla_bootstrap.html">bootstrap.js</a>
+                <a href="interval_angular2_vanilla_bootstrap.html">bootstrap.ts</a>
             </li>
             <li class="">
-                <a href="interval_preact_vanilla_singer.html">singer.js</a>
+                <a href="interval_angular2_vanilla_singer.html">singer.ts</a>
             </li>
         </ul>
-        <h4>Code file bootstrap.js</h4>
-        <pre><code><span class="hljs-comment">/** @jsx h */</span>
-<span class="hljs-keyword">import</span> { h, render } <span class="hljs-keyword">from</span> <span class="hljs-string">'preact'</span>;
-<span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
-
-render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>));</code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>Angular2 - <a href="interval_angular2_vanilla_info.html">A vanilla implementation</a></h5>
+        <h4>Code file bootstrap.ts</h4>
         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
 
@@ -60,6 +53,7 @@ render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Sing
 
 platformBrowserDynamic().bootstrapModule(AppModule);
 </code></pre>
+        <h4>Corresponding file in other implementations</h4>
         <h5>Cycle - <a href="interval_cycle_vanilla_info.html">A straight-forward implementation</a></h5>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
@@ -68,6 +62,12 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
 run(Singer, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) });</code></pre>
+        <h5>Preact - <a href="interval_preact_vanilla_info.html">Straightforward Preact</a></h5>
+        <pre><code><span class="hljs-comment">/** @jsx h */</span>
+<span class="hljs-keyword">import</span> { h, render } <span class="hljs-keyword">from</span> <span class="hljs-string">'preact'</span>;
+<span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
+
+render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>));</code></pre>
         <h5>React - <a href="interval_react_vanilla_info.html">Straightforward React</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>

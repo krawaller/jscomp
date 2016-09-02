@@ -46,6 +46,25 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer</code></pre>
         <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="interval_angular2_vanilla_info.html">A vanilla implementation</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Component, AfterViewInit} from <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">"Eeexiiit light"</span>,<span class="hljs-string">"Eeenteeer niight"</span>,<span class="hljs-string">"Taaake my haaand"</span>,<span class="hljs-string">"We're off to never never land"</span>]
+
+@Component({
+  selector: <span class="hljs-string">'singer'</span>,
+  template: <span class="hljs-string">`{{line}}`</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Singer <span class="hljs-keyword">implements</span> AfterViewInit {
+  pos = <span class="hljs-number">0</span>
+  <span class="hljs-keyword">get</span> line() {
+    <span class="hljs-keyword">return</span> lyrics[<span class="hljs-keyword">this</span>.pos]
+  }
+  ngAfterViewInit() {
+    setInterval(()=&gt; <span class="hljs-keyword">this</span>.pos = (<span class="hljs-keyword">this</span>.pos+<span class="hljs-number">1</span>)%<span class="hljs-number">4</span>, <span class="hljs-number">1500</span>)
+  }
+}
+</code></pre>
         <h5>Cycle - <a href="interval_cycle_vanilla_info.html">A straight-forward implementation</a></h5>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
