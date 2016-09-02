@@ -10,7 +10,7 @@
     {{#each frameworks}}
       {{#each implementations}}
         <tr>
-          <td>{{niceFrameworkName}}</td>
+          <td>{{niceFrameworkName}} ({{frameworkVersion}})</td>
           <td><a href="{{url}}">{{title}}</a></td>
           <td>{{size}}</td><td>{{bundleSize}}</td>
           <td><a href="http://github.com/{{author}}" target="_blank">{{author}}</a></td>

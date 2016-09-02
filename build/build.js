@@ -63,15 +63,17 @@ getDirs(source).forEach(function(demoName){
       demo.icount += 1
       var implpath = framepath + implName + '/'
       var readme = fm(fsx.readFileSync(implpath+'README.md')+'')
+      var deps = require(implpath+'package.json').dependencies
       var impl = Object.assign(
         readme.attributes,{
           folderName: implName,
           demoName: demoName,
           framework: frameworkName,
           niceFrameworkName: niceFrameworkName,
-          deps: map(require(implpath+'package.json').dependencies,function(v,pkg){
+          deps: map(deps,function(v,pkg){
             return {package:pkg,version:v}
           }),
+          frameworkVersion: deps[readme.attributes.maindep].replace(/^\^/,''),
           explanation: marked( readme.body.replace(/^\s*|\s*$/g,'') ),
           files:[],
           bundleSize: (fsx.readFileSync(implpath+'bundle.js')+'').length,

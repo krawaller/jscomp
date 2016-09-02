@@ -1,6 +1,7 @@
 ---
 title: With a composition helper
 author: krawaller
+maindep: '@cycle/dom'
 ---
 
 This CycleJS implementation of the app leans heavily on the composition helper introduced [here](https://twitter.com/krawaller/status/743150786117517312).
