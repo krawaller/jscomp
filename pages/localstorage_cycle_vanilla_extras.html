@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cycle - A straight-forward implementation</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="localstorage.html">localstorage</a> &gt;
+    cycle &gt;
+  </span> A straight-forward implementation
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="localstorage_cycle_vanilla_info.html">info</a>
+            </li>
+            <li class="">
+                <a href="localstorage_cycle_vanilla_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="active">
+                <a href="localstorage_cycle_vanilla_extras.html">extras.js</a>
+            </li>
+            <li class="">
+                <a href="localstorage_cycle_vanilla_voter.html">voter.js</a>
+            </li>
+        </ul>
+        <h4>Code file extras.js</h4>
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+
+<span class="hljs-keyword">const</span> makeStoreDriver = (key)=&gt; (save$)=&gt; {
+  save$.addListener({
+    next: (i)=&gt; localStorage.setItem(key,i),
+    error: ()=&gt; {},
+    complete: ()=&gt; {}
+  })
+  <span class="hljs-keyword">return</span> xs.of(localStorage.getItem(key))
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeStoreDriver</code></pre>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="localstorage_angular2_vanilla_info.html">A vanilla implementation</a></h5>
+        <pre><code></code></pre>
+        <h5>React - <a href="localstorage_react_vanilla_info.html">Straightforward React</a></h5>
+        <pre><code></code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>

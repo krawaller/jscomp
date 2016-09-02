@@ -70,6 +70,23 @@
     localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
   }
 }</code></pre>
+        <h5>Cycle - <a href="localstorage_cycle_vanilla_info.html">A straight-forward implementation</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+<span class="hljs-keyword">import</span> {div,button,p} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+
+<span class="hljs-keyword">let</span> teams = [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Voter</span>(<span class="hljs-params">{DOM,store}</span>)</span>{
+  <span class="hljs-keyword">const</span> vote$ = DOM.select(<span class="hljs-string">'button'</span>).events(<span class="hljs-string">'click'</span>).map(e=&gt;e.target.getAttribute(<span class="hljs-string">'data-t'</span>))
+  <span class="hljs-keyword">return</span> {
+    DOM: xs.merge(vote$,store).map(t=&gt;div(
+      teams.map((_,n)=&gt;button({attrs:{<span class="hljs-string">"data-t"</span>:n,<span class="hljs-string">"class"</span>:(n===+t?<span class="hljs-string">'active'</span>:<span class="hljs-string">''</span>)}},[teams[n]])))
+    ),
+    store: vote$
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter</code></pre>
 
 
 

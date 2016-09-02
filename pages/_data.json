@@ -1,8 +1,8 @@
 {
     "dcount": 4,
     "frameworks": ["angular2", "cycle", "react", "preact", "vue"],
-    "icount": 13,
-    "tlength": 14414,
+    "icount": 14,
+    "tlength": 15363,
     "demos": [{
         "frameworks": [{
             "name": "Angular2",
@@ -2982,6 +2982,14 @@
                     "size": 541,
                     "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { Voter } from <span class=\"hljs-string\">'./voter.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;voter&gt;&lt;/voter&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule ],\n    declarations: [ Voter,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
                     "others": [{
+                        "url": "localstorage_cycle_vanilla_info.html",
+                        "title": "A straight-forward implementation",
+                        "framework": "Cycle",
+                        "filename": "bootstrap",
+                        "suffix": ".js",
+                        "size": 259,
+                        "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n<span class=\"hljs-keyword\">import</span> makeStoreDriver <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./extras'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nrun(Voter, {\n  DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>),\n  store: makeStoreDriver(<span class=\"hljs-string\">'JSCOMPVOTE'</span>)\n});"
+                    }, {
                         "url": "localstorage_react_vanilla_info.html",
                         "title": "Straightforward React",
                         "framework": "React",
@@ -2996,6 +3004,14 @@
                     "size": 397,
                     "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'voter'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;button *ngFor=\"let t of teams; let i = index\" (click)=\"vote(i)\" [class.active]=\"team===i\"&gt;{{t}}&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Voter {\n  teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n  team = +(localStorage.getItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>) || <span class=\"hljs-number\">1</span>)\n  vote(x) {\n    <span class=\"hljs-keyword\">this</span>.team = x;\n    localStorage.setItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>,x)\n  }\n}",
                     "others": [{
+                        "url": "localstorage_cycle_vanilla_info.html",
+                        "title": "A straight-forward implementation",
+                        "framework": "Cycle",
+                        "filename": "voter",
+                        "suffix": ".js",
+                        "size": 431,
+                        "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,button,p} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Voter</span>(<span class=\"hljs-params\">{DOM,store}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> vote$ = DOM.select(<span class=\"hljs-string\">'button'</span>).events(<span class=\"hljs-string\">'click'</span>).map(e=&gt;e.target.getAttribute(<span class=\"hljs-string\">'data-t'</span>))\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: xs.merge(vote$,store).map(t=&gt;div(\n      teams.map((_,n)=&gt;button({attrs:{<span class=\"hljs-string\">\"data-t\"</span>:n,<span class=\"hljs-string\">\"class\"</span>:(n===+t?<span class=\"hljs-string\">'active'</span>:<span class=\"hljs-string\">''</span>)}},[teams[n]])))\n    ),\n    store: vote$\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter"
+                    }, {
                         "url": "localstorage_react_vanilla_info.html",
                         "title": "Straightforward React",
                         "framework": "React",
@@ -3010,6 +3026,130 @@
                 "url": "localstorage_angular2_vanilla_info.html",
                 "bundleName": "localstorage_angular2_vanilla.js",
                 "githubUrl": "http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/localstorage/angular2/vanilla"
+            }]
+        }, {
+            "name": "Cycle",
+            "folderName": "cycle",
+            "implementations": [{
+                "title": "A straight-forward implementation",
+                "author": "krawaller",
+                "maindep": "@cycle/dom",
+                "folderName": "vanilla",
+                "demoName": "localstorage",
+                "framework": "cycle",
+                "niceFrameworkName": "Cycle",
+                "deps": [{
+                    "package": "@cycle/dom",
+                    "version": "^12.2.2"
+                }, {
+                    "package": "@cycle/xstream-run",
+                    "version": "^3.1.0"
+                }, {
+                    "package": "xstream",
+                    "version": "^6.2.0"
+                }],
+                "frameworkVersion": "12.2.2",
+                "explanation": "<p>A no-frills implementation of the demo app. CycleJS of course lends itself very well to the given task!</p>\n",
+                "files": [{
+                    "filename": "bootstrap",
+                    "suffix": ".js",
+                    "size": 259,
+                    "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n<span class=\"hljs-keyword\">import</span> makeStoreDriver <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./extras'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nrun(Voter, {\n  DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>),\n  store: makeStoreDriver(<span class=\"hljs-string\">'JSCOMPVOTE'</span>)\n});",
+                    "others": [{
+                        "url": "localstorage_angular2_vanilla_info.html",
+                        "title": "A vanilla implementation",
+                        "framework": "Angular2",
+                        "filename": "bootstrap",
+                        "suffix": ".ts",
+                        "size": 541,
+                        "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { Voter } from <span class=\"hljs-string\">'./voter.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;voter&gt;&lt;/voter&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule ],\n    declarations: [ Voter,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
+                        "others": [{
+                            "url": "localstorage_cycle_vanilla_info.html",
+                            "title": "A straight-forward implementation",
+                            "framework": "Cycle",
+                            "filename": "bootstrap",
+                            "suffix": ".js",
+                            "size": 259,
+                            "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n<span class=\"hljs-keyword\">import</span> makeStoreDriver <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./extras'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nrun(Voter, {\n  DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>),\n  store: makeStoreDriver(<span class=\"hljs-string\">'JSCOMPVOTE'</span>)\n});"
+                        }, {
+                            "url": "localstorage_react_vanilla_info.html",
+                            "title": "Straightforward React",
+                            "framework": "React",
+                            "filename": "bootstrap",
+                            "suffix": ".js",
+                            "size": 149,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Voter</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                        }]
+                    }, {
+                        "url": "localstorage_react_vanilla_info.html",
+                        "title": "Straightforward React",
+                        "framework": "React",
+                        "filename": "bootstrap",
+                        "suffix": ".js",
+                        "size": 149,
+                        "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Voter</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                    }]
+                }, {
+                    "filename": "extras",
+                    "suffix": ".js",
+                    "size": 259,
+                    "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n\n<span class=\"hljs-keyword\">const</span> makeStoreDriver = (key)=&gt; (save$)=&gt; {\n  save$.addListener({\n    next: (i)=&gt; localStorage.setItem(key,i),\n    error: ()=&gt; {},\n    complete: ()=&gt; {}\n  })\n  <span class=\"hljs-keyword\">return</span> xs.of(localStorage.getItem(key))\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> makeStoreDriver",
+                    "others": [{
+                        "url": "localstorage_angular2_vanilla_info.html",
+                        "title": "A vanilla implementation",
+                        "framework": "Angular2",
+                        "missing": true
+                    }, {
+                        "url": "localstorage_react_vanilla_info.html",
+                        "title": "Straightforward React",
+                        "framework": "React",
+                        "missing": true
+                    }]
+                }, {
+                    "filename": "voter",
+                    "suffix": ".js",
+                    "size": 431,
+                    "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,button,p} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Voter</span>(<span class=\"hljs-params\">{DOM,store}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> vote$ = DOM.select(<span class=\"hljs-string\">'button'</span>).events(<span class=\"hljs-string\">'click'</span>).map(e=&gt;e.target.getAttribute(<span class=\"hljs-string\">'data-t'</span>))\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: xs.merge(vote$,store).map(t=&gt;div(\n      teams.map((_,n)=&gt;button({attrs:{<span class=\"hljs-string\">\"data-t\"</span>:n,<span class=\"hljs-string\">\"class\"</span>:(n===+t?<span class=\"hljs-string\">'active'</span>:<span class=\"hljs-string\">''</span>)}},[teams[n]])))\n    ),\n    store: vote$\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter",
+                    "others": [{
+                        "url": "localstorage_angular2_vanilla_info.html",
+                        "title": "A vanilla implementation",
+                        "framework": "Angular2",
+                        "filename": "voter",
+                        "suffix": ".ts",
+                        "size": 397,
+                        "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'voter'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;button *ngFor=\"let t of teams; let i = index\" (click)=\"vote(i)\" [class.active]=\"team===i\"&gt;{{t}}&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Voter {\n  teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n  team = +(localStorage.getItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>) || <span class=\"hljs-number\">1</span>)\n  vote(x) {\n    <span class=\"hljs-keyword\">this</span>.team = x;\n    localStorage.setItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>,x)\n  }\n}",
+                        "others": [{
+                            "url": "localstorage_cycle_vanilla_info.html",
+                            "title": "A straight-forward implementation",
+                            "framework": "Cycle",
+                            "filename": "voter",
+                            "suffix": ".js",
+                            "size": 431,
+                            "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,button,p} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Voter</span>(<span class=\"hljs-params\">{DOM,store}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> vote$ = DOM.select(<span class=\"hljs-string\">'button'</span>).events(<span class=\"hljs-string\">'click'</span>).map(e=&gt;e.target.getAttribute(<span class=\"hljs-string\">'data-t'</span>))\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: xs.merge(vote$,store).map(t=&gt;div(\n      teams.map((_,n)=&gt;button({attrs:{<span class=\"hljs-string\">\"data-t\"</span>:n,<span class=\"hljs-string\">\"class\"</span>:(n===+t?<span class=\"hljs-string\">'active'</span>:<span class=\"hljs-string\">''</span>)}},[teams[n]])))\n    ),\n    store: vote$\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter"
+                        }, {
+                            "url": "localstorage_react_vanilla_info.html",
+                            "title": "Straightforward React",
+                            "framework": "React",
+                            "filename": "voter",
+                            "suffix": ".js",
+                            "size": 542,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> classNames <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'classnames'</span>\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-keyword\">let</span> Voter = React.createClass({\n  getInitialState: ()=&gt; ({team: +(localStorage.getItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>) || <span class=\"hljs-number\">1</span>)}),\n  vote(team) {\n    <span class=\"hljs-keyword\">this</span>.setState({team})\n    localStorage.setItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>,team)\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      {teams.map((t,n)=&gt; <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">{n}</span>\n        <span class=\"hljs-attr\">className</span>=<span class=\"hljs-string\">{classNames({active:this.state.team</span> === <span class=\"hljs-string\">n})}</span>\n        <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.vote.bind(this,n)}</span>&gt;</span>{t}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n      )}\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter"
+                        }]
+                    }, {
+                        "url": "localstorage_react_vanilla_info.html",
+                        "title": "Straightforward React",
+                        "framework": "React",
+                        "filename": "voter",
+                        "suffix": ".js",
+                        "size": 542,
+                        "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> classNames <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'classnames'</span>\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-keyword\">let</span> Voter = React.createClass({\n  getInitialState: ()=&gt; ({team: +(localStorage.getItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>) || <span class=\"hljs-number\">1</span>)}),\n  vote(team) {\n    <span class=\"hljs-keyword\">this</span>.setState({team})\n    localStorage.setItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>,team)\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      {teams.map((t,n)=&gt; <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">{n}</span>\n        <span class=\"hljs-attr\">className</span>=<span class=\"hljs-string\">{classNames({active:this.state.team</span> === <span class=\"hljs-string\">n})}</span>\n        <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.vote.bind(this,n)}</span>&gt;</span>{t}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n      )}\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter"
+                    }]
+                }],
+                "bundleSize": 272267,
+                "size": 949,
+                "url": "localstorage_cycle_vanilla_info.html",
+                "bundleName": "localstorage_cycle_vanilla.js",
+                "githubUrl": "http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/localstorage/cycle/vanilla"
             }]
         }, {
             "name": "React",
@@ -3048,6 +3188,56 @@
                         "size": 541,
                         "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { Voter } from <span class=\"hljs-string\">'./voter.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;voter&gt;&lt;/voter&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule ],\n    declarations: [ Voter,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
                         "others": [{
+                            "url": "localstorage_cycle_vanilla_info.html",
+                            "title": "A straight-forward implementation",
+                            "framework": "Cycle",
+                            "filename": "bootstrap",
+                            "suffix": ".js",
+                            "size": 259,
+                            "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n<span class=\"hljs-keyword\">import</span> makeStoreDriver <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./extras'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nrun(Voter, {\n  DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>),\n  store: makeStoreDriver(<span class=\"hljs-string\">'JSCOMPVOTE'</span>)\n});"
+                        }, {
+                            "url": "localstorage_react_vanilla_info.html",
+                            "title": "Straightforward React",
+                            "framework": "React",
+                            "filename": "bootstrap",
+                            "suffix": ".js",
+                            "size": 149,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Voter</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                        }]
+                    }, {
+                        "url": "localstorage_cycle_vanilla_info.html",
+                        "title": "A straight-forward implementation",
+                        "framework": "Cycle",
+                        "filename": "bootstrap",
+                        "suffix": ".js",
+                        "size": 259,
+                        "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n<span class=\"hljs-keyword\">import</span> makeStoreDriver <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./extras'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nrun(Voter, {\n  DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>),\n  store: makeStoreDriver(<span class=\"hljs-string\">'JSCOMPVOTE'</span>)\n});",
+                        "others": [{
+                            "url": "localstorage_angular2_vanilla_info.html",
+                            "title": "A vanilla implementation",
+                            "framework": "Angular2",
+                            "filename": "bootstrap",
+                            "suffix": ".ts",
+                            "size": 541,
+                            "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { Voter } from <span class=\"hljs-string\">'./voter.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;voter&gt;&lt;/voter&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule ],\n    declarations: [ Voter,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
+                            "others": [{
+                                "url": "localstorage_cycle_vanilla_info.html",
+                                "title": "A straight-forward implementation",
+                                "framework": "Cycle",
+                                "filename": "bootstrap",
+                                "suffix": ".js",
+                                "size": 259,
+                                "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {run} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/xstream-run'</span>\n<span class=\"hljs-keyword\">import</span> {makeDOMDriver} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>\n<span class=\"hljs-keyword\">import</span> makeStoreDriver <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./extras'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nrun(Voter, {\n  DOM: makeDOMDriver(<span class=\"hljs-string\">'#app'</span>),\n  store: makeStoreDriver(<span class=\"hljs-string\">'JSCOMPVOTE'</span>)\n});"
+                            }, {
+                                "url": "localstorage_react_vanilla_info.html",
+                                "title": "Straightforward React",
+                                "framework": "React",
+                                "filename": "bootstrap",
+                                "suffix": ".js",
+                                "size": 149,
+                                "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Voter <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./voter'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Voter</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                            }]
+                        }, {
                             "url": "localstorage_react_vanilla_info.html",
                             "title": "Straightforward React",
                             "framework": "React",
@@ -3071,6 +3261,56 @@
                         "size": 397,
                         "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'voter'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;button *ngFor=\"let t of teams; let i = index\" (click)=\"vote(i)\" [class.active]=\"team===i\"&gt;{{t}}&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Voter {\n  teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n  team = +(localStorage.getItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>) || <span class=\"hljs-number\">1</span>)\n  vote(x) {\n    <span class=\"hljs-keyword\">this</span>.team = x;\n    localStorage.setItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>,x)\n  }\n}",
                         "others": [{
+                            "url": "localstorage_cycle_vanilla_info.html",
+                            "title": "A straight-forward implementation",
+                            "framework": "Cycle",
+                            "filename": "voter",
+                            "suffix": ".js",
+                            "size": 431,
+                            "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,button,p} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Voter</span>(<span class=\"hljs-params\">{DOM,store}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> vote$ = DOM.select(<span class=\"hljs-string\">'button'</span>).events(<span class=\"hljs-string\">'click'</span>).map(e=&gt;e.target.getAttribute(<span class=\"hljs-string\">'data-t'</span>))\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: xs.merge(vote$,store).map(t=&gt;div(\n      teams.map((_,n)=&gt;button({attrs:{<span class=\"hljs-string\">\"data-t\"</span>:n,<span class=\"hljs-string\">\"class\"</span>:(n===+t?<span class=\"hljs-string\">'active'</span>:<span class=\"hljs-string\">''</span>)}},[teams[n]])))\n    ),\n    store: vote$\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter"
+                        }, {
+                            "url": "localstorage_react_vanilla_info.html",
+                            "title": "Straightforward React",
+                            "framework": "React",
+                            "filename": "voter",
+                            "suffix": ".js",
+                            "size": 542,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> classNames <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'classnames'</span>\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-keyword\">let</span> Voter = React.createClass({\n  getInitialState: ()=&gt; ({team: +(localStorage.getItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>) || <span class=\"hljs-number\">1</span>)}),\n  vote(team) {\n    <span class=\"hljs-keyword\">this</span>.setState({team})\n    localStorage.setItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>,team)\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      {teams.map((t,n)=&gt; <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">{n}</span>\n        <span class=\"hljs-attr\">className</span>=<span class=\"hljs-string\">{classNames({active:this.state.team</span> === <span class=\"hljs-string\">n})}</span>\n        <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.vote.bind(this,n)}</span>&gt;</span>{t}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n      )}\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter"
+                        }]
+                    }, {
+                        "url": "localstorage_cycle_vanilla_info.html",
+                        "title": "A straight-forward implementation",
+                        "framework": "Cycle",
+                        "filename": "voter",
+                        "suffix": ".js",
+                        "size": 431,
+                        "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,button,p} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Voter</span>(<span class=\"hljs-params\">{DOM,store}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> vote$ = DOM.select(<span class=\"hljs-string\">'button'</span>).events(<span class=\"hljs-string\">'click'</span>).map(e=&gt;e.target.getAttribute(<span class=\"hljs-string\">'data-t'</span>))\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: xs.merge(vote$,store).map(t=&gt;div(\n      teams.map((_,n)=&gt;button({attrs:{<span class=\"hljs-string\">\"data-t\"</span>:n,<span class=\"hljs-string\">\"class\"</span>:(n===+t?<span class=\"hljs-string\">'active'</span>:<span class=\"hljs-string\">''</span>)}},[teams[n]])))\n    ),\n    store: vote$\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter",
+                        "others": [{
+                            "url": "localstorage_angular2_vanilla_info.html",
+                            "title": "A vanilla implementation",
+                            "framework": "Angular2",
+                            "filename": "voter",
+                            "suffix": ".ts",
+                            "size": 397,
+                            "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'voter'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;button *ngFor=\"let t of teams; let i = index\" (click)=\"vote(i)\" [class.active]=\"team===i\"&gt;{{t}}&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Voter {\n  teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n  team = +(localStorage.getItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>) || <span class=\"hljs-number\">1</span>)\n  vote(x) {\n    <span class=\"hljs-keyword\">this</span>.team = x;\n    localStorage.setItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>,x)\n  }\n}",
+                            "others": [{
+                                "url": "localstorage_cycle_vanilla_info.html",
+                                "title": "A straight-forward implementation",
+                                "framework": "Cycle",
+                                "filename": "voter",
+                                "suffix": ".js",
+                                "size": 431,
+                                "code": "<span class=\"hljs-keyword\">import</span> xs <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'xstream'</span>\n<span class=\"hljs-keyword\">import</span> {div,button,p} <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'@cycle/dom'</span>;\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-function\"><span class=\"hljs-keyword\">function</span> <span class=\"hljs-title\">Voter</span>(<span class=\"hljs-params\">{DOM,store}</span>)</span>{\n  <span class=\"hljs-keyword\">const</span> vote$ = DOM.select(<span class=\"hljs-string\">'button'</span>).events(<span class=\"hljs-string\">'click'</span>).map(e=&gt;e.target.getAttribute(<span class=\"hljs-string\">'data-t'</span>))\n  <span class=\"hljs-keyword\">return</span> {\n    DOM: xs.merge(vote$,store).map(t=&gt;div(\n      teams.map((_,n)=&gt;button({attrs:{<span class=\"hljs-string\">\"data-t\"</span>:n,<span class=\"hljs-string\">\"class\"</span>:(n===+t?<span class=\"hljs-string\">'active'</span>:<span class=\"hljs-string\">''</span>)}},[teams[n]])))\n    ),\n    store: vote$\n  }\n}\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter"
+                            }, {
+                                "url": "localstorage_react_vanilla_info.html",
+                                "title": "Straightforward React",
+                                "framework": "React",
+                                "filename": "voter",
+                                "suffix": ".js",
+                                "size": 542,
+                                "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> classNames <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'classnames'</span>\n\n<span class=\"hljs-keyword\">let</span> teams = [<span class=\"hljs-string\">\"Valor\"</span>,<span class=\"hljs-string\">\"Mystic\"</span>,<span class=\"hljs-string\">\"Instinct\"</span>]\n\n<span class=\"hljs-keyword\">let</span> Voter = React.createClass({\n  getInitialState: ()=&gt; ({team: +(localStorage.getItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>) || <span class=\"hljs-number\">1</span>)}),\n  vote(team) {\n    <span class=\"hljs-keyword\">this</span>.setState({team})\n    localStorage.setItem(<span class=\"hljs-string\">'JSCOMPVOTE'</span>,team)\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      {teams.map((t,n)=&gt; <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">key</span>=<span class=\"hljs-string\">{n}</span>\n        <span class=\"hljs-attr\">className</span>=<span class=\"hljs-string\">{classNames({active:this.state.team</span> === <span class=\"hljs-string\">n})}</span>\n        <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.vote.bind(this,n)}</span>&gt;</span>{t}<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n      )}\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Voter"
+                            }]
+                        }, {
                             "url": "localstorage_react_vanilla_info.html",
                             "title": "Straightforward React",
                             "framework": "React",
@@ -3088,9 +3328,9 @@
                 "githubUrl": "http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/localstorage/react/vanilla"
             }]
         }],
-        "filenames": ["bootstrap", "voter"],
+        "filenames": ["bootstrap", "voter", "extras"],
         "description": "<p>odwiefjjrh</p>\n",
-        "icount": 2,
+        "icount": 3,
         "folderName": "localstorage",
         "name": "Local Storage",
         "summary": "Showing how to integrate localStorage reads and writes"
