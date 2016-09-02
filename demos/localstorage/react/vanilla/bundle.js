@@ -54,13 +54,13 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _phonebooth = __webpack_require__(172);
+	var _voter = __webpack_require__(172);
 
-	var _phonebooth2 = _interopRequireDefault(_phonebooth);
+	var _voter2 = _interopRequireDefault(_voter);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_phonebooth2.default, null), document.getElementById("app"));
+	_reactDom2.default.render(_react2.default.createElement(_voter2.default, null), document.getElementById("app"));
 
 /***/ },
 /* 1 */
@@ -21447,47 +21447,98 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _classnames = __webpack_require__(173);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Phonebooth = _react2.default.createClass({
-	  displayName: 'Phonebooth',
+	var teams = ["Valor", "Mystic", "Instinct"];
+
+	var Voter = _react2.default.createClass({
+	  displayName: 'Voter',
 
 	  getInitialState: function getInitialState() {
-	    return { name: 'Steve' };
+	    return { team: +(localStorage.getItem('JSCOMPVOTE') || 1) };
 	  },
-	  change: function change() {
-	    this.setState({ name: 'Batman' });
-	    this.refs.field.focus();
-	  },
-	  type: function type(e) {
-	    this.setState({ name: e.target.value });
+	  vote: function vote(team) {
+	    this.setState({ team: team });
+	    localStorage.setItem('JSCOMPVOTE', team);
 	  },
 	  render: function render() {
-	    var name = this.state.name;
+	    var _this = this;
+
 	    return _react2.default.createElement(
 	      'div',
 	      null,
-	      _react2.default.createElement(
-	        'div',
-	        null,
-	        _react2.default.createElement('input', { ref: 'field', onChange: this.type, value: name })
-	      ),
-	      _react2.default.createElement(
-	        'p',
-	        null,
-	        'Your name is ',
-	        name
-	      ),
-	      _react2.default.createElement(
-	        'button',
-	        { onClick: this.change },
-	        'Put on costume'
-	      )
+	      teams.map(function (t, n) {
+	        return _react2.default.createElement(
+	          'button',
+	          { key: n,
+	            className: (0, _classnames2.default)({ active: _this.state.team === n }),
+	            onClick: _this.vote.bind(_this, n) },
+	          t
+	        );
+	      })
 	    );
 	  }
 	});
 
-	exports.default = Phonebooth;
+	exports.default = Voter;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+	  Copyright (c) 2016 Jed Watson.
+	  Licensed under the MIT License (MIT), see
+	  http://jedwatson.github.io/classnames
+	*/
+	/* global define */
+
+	(function () {
+		'use strict';
+
+		var hasOwn = {}.hasOwnProperty;
+
+		function classNames () {
+			var classes = [];
+
+			for (var i = 0; i < arguments.length; i++) {
+				var arg = arguments[i];
+				if (!arg) continue;
+
+				var argType = typeof arg;
+
+				if (argType === 'string' || argType === 'number') {
+					classes.push(arg);
+				} else if (Array.isArray(arg)) {
+					classes.push(classNames.apply(null, arg));
+				} else if (argType === 'object') {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				}
+			}
+
+			return classes.join(' ');
+		}
+
+		if (typeof module !== 'undefined' && module.exports) {
+			module.exports = classNames;
+		} else if (true) {
+			// register as 'classnames', consistent with npm package name
+			!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = function () {
+				return classNames;
+			}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		} else {
+			window.classNames = classNames;
+		}
+	}());
+
 
 /***/ }
 /******/ ]);

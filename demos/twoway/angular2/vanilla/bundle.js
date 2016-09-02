@@ -27597,11 +27597,16 @@
 	    }
 	    Phonebooth.prototype.change = function () {
 	        this.name = 'Batman';
+	        this.input.nativeElement.focus();
 	    };
+	    __decorate([
+	        core_1.ViewChild('field'), 
+	        __metadata('design:type', Object)
+	    ], Phonebooth.prototype, "input");
 	    Phonebooth = __decorate([
 	        core_1.Component({
 	            selector: 'phonebooth',
-	            template: "\n    <input [(ngModel)]=\"name\"><br/>\n    <p>Your name is {{name}}.</p>\n    <button (click)=\"change()\">Put on costume</button>\n  "
+	            template: "\n    <input #field [(ngModel)]=\"name\"><br/>\n    <p>Your name is {{name}}.</p>\n    <button (click)=\"change()\">Put on costume</button>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], Phonebooth);

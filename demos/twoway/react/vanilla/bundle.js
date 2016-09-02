@@ -21457,6 +21457,7 @@
 	  },
 	  change: function change() {
 	    this.setState({ name: 'Batman' });
+	    this.refs.field.focus();
 	  },
 	  type: function type(e) {
 	    this.setState({ name: e.target.value });
@@ -21469,7 +21470,7 @@
 	      _react2.default.createElement(
 	        'div',
 	        null,
-	        _react2.default.createElement('input', { onChange: this.type, value: name })
+	        _react2.default.createElement('input', { ref: 'field', onChange: this.type, value: name })
 	      ),
 	      _react2.default.createElement(
 	        'p',

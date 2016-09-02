@@ -36,6 +36,7 @@
   getInitialState: ()=&gt; ({name:<span class="hljs-string">'Steve'</span>}),
   change() {
     <span class="hljs-keyword">this</span>.setState({name:<span class="hljs-string">'Batman'</span>})
+    <span class="hljs-keyword">this</span>.refs.field.focus()
   },
   type(e) {
     <span class="hljs-keyword">this</span>.setState({name:e.target.value})
@@ -43,7 +44,7 @@
   render() {
     <span class="hljs-keyword">let</span> name = <span class="hljs-keyword">this</span>.state.name
     <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.type}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"field"</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.type}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Your name is {name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.change}</span>&gt;</span>Put on costume<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
@@ -53,40 +54,43 @@
 export default Phonebooth</span></code></pre>
         <h4>Corresponding file in other implementations</h4>
         <h5>Angular2 - <a href="twoway_angular2_vanilla_info.html">A vanilla implementation</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
+        <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild} from <span class="hljs-string">'@angular/core'</span>;
 
 @Component({
   selector: <span class="hljs-string">'phonebooth'</span>,
   template: <span class="hljs-string">`
-    &lt;input [(ngModel)]="name"&gt;&lt;br/&gt;
+    &lt;input #field [(ngModel)]="name"&gt;&lt;br/&gt;
     &lt;p&gt;Your name is {{name}}.&lt;/p&gt;
     &lt;button (click)="change()"&gt;Put on costume&lt;/button&gt;
   `</span>
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Phonebooth {
+  @ViewChild(<span class="hljs-string">'field'</span>) input
   name = <span class="hljs-string">'Steve'</span>
   change() {
     <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
+    <span class="hljs-keyword">this</span>.input.nativeElement.focus()
   }
 }</code></pre>
         <h5>Cycle - <a href="twoway_cycle_vanilla_info.html">A straight-forward implementation</a></h5>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div,input,p,button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span>(<span class="hljs-params">{DOM:{select}}</span>)</span>{
-  <span class="hljs-keyword">const</span> type$ = select(<span class="hljs-string">'input'</span>)
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span>(<span class="hljs-params">{DOM}</span>)</span>{
+  <span class="hljs-keyword">const</span> type$ = DOM.select(<span class="hljs-string">'input'</span>)
     .events(<span class="hljs-string">'input'</span>)
     .map(e =&gt; e.target.value)
     .startWith(<span class="hljs-string">'Steve'</span>);
-  <span class="hljs-keyword">const</span> click$ = select(<span class="hljs-string">'button'</span>)
+  <span class="hljs-keyword">const</span> click$ = DOM.select(<span class="hljs-string">'button'</span>)
     .events(<span class="hljs-string">'click'</span>)
     .mapTo(<span class="hljs-string">'Batman'</span>)
   <span class="hljs-keyword">return</span> {
-    DOM: xs.merge(type$,button$).map(name=&gt;div([
+    DOM: xs.merge(type$,click$).map(name=&gt;div([
       input({props:{value:name}}),
       p([<span class="hljs-string">'Your name is '</span>+name+<span class="hljs-string">'.'</span>]),
       button([<span class="hljs-string">'Put on costume'</span>])
-    ]))
+    ])),
+    focus: click$
   };
 }
 

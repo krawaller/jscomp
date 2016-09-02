@@ -1,20 +1,21 @@
 import xs from 'xstream'
 import {div,input,p,button} from '@cycle/dom';
 
-function Phonebooth({DOM:{select}}){
-  const type$ = select('input')
+function Phonebooth({DOM}){
+  const type$ = DOM.select('input')
     .events('input')
     .map(e => e.target.value)
     .startWith('Steve');
-  const click$ = select('button')
+  const click$ = DOM.select('button')
     .events('click')
     .mapTo('Batman')
   return {
-    DOM: xs.merge(type$,button$).map(name=>div([
+    DOM: xs.merge(type$,click$).map(name=>div([
       input({props:{value:name}}),
       p(['Your name is '+name+'.']),
       button(['Put on costume'])
-    ]))
+    ])),
+    focus: click$
   };
 }
 

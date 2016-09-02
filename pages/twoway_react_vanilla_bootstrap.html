@@ -67,9 +67,13 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 <span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
 <span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
+<span class="hljs-keyword">import</span> makeFocusDriver <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
 <span class="hljs-keyword">import</span> Phonebooth <span class="hljs-keyword">from</span> <span class="hljs-string">'./phonebooth'</span>
 
-run(Phonebooth, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) });</code></pre>
+run(Phonebooth, {
+  DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
+  focus: makeFocusDriver(<span class="hljs-string">'#app input'</span>)
+});</code></pre>
 
 
 

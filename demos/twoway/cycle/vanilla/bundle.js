@@ -54,13 +54,20 @@
 
 	var _dom = __webpack_require__(6);
 
-	var _phonebooth = __webpack_require__(122);
+	var _extras = __webpack_require__(122);
+
+	var _extras2 = _interopRequireDefault(_extras);
+
+	var _phonebooth = __webpack_require__(123);
 
 	var _phonebooth2 = _interopRequireDefault(_phonebooth);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _xstreamRun.run)(_phonebooth2.default, { DOM: (0, _dom.makeDOMDriver)('#app') });
+	(0, _xstreamRun.run)(_phonebooth2.default, {
+	  DOM: (0, _dom.makeDOMDriver)('#app'),
+	  focus: (0, _extras2.default)('#app input')
+	});
 
 /***/ },
 /* 1 */
@@ -8698,6 +8705,29 @@
 
 /***/ },
 /* 122 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var focusDriver = function focusDriver(selector) {
+	  return function (stream) {
+	    return stream.addListener({
+	      next: function next() {
+	        return document.querySelector(selector).focus();
+	      },
+	      error: function error() {},
+	      complete: function complete() {}
+	    });
+	  };
+	};
+
+	exports.default = focusDriver;
+
+/***/ },
+/* 123 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -8715,16 +8745,17 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function Phonebooth(_ref) {
-	  var select = _ref.DOM.select;
+	  var DOM = _ref.DOM;
 
-	  var type$ = select('input').events('input').map(function (e) {
+	  var type$ = DOM.select('input').events('input').map(function (e) {
 	    return e.target.value;
 	  }).startWith('Steve');
-	  var click$ = select('button').events('click').mapTo('Batman');
+	  var click$ = DOM.select('button').events('click').mapTo('Batman');
 	  return {
-	    DOM: _xstream2.default.merge(type$, button$).map(function (name) {
+	    DOM: _xstream2.default.merge(type$, click$).map(function (name) {
 	      return (0, _dom.div)([(0, _dom.input)({ props: { value: name } }), (0, _dom.p)(['Your name is ' + name + '.']), (0, _dom.button)(['Put on costume'])]);
-	    })
+	    }),
+	    focus: click$
 	  };
 	}
 
