@@ -1,7 +1,7 @@
 ---
-title: A straight-forward implementation
+title: xstream
 author: krawaller
 maindep: '@cycle/dom'
 ---
 
-A no-frills implementation of the demo app. CycleJS of course lends itself very well to the given task!
+CycleJS of course lends itself very well to the given task, as the interval is a stream and streams are what Cycle does.

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - A straight-forward implementation</title>
+    <title>Cycle - xstream</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -15,7 +15,7 @@
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="interval.html">interval</a> &gt;
     cycle &gt;
-  </span> A straight-forward implementation
+  </span> xstream
         </h2>
 
         <ul class="links">
@@ -44,7 +44,7 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer</code></pre>
         <h4>Corresponding file in other implementations</h4>
-        <h5>Angular2 - <a href="interval_angular2_vanilla_info.html">A vanilla implementation</a></h5>
+        <h5>Angular2 - <a href="interval_angular2_vanilla_info.html">TypeScript</a></h5>
         <pre><code><span class="hljs-keyword">import</span> {Component, AfterViewInit} from <span class="hljs-string">'@angular/core'</span>;
 
 <span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">"Eeexiiit light"</span>,<span class="hljs-string">"Eeenteeer niight"</span>,<span class="hljs-string">"Taaake my haaand"</span>,<span class="hljs-string">"We're off to never never land"</span>]
@@ -63,6 +63,18 @@
   }
 }
 </code></pre>
+        <h5>Cycle - <a href="interval_cycle_lyricsdriver_info.html">xstream and lyricsdriver</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {div} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+
+<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">"Eeexiiit light"</span>,<span class="hljs-string">"Eeenteeer niight"</span>,<span class="hljs-string">"Taaake my haaand"</span>,<span class="hljs-string">"We're off to never never land"</span>]
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Singer</span>(<span class="hljs-params">{pos$}</span>)</span>{
+  <span class="hljs-keyword">return</span> {
+    DOM: pos$.map(pos =&gt; div(lyrics[pos]))
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer</code></pre>
         <h5>Preact - <a href="interval_preact_vanilla_info.html">Straightforward Preact</a></h5>
         <pre><code><span class="hljs-comment">/** @jsx h */</span>
 <span class="hljs-keyword">import</span> { h, Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'preact'</span>;
@@ -73,6 +85,23 @@
   <span class="hljs-keyword">constructor</span>() {
     <span class="hljs-keyword">super</span>()
     <span class="hljs-keyword">this</span>.state.pos = <span class="hljs-number">0</span>
+    setInterval(()=&gt;<span class="hljs-keyword">this</span>.setState({pos:(<span class="hljs-keyword">this</span>.state.pos+<span class="hljs-number">1</span>)%<span class="hljs-number">4</span>}), <span class="hljs-number">1500</span>)
+  }
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>{lyrics[this.state.pos]}<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer</code></pre>
+        <h5>React - <a href="interval_react_es6_info.html">es6 class</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+
+<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">"Eeexiiit light"</span>,<span class="hljs-string">"Eeenteeer niight"</span>,<span class="hljs-string">"Taaake my haaand"</span>,<span class="hljs-string">"We're off to never never land"</span>]
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>()
+    <span class="hljs-keyword">this</span>.state = {pos:<span class="hljs-number">0</span>}
     setInterval(()=&gt;<span class="hljs-keyword">this</span>.setState({pos:(<span class="hljs-keyword">this</span>.state.pos+<span class="hljs-number">1</span>)%<span class="hljs-number">4</span>}), <span class="hljs-number">1500</span>)
   }
   render() {

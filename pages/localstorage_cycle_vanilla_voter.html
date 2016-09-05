@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - A straight-forward implementation</title>
+    <title>Cycle - xstream and storage driver</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -15,7 +15,7 @@
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="localstorage.html">localstorage</a> &gt;
     cycle &gt;
-  </span> A straight-forward implementation
+  </span> xstream and storage driver
         </h2>
 
         <ul class="links">
@@ -67,7 +67,33 @@
     localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
   }
 }</code></pre>
-        <h5>React - <a href="localstorage_react_vanilla_info.html">Straightforward React</a></h5>
+        <h5>React - <a href="localstorage_react_es6class_info.html">es6 class</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> classNames <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
+
+<span class="hljs-keyword">let</span> teams = [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Voter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>()
+    <span class="hljs-keyword">this</span>.state = {team: +(localStorage.getItem(<span class="hljs-string">'JSCOMPVOTE'</span>) || <span class="hljs-number">1</span>)}
+  }
+  vote(team) {
+    <span class="hljs-keyword">this</span>.setState({team})
+    localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,team)
+  }
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      {teams.map((t,n)=&gt; <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{n}</span>
+        <span class="hljs-attr">className</span>=<span class="hljs-string">{classNames({active:this.state.team</span> === <span class="hljs-string">n})}</span>
+        <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.vote.bind(this,n)}</span>&gt;</span>{t}<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      )}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter</code></pre>
+        <h5>React - <a href="localstorage_react_vanilla_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> classNames <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
 

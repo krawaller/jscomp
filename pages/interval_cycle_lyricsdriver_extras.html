@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cycle - xstream and lyricsdriver</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="interval.html">interval</a> &gt;
+    cycle &gt;
+  </span> xstream and lyricsdriver
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="interval_cycle_lyricsdriver_info.html">info</a>
+            </li>
+            <li class="">
+                <a href="interval_cycle_lyricsdriver_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="active">
+                <a href="interval_cycle_lyricsdriver_extras.html">extras.js</a>
+            </li>
+            <li class="">
+                <a href="interval_cycle_lyricsdriver_singer.html">singer.js</a>
+            </li>
+        </ul>
+        <h4>Code file extras.js</h4>
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+
+<span class="hljs-keyword">const</span> makeIntervalDriver = (ceil,interval)=&gt; ()=&gt; {
+  <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(n=&gt;(n+<span class="hljs-number">1</span>)%ceil)
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIntervalDriver</code></pre>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="interval_angular2_vanilla_info.html">TypeScript</a></h5>
+        <pre><code></code></pre>
+        <h5>Cycle - <a href="interval_cycle_vanilla_info.html">xstream</a></h5>
+        <pre><code></code></pre>
+        <h5>Preact - <a href="interval_preact_vanilla_info.html">Straightforward Preact</a></h5>
+        <pre><code></code></pre>
+        <h5>React - <a href="interval_react_es6_info.html">es6 class</a></h5>
+        <pre><code></code></pre>
+        <h5>React - <a href="interval_react_vanilla_info.html">Straightforward React</a></h5>
+        <pre><code></code></pre>
+        <h5>Vue - <a href="interval_vue_vanilla_info.html">Straightforward Vue</a></h5>
+        <pre><code></code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>
