@@ -1,8 +1,8 @@
 {
-    "dcount": 4,
+    "dcount": 5,
     "frameworks": ["angular2", "cycle", "react", "preact", "vue"],
-    "icount": 17,
-    "tlength": 17297,
+    "icount": 19,
+    "tlength": 18670,
     "demos": [{
         "frameworks": [{
             "name": "Angular2",
@@ -14392,6 +14392,164 @@
         "folderName": "localstorage",
         "name": "Local Storage",
         "summary": "Showing how to integrate localStorage reads and writes"
+    }, {
+        "frameworks": [{
+            "name": "Angular2",
+            "folderName": "angular2",
+            "implementations": [{
+                "title": "TypeScript",
+                "author": "krawaller",
+                "language": "typescript",
+                "maindep": "@angular/core",
+                "folderName": "vanilla",
+                "demoName": "simpleclicker",
+                "framework": "angular2",
+                "niceFrameworkName": "Angular2",
+                "deps": [{
+                    "package": "@angular/common",
+                    "version": "^2.0.0-rc.6"
+                }, {
+                    "package": "@angular/compiler",
+                    "version": "^2.0.0-rc.6"
+                }, {
+                    "package": "@angular/core",
+                    "version": "^2.0.0-rc.6"
+                }, {
+                    "package": "@angular/forms",
+                    "version": "^0.3.0"
+                }, {
+                    "package": "@angular/platform-browser",
+                    "version": "^2.0.0-rc.6"
+                }, {
+                    "package": "@angular/platform-browser-dynamic",
+                    "version": "^2.0.0-rc.6"
+                }, {
+                    "package": "reflect-metadata",
+                    "version": "^0.1.8"
+                }, {
+                    "package": "rxjs",
+                    "version": "^5.0.0-beta.11"
+                }, {
+                    "package": "zone.js",
+                    "version": "^0.6.17"
+                }],
+                "frameworkVersion": "2.0.0-rc.6",
+                "explanation": "<p>This is an idiomatic Angular 2 solution without any surprises.</p>\n",
+                "files": [{
+                    "filename": "bootstrap",
+                    "suffix": ".ts",
+                    "size": 612,
+                    "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { FormsModule }   from <span class=\"hljs-string\">'@angular/forms'</span>;\n<span class=\"hljs-keyword\">import</span> { Clicker } from <span class=\"hljs-string\">'./clicker.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;clicker&gt;&lt;/clicker&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule, FormsModule ],\n    declarations: [ Clicker,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
+                    "others": [{
+                        "url": "simpleclicker_react_vanilla_info.html",
+                        "title": "createClass",
+                        "framework": "React",
+                        "filename": "bootstrap",
+                        "suffix": ".js",
+                        "size": 155,
+                        "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Clicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./clicker'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Clicker</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                    }]
+                }, {
+                    "filename": "clicker",
+                    "suffix": ".ts",
+                    "size": 263,
+                    "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'clicker'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;\n    &lt;button (click)=\"more()\"&gt;Buy more&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Clicker {\n  count = <span class=\"hljs-number\">3</span>\n  more() {\n    <span class=\"hljs-keyword\">this</span>.count++\n  }\n}",
+                    "others": [{
+                        "url": "simpleclicker_react_vanilla_info.html",
+                        "title": "createClass",
+                        "framework": "React",
+                        "filename": "clicker",
+                        "suffix": ".js",
+                        "size": 343,
+                        "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> Clicker = React.createClass({\n  getInitialState: ()=&gt; ({count:<span class=\"hljs-number\">3</span>}),\n  more() {\n    <span class=\"hljs-keyword\">this</span>.setState({count:<span class=\"hljs-keyword\">this</span>.state.count+<span class=\"hljs-number\">1</span>})\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>{this.state.count} bottles of beer on the wall<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.more}</span>&gt;</span>Buy more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Clicker"
+                    }]
+                }],
+                "bundleSize": 1952235,
+                "size": 875,
+                "url": "simpleclicker_angular2_vanilla_info.html",
+                "bundleName": "simpleclicker_angular2_vanilla.js",
+                "githubUrl": "http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/simpleclicker/angular2/vanilla"
+            }]
+        }, {
+            "name": "React",
+            "folderName": "react",
+            "implementations": [{
+                "title": "createClass",
+                "author": "krawaller",
+                "maindep": "react",
+                "folderName": "vanilla",
+                "demoName": "simpleclicker",
+                "framework": "react",
+                "niceFrameworkName": "React",
+                "deps": [{
+                    "package": "react",
+                    "version": "^15.3.1"
+                }, {
+                    "package": "react-dom",
+                    "version": "^15.3.1"
+                }],
+                "frameworkVersion": "15.3.1",
+                "explanation": "<p>No surprises here, this is a vanilla React implementation.</p>\n",
+                "files": [{
+                    "filename": "bootstrap",
+                    "suffix": ".js",
+                    "size": 155,
+                    "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Clicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./clicker'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Clicker</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );",
+                    "others": [{
+                        "url": "simpleclicker_angular2_vanilla_info.html",
+                        "title": "TypeScript",
+                        "framework": "Angular2",
+                        "filename": "bootstrap",
+                        "suffix": ".ts",
+                        "size": 612,
+                        "code": "<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'zone.js'</span>\n<span class=\"hljs-keyword\">import</span> <span class=\"hljs-string\">'reflect-metadata'</span>\n\n<span class=\"hljs-keyword\">import</span> { NgModule, Component }      from <span class=\"hljs-string\">'@angular/core'</span>;\n<span class=\"hljs-keyword\">import</span> { BrowserModule } from <span class=\"hljs-string\">'@angular/platform-browser'</span>;\n<span class=\"hljs-keyword\">import</span> { FormsModule }   from <span class=\"hljs-string\">'@angular/forms'</span>;\n<span class=\"hljs-keyword\">import</span> { Clicker } from <span class=\"hljs-string\">'./clicker.ts'</span>;\n<span class=\"hljs-keyword\">import</span> { platformBrowserDynamic } from <span class=\"hljs-string\">'@angular/platform-browser-dynamic'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'#app'</span>,\n  template: <span class=\"hljs-string\">`&lt;clicker&gt;&lt;/clicker&gt;`</span>\n})\n<span class=\"hljs-keyword\">class</span> Root {}\n\n@NgModule({\n    imports:      [ BrowserModule, FormsModule ],\n    declarations: [ Clicker,Root ],\n    bootstrap:    [ Root ]\n})\n<span class=\"hljs-keyword\">class</span> AppModule {}\n\nplatformBrowserDynamic().bootstrapModule(AppModule);\n",
+                        "others": [{
+                            "url": "simpleclicker_react_vanilla_info.html",
+                            "title": "createClass",
+                            "framework": "React",
+                            "filename": "bootstrap",
+                            "suffix": ".js",
+                            "size": 155,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n<span class=\"hljs-keyword\">import</span> ReactDOM <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react-dom'</span>\n\n<span class=\"hljs-keyword\">import</span> Clicker <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'./clicker'</span>\n\nReactDOM.render( <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">Clicker</span>/&gt;</span></span>, <span class=\"hljs-built_in\">document</span>.getElementById(<span class=\"hljs-string\">\"app\"</span>) );"
+                        }]
+                    }]
+                }, {
+                    "filename": "clicker",
+                    "suffix": ".js",
+                    "size": 343,
+                    "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> Clicker = React.createClass({\n  getInitialState: ()=&gt; ({count:<span class=\"hljs-number\">3</span>}),\n  more() {\n    <span class=\"hljs-keyword\">this</span>.setState({count:<span class=\"hljs-keyword\">this</span>.state.count+<span class=\"hljs-number\">1</span>})\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>{this.state.count} bottles of beer on the wall<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.more}</span>&gt;</span>Buy more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Clicker",
+                    "others": [{
+                        "url": "simpleclicker_angular2_vanilla_info.html",
+                        "title": "TypeScript",
+                        "framework": "Angular2",
+                        "filename": "clicker",
+                        "suffix": ".ts",
+                        "size": 263,
+                        "code": "<span class=\"hljs-keyword\">import</span> {Component} from <span class=\"hljs-string\">'@angular/core'</span>;\n\n@Component({\n  selector: <span class=\"hljs-string\">'clicker'</span>,\n  template: <span class=\"hljs-string\">`\n    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;\n    &lt;button (click)=\"more()\"&gt;Buy more&lt;/button&gt;\n  `</span>\n})\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">class</span> Clicker {\n  count = <span class=\"hljs-number\">3</span>\n  more() {\n    <span class=\"hljs-keyword\">this</span>.count++\n  }\n}",
+                        "others": [{
+                            "url": "simpleclicker_react_vanilla_info.html",
+                            "title": "createClass",
+                            "framework": "React",
+                            "filename": "clicker",
+                            "suffix": ".js",
+                            "size": 343,
+                            "code": "<span class=\"hljs-keyword\">import</span> React <span class=\"hljs-keyword\">from</span> <span class=\"hljs-string\">'react'</span>\n\n<span class=\"hljs-keyword\">let</span> Clicker = React.createClass({\n  getInitialState: ()=&gt; ({count:<span class=\"hljs-number\">3</span>}),\n  more() {\n    <span class=\"hljs-keyword\">this</span>.setState({count:<span class=\"hljs-keyword\">this</span>.state.count+<span class=\"hljs-number\">1</span>})\n  },\n  render() {\n    <span class=\"hljs-keyword\">return</span> <span class=\"xml\"><span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">div</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">p</span>&gt;</span>{this.state.count} bottles of beer on the wall<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">p</span>&gt;</span>\n      <span class=\"hljs-tag\">&lt;<span class=\"hljs-name\">button</span> <span class=\"hljs-attr\">onClick</span>=<span class=\"hljs-string\">{this.more}</span>&gt;</span>Buy more<span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">button</span>&gt;</span>\n    <span class=\"hljs-tag\">&lt;/<span class=\"hljs-name\">div</span>&gt;</span></span>\n  }\n})\n\n<span class=\"hljs-keyword\">export</span> <span class=\"hljs-keyword\">default</span> Clicker"
+                        }]
+                    }]
+                }],
+                "bundleSize": 739505,
+                "size": 498,
+                "url": "simpleclicker_react_vanilla_info.html",
+                "bundleName": "simpleclicker_react_vanilla.js",
+                "githubUrl": "http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/simpleclicker/react/vanilla"
+            }]
+        }],
+        "filenames": ["bootstrap", "clicker"],
+        "description": "<p>A very simple demo, only demonstrating how to set a click handler and to read/write to state.</p>\n",
+        "icount": 2,
+        "folderName": "simpleclicker",
+        "name": "Simple Clicker",
+        "summary": "Super-simple demo showing click handling and state"
     }, {
         "frameworks": [{
             "name": "Angular2",
