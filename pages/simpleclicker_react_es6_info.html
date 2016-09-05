@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>React - createClass</title>
+    <title>React - es6 class</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -15,18 +15,18 @@
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="simpleclicker.html">simpleclicker</a> &gt;
     react &gt;
-  </span> createClass
+  </span> es6 class
         </h2>
 
         <ul class="links">
             <li class="active">
-                <a href="simpleclicker_react_vanilla_info.html">info</a>
+                <a href="simpleclicker_react_es6_info.html">info</a>
             </li>
             <li class="">
-                <a href="simpleclicker_react_vanilla_bootstrap.html">bootstrap.js</a>
+                <a href="simpleclicker_react_es6_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="">
-                <a href="simpleclicker_react_vanilla_clicker.html">clicker.js</a>
+                <a href="simpleclicker_react_es6_clicker.html">clicker.js</a>
             </li>
         </ul>
         <h4>Data</h4>
@@ -42,16 +42,18 @@
             <tbody>
                 <tr>
                     <td>React</td>
-                    <td>498</td>
-                    <td>739505</td>
+                    <td>529</td>
+                    <td>741292</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
-                    <td><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/simpleclicker/react/vanilla" target="_blank">link</a></td>
+                    <td><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/simpleclicker/react/es6" target="_blank">link</a></td>
                 </tr>
             </tbody>
         </table>
 
         <h4>Description</h4>
         <p>No surprises here, this is a vanilla React implementation.</p>
+        <p>Note that since class methods are not automatically bound to the instance in ES6 classes, we must either bind the method in the constructor, or assign the method in the constructor using an arrow function so that <code>this</code> points to the
+            instance.</p>
 
         <div class="deps">
             <h4>Dependencies</h4>
@@ -62,7 +64,7 @@
         </div>
         <h4>Try live</h4>
         <div id='app'></div>
-        <script src="scripts/simpleclicker_react_vanilla.js"></script>
+        <script src="scripts/simpleclicker_react_es6.js"></script>
 
 
 

@@ -104,7 +104,7 @@ getDirs(source).forEach(function(demoName){
   demo.frameworks.forEach(function(framework){
     framework.implementations.forEach(function(impl){
       impl.files.forEach(function(file){
-        file.others = reduce(demo.frameworks,function(mem,f){
+        var others = reduce(demo.frameworks,function(mem,f){
           f.implementations.forEach(function(i){
             if (i.url !== impl.url){
               var fpos = i.files.findIndex(function(testFile){
@@ -113,12 +113,18 @@ getDirs(source).forEach(function(demoName){
               mem.push(Object.assign({
                 url: i.url,
                 title: i.title,
-                framework: i.niceFrameworkName,
+                niceFrameworkName: i.niceFrameworkName,
               }, i.files[fpos] || {missing:true}))
             }
           })
           return mem;
         },[])
+        file.othersWithSame = others.filter(function(i){
+          return i.niceFrameworkName === impl.niceFrameworkName
+        })
+        file.othersWithDifferent = others.filter(function(i){
+          return i.niceFrameworkName !== impl.niceFrameworkName
+        })
       })
     })
   })

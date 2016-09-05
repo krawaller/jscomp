@@ -43,7 +43,20 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer</code></pre>
-        <h4>Corresponding file in other implementations</h4>
+        <h4>Corresponding file in other implementations using the same framework</h4>
+        <h5>Cycle - <a href="interval_cycle_lyricsdriver_info.html">xstream and lyricsdriver</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {div} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+
+<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">"Eeexiiit light"</span>,<span class="hljs-string">"Eeenteeer niight"</span>,<span class="hljs-string">"Taaake my haaand"</span>,<span class="hljs-string">"We're off to never never land"</span>]
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Singer</span>(<span class="hljs-params">{pos$}</span>)</span>{
+  <span class="hljs-keyword">return</span> {
+    DOM: pos$.map(pos =&gt; div(lyrics[pos]))
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer</code></pre>
+        <h4>Corresponding file in other implementations using a different framework</h4>
         <h5>Angular2 - <a href="interval_angular2_vanilla_info.html">TypeScript</a></h5>
         <pre><code><span class="hljs-keyword">import</span> {Component, AfterViewInit} from <span class="hljs-string">'@angular/core'</span>;
 
@@ -63,18 +76,6 @@
   }
 }
 </code></pre>
-        <h5>Cycle - <a href="interval_cycle_lyricsdriver_info.html">xstream and lyricsdriver</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> {div} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
-
-<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">"Eeexiiit light"</span>,<span class="hljs-string">"Eeenteeer niight"</span>,<span class="hljs-string">"Taaake my haaand"</span>,<span class="hljs-string">"We're off to never never land"</span>]
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Singer</span>(<span class="hljs-params">{pos$}</span>)</span>{
-  <span class="hljs-keyword">return</span> {
-    DOM: pos$.map(pos =&gt; div(lyrics[pos]))
-  }
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer</code></pre>
         <h5>Preact - <a href="interval_preact_vanilla_info.html">Straightforward Preact</a></h5>
         <pre><code><span class="hljs-comment">/** @jsx h */</span>
 <span class="hljs-keyword">import</span> { h, Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'preact'</span>;

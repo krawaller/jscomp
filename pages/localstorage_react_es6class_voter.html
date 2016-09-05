@@ -55,7 +55,31 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter</code></pre>
-        <h4>Corresponding file in other implementations</h4>
+        <h4>Corresponding file in other implementations using the same framework</h4>
+        <h5>React - <a href="localstorage_react_vanilla_info.html">createClass</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> classNames <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
+
+<span class="hljs-keyword">let</span> teams = [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
+
+<span class="hljs-keyword">let</span> Voter = React.createClass({
+  getInitialState: ()=&gt; ({team: +(localStorage.getItem(<span class="hljs-string">'JSCOMPVOTE'</span>) || <span class="hljs-number">1</span>)}),
+  vote(team) {
+    <span class="hljs-keyword">this</span>.setState({team})
+    localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,team)
+  },
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      {teams.map((t,n)=&gt; <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{n}</span>
+        <span class="hljs-attr">className</span>=<span class="hljs-string">{classNames({active:this.state.team</span> === <span class="hljs-string">n})}</span>
+        <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.vote.bind(this,n)}</span>&gt;</span>{t}<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      )}
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  }
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter</code></pre>
+        <h4>Corresponding file in other implementations using a different framework</h4>
         <h5>Angular2 - <a href="localstorage_angular2_vanilla_info.html">A vanilla implementation</a></h5>
         <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
 
@@ -90,29 +114,25 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter</code></pre>
-        <h5>React - <a href="localstorage_react_vanilla_info.html">createClass</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
-<span class="hljs-keyword">import</span> classNames <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
+        <h5>Vue - <a href="localstorage_vue_vanilla_info.html">vanilla</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
-<span class="hljs-keyword">let</span> teams = [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
-
-<span class="hljs-keyword">let</span> Voter = React.createClass({
-  getInitialState: ()=&gt; ({team: +(localStorage.getItem(<span class="hljs-string">'JSCOMPVOTE'</span>) || <span class="hljs-number">1</span>)}),
-  vote(team) {
-    <span class="hljs-keyword">this</span>.setState({team})
-    localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,team)
-  },
-  render() {
-    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      {teams.map((t,n)=&gt; <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">key</span>=<span class="hljs-string">{n}</span>
-        <span class="hljs-attr">className</span>=<span class="hljs-string">{classNames({active:this.state.team</span> === <span class="hljs-string">n})}</span>
-        <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.vote.bind(this,n)}</span>&gt;</span>{t}<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-      )}
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+Vue.component(<span class="hljs-string">'voter'</span>,{
+  template: <span class="hljs-string">`
+    &lt;p&gt;{{team}}&lt;/p&gt;
+    &lt;button v-for="t of teams" v-bind:class="{active: $index === team}" v-on:click="vote($index)"&gt;{{t}}&lt;/button&gt;
+  `</span>,
+  data: ()=&gt; ({
+    team: +(localStorage.getItem(<span class="hljs-string">'JSCOMPVOTE'</span>) || <span class="hljs-number">1</span>),
+    teams: [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
+  }),
+  methods: {
+    vote(x) {
+      <span class="hljs-keyword">this</span>.team = x;
+      localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
+    }
   }
-})
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter</code></pre>
+})</code></pre>
 
 
 

@@ -46,7 +46,8 @@
     localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
   }
 }</code></pre>
-        <h4>Corresponding file in other implementations</h4>
+        <h4>Corresponding file in other implementations using the same framework</h4>
+        <h4>Corresponding file in other implementations using a different framework</h4>
         <h5>Cycle - <a href="localstorage_cycle_vanilla_info.html">xstream and storage driver</a></h5>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div,button,p} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
@@ -113,6 +114,25 @@
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter</code></pre>
+        <h5>Vue - <a href="localstorage_vue_vanilla_info.html">vanilla</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+Vue.component(<span class="hljs-string">'voter'</span>,{
+  template: <span class="hljs-string">`
+    &lt;p&gt;{{team}}&lt;/p&gt;
+    &lt;button v-for="t of teams" v-bind:class="{active: $index === team}" v-on:click="vote($index)"&gt;{{t}}&lt;/button&gt;
+  `</span>,
+  data: ()=&gt; ({
+    team: +(localStorage.getItem(<span class="hljs-string">'JSCOMPVOTE'</span>) || <span class="hljs-number">1</span>),
+    teams: [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
+  }),
+  methods: {
+    vote(x) {
+      <span class="hljs-keyword">this</span>.team = x;
+      localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
+    }
+  }
+})</code></pre>
 
 
 

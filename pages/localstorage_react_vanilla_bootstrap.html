@@ -36,7 +36,15 @@
 <span class="hljs-keyword">import</span> Voter <span class="hljs-keyword">from</span> <span class="hljs-string">'./voter'</span>
 
 ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Voter</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
-        <h4>Corresponding file in other implementations</h4>
+        <h4>Corresponding file in other implementations using the same framework</h4>
+        <h5>React - <a href="localstorage_react_es6class_info.html">es6 class</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-keyword">import</span> Voter <span class="hljs-keyword">from</span> <span class="hljs-string">'./voter'</span>
+
+ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Voter</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+        <h4>Corresponding file in other implementations using a different framework</h4>
         <h5>Angular2 - <a href="localstorage_angular2_vanilla_info.html">A vanilla implementation</a></h5>
         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
@@ -73,13 +81,16 @@ run(Voter, {
   DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
   store: makeStoreDriver(<span class="hljs-string">'JSCOMPVOTE'</span>)
 });</code></pre>
-        <h5>React - <a href="localstorage_react_es6class_info.html">es6 class</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+        <h5>Vue - <a href="localstorage_vue_vanilla_info.html">vanilla</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
-<span class="hljs-keyword">import</span> Voter <span class="hljs-keyword">from</span> <span class="hljs-string">'./voter'</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./voter'</span>
 
-ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Voter</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+<span class="hljs-keyword">new</span> Vue({
+  template: <span class="hljs-string">'&lt;voter/&gt;'</span>,
+  replace: <span class="hljs-literal">false</span>,
+  el: <span class="hljs-string">'#app'</span>
+})</code></pre>
 
 
 

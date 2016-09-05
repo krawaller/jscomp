@@ -48,7 +48,8 @@
     <span class="hljs-keyword">this</span>.input.nativeElement.focus()
   }
 }</code></pre>
-        <h4>Corresponding file in other implementations</h4>
+        <h4>Corresponding file in other implementations using the same framework</h4>
+        <h4>Corresponding file in other implementations using a different framework</h4>
         <h5>Cycle - <a href="twoway_cycle_vanilla_info.html">A straight-forward implementation</a></h5>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div,input,p,button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
@@ -95,6 +96,23 @@
 })
 
 export default Phonebooth</span></code></pre>
+        <h5>Vue - <a href="twoway_vue_vanilla_info.html">vanilla</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+Vue.component(<span class="hljs-string">'phonebooth'</span>,{
+  template: <span class="hljs-string">`
+    &lt;input v-model="name" v-el:input&gt;&lt;br/&gt;
+    &lt;p&gt;Your name is {{name}}.&lt;/p&gt;
+    &lt;button v-on:click="change"&gt;Put on costume&lt;/button&gt;
+  `</span>,
+  data: ()=&gt; ({name:<span class="hljs-string">'Steve'</span>}),
+  methods: {
+    change() {
+      <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
+      <span class="hljs-keyword">this</span>.$els.input.focus()
+    }
+  }
+})</code></pre>
 
 
 

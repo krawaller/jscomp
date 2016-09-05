@@ -27593,7 +27593,7 @@
 	var core_1 = __webpack_require__(4);
 	var Clicker = (function () {
 	    function Clicker() {
-	        this.count = 1;
+	        this.count = 3;
 	    }
 	    Clicker.prototype.more = function () {
 	        this.count++;
