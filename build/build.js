@@ -37,7 +37,7 @@ fsx.removeSync(output);
 fsx.mkdirSync(output);
 fsx.mkdirSync(output+'scripts');
 
-var data = {dcount:0,frameworks:[],icount:0,tlength:0,demos:[]}
+var data = {dcount:0,frameworkList:[],icount:0,tlength:0,demos:[]}
 getDirs(source).forEach(function(demoName){
   data.dcount += 1
   var demopath = source + demoName + '/'
@@ -50,7 +50,7 @@ getDirs(source).forEach(function(demoName){
     folderName: demoName
   },demoReadme.attributes)
   getDirs(demopath).forEach(function(frameworkName){
-    data.frameworks = uniq(data.frameworks.concat(frameworkName))
+    data.frameworkList = uniq(data.frameworkList.concat(frameworkName))
     var niceFrameworkName = frameworkName[0].toUpperCase()+frameworkName.substr(1)
     var framework = {
       name: niceFrameworkName,
@@ -119,17 +119,27 @@ getDirs(source).forEach(function(demoName){
           })
           return mem;
         },[])
-        file.othersWithSame = others.filter(function(i){
+        var othersWithSame = others.filter(function(i){
           return i.niceFrameworkName === impl.niceFrameworkName
         })
-        file.othersWithDifferent = others.filter(function(i){
+        var othersWithDifferent = others.filter(function(i){
           return i.niceFrameworkName !== impl.niceFrameworkName
         })
+        file.allOthers = othersWithSame.concat(othersWithDifferent)
       })
     })
   })
   data.demos.push(demo)
 });
+
+data.demos.forEach(function(demo){
+  demo.frameworkCount = data.frameworkList.map(function(f){
+    var where = demo.frameworks.findIndex(function(demof){
+      return demof.folderName === f
+    })
+    return where === -1 ? 0 : demo.frameworks[where].implementations.length
+  })
+})
 
 fsx.writeFileSync(output+'_data.json',beautify(JSON.stringify(data)))
 

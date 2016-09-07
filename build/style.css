@@ -26,3 +26,29 @@ ul.links:after {
   display: inline-block;
   clear: left;
 }
+
+th.fcount {
+  /* Something you can count on */
+  height: 140px;
+  white-space: nowrap;
+}
+
+th.fcount > div {
+  transform: 
+    translate(0, 51px)
+    rotate(315deg);
+  width: 25px;
+}
+th.fcount > div > span {
+  border-bottom: 1px solid #ccc;
+  font-weight: normal;
+}
+td.fcount {
+  text-align: center;
+}
+.demolist {
+  margin-top: -70px;
+}
+.demolist th:not(.fcount) {
+  vertical-align: bottom;
+}

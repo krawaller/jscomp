@@ -45,8 +45,26 @@
     <span class="hljs-keyword">this</span>.count++
   }
 }</code></pre>
-        <h4>Corresponding file in other implementations using the same framework</h4>
-        <h4>Corresponding file in other implementations using a different framework</h4>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular - <a href="simpleclicker_angular_vanilla_info.html">component</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+
+angular.module(<span class="hljs-string">'app.clicker'</span>,[])
+  .component(<span class="hljs-string">'clicker'</span>,{
+    template: <span class="hljs-string">`
+      &lt;p&gt;{{$ctrl.count}} bottles of beer on the wall&lt;/p&gt;
+      &lt;button ng-click="$ctrl.more()"&gt;Buy more&lt;/button&gt;
+    `</span>,
+    bindings: {
+      count: <span class="hljs-string">'@'</span>
+    },
+    controller: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>;
+      <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
+    }
+  })
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span></code></pre>
         <h5>Cycle - <a href="simpleclicker_cycle_rxjs_info.html">rxjs</a></h5>
         <pre><code><span class="hljs-keyword">import</span> {div,button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
 

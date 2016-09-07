@@ -48,13 +48,8 @@
 {{else}}
   <h4>Code file {{filename}}{{suffix}}</h4>
   <pre><code>{{{code}}}</code></pre>
-  <h4>Corresponding file in other implementations using the same framework</h4>
-  {{#each othersWithSame}}
-    <h5>{{niceFrameworkName}} - <a href="{{url}}">{{title}}</a></h5>
-    <pre><code>{{{code}}}</code></pre>
-  {{/each}}
-  <h4>Corresponding file in other implementations using a different framework</h4>
-  {{#each othersWithDifferent}}
+  <h4>Corresponding file in other implementations</h4>
+  {{#each allOthers}}
     <h5>{{niceFrameworkName}} - <a href="{{url}}">{{title}}</a></h5>
     <pre><code>{{{code}}}</code></pre>
   {{/each}}
