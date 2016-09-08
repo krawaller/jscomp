@@ -35,7 +35,7 @@ th.fcount {
 
 th.fcount > div {
   transform: 
-    translate(0, 51px)
+    translate(10px, 51px)
     rotate(315deg);
   width: 25px;
 }

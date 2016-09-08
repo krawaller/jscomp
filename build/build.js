@@ -141,10 +141,8 @@ data.demos.forEach(function(demo){
   })
 })
 
-fsx.writeFileSync(output+'_data.json',beautify(JSON.stringify(data)))
+//fsx.writeFileSync(output+'_data.json',beautify(JSON.stringify(data)))
 
-
-/****** Create files *****/
 
 var handlebars = require('handlebars');
 var masterTmpl = handlebars.compile(fsx.readFileSync('templates/master.hbt')+'');
@@ -162,8 +160,6 @@ var write = function(path,title,content,root){
 }
 
 
-
-/***** Index file ******/
 var indexCtx = Object.assign(data,{
   maintext: marked(fsx.readFileSync('mainpage.md')+''),
 })
@@ -198,8 +194,6 @@ data.demos.forEach(function(demo){
     })
   })
 })
-
-
 
 
 

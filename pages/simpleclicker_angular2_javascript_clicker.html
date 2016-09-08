@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Angular2 - JavaScript</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="simpleclicker.html">simpleclicker</a> &gt;
+    angular2 &gt;
+  </span> JavaScript
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="simpleclicker_angular2_javascript_info.html">info</a>
+            </li>
+            <li class="">
+                <a href="simpleclicker_angular2_javascript_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="active">
+                <a href="simpleclicker_angular2_javascript_clicker.html">clicker.js</a>
+            </li>
+        </ul>
+        <h4>Code file clicker.js</h4>
+        <pre><code><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+
+<span class="hljs-keyword">let</span> Clicker = Component({
+  selector: <span class="hljs-string">'clicker'</span>,
+  template: <span class="hljs-string">`
+    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button (click)="more()"&gt;Buy more&lt;/button&gt;
+  `</span>
+}).Class({
+  <span class="hljs-keyword">constructor</span>: function() {
+    <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
+  },
+  more() {
+    <span class="hljs-keyword">this</span>.count++
+  }
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker</code></pre>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="simpleclicker_angular2_typescript_info.html">TypeScript</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'clicker'</span>,
+  template: <span class="hljs-string">`
+    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button (click)="more()"&gt;Buy more&lt;/button&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Clicker {
+  count = <span class="hljs-number">3</span>
+  more() {
+    <span class="hljs-keyword">this</span>.count++
+  }
+}</code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_componentinline_info.html">component w/ ctrl</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+
+angular.module(<span class="hljs-string">'app.clicker'</span>,[])
+  .component(<span class="hljs-string">'clicker'</span>,{
+    template: <span class="hljs-string">`
+      &lt;p&gt;{{$ctrl.count}} bottles of beer on the wall&lt;/p&gt;
+      &lt;button ng-click="$ctrl.more()"&gt;Buy more&lt;/button&gt;
+    `</span>,
+    controller: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+      <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>;
+      <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
+    }
+  })
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span></code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_componentseparate_info.html">component w/o ctrl</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+
+angular.module(<span class="hljs-string">'app.clicker'</span>,[])
+  .controller(<span class="hljs-string">'clickerctrl'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
+  })
+  .component(<span class="hljs-string">'clicker'</span>,{
+    template: <span class="hljs-string">`
+      &lt;p&gt;{{$ctrl.count}} bottles of beer on the wall&lt;/p&gt;
+      &lt;button ng-click="$ctrl.more()"&gt;Buy more&lt;/button&gt;
+    `</span>,
+    controller: <span class="hljs-string">'clickerctrl'</span>
+  })
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span></code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_controller_info.html">controller</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+
+angular.module(<span class="hljs-string">'app.clicker'</span>,[])
+  .controller(<span class="hljs-string">'clicker'</span>,[<span class="hljs-string">'$scope'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$scope</span>)</span>{
+    $scope.count = <span class="hljs-number">3</span>;
+    $scope.more = () =&gt; $scope.count++
+  }])
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">module</span> = <span class="hljs-string">'app.clicker'</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> template = <span class="hljs-string">`
+  &lt;div ng-controller="clicker"&gt;
+    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button ng-click="more()"&gt;Buy more&lt;/button&gt;
+  &lt;/div&gt;
+`</span></code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_controlleras_info.html">controller as</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+
+angular.module(<span class="hljs-string">'app.clicker'</span>,[])
+  .controller(<span class="hljs-string">'clicker'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>;
+    <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
+  })
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">module</span> = <span class="hljs-string">'app.clicker'</span>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> template = <span class="hljs-string">`
+  &lt;div ng-controller="clicker as clckr"&gt;
+    &lt;p&gt;{{clckr.count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button ng-click="clckr.more()"&gt;Buy more&lt;/button&gt;
+  &lt;/div&gt;
+`</span></code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_directive_info.html">directive</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+
+angular.module(<span class="hljs-string">'app.clicker'</span>,[])
+  .directive(<span class="hljs-string">'clicker'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>{
+    <span class="hljs-keyword">return</span> {
+      restrict: <span class="hljs-string">'E'</span>,
+      template: <span class="hljs-string">`
+        &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
+        &lt;button ng-click="more()"&gt;Buy more&lt;/button&gt;
+      `</span>,
+      link: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">scope</span>)</span>{
+        scope.count = <span class="hljs-number">3</span>;
+        scope.more = () =&gt; scope.count++
+      }
+    }
+  })
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span></code></pre>
+        <h5>Cycle - <a href="simpleclicker_cycle_rxjs_info.html">rxjs</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {div,button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Clicker</span>(<span class="hljs-params">{DOM}</span>)</span>{
+  <span class="hljs-keyword">const</span> click$ = DOM.select(<span class="hljs-string">'button'</span>).events(<span class="hljs-string">'click'</span>)
+  <span class="hljs-keyword">const</span> count$ = click$.mapTo(<span class="hljs-number">1</span>).startWith(<span class="hljs-number">3</span>).scan((acc,seed)=&gt;(acc||<span class="hljs-number">0</span>)+seed)
+  <span class="hljs-keyword">return</span> {
+    DOM: count$.map(count=&gt; div([
+      div([count+ <span class="hljs-string">' bottles of beer on the wall'</span>]),
+      button([<span class="hljs-string">'Buy more'</span>])
+    ]))
+  };
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker</code></pre>
+        <h5>Cycle - <a href="simpleclicker_cycle_vanilla_info.html">xstream</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {div,button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Clicker</span>(<span class="hljs-params">{DOM}</span>)</span>{
+  <span class="hljs-keyword">const</span> click$ = DOM.select(<span class="hljs-string">'button'</span>).events(<span class="hljs-string">'click'</span>)
+  <span class="hljs-keyword">const</span> count$ = click$.mapTo(<span class="hljs-number">1</span>).startWith(<span class="hljs-number">3</span>).fold((acc,seed)=&gt;(acc||<span class="hljs-number">0</span>)+seed)
+  <span class="hljs-keyword">return</span> {
+    DOM: count$.map(count=&gt; div([
+      div([count+ <span class="hljs-string">' bottles of beer on the wall'</span>]),
+      button([<span class="hljs-string">'Buy more'</span>])
+    ]))
+  };
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker</code></pre>
+        <h5>React - <a href="simpleclicker_react_createclass_info.html">createClass</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+
+<span class="hljs-keyword">let</span> Clicker = React.createClass({
+  getInitialState: ()=&gt; ({count:<span class="hljs-number">3</span>}),
+  more() {
+    <span class="hljs-keyword">this</span>.setState({count:<span class="hljs-keyword">this</span>.state.count+<span class="hljs-number">1</span>})
+  },
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{this.state.count} bottles of beer on the wall<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.more}</span>&gt;</span>Buy more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  }
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker</code></pre>
+        <h5>React - <a href="simpleclicker_react_es6_info.html">es6 class</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
+  <span class="hljs-keyword">constructor</span>() {
+    <span class="hljs-keyword">super</span>()
+    <span class="hljs-keyword">this</span>.state = {count: <span class="hljs-number">3</span>}
+    <span class="hljs-keyword">this</span>.more = ()=&gt; <span class="hljs-keyword">this</span>.setState({count:<span class="hljs-keyword">this</span>.state.count+<span class="hljs-number">1</span>})
+  }
+  render() {
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{this.state.count} bottles of beer on the wall<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.more}</span>&gt;</span>Buy more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker</code></pre>
+        <h5>React - <a href="simpleclicker_react_recompose_info.html">recompose</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> {withState} <span class="hljs-keyword">from</span> <span class="hljs-string">'recompose'</span>
+
+<span class="hljs-keyword">const</span> enhance = withState(<span class="hljs-string">'count'</span>, <span class="hljs-string">'more'</span>, <span class="hljs-number">3</span>)
+<span class="hljs-keyword">const</span> Clicker = enhance(({count,more})=&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{count} bottles of beer on the wall<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span>=&gt;</span>more(n=&gt;n+1)}&gt;Buy more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
+))
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker</code></pre>
+        <h5>Vue - <a href="simpleclicker_vue_vanilla_info.html">vanilla</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+Vue.component(<span class="hljs-string">'clicker'</span>,{
+  template: <span class="hljs-string">`
+    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button v-on:click="more"&gt;Buy more&lt;/button&gt;
+  `</span>,
+  data: ()=&gt; ({count:<span class="hljs-number">3</span>}),
+  methods: {
+    more() {
+      <span class="hljs-keyword">this</span>.count++
+    }
+  }
+})</code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>

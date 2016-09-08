@@ -2,7 +2,6 @@ import Vue from 'vue'
 
 Vue.component('voter',{
   template: `
-    <p>{{team}}</p>
     <button v-for="t of teams" v-bind:class="{active: $index === team}" v-on:click="vote($index)">{{t}}</button>
   `,
   data: ()=> ({

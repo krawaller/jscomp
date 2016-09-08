@@ -121,7 +121,6 @@
 
 Vue.component(<span class="hljs-string">'voter'</span>,{
   template: <span class="hljs-string">`
-    &lt;p&gt;{{team}}&lt;/p&gt;
     &lt;button v-for="t of teams" v-bind:class="{active: $index === team}" v-on:click="vote($index)"&gt;{{t}}&lt;/button&gt;
   `</span>,
   data: ()=&gt; ({

@@ -10339,7 +10339,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	_vue2.default.component('voter', {
-	  template: '\n    <p>{{team}}</p>\n    <button v-for="t of teams" v-bind:class="{active: $index === team}" v-on:click="vote($index)">{{t}}</button>\n  ',
+	  template: '\n    <button v-for="t of teams" v-bind:class="{active: $index === team}" v-on:click="vote($index)">{{t}}</button>\n  ',
 	  data: function data() {
 	    return {
 	      team: +(localStorage.getItem('JSCOMPVOTE') || 1),

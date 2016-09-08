@@ -1,5 +1,5 @@
 ---
-title: xstream and storage driver
+title: xstream, storage driver
 author: krawaller
 maindep: '@cycle/dom'
 ---

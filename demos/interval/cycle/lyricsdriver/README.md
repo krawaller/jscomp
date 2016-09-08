@@ -1,5 +1,5 @@
 ---
-title: xstream and lyricsdriver
+title: xstream, driver
 author: krawaller
 maindep: '@cycle/dom'
 ---
