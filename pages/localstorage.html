@@ -12,8 +12,9 @@
     <div class="container-fluid">
         <h2><span><a href="../index.html">JS Comp</a> &gt; </span>localstorage</h2>
 
-        <p>odwiefjjrh</p>
+        <h4>Implementations</h4>
 
+        To see an implementation, click their description link in the `implementation` column below!
 
         <table>
             <thead>
@@ -26,16 +27,23 @@
             <tbody>
                 <tr>
                     <td>Angular2 (2.0.0-rc.6)</td>
-                    <td><a href="localstorage_angular2_vanilla_info.html">A vanilla implementation</a></td>
+                    <td><a href="localstorage_angular2_typescript_info.html">TypeScript</a></td>
                     <td>938</td>
                     <td>1755952</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
                 </tr>
                 <tr>
                     <td>Cycle (12.2.2)</td>
-                    <td><a href="localstorage_cycle_vanilla_info.html">xstream and storage driver</a></td>
+                    <td><a href="localstorage_cycle_storagedriver_info.html">xstream, storage driver</a></td>
                     <td>949</td>
                     <td>272267</td>
+                    <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
+                </tr>
+                <tr>
+                    <td>React (15.3.1)</td>
+                    <td><a href="localstorage_react_createclass_info.html">createClass</a></td>
+                    <td>691</td>
+                    <td>741171</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
                 </tr>
                 <tr>
@@ -43,13 +51,6 @@
                     <td><a href="localstorage_react_es6class_info.html">es6 class</a></td>
                     <td>719</td>
                     <td>742964</td>
-                    <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
-                </tr>
-                <tr>
-                    <td>React (15.3.1)</td>
-                    <td><a href="localstorage_react_vanilla_info.html">createClass</a></td>
-                    <td>691</td>
-                    <td>741171</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
                 </tr>
                 <tr>
@@ -61,6 +62,24 @@
                 </tr>
             </tbody>
         </table>
+
+        <h4 id="functionality">Functionality</h4>
+        <p>This very simple demo shows a button per Pokemon Go team, with the current team highlighted. Clicking a button selects that team.</p>
+        <p>Team selection is stored in <code>localStorage</code>.</p>
+        <h4 id="rationale">Rationale</h4>
+        <p>This demo aims to show off...</p>
+        <ul>
+            <li>looping in template</li>
+            <li>initialising values</li>
+            <li>reading and writing to state</li>
+            <li>dynamic classes</li>
+        </ul>
+        <h4 id="implementation-instructions">Implementation instructions</h4>
+        <p>Create a <code>voter</code> component tracking the current selection in a <code>team</code> state variable. This should be an <code>int</code> 0-2. </p>
+        <p>The current selection should be given an <code>active</code> CSS class.</p>
+        <p>Write selections to the <code>JSCOMPVOTE</code> localStorage key (meaning the selection will be shared across implementations).</p>
+        <p>Read the selection from localStorage upon creation.</p>
+
         <footer></footer>
     </div>
 </body>

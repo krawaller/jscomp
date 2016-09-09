@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>React - createClass</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="twoway.html">twoway</a> &gt;
+    react &gt;
+  </span> createClass
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="twoway_react_createclass_info.html">info</a>
+            </li>
+            <li class="active">
+                <a href="twoway_react_createclass_code.html">code</a>
+            </li>
+            <li class="">
+                <a href="twoway_react_createclass_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="">
+                <a href="twoway_react_createclass_phonebooth.html">phonebooth.js</a>
+            </li>
+        </ul>
+        <h4>bootstrap.js (<a href=twoway_react_createclass_bootstrap.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-keyword">import</span> Phonebooth <span class="hljs-keyword">from</span> <span class="hljs-string">'./phonebooth'</span>
+
+ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Phonebooth</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+        <h4>phonebooth.js (<a href=twoway_react_createclass_phonebooth.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+
+<span class="hljs-keyword">let</span> Phonebooth = React.createClass({
+  getInitialState: ()=&gt; ({name:<span class="hljs-string">'Steve'</span>}),
+  change() {
+    <span class="hljs-keyword">this</span>.setState({name:<span class="hljs-string">'Batman'</span>})
+    <span class="hljs-keyword">this</span>.refs.field.focus()
+  },
+  type(e) {
+    <span class="hljs-keyword">this</span>.setState({name:e.target.value})
+  },
+  render() {
+    <span class="hljs-keyword">let</span> name = <span class="hljs-keyword">this</span>.state.name
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">"field"</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.type}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Your name is {name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.change}</span>&gt;</span>Put on costume<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  }
+})
+
+export default Phonebooth</span></code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>

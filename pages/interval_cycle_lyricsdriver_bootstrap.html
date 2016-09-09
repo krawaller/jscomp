@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - xstream and lyricsdriver</title>
+    <title>Cycle - xstream, driver</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -15,12 +15,15 @@
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="interval.html">interval</a> &gt;
     cycle &gt;
-  </span> xstream and lyricsdriver
+  </span> xstream, driver
         </h2>
 
         <ul class="links">
             <li class="">
                 <a href="interval_cycle_lyricsdriver_info.html">info</a>
+            </li>
+            <li class="">
+                <a href="interval_cycle_lyricsdriver_code.html">code</a>
             </li>
             <li class="active">
                 <a href="interval_cycle_lyricsdriver_bootstrap.html">bootstrap.js</a>
@@ -53,7 +56,7 @@ run(Singer, {
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
 run(Singer, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) });</code></pre>
-        <h5>Angular2 - <a href="interval_angular2_vanilla_info.html">TypeScript</a></h5>
+        <h5>Angular2 - <a href="interval_angular2_typescript_info.html">TypeScript</a></h5>
         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
 
@@ -77,12 +80,19 @@ run(Singer, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) });</c
 
 platformBrowserDynamic().bootstrapModule(AppModule);
 </code></pre>
-        <h5>Preact - <a href="interval_preact_vanilla_info.html">Straightforward Preact</a></h5>
+        <h5>Preact - <a href="interval_preact_vanilla_info.html">vanilla</a></h5>
         <pre><code><span class="hljs-comment">/** @jsx h */</span>
 <span class="hljs-keyword">import</span> { h, render } <span class="hljs-keyword">from</span> <span class="hljs-string">'preact'</span>;
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
 render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>));</code></pre>
+        <h5>React - <a href="interval_react_createclass_info.html">createClass</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
+
+ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
         <h5>React - <a href="interval_react_es6_info.html">es6 class</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
@@ -90,14 +100,7 @@ render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Sing
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
 ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
-        <h5>React - <a href="interval_react_vanilla_info.html">Straightforward React</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
-
-<span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
-
-ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
-        <h5>Vue - <a href="interval_vue_vanilla_info.html">Straightforward Vue</a></h5>
+        <h5>Vue - <a href="interval_vue_vanilla_info.html">vanilla</a></h5>
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
 <span class="hljs-keyword">import</span> <span class="hljs-string">'./singer'</span>

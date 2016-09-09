@@ -15,8 +15,10 @@
   {{/each}}
 </ul>
 {{#if isInfo}}
-  <h4>Data</h4>
-
+  <h4>Live app</h4>
+  <div id='app'></div>
+  <script src="scripts/{{bundleName}}"></script>
+  <h4>Implementation data</h4>
   <table>
     <thead>
       <th>Framework</th><th>Code size</th><th>Bundle size</th><th>Author</th><th>Github</th>
@@ -42,9 +44,11 @@
       {{/each}}
     </ul>
   </div>
-  <h4>Try live</h4>
-  <div id='app'></div>
-  <script src="scripts/{{bundleName}}"></script>
+{{else if isCode}}
+  {{#each codeFiles}}
+    <h4>{{filename}}{{suffix}} (<a href={{codeUrl}}>compare</a>)</h4>
+    <pre><code>{{{code}}}</code></pre>
+  {{/each}}
 {{else}}
   <h4>Code file {{filename}}{{suffix}}</h4>
   <pre><code>{{{code}}}</code></pre>

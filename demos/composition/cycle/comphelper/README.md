@@ -1,5 +1,5 @@
 ---
-title: With a composition helper
+title: composition helper
 author: krawaller
 maindep: '@cycle/dom'
 ---

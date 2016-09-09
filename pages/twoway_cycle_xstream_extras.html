@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cycle - xstream</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="twoway.html">twoway</a> &gt;
+    cycle &gt;
+  </span> xstream
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="twoway_cycle_xstream_info.html">info</a>
+            </li>
+            <li class="">
+                <a href="twoway_cycle_xstream_code.html">code</a>
+            </li>
+            <li class="">
+                <a href="twoway_cycle_xstream_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="active">
+                <a href="twoway_cycle_xstream_extras.html">extras.js</a>
+            </li>
+            <li class="">
+                <a href="twoway_cycle_xstream_phonebooth.html">phonebooth.js</a>
+            </li>
+        </ul>
+        <h4>Code file extras.js</h4>
+        <pre><code><span class="hljs-keyword">const</span> focusDriver = (selector) =&gt; (stream)=&gt; stream.addListener({
+  next: ()=&gt; <span class="hljs-built_in">document</span>.querySelector(selector).focus(),
+  error: ()=&gt; {},
+  complete: ()=&gt; {}
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> focusDriver</code></pre>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="twoway_angular2_typescript_info.html">TypeScript</a></h5>
+        <pre><code></code></pre>
+        <h5>React - <a href="twoway_react_createclass_info.html">createClass</a></h5>
+        <pre><code></code></pre>
+        <h5>Vue - <a href="twoway_vue_vanilla_info.html">vanilla</a></h5>
+        <pre><code></code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>

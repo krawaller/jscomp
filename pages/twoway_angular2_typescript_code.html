@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Angular2 - TypeScript</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="twoway.html">twoway</a> &gt;
+    angular2 &gt;
+  </span> TypeScript
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="twoway_angular2_typescript_info.html">info</a>
+            </li>
+            <li class="active">
+                <a href="twoway_angular2_typescript_code.html">code</a>
+            </li>
+            <li class="">
+                <a href="twoway_angular2_typescript_bootstrap.html">bootstrap.ts</a>
+            </li>
+            <li class="">
+                <a href="twoway_angular2_typescript_phonebooth.html">phonebooth.ts</a>
+            </li>
+        </ul>
+        <h4>bootstrap.ts (<a href=twoway_angular2_typescript_bootstrap.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
+
+<span class="hljs-keyword">import</span> { NgModule, Component }      from <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { BrowserModule } from <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { FormsModule }   from <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { Phonebooth } from <span class="hljs-string">'./phonebooth.ts'</span>;
+<span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'#app'</span>,
+  template: <span class="hljs-string">`&lt;phonebooth&gt;&lt;/phonebooth&gt;`</span>
+})
+<span class="hljs-keyword">class</span> Root {}
+
+@NgModule({
+    imports:      [ BrowserModule, FormsModule ],
+    declarations: [ Phonebooth,Root ],
+    bootstrap:    [ Root ]
+})
+<span class="hljs-keyword">class</span> AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+</code></pre>
+        <h4>phonebooth.ts (<a href=twoway_angular2_typescript_phonebooth.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild} from <span class="hljs-string">'@angular/core'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'phonebooth'</span>,
+  template: <span class="hljs-string">`
+    &lt;input #field [(ngModel)]="name"&gt;&lt;br/&gt;
+    &lt;p&gt;Your name is {{name}}.&lt;/p&gt;
+    &lt;button (click)="change()"&gt;Put on costume&lt;/button&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Phonebooth {
+  @ViewChild(<span class="hljs-string">'field'</span>) input
+  name = <span class="hljs-string">'Steve'</span>
+  change() {
+    <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
+    <span class="hljs-keyword">this</span>.input.nativeElement.focus()
+  }
+}</code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>

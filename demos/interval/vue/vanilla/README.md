@@ -1,5 +1,5 @@
 ---
-title: Straightforward Vue
+title: vanilla
 author: krawaller
 maindep: vue
 ---

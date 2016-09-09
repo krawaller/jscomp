@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue - vanilla</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="localstorage.html">localstorage</a> &gt;
+    vue &gt;
+  </span> vanilla
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="localstorage_vue_vanilla_info.html">info</a>
+            </li>
+            <li class="active">
+                <a href="localstorage_vue_vanilla_code.html">code</a>
+            </li>
+            <li class="">
+                <a href="localstorage_vue_vanilla_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="">
+                <a href="localstorage_vue_vanilla_voter.html">voter.js</a>
+            </li>
+        </ul>
+        <h4>bootstrap.js (<a href=localstorage_vue_vanilla_bootstrap.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./voter'</span>
+
+<span class="hljs-keyword">new</span> Vue({
+  template: <span class="hljs-string">'&lt;voter/&gt;'</span>,
+  replace: <span class="hljs-literal">false</span>,
+  el: <span class="hljs-string">'#app'</span>
+})</code></pre>
+        <h4>voter.js (<a href=localstorage_vue_vanilla_voter.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+Vue.component(<span class="hljs-string">'voter'</span>,{
+  template: <span class="hljs-string">`
+    &lt;button v-for="t of teams" v-bind:class="{active: $index === team}" v-on:click="vote($index)"&gt;{{t}}&lt;/button&gt;
+  `</span>,
+  data: ()=&gt; ({
+    team: +(localStorage.getItem(<span class="hljs-string">'JSCOMPVOTE'</span>) || <span class="hljs-number">1</span>),
+    teams: [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
+  }),
+  methods: {
+    vote(x) {
+      <span class="hljs-keyword">this</span>.team = x;
+      localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
+    }
+  }
+})</code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>

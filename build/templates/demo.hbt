@@ -1,6 +1,8 @@
 <h2><span><a href="../index.html">JS Comp</a> &gt; </span>{{folderName}}</h2>
 
-{{{description}}}
+<h4>Implementations</h4>
+
+To see an implementation, click their description link in the `implementation` column below!
 
 <table>
   <thead>
@@ -19,3 +21,5 @@
     {{/each}}
   </tbody>
 </table>
+
+{{{description}}}

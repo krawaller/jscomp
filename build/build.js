@@ -92,7 +92,8 @@ getDirs(source).forEach(function(demoName){
           filename: filebasename,
           suffix: '.'+suffix,
           size: content.length,
-          code: hljs.highlight(readme.attributes.language || 'javascript',content).value
+          code: hljs.highlight(readme.attributes.language || 'javascript',content).value,
+          codeUrl: demo.folderName+'_'+impl.framework+'_'+impl.folderName+'_'+filebasename+'.html'
         })
         impl.size += content.length
         data.tlength += content.length
@@ -162,6 +163,7 @@ var write = function(path,title,content,root){
 
 var indexCtx = Object.assign(data,{
   maintext: marked(fsx.readFileSync('mainpage.md')+''),
+  contribute: marked(fsx.readFileSync('contribute.md')+''),
 })
 write('../index.html','JS Comp',indexTmpl(indexCtx),true)
 
@@ -170,18 +172,22 @@ data.demos.forEach(function(demo){
   write(output+demo.folderName+'.html',demo.name,demoTmpl(demo));
   demo.frameworks.forEach(function(framework){
     framework.implementations.forEach(function(impl){
-      var files = [{
+      var sections = [{
         filename: 'info',
         isInfo: true
-      }].concat(impl.files)
+      }].concat({
+        filename: 'code',
+        isCode: true,
+        codeFiles: impl.files
+      }).concat(impl.files)
       fsx.copySync(
         '../demos/'+demo.folderName+'/'+framework.folderName+'/'+impl.folderName+'/bundle.js',
         '../pages/scripts/'+demo.folderName+'_'+framework.folderName+'_'+impl.folderName+'.js'
       )
-      files.forEach(function(file){
+      sections.forEach(function(file){
         var path = output+demo.folderName+'_'+impl.framework+'_'+impl.folderName+'_'+file.filename+'.html'
         var ctx = Object.assign({
-          links: files.map(function(linkTo){
+          links: sections.map(function(linkTo){
             return {
               to:linkTo.filename+(linkTo.suffix || ''),
               active:linkTo.filename===file.filename,
@@ -203,7 +209,7 @@ data.demos.forEach(function(demo){
 
 
 var highlightTheme = 'zenburn.css'
-var codeFile = fsx.readFileSync('./node_modules/highlight.js/styles/'+highlightTheme)+''
+var codeFile = fsx.readFileSync('../node_modules/highlight.js/styles/'+highlightTheme)+''
 fsx.writeFileSync(output+'code.css',codeFile.replace(/\.hljs\s*\{/,'pre > code {'))
 
 fsx.copySync('./style.css',output+'style.css')

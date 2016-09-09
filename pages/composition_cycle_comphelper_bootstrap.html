@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - With a composition helper</title>
+    <title>Cycle - composition helper</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -15,7 +15,7 @@
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="composition.html">composition</a> &gt;
     cycle &gt;
-  </span> With a composition helper
+  </span> composition helper
         </h2>
 
         <ul class="links">
@@ -23,7 +23,7 @@
                 <a href="composition_cycle_comphelper_info.html">info</a>
             </li>
             <li class="">
-                <a href="composition_cycle_comphelper_app.html">app.js</a>
+                <a href="composition_cycle_comphelper_code.html">code</a>
             </li>
             <li class="active">
                 <a href="composition_cycle_comphelper_bootstrap.html">bootstrap.js</a>
@@ -37,32 +37,44 @@
             <li class="">
                 <a href="composition_cycle_comphelper_field.html">field.js</a>
             </li>
+            <li class="">
+                <a href="composition_cycle_comphelper_form.html">form.js</a>
+            </li>
         </ul>
         <h4>Code file bootstrap.js</h4>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
 <span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
-<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./app'</span>
+<span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">'./form'</span>
 
-run(App, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) });</code></pre>
+run(Form, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) });</code></pre>
         <h4>Corresponding file in other implementations</h4>
-        <h5>Angular2 - <a href="composition_angular2_vanilla_info.html">A vanilla implementation</a></h5>
+        <h5>Angular2 - <a href="composition_angular2_typescript_info.html">TypeScript</a></h5>
         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'core-js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
 
-<span class="hljs-keyword">import</span> {bootstrap}    from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
-<span class="hljs-keyword">import</span> {App} from <span class="hljs-string">'./app.ts'</span>;
-bootstrap(App);
+<span class="hljs-keyword">import</span> {bootstrap} from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
+<span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>
+<span class="hljs-keyword">import</span> {Form} from <span class="hljs-string">'./form.ts'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'#app'</span>,
+  template: <span class="hljs-string">`&lt;form&gt;&lt;/form&gt;`</span>,
+  directives: [Form]
+})
+<span class="hljs-keyword">class</span> Root {}
+
+bootstrap(Root);
 </code></pre>
-        <h5>React - <a href="composition_react_vanilla_info.html">Vanilla</a></h5>
+        <h5>React - <a href="composition_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
 
-<span class="hljs-keyword">import</span> App <span class="hljs-keyword">from</span> <span class="hljs-string">'./app'</span>
+<span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">'./form'</span>
 
-ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">App</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Form</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
 
 
 

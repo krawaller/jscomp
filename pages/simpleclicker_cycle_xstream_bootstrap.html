@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cycle - xstream</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="simpleclicker.html">simpleclicker</a> &gt;
+    cycle &gt;
+  </span> xstream
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="simpleclicker_cycle_xstream_info.html">info</a>
+            </li>
+            <li class="">
+                <a href="simpleclicker_cycle_xstream_code.html">code</a>
+            </li>
+            <li class="active">
+                <a href="simpleclicker_cycle_xstream_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="">
+                <a href="simpleclicker_cycle_xstream_clicker.html">clicker.js</a>
+            </li>
+        </ul>
+        <h4>Code file bootstrap.js</h4>
+        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
+<span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
+
+<span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+run(Clicker, {
+  DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
+});</code></pre>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Cycle - <a href="simpleclicker_cycle_rxjs_info.html">rxjs</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/rxjs-run'</span>
+<span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
+
+<span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+run(Clicker, {
+  DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
+});</code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_componentinline_info.html">component w/ ctrl</a></h5>
+        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>)
+app.setAttribute(<span class="hljs-string">"ng-app"</span>,<span class="hljs-string">"app"</span>)
+app.innerHTML = <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
+
+<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+<span class="hljs-keyword">import</span> clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+angular.module(<span class="hljs-string">'app'</span>,[clicker])</code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_componentseparate_info.html">component w/o ctrl</a></h5>
+        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>)
+app.setAttribute(<span class="hljs-string">"ng-app"</span>,<span class="hljs-string">"app"</span>)
+app.innerHTML = <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
+
+<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+<span class="hljs-keyword">import</span> clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+angular.module(<span class="hljs-string">'app'</span>,[clicker])</code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_controller_info.html">controller</a></h5>
+        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>)
+app.setAttribute(<span class="hljs-string">"ng-app"</span>,<span class="hljs-string">"app"</span>)
+
+<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+<span class="hljs-keyword">import</span> {<span class="hljs-built_in">module</span>,template} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+app.innerHTML = template
+angular.module(<span class="hljs-string">'app'</span>,[<span class="hljs-built_in">module</span>])</code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_controlleras_info.html">controller as</a></h5>
+        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>)
+app.setAttribute(<span class="hljs-string">"ng-app"</span>,<span class="hljs-string">"app"</span>)
+
+<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+<span class="hljs-keyword">import</span> {<span class="hljs-built_in">module</span>,template} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+app.innerHTML = template
+angular.module(<span class="hljs-string">'app'</span>,[<span class="hljs-built_in">module</span>])</code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_directive_info.html">directive</a></h5>
+        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>)
+app.setAttribute(<span class="hljs-string">"ng-app"</span>,<span class="hljs-string">"app"</span>)
+app.innerHTML = <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
+
+<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+<span class="hljs-keyword">import</span> clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+angular.module(<span class="hljs-string">'app'</span>,[clicker])</code></pre>
+        <h5>Angular2 - <a href="simpleclicker_angular2_javascript_info.html">JavaScript</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
+
+<span class="hljs-keyword">import</span> { NgModule, Component }      <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { FormsModule }   <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>;
+<span class="hljs-keyword">import</span> { platformBrowserDynamic } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
+
+<span class="hljs-keyword">let</span> Root = Component({
+  selector: <span class="hljs-string">'#app'</span>,
+  template: <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
+}).Class({
+  <span class="hljs-keyword">constructor</span>: function() {}
+});
+
+<span class="hljs-keyword">let</span> appModule = NgModule({
+  imports: [ BrowserModule ],
+  declarations: [ Clicker, Root ],
+  bootstrap: [ Root ]
+}).Class({
+  <span class="hljs-keyword">constructor</span>: function() {}
+});
+
+platformBrowserDynamic().bootstrapModule(appModule);</code></pre>
+        <h5>Angular2 - <a href="simpleclicker_angular2_typescript_info.html">TypeScript</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
+
+<span class="hljs-keyword">import</span> { NgModule, Component }      from <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { BrowserModule } from <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { FormsModule }   from <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { Clicker } from <span class="hljs-string">'./clicker.ts'</span>;
+<span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'#app'</span>,
+  template: <span class="hljs-string">`&lt;clicker&gt;&lt;/clicker&gt;`</span>
+})
+<span class="hljs-keyword">class</span> Root {}
+
+@NgModule({
+    imports:      [ BrowserModule, FormsModule ],
+    declarations: [ Clicker,Root ],
+    bootstrap:    [ Root ]
+})
+<span class="hljs-keyword">class</span> AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+</code></pre>
+        <h5>React - <a href="simpleclicker_react_createclass_info.html">createClass</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Clicker</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+        <h5>React - <a href="simpleclicker_react_es6_info.html">es6 class</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Clicker</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+        <h5>React - <a href="simpleclicker_react_recompose_info.html">recompose</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Clicker</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+        <h5>Vue - <a href="simpleclicker_vue_vanilla_info.html">vanilla</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./clicker'</span>
+
+<span class="hljs-keyword">new</span> Vue({
+  template: <span class="hljs-string">'&lt;clicker/&gt;'</span>,
+  replace: <span class="hljs-literal">false</span>,
+  el: <span class="hljs-string">'#app'</span>
+})</code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>

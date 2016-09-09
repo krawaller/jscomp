@@ -1,13 +1,16 @@
 <h2>JS Comp</h2>
+
 {{{ maintext }}}
 
+<h4>Demos</h4>
+
 <p>
-  There are a total of {{icount}} implementations covering {{frameworkList}}.
+  There are a total of {{icount}} implementations covering {{frameworkList}}. To see a demo, click the description link in the `Demo` column!
 </p>
 
 <table class="demolist">
   <thead>
-    <th>Implementation</th><th>Description</th>{{#each frameworkList}}<th class="fcount"><div><span>{{this}}</span></div></th>{{/each}}
+    <th>Demo</th><th>Description</th>{{#each frameworkList}}<th class="fcount"><div><span>{{this}}</span></div></th>{{/each}}
   </thead>
   <tbody>
     {{#each demos}}
@@ -19,3 +22,6 @@
     {{/each}}
   </tbody>
 </table>
+
+
+{{{ contribute }}}

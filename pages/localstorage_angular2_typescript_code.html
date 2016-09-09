@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Angular2 - TypeScript</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="localstorage.html">localstorage</a> &gt;
+    angular2 &gt;
+  </span> TypeScript
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="localstorage_angular2_typescript_info.html">info</a>
+            </li>
+            <li class="active">
+                <a href="localstorage_angular2_typescript_code.html">code</a>
+            </li>
+            <li class="">
+                <a href="localstorage_angular2_typescript_bootstrap.html">bootstrap.ts</a>
+            </li>
+            <li class="">
+                <a href="localstorage_angular2_typescript_voter.html">voter.ts</a>
+            </li>
+        </ul>
+        <h4>bootstrap.ts (<a href=localstorage_angular2_typescript_bootstrap.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
+
+<span class="hljs-keyword">import</span> { NgModule, Component }      from <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { BrowserModule } from <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { Voter } from <span class="hljs-string">'./voter.ts'</span>;
+<span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'#app'</span>,
+  template: <span class="hljs-string">`&lt;voter&gt;&lt;/voter&gt;`</span>
+})
+<span class="hljs-keyword">class</span> Root {}
+
+@NgModule({
+    imports:      [ BrowserModule ],
+    declarations: [ Voter,Root ],
+    bootstrap:    [ Root ]
+})
+<span class="hljs-keyword">class</span> AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+</code></pre>
+        <h4>voter.ts (<a href=localstorage_angular2_typescript_voter.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'voter'</span>,
+  template: <span class="hljs-string">`
+    &lt;button *ngFor="let t of teams; let i = index" (click)="vote(i)" [class.active]="team===i"&gt;{{t}}&lt;/button&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Voter {
+  teams = [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
+  team = +(localStorage.getItem(<span class="hljs-string">'JSCOMPVOTE'</span>) || <span class="hljs-number">1</span>)
+  vote(x) {
+    <span class="hljs-keyword">this</span>.team = x;
+    localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
+  }
+}</code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>

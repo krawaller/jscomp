@@ -12,9 +12,9 @@
     <div class="container-fluid">
         <h2><span><a href="../index.html">JS Comp</a> &gt; </span>composition</h2>
 
-        <p>This shows off how to do compositions yada blah</p>
-        <p><img src="../images/components.svg" alt=""></p>
+        <h4>Implementations</h4>
 
+        To see an implementation, click their description link in the `implementation` column below!
 
         <table>
             <thead>
@@ -27,27 +27,73 @@
             <tbody>
                 <tr>
                     <td>Angular2 (2.0.0-rc.4)</td>
-                    <td><a href="composition_angular2_vanilla_info.html">A vanilla implementation</a></td>
-                    <td>1911</td>
-                    <td>2603504</td>
+                    <td><a href="composition_angular2_typescript_info.html">TypeScript</a></td>
+                    <td>2054</td>
+                    <td>2604438</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
                 </tr>
                 <tr>
                     <td>Cycle (10.0.5)</td>
-                    <td><a href="composition_cycle_comphelper_info.html">With a composition helper</a></td>
-                    <td>3483</td>
+                    <td><a href="composition_cycle_comphelper_info.html">composition helper</a></td>
+                    <td>3488</td>
                     <td>229579</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
                 </tr>
                 <tr>
                     <td>React (15.2.0)</td>
-                    <td><a href="composition_react_vanilla_info.html">Vanilla</a></td>
-                    <td>1693</td>
+                    <td><a href="composition_react_createclass_info.html">createClass</a></td>
+                    <td>1698</td>
                     <td>726780</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
                 </tr>
             </tbody>
         </table>
+
+        <h4 id="functionality">Functionality</h4>
+        <p>A form showing the current name (initialised to <code>Steve</code>), a field to update the name and a button to submit the new name in the field.</p>
+        <p>When the field is empty, the button is disabled.</p>
+        <p>When the button is clicked the field isn&#39;t immediately submitted, instead the user can <code>confirm</code> or <code>cancel</code>. </p>
+        <p>When a new name is submitted the field is emptied.</p>
+        <h4 id="rationale">Rationale</h4>
+        <p>This demo shows off</p>
+        <ul>
+            <li>how to do component composition</li>
+            <li>how components communicate with each other. Both parent to child and child to parent.</li>
+            <li>reading values from the DOM</li>
+            <li>manipulating the DOM (emptying the field upon submission)</li>
+        </ul>
+        <h4 id="implementation-instructions">Implementation instructions</h4>
+        <p>You will be creating three components having the following hierarchy:</p>
+        <p><img src="../images/components.svg" alt=""></p>
+        <ul>
+            <li>The <code>form</code> component...
+                <ul>
+                    <li>is rendered from <code>bootstrap</code></li>
+                    <li>holds the <code>current</code> submission</li>
+                    <li>renders the <code>field</code> component</li>
+                    <li>provides field with an <code>instruction</code> input, which is just plain text that never changes</li>
+                    <li>listens to <code>submission</code> events from <code>field</code></li>
+                </ul>
+            </li>
+            <li>The <code>field</code> component...
+                <ul>
+                    <li>contains an <code>input</code> field</li>
+                    <li>keeps track of the contents of the <code>field</code></li>
+                    <li>renders a <code>confirm</code> button component</li>
+                    <li>tells <code>confirm</code> when it should be disabled</li>
+                    <li>captures <code>confirmation</code> events from the <code>confirm</code> component</li>
+                    <li>provides <code>submission</code> events to <code>form</code> parent</li>
+                </ul>
+            </li>
+            <li>The <code>confirm</code> component
+                <ul>
+                    <li>can be in different <code>mode</code>s: <code>disabled</code>, <code>waiting</code> and <code>confirm</code>.</li>
+                    <li>listens to <code>disabled</code> boolean from <code>field</code> parent</li>
+                    <li>provides <code>confirmation</code> event to <code>field</code> parent</li>
+                </ul>
+            </li>
+        </ul>
+
         <footer></footer>
     </div>
 </body>

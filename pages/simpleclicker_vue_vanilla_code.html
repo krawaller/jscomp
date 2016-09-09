@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vue - vanilla</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="simpleclicker.html">simpleclicker</a> &gt;
+    vue &gt;
+  </span> vanilla
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="simpleclicker_vue_vanilla_info.html">info</a>
+            </li>
+            <li class="active">
+                <a href="simpleclicker_vue_vanilla_code.html">code</a>
+            </li>
+            <li class="">
+                <a href="simpleclicker_vue_vanilla_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="">
+                <a href="simpleclicker_vue_vanilla_clicker.html">clicker.js</a>
+            </li>
+        </ul>
+        <h4>bootstrap.js (<a href=simpleclicker_vue_vanilla_bootstrap.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">import</span> <span class="hljs-string">'./clicker'</span>
+
+<span class="hljs-keyword">new</span> Vue({
+  template: <span class="hljs-string">'&lt;clicker/&gt;'</span>,
+  replace: <span class="hljs-literal">false</span>,
+  el: <span class="hljs-string">'#app'</span>
+})</code></pre>
+        <h4>clicker.js (<a href=simpleclicker_vue_vanilla_clicker.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+Vue.component(<span class="hljs-string">'clicker'</span>,{
+  template: <span class="hljs-string">`
+    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button v-on:click="more"&gt;Buy more&lt;/button&gt;
+  `</span>,
+  data: ()=&gt; ({count:<span class="hljs-number">3</span>}),
+  methods: {
+    more() {
+      <span class="hljs-keyword">this</span>.count++
+    }
+  }
+})</code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>
