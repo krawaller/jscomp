@@ -1,6 +1,6 @@
 ---
 title: es6 class
-author: mw222rs
+author: fyrkant
 maindep: react
 ---
 
