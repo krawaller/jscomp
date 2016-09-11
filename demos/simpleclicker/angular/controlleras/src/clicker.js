@@ -1,8 +1,8 @@
 import angular from 'angular'
 
-angular.module('app.clicker',[])
-  .controller('clicker',function(){
-    this.count = 3;
+angular.module('app.clicker', [])
+  .controller('clicker', function () {
+    this.count = 3
     this.more = () => this.count++
   })
 

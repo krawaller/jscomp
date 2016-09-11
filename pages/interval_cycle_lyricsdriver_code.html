@@ -36,8 +36,7 @@
             </li>
         </ul>
         <h4>bootstrap.js (<a href=interval_cycle_lyricsdriver_bootstrap.html>compare</a>)</h4>
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
+        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
 <span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 <span class="hljs-keyword">import</span> makeIntervalDriver <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
 
@@ -45,28 +44,31 @@
 
 run(Singer, {
   DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
-  pos$: makeIntervalDriver(<span class="hljs-number">4</span>,<span class="hljs-number">1500</span>)
-});</code></pre>
+  pos$: makeIntervalDriver(<span class="hljs-number">4</span>, <span class="hljs-number">1500</span>)
+})
+</code></pre>
         <h4>extras.js (<a href=interval_cycle_lyricsdriver_extras.html>compare</a>)</h4>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 
-<span class="hljs-keyword">const</span> makeIntervalDriver = (ceil,interval)=&gt; ()=&gt; {
-  <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(n=&gt;(n+<span class="hljs-number">1</span>)%ceil)
+<span class="hljs-keyword">const</span> makeIntervalDriver = (ceil, interval) =&gt; () =&gt; {
+  <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(n =&gt; (n + <span class="hljs-number">1</span>) % ceil)
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIntervalDriver</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIntervalDriver
+</code></pre>
         <h4>singer.js (<a href=interval_cycle_lyricsdriver_singer.html>compare</a>)</h4>
-        <pre><code><span class="hljs-keyword">import</span> {div} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+        <pre><code><span class="hljs-keyword">import</span> {div} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
-<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">"Eeexiiit light"</span>,<span class="hljs-string">"Eeenteeer niight"</span>,<span class="hljs-string">"Taaake my haaand"</span>,<span class="hljs-string">"We're off to never never land"</span>]
+<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Singer</span>(<span class="hljs-params">{pos$}</span>)</span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Singer</span> (<span class="hljs-params">{pos$}</span>) </span>{
   <span class="hljs-keyword">return</span> {
     DOM: pos$.map(pos =&gt; div(lyrics[pos]))
   }
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
+</code></pre>
 
 
 

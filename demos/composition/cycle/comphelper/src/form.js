@@ -1,20 +1,20 @@
 import xs from 'xstream'
-import {div, p} from '@cycle/dom';
+import {div, p} from '@cycle/dom'
 import Field from './field'
 import withComponent from './extras'
 
-function view({childsinks:{submit$,DOM}}){
-  return xs.combine(submit$.startWith('Steve'),DOM).map(([submission,childvtree])=> div([
+function view ({childsinks: {submit$, DOM}}) {
+  return xs.combine(submit$.startWith('Steve'), DOM).map(([submission, childvtree]) => div([
     childvtree,
-    p('Submitted value: '+submission)
+    p('Submitted value: ' + submission)
   ]))
 }
 
-function Form(sources){
+function Form (sources) {
   return {
     DOM: view(sources),
     instruction$: xs.of('Enter name')
   }
 }
 
-export default withComponent(Form,Field,'instruction$')
+export default withComponent(Form, Field, 'instruction$')

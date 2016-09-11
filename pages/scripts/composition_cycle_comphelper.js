@@ -46,28 +46,264 @@
 
 	'use strict';
 
-	var _xstream = __webpack_require__(1);
-
-	var _xstream2 = _interopRequireDefault(_xstream);
-
-	var _xstreamRun = __webpack_require__(3);
+	var _xstreamRun = __webpack_require__(1);
 
 	var _dom = __webpack_require__(6);
 
-	var _app = __webpack_require__(67);
+	var _form = __webpack_require__(67);
 
-	var _app2 = _interopRequireDefault(_app);
+	var _form2 = _interopRequireDefault(_form);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	(0, _xstreamRun.run)(_app2.default, { DOM: (0, _dom.makeDOMDriver)('#app') });
+	(0, _xstreamRun.run)(_form2.default, { DOM: (0, _dom.makeDOMDriver)('#app') });
 
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var core_1 = __webpack_require__(2);
+	var base_1 = __webpack_require__(2);
+	var xstream_adapter_1 = __webpack_require__(3);
+	/**
+	 * Takes a `main` function and circularly connects it to the given collection
+	 * of driver functions.
+	 *
+	 * **Example:**
+	 * ```js
+	 * import {run} from '@cycle/xstream-run';
+	 * const dispose = run(main, drivers);
+	 * // ...
+	 * dispose();
+	 * ```
+	 *
+	 * The `main` function expects a collection of "source" streams (returned from
+	 * drivers) as input, and should return a collection of "sink" streams (to be
+	 * given to drivers). A "collection of streams" is a JavaScript object where
+	 * keys match the driver names registered by the `drivers` object, and values
+	 * are the streams. Refer to the documentation of each driver to see more
+	 * details on what types of sources it outputs and sinks it receives.
+	 *
+	 * @param {Function} main a function that takes `sources` as input and outputs
+	 * `sinks`.
+	 * @param {Object} drivers an object where keys are driver names and values
+	 * are driver functions.
+	 * @return {Function} a dispose function, used to terminate the execution of the
+	 * Cycle.js program, cleaning up resources used.
+	 * @function run
+	 */
+	function run(main, drivers) {
+	    var run = base_1.default(main, drivers, { streamAdapter: xstream_adapter_1.default }).run;
+	    return run();
+	}
+	exports.run = run;
+	/**
+	 * A function that prepares the Cycle application to be executed. Takes a `main`
+	 * function and prepares to circularly connects it to the given collection of
+	 * driver functions. As an output, `Cycle()` returns an object with three
+	 * properties: `sources`, `sinks` and `run`. Only when `run()` is called will
+	 * the application actually execute. Refer to the documentation of `run()` for
+	 * more details.
+	 *
+	 * **Example:**
+	 * ```js
+	 * import Cycle from '@cycle/xstream-run';
+	 * const {sources, sinks, run} = Cycle(main, drivers);
+	 * // ...
+	 * const dispose = run(); // Executes the application
+	 * // ...
+	 * dispose();
+	 * ```
+	 *
+	 * @param {Function} main a function that takes `sources` as input and outputs
+	 * `sinks`.
+	 * @param {Object} drivers an object where keys are driver names and values
+	 * are driver functions.
+	 * @return {Object} an object with three properties: `sources`, `sinks` and
+	 * `run`. `sources` is the collection of driver sources, `sinks` is the
+	 * collection of driver sinks, these can be used for debugging or testing. `run`
+	 * is the function that once called will execute the application.
+	 * @function Cycle
+	 */
+	var Cycle = function (main, drivers) {
+	    return base_1.default(main, drivers, { streamAdapter: xstream_adapter_1.default });
+	};
+	Cycle.run = run;
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Cycle;
+	//# sourceMappingURL=index.js.map
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	"use strict";
+	function logToConsoleError(err) {
+	    var target = err.stack || err;
+	    if (console && console.error) {
+	        console.error(target);
+	    }
+	    else if (console && console.log) {
+	        console.log(target);
+	    }
+	}
+	function makeSinkProxies(drivers, streamAdapter) {
+	    var sinkProxies = {};
+	    for (var name_1 in drivers) {
+	        if (drivers.hasOwnProperty(name_1)) {
+	            var holdSubject = streamAdapter.makeSubject();
+	            var driverStreamAdapter = drivers[name_1].streamAdapter || streamAdapter;
+	            var stream = driverStreamAdapter.adapt(holdSubject.stream, streamAdapter.streamSubscribe);
+	            sinkProxies[name_1] = {
+	                stream: stream,
+	                observer: holdSubject.observer,
+	            };
+	        }
+	    }
+	    return sinkProxies;
+	}
+	function callDrivers(drivers, sinkProxies, streamAdapter) {
+	    var sources = {};
+	    for (var name_2 in drivers) {
+	        if (drivers.hasOwnProperty(name_2)) {
+	            var driverOutput = drivers[name_2](sinkProxies[name_2].stream, streamAdapter, name_2);
+	            var driverStreamAdapter = drivers[name_2].streamAdapter;
+	            if (driverStreamAdapter && driverStreamAdapter.isValidStream(driverOutput)) {
+	                sources[name_2] = streamAdapter.adapt(driverOutput, driverStreamAdapter.streamSubscribe);
+	            }
+	            else {
+	                sources[name_2] = driverOutput;
+	            }
+	            if (sources[name_2] && typeof sources[name_2] === 'object') {
+	                sources[name_2]._isCycleSource = name_2;
+	            }
+	        }
+	    }
+	    return sources;
+	}
+	function replicateMany(sinks, sinkProxies, streamAdapter) {
+	    var results = Object.keys(sinks)
+	        .filter(function (name) { return !!sinkProxies[name]; })
+	        .map(function (name) {
+	        return streamAdapter.streamSubscribe(sinks[name], {
+	            next: function (x) { sinkProxies[name].observer.next(x); },
+	            error: function (err) {
+	                logToConsoleError(err);
+	                sinkProxies[name].observer.error(err);
+	            },
+	            complete: function (x) {
+	                sinkProxies[name].observer.complete(x);
+	            }
+	        });
+	    });
+	    var disposeFunctions = results
+	        .filter(function (dispose) { return typeof dispose === 'function'; });
+	    return function () {
+	        disposeFunctions.forEach(function (dispose) { return dispose(); });
+	    };
+	}
+	function disposeSources(sources) {
+	    for (var k in sources) {
+	        if (sources.hasOwnProperty(k) && sources[k]
+	            && typeof sources[k].dispose === 'function') {
+	            sources[k].dispose();
+	        }
+	    }
+	}
+	var isObjectEmpty = function (obj) { return Object.keys(obj).length === 0; };
+	function Cycle(main, drivers, options) {
+	    if (typeof main !== "function") {
+	        throw new Error("First argument given to Cycle must be the 'main' " +
+	            "function.");
+	    }
+	    if (typeof drivers !== "object" || drivers === null) {
+	        throw new Error("Second argument given to Cycle must be an object " +
+	            "with driver functions as properties.");
+	    }
+	    if (isObjectEmpty(drivers)) {
+	        throw new Error("Second argument given to Cycle must be an object " +
+	            "with at least one driver function declared as a property.");
+	    }
+	    var streamAdapter = options.streamAdapter;
+	    if (!streamAdapter || isObjectEmpty(streamAdapter)) {
+	        throw new Error("Third argument given to Cycle must be an options object " +
+	            "with the streamAdapter key supplied with a valid stream adapter.");
+	    }
+	    var sinkProxies = makeSinkProxies(drivers, streamAdapter);
+	    var sources = callDrivers(drivers, sinkProxies, streamAdapter);
+	    var sinks = main(sources);
+	    if (typeof window !== 'undefined') {
+	        window.Cyclejs = { sinks: sinks };
+	    }
+	    var run = function () {
+	        var disposeReplication = replicateMany(sinks, sinkProxies, streamAdapter);
+	        return function () {
+	            disposeSources(sources);
+	            disposeReplication();
+	        };
+	    };
+	    return { sinks: sinks, sources: sources, run: run };
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Cycle;
+	//# sourceMappingURL=index.js.map
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var xstream_1 = __webpack_require__(4);
+	var XStreamAdapter = {
+	    adapt: function (originStream, originStreamSubscribe) {
+	        if (XStreamAdapter.isValidStream(originStream)) {
+	            return originStream;
+	        }
+	        ;
+	        var dispose = null;
+	        return xstream_1.default.create({
+	            start: function (out) {
+	                var observer = out;
+	                dispose = originStreamSubscribe(originStream, observer);
+	            },
+	            stop: function () {
+	                if (typeof dispose === 'function') {
+	                    dispose();
+	                }
+	            }
+	        });
+	    },
+	    makeSubject: function () {
+	        var stream = xstream_1.default.create();
+	        var observer = {
+	            next: function (x) { stream.shamefullySendNext(x); },
+	            error: function (err) { stream.shamefullySendError(err); },
+	            complete: function () { stream.shamefullySendComplete(); }
+	        };
+	        return { observer: observer, stream: stream };
+	    },
+	    remember: function (stream) {
+	        return stream.remember();
+	    },
+	    isValidStream: function (stream) {
+	        return (typeof stream.addListener === 'function' &&
+	            typeof stream.shamefullySendNext === 'function');
+	    },
+	    streamSubscribe: function (stream, observer) {
+	        stream.addListener(observer);
+	        return function () { return stream.removeListener(observer); };
+	    }
+	};
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = XStreamAdapter;
+	//# sourceMappingURL=index.js.map
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var core_1 = __webpack_require__(5);
 	exports.Stream = core_1.Stream;
 	exports.MemoryStream = core_1.MemoryStream;
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -75,7 +311,7 @@
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 2 */
+/* 5 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1771,243 +2007,6 @@
 	//# sourceMappingURL=core.js.map
 
 /***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var base_1 = __webpack_require__(4);
-	var xstream_adapter_1 = __webpack_require__(5);
-	/**
-	 * Takes a `main` function and circularly connects it to the given collection
-	 * of driver functions.
-	 *
-	 * **Example:**
-	 * ```js
-	 * import {run} from '@cycle/xstream-run';
-	 * const dispose = run(main, drivers);
-	 * // ...
-	 * dispose();
-	 * ```
-	 *
-	 * The `main` function expects a collection of "source" streams (returned from
-	 * drivers) as input, and should return a collection of "sink" streams (to be
-	 * given to drivers). A "collection of streams" is a JavaScript object where
-	 * keys match the driver names registered by the `drivers` object, and values
-	 * are the streams. Refer to the documentation of each driver to see more
-	 * details on what types of sources it outputs and sinks it receives.
-	 *
-	 * @param {Function} main a function that takes `sources` as input and outputs
-	 * `sinks`.
-	 * @param {Object} drivers an object where keys are driver names and values
-	 * are driver functions.
-	 * @return {Function} a dispose function, used to terminate the execution of the
-	 * Cycle.js program, cleaning up resources used.
-	 * @function run
-	 */
-	function run(main, drivers) {
-	    var run = base_1.default(main, drivers, { streamAdapter: xstream_adapter_1.default }).run;
-	    return run();
-	}
-	exports.run = run;
-	/**
-	 * A function that prepares the Cycle application to be executed. Takes a `main`
-	 * function and prepares to circularly connects it to the given collection of
-	 * driver functions. As an output, `Cycle()` returns an object with three
-	 * properties: `sources`, `sinks` and `run`. Only when `run()` is called will
-	 * the application actually execute. Refer to the documentation of `run()` for
-	 * more details.
-	 *
-	 * **Example:**
-	 * ```js
-	 * import Cycle from '@cycle/xstream-run';
-	 * const {sources, sinks, run} = Cycle(main, drivers);
-	 * // ...
-	 * const dispose = run(); // Executes the application
-	 * // ...
-	 * dispose();
-	 * ```
-	 *
-	 * @param {Function} main a function that takes `sources` as input and outputs
-	 * `sinks`.
-	 * @param {Object} drivers an object where keys are driver names and values
-	 * are driver functions.
-	 * @return {Object} an object with three properties: `sources`, `sinks` and
-	 * `run`. `sources` is the collection of driver sources, `sinks` is the
-	 * collection of driver sinks, these can be used for debugging or testing. `run`
-	 * is the function that once called will execute the application.
-	 * @function Cycle
-	 */
-	var Cycle = function (main, drivers) {
-	    return base_1.default(main, drivers, { streamAdapter: xstream_adapter_1.default });
-	};
-	Cycle.run = run;
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = Cycle;
-	//# sourceMappingURL=index.js.map
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	"use strict";
-	function logToConsoleError(err) {
-	    var target = err.stack || err;
-	    if (console && console.error) {
-	        console.error(target);
-	    }
-	    else if (console && console.log) {
-	        console.log(target);
-	    }
-	}
-	function makeSinkProxies(drivers, streamAdapter) {
-	    var sinkProxies = {};
-	    for (var name_1 in drivers) {
-	        if (drivers.hasOwnProperty(name_1)) {
-	            var holdSubject = streamAdapter.makeSubject();
-	            var driverStreamAdapter = drivers[name_1].streamAdapter || streamAdapter;
-	            var stream = driverStreamAdapter.adapt(holdSubject.stream, streamAdapter.streamSubscribe);
-	            sinkProxies[name_1] = {
-	                stream: stream,
-	                observer: holdSubject.observer,
-	            };
-	        }
-	    }
-	    return sinkProxies;
-	}
-	function callDrivers(drivers, sinkProxies, streamAdapter) {
-	    var sources = {};
-	    for (var name_2 in drivers) {
-	        if (drivers.hasOwnProperty(name_2)) {
-	            var driverOutput = drivers[name_2](sinkProxies[name_2].stream, streamAdapter, name_2);
-	            var driverStreamAdapter = drivers[name_2].streamAdapter;
-	            if (driverStreamAdapter && driverStreamAdapter.isValidStream(driverOutput)) {
-	                sources[name_2] = streamAdapter.adapt(driverOutput, driverStreamAdapter.streamSubscribe);
-	            }
-	            else {
-	                sources[name_2] = driverOutput;
-	            }
-	        }
-	    }
-	    return sources;
-	}
-	function replicateMany(sinks, sinkProxies, streamAdapter) {
-	    var results = Object.keys(sinks)
-	        .filter(function (name) { return !!sinkProxies[name]; })
-	        .map(function (name) {
-	        return streamAdapter.streamSubscribe(sinks[name], {
-	            next: function (x) { sinkProxies[name].observer.next(x); },
-	            error: function (err) {
-	                logToConsoleError(err);
-	                sinkProxies[name].observer.error(err);
-	            },
-	            complete: function (x) {
-	                sinkProxies[name].observer.complete(x);
-	            }
-	        });
-	    });
-	    var disposeFunctions = results
-	        .filter(function (dispose) { return typeof dispose === 'function'; });
-	    return function () {
-	        disposeFunctions.forEach(function (dispose) { return dispose(); });
-	    };
-	}
-	function disposeSources(sources) {
-	    for (var k in sources) {
-	        if (sources.hasOwnProperty(k) && sources[k]
-	            && typeof sources[k].dispose === 'function') {
-	            sources[k].dispose();
-	        }
-	    }
-	}
-	var isObjectEmpty = function (obj) { return Object.keys(obj).length === 0; };
-	function Cycle(main, drivers, options) {
-	    if (typeof main !== "function") {
-	        throw new Error("First argument given to Cycle must be the 'main' " +
-	            "function.");
-	    }
-	    if (typeof drivers !== "object" || drivers === null) {
-	        throw new Error("Second argument given to Cycle must be an object " +
-	            "with driver functions as properties.");
-	    }
-	    if (isObjectEmpty(drivers)) {
-	        throw new Error("Second argument given to Cycle must be an object " +
-	            "with at least one driver function declared as a property.");
-	    }
-	    var streamAdapter = options.streamAdapter;
-	    if (!streamAdapter || isObjectEmpty(streamAdapter)) {
-	        throw new Error("Third argument given to Cycle must be an options object " +
-	            "with the streamAdapter key supplied with a valid stream adapter.");
-	    }
-	    var sinkProxies = makeSinkProxies(drivers, streamAdapter);
-	    var sources = callDrivers(drivers, sinkProxies, streamAdapter);
-	    var sinks = main(sources);
-	    if (typeof window !== 'undefined') {
-	        window.Cyclejs = { sinks: sinks };
-	    }
-	    var run = function () {
-	        var disposeReplication = replicateMany(sinks, sinkProxies, streamAdapter);
-	        return function () {
-	            disposeSources(sources);
-	            disposeReplication();
-	        };
-	    };
-	    return { sinks: sinks, sources: sources, run: run };
-	}
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = Cycle;
-	//# sourceMappingURL=index.js.map
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var xstream_1 = __webpack_require__(1);
-	var XStreamAdapter = {
-	    adapt: function (originStream, originStreamSubscribe) {
-	        if (XStreamAdapter.isValidStream(originStream)) {
-	            return originStream;
-	        }
-	        ;
-	        var dispose = null;
-	        return xstream_1.default.create({
-	            start: function (out) {
-	                var observer = out;
-	                dispose = originStreamSubscribe(originStream, observer);
-	            },
-	            stop: function () {
-	                if (typeof dispose === 'function') {
-	                    dispose();
-	                }
-	            }
-	        });
-	    },
-	    makeSubject: function () {
-	        var stream = xstream_1.default.create();
-	        var observer = {
-	            next: function (x) { stream.shamefullySendNext(x); },
-	            error: function (err) { stream.shamefullySendError(err); },
-	            complete: function () { stream.shamefullySendComplete(); }
-	        };
-	        return { observer: observer, stream: stream };
-	    },
-	    remember: function (stream) {
-	        return stream.remember();
-	    },
-	    isValidStream: function (stream) {
-	        return (typeof stream.addListener === 'function' &&
-	            typeof stream.shamefullySendNext === 'function');
-	    },
-	    streamSubscribe: function (stream, observer) {
-	        stream.addListener(observer);
-	        return function () { return stream.removeListener(observer); };
-	    }
-	};
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = XStreamAdapter;
-	//# sourceMappingURL=index.js.map
-
-/***/ },
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2395,14 +2394,14 @@
 
 	"use strict";
 	var snabbdom_1 = __webpack_require__(12);
-	var xstream_1 = __webpack_require__(1);
+	var xstream_1 = __webpack_require__(4);
 	var MainDOMSource_1 = __webpack_require__(14);
 	var VNodeWrapper_1 = __webpack_require__(22);
 	var utils_1 = __webpack_require__(17);
 	var modules_1 = __webpack_require__(27);
 	var isolateModule_1 = __webpack_require__(34);
 	var transposition_1 = __webpack_require__(35);
-	var xstream_adapter_1 = __webpack_require__(5);
+	var xstream_adapter_1 = __webpack_require__(3);
 	function makeDOMDriverInputGuard(modules) {
 	    if (!Array.isArray(modules)) {
 	        throw new Error("Optional modules option must be " +
@@ -2790,8 +2789,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_adapter_1 = __webpack_require__(5);
-	var xstream_1 = __webpack_require__(1);
+	var xstream_adapter_1 = __webpack_require__(3);
+	var xstream_1 = __webpack_require__(4);
 	var ElementFinder_1 = __webpack_require__(15);
 	var fromEvent_1 = __webpack_require__(19);
 	var isolate_1 = __webpack_require__(20);
@@ -3105,7 +3104,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_1 = __webpack_require__(1);
+	var xstream_1 = __webpack_require__(4);
 	function fromEvent(element, eventName, useCapture) {
 	    if (useCapture === void 0) { useCapture = false; }
 	    return xstream_1.Stream.create({
@@ -4083,8 +4082,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_adapter_1 = __webpack_require__(5);
-	var xstream_1 = __webpack_require__(1);
+	var xstream_adapter_1 = __webpack_require__(3);
+	var xstream_1 = __webpack_require__(4);
 	function createVTree(vnode, children) {
 	    return {
 	        sel: vnode.sel,
@@ -4135,7 +4134,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_adapter_1 = __webpack_require__(5);
+	var xstream_adapter_1 = __webpack_require__(3);
 	var transposition_1 = __webpack_require__(35);
 	var HTMLSource_1 = __webpack_require__(37);
 	var toHTML = __webpack_require__(38);
@@ -4170,8 +4169,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_1 = __webpack_require__(1);
-	var xstream_adapter_1 = __webpack_require__(5);
+	var xstream_1 = __webpack_require__(4);
+	var xstream_adapter_1 = __webpack_require__(3);
 	var HTMLSource = (function () {
 	    function HTMLSource(html$, runSA) {
 	        this.runSA = runSA;
@@ -5029,12 +5028,12 @@
 /***/ function(module, exports) {
 
 	/**
-	 * lodash 3.0.8 (Custom Build) <https://lodash.com/>
+	 * lodash (Custom Build) <https://lodash.com/>
 	 * Build: `lodash modularize exports="npm" -o ./`
-	 * Copyright 2012-2016 The Dojo Foundation <http://dojofoundation.org/>
+	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+	 * Released under MIT license <https://lodash.com/license>
 	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
-	 * Copyright 2009-2016 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
-	 * Available under MIT license <https://lodash.com/license>
+	 * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
 	 */
 
 	/** Used as references for various `Number` constants. */
@@ -5052,7 +5051,8 @@
 	var hasOwnProperty = objectProto.hasOwnProperty;
 
 	/**
-	 * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * Used to resolve the
+	 * [`toStringTag`](http://ecma-international.org/ecma-262/7.0/#sec-object.prototype.tostring)
 	 * of values.
 	 */
 	var objectToString = objectProto.toString;
@@ -5061,38 +5061,15 @@
 	var propertyIsEnumerable = objectProto.propertyIsEnumerable;
 
 	/**
-	 * The base implementation of `_.property` without support for deep paths.
-	 *
-	 * @private
-	 * @param {string} key The key of the property to get.
-	 * @returns {Function} Returns the new function.
-	 */
-	function baseProperty(key) {
-	  return function(object) {
-	    return object == null ? undefined : object[key];
-	  };
-	}
-
-	/**
-	 * Gets the "length" property value of `object`.
-	 *
-	 * **Note:** This function is used to avoid a [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792)
-	 * that affects Safari on at least iOS 8.1-8.3 ARM64.
-	 *
-	 * @private
-	 * @param {Object} object The object to query.
-	 * @returns {*} Returns the "length" value.
-	 */
-	var getLength = baseProperty('length');
-
-	/**
 	 * Checks if `value` is likely an `arguments` object.
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 0.1.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	 * @returns {boolean} Returns `true` if `value` is an `arguments` object,
+	 *  else `false`.
 	 * @example
 	 *
 	 * _.isArguments(function() { return arguments; }());
@@ -5102,7 +5079,7 @@
 	 * // => false
 	 */
 	function isArguments(value) {
-	  // Safari 8.1 incorrectly makes `arguments.callee` enumerable in strict mode.
+	  // Safari 8.1 makes `arguments.callee` enumerable in strict mode.
 	  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
 	    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
 	}
@@ -5114,6 +5091,7 @@
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
@@ -5132,7 +5110,7 @@
 	 * // => false
 	 */
 	function isArrayLike(value) {
-	  return value != null && isLength(getLength(value)) && !isFunction(value);
+	  return value != null && isLength(value.length) && !isFunction(value);
 	}
 
 	/**
@@ -5141,9 +5119,11 @@
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is an array-like object, else `false`.
+	 * @returns {boolean} Returns `true` if `value` is an array-like object,
+	 *  else `false`.
 	 * @example
 	 *
 	 * _.isArrayLikeObject([1, 2, 3]);
@@ -5167,9 +5147,10 @@
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 0.1.0
 	 * @category Lang
 	 * @param {*} value The value to check.
-	 * @returns {boolean} Returns `true` if `value` is correctly classified, else `false`.
+	 * @returns {boolean} Returns `true` if `value` is a function, else `false`.
 	 * @example
 	 *
 	 * _.isFunction(_);
@@ -5180,8 +5161,7 @@
 	 */
 	function isFunction(value) {
 	  // The use of `Object#toString` avoids issues with the `typeof` operator
-	  // in Safari 8 which returns 'object' for typed array and weak map constructors,
-	  // and PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+	  // in Safari 8-9 which returns 'object' for typed array and other constructors.
 	  var tag = isObject(value) ? objectToString.call(value) : '';
 	  return tag == funcTag || tag == genTag;
 	}
@@ -5189,10 +5169,12 @@
 	/**
 	 * Checks if `value` is a valid array-like length.
 	 *
-	 * **Note:** This function is loosely based on [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
+	 * **Note:** This method is loosely based on
+	 * [`ToLength`](http://ecma-international.org/ecma-262/7.0/#sec-tolength).
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is a valid length, else `false`.
@@ -5216,11 +5198,13 @@
 	}
 
 	/**
-	 * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
-	 * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 * Checks if `value` is the
+	 * [language type](http://www.ecma-international.org/ecma-262/7.0/#sec-ecmascript-language-types)
+	 * of `Object`. (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 0.1.0
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
@@ -5249,6 +5233,7 @@
 	 *
 	 * @static
 	 * @memberOf _
+	 * @since 4.0.0
 	 * @category Lang
 	 * @param {*} value The value to check.
 	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
@@ -6779,8 +6764,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_adapter_1 = __webpack_require__(5);
-	var xstream_1 = __webpack_require__(1);
+	var xstream_adapter_1 = __webpack_require__(3);
+	var xstream_1 = __webpack_require__(4);
 	var MockedDOMSource = (function () {
 	    function MockedDOMSource(_streamAdapter, _mockConfig) {
 	        this._streamAdapter = _streamAdapter;
@@ -6917,19 +6902,19 @@
 
 	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
+	var _xstream = __webpack_require__(4);
+
+	var _xstream2 = _interopRequireDefault(_xstream);
+
 	var _dom = __webpack_require__(6);
 
 	var _field = __webpack_require__(68);
 
 	var _field2 = _interopRequireDefault(_field);
 
-	var _xstream = __webpack_require__(1);
+	var _extras = __webpack_require__(70);
 
-	var _xstream2 = _interopRequireDefault(_xstream);
-
-	var _helper = __webpack_require__(70);
-
-	var _helper2 = _interopRequireDefault(_helper);
+	var _extras2 = _interopRequireDefault(_extras);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -6947,14 +6932,14 @@
 	  });
 	}
 
-	function App(sources) {
+	function Form(sources) {
 	  return {
 	    DOM: view(sources),
 	    instruction$: _xstream2.default.of('Enter name')
 	  };
 	}
 
-	exports.default = (0, _helper2.default)(App, _field2.default, 'instruction$');
+	exports.default = (0, _extras2.default)(Form, _field2.default, 'instruction$');
 
 /***/ },
 /* 68 */
@@ -6976,13 +6961,13 @@
 
 	var _confirm2 = _interopRequireDefault(_confirm);
 
-	var _xstream = __webpack_require__(1);
+	var _xstream = __webpack_require__(4);
 
 	var _xstream2 = _interopRequireDefault(_xstream);
 
-	var _helper = __webpack_require__(70);
+	var _extras = __webpack_require__(70);
 
-	var _helper2 = _interopRequireDefault(_helper);
+	var _extras2 = _interopRequireDefault(_extras);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -7040,7 +7025,7 @@
 	  };
 	}
 
-	exports.default = (0, _helper2.default)(Field, _confirm2.default, 'disabled$');
+	exports.default = (0, _extras2.default)(Field, _confirm2.default, 'disabled$');
 
 /***/ },
 /* 69 */
@@ -7054,7 +7039,7 @@
 
 	var _dom = __webpack_require__(6);
 
-	var _xstream = __webpack_require__(1);
+	var _xstream = __webpack_require__(4);
 
 	var _xstream2 = _interopRequireDefault(_xstream);
 
@@ -7115,10 +7100,9 @@
 	  value: true
 	});
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // a helper function for CycleJS composition
-	// more info here: https://twitter.com/krawaller/status/743150786117517312
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-	var _xstream = __webpack_require__(1);
+	var _xstream = __webpack_require__(4);
 
 	var _xstream2 = _interopRequireDefault(_xstream);
 
@@ -7136,7 +7120,7 @@
 	      return _extends({}, proxies, _defineProperty({}, dep, _xstream2.default.create()));
 	    }, {});
 	    var childsinks = child(_extends({}, sources, proxies));
-	    var sinks = parent(_extends({}, sources, _defineProperty({}, 'childsinks', childsinks)));
+	    var sinks = parent(_extends({}, sources, { 'childsinks': childsinks }));
 	    Object.keys(proxies).forEach(function (proxy) {
 	      return proxies[proxy].imitate(sinks[proxy]);
 	    });

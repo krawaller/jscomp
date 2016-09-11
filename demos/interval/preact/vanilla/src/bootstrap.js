@@ -1,5 +1,5 @@
 /** @jsx h */
-import { h, render } from 'preact';
+import { h, render } from 'preact'
 import Singer from './singer'
 
-render(<Singer/>, document.getElementById("app"));
+render(<Singer />, document.getElementById('app'))

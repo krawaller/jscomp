@@ -59,43 +59,45 @@
         <h4>Corresponding file in other implementations</h4>
         <h5>Cycle - <a href="composition_cycle_comphelper_info.html">composition helper</a></h5>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">import</span> {div, p} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+<span class="hljs-keyword">import</span> {div, p} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 <span class="hljs-keyword">import</span> withComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">view</span>(<span class="hljs-params">{childsinks:{submit$,DOM}}</span>)</span>{
-  <span class="hljs-keyword">return</span> xs.combine(submit$.startWith(<span class="hljs-string">'Steve'</span>),DOM).map(([submission,childvtree])=&gt; div([
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">view</span> (<span class="hljs-params">{childsinks: {submit$, DOM}}</span>) </span>{
+  <span class="hljs-keyword">return</span> xs.combine(submit$.startWith(<span class="hljs-string">'Steve'</span>), DOM).map(([submission, childvtree]) =&gt; div([
     childvtree,
-    p(<span class="hljs-string">'Submitted value: '</span>+submission)
+    p(<span class="hljs-string">'Submitted value: '</span> + submission)
   ]))
 }
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Form</span>(<span class="hljs-params">sources</span>)</span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Form</span> (<span class="hljs-params">sources</span>) </span>{
   <span class="hljs-keyword">return</span> {
     DOM: view(sources),
     instruction$: xs.of(<span class="hljs-string">'Enter name'</span>)
   }
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(Form,Field,<span class="hljs-string">'instruction$'</span>)</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(Form, Field, <span class="hljs-string">'instruction$'</span>)
+</code></pre>
         <h5>React - <a href="composition_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 
 <span class="hljs-keyword">let</span> Form = React.createClass({
-  getInitialState: ()=&gt; ({submission:<span class="hljs-string">'Steve'</span>}),
-  onSubmission(txt) { <span class="hljs-keyword">this</span>.setState({submission:txt}) },
-  render() {
+  getInitialState: () =&gt; ({submission: <span class="hljs-string">'Steve'</span>}),
+  onSubmission (txt) { <span class="hljs-keyword">this</span>.setState({submission: txt}) },
+  render () {
     <span class="hljs-keyword">return</span> (
       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Field</span> <span class="hljs-attr">instruction</span>=<span class="hljs-string">"Enter name"</span> <span class="hljs-attr">onSubmission</span>=<span class="hljs-string">{this.onSubmission}</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Field</span> <span class="hljs-attr">instruction</span>=<span class="hljs-string">'Enter name'</span> <span class="hljs-attr">onSubmission</span>=<span class="hljs-string">{this.onSubmission}</span> /&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Submitted value: {this.state.submission}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     )
   }
 })
 
-export default Form</span></code></pre>
+export default Form
+</span></code></pre>
 
 
 

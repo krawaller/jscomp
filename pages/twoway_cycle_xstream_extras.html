@@ -36,13 +36,14 @@
             </li>
         </ul>
         <h4>Code file extras.js</h4>
-        <pre><code><span class="hljs-keyword">const</span> focusDriver = (selector) =&gt; (stream)=&gt; stream.addListener({
-  next: ()=&gt; <span class="hljs-built_in">document</span>.querySelector(selector).focus(),
-  error: ()=&gt; {},
-  complete: ()=&gt; {}
-});
+        <pre><code><span class="hljs-keyword">const</span> focusDriver = (selector) =&gt; (stream) =&gt; stream.addListener({
+  next: () =&gt; <span class="hljs-built_in">document</span>.querySelector(selector).focus(),
+  error: () =&gt; {},
+  complete: () =&gt; {}
+})
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> focusDriver</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> focusDriver
+</code></pre>
         <h4>Corresponding file in other implementations</h4>
         <h5>Angular2 - <a href="twoway_angular2_typescript_info.html">TypeScript</a></h5>
         <pre><code></code></pre>

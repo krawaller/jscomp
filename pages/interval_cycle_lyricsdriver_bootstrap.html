@@ -36,8 +36,7 @@
             </li>
         </ul>
         <h4>Code file bootstrap.js</h4>
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
+        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
 <span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 <span class="hljs-keyword">import</span> makeIntervalDriver <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
 
@@ -45,17 +44,18 @@
 
 run(Singer, {
   DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
-  pos$: makeIntervalDriver(<span class="hljs-number">4</span>,<span class="hljs-number">1500</span>)
-});</code></pre>
+  pos$: makeIntervalDriver(<span class="hljs-number">4</span>, <span class="hljs-number">1500</span>)
+})
+</code></pre>
         <h4>Corresponding file in other implementations</h4>
         <h5>Cycle - <a href="interval_cycle_vanilla_info.html">xstream</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
+        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
 <span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
-run(Singer, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) });</code></pre>
+run(Singer, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) })
+</code></pre>
         <h5>Angular2 - <a href="interval_angular2_typescript_info.html">TypeScript</a></h5>
         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
@@ -82,34 +82,38 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 </code></pre>
         <h5>Preact - <a href="interval_preact_vanilla_info.html">vanilla</a></h5>
         <pre><code><span class="hljs-comment">/** @jsx h */</span>
-<span class="hljs-keyword">import</span> { h, render } <span class="hljs-keyword">from</span> <span class="hljs-string">'preact'</span>;
+<span class="hljs-keyword">import</span> { h, render } <span class="hljs-keyword">from</span> <span class="hljs-string">'preact'</span>
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
-render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>));</code></pre>
+render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
         <h5>React - <a href="interval_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
 
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
-ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
         <h5>React - <a href="interval_react_es6_info.html">es6 class</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
 
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
-ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Singer</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
         <h5>Vue - <a href="interval_vue_vanilla_info.html">vanilla</a></h5>
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
 <span class="hljs-keyword">import</span> <span class="hljs-string">'./singer'</span>
 
-<span class="hljs-keyword">new</span> Vue({
+<span class="hljs-keyword">new</span> Vue({ <span class="hljs-comment">// eslint-disable-line</span>
   template: <span class="hljs-string">'&lt;singer/&gt;'</span>,
   replace: <span class="hljs-literal">false</span>,
   el: <span class="hljs-string">'#app'</span>
-})</code></pre>
+})
+</code></pre>
 
 
 

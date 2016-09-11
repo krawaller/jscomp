@@ -35,7 +35,6 @@ class Battle extends React.Component {
     )
   }
 
-
 }
 
 export default Battle

@@ -37,28 +37,30 @@
 
 <span class="hljs-keyword">import</span> <span class="hljs-string">'./phonebooth'</span>
 
-<span class="hljs-keyword">new</span> Vue({
+<span class="hljs-keyword">new</span> Vue({ <span class="hljs-comment">// eslint-disable-line</span>
   template: <span class="hljs-string">'&lt;phonebooth/&gt;'</span>,
   replace: <span class="hljs-literal">false</span>,
   el: <span class="hljs-string">'#app'</span>
-})</code></pre>
+})
+</code></pre>
         <h4>phonebooth.js (<a href=twoway_vue_vanilla_phonebooth.html>compare</a>)</h4>
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
-Vue.component(<span class="hljs-string">'phonebooth'</span>,{
+Vue.component(<span class="hljs-string">'phonebooth'</span>, {
   template: <span class="hljs-string">`
     &lt;input v-model="name" v-el:input&gt;&lt;br/&gt;
     &lt;p&gt;Your name is {{name}}.&lt;/p&gt;
     &lt;button v-on:click="change"&gt;Put on costume&lt;/button&gt;
   `</span>,
-  data: ()=&gt; ({name:<span class="hljs-string">'Steve'</span>}),
+  data: () =&gt; ({name: <span class="hljs-string">'Steve'</span>}),
   methods: {
-    change() {
+    change () {
       <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
       <span class="hljs-keyword">this</span>.$els.input.focus()
     }
   }
-})</code></pre>
+})
+</code></pre>
 
 
 

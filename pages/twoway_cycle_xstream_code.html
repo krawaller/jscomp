@@ -36,8 +36,7 @@
             </li>
         </ul>
         <h4>bootstrap.js (<a href=twoway_cycle_xstream_bootstrap.html>compare</a>)</h4>
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
+        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
 <span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
 <span class="hljs-keyword">import</span> makeFocusDriver <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
@@ -46,38 +45,41 @@
 run(Phonebooth, {
   DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
   focus: makeFocusDriver(<span class="hljs-string">'#app input'</span>)
-});</code></pre>
+})
+</code></pre>
         <h4>extras.js (<a href=twoway_cycle_xstream_extras.html>compare</a>)</h4>
-        <pre><code><span class="hljs-keyword">const</span> focusDriver = (selector) =&gt; (stream)=&gt; stream.addListener({
-  next: ()=&gt; <span class="hljs-built_in">document</span>.querySelector(selector).focus(),
-  error: ()=&gt; {},
-  complete: ()=&gt; {}
-});
+        <pre><code><span class="hljs-keyword">const</span> focusDriver = (selector) =&gt; (stream) =&gt; stream.addListener({
+  next: () =&gt; <span class="hljs-built_in">document</span>.querySelector(selector).focus(),
+  error: () =&gt; {},
+  complete: () =&gt; {}
+})
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> focusDriver</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> focusDriver
+</code></pre>
         <h4>phonebooth.js (<a href=twoway_cycle_xstream_phonebooth.html>compare</a>)</h4>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">import</span> {div,input,p,button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>;
+<span class="hljs-keyword">import</span> {div, input, p, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span>(<span class="hljs-params">{DOM}</span>)</span>{
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span> (<span class="hljs-params">{DOM}</span>) </span>{
   <span class="hljs-keyword">const</span> type$ = DOM.select(<span class="hljs-string">'input'</span>)
     .events(<span class="hljs-string">'input'</span>)
     .map(e =&gt; e.target.value)
-    .startWith(<span class="hljs-string">'Steve'</span>);
+    .startWith(<span class="hljs-string">'Steve'</span>)
   <span class="hljs-keyword">const</span> click$ = DOM.select(<span class="hljs-string">'button'</span>)
     .events(<span class="hljs-string">'click'</span>)
     .mapTo(<span class="hljs-string">'Batman'</span>)
   <span class="hljs-keyword">return</span> {
-    DOM: xs.merge(type$,click$).map(name=&gt;div([
-      input({props:{value:name}}),
-      p([<span class="hljs-string">'Your name is '</span>+name+<span class="hljs-string">'.'</span>]),
+    DOM: xs.merge(type$, click$).map(name =&gt; div([
+      input({props: {value: name}}),
+      p([<span class="hljs-string">'Your name is '</span> + name + <span class="hljs-string">'.'</span>]),
       button([<span class="hljs-string">'Put on costume'</span>])
     ])),
     focus: click$
-  };
+  }
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Phonebooth</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Phonebooth
+</code></pre>
 
 
 

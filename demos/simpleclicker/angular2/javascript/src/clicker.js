@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component} from '@angular/core'
 
 let Clicker = Component({
   selector: 'clicker',
@@ -7,12 +7,12 @@ let Clicker = Component({
     <button (click)="more()">Buy more</button>
   `
 }).Class({
-  constructor: function() {
+  constructor: function () {
     this.count = 3
   },
-  more() {
+  more () {
     this.count++
   }
-});
+})
 
 export default Clicker

@@ -36,30 +36,30 @@
         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
 
-<span class="hljs-keyword">import</span> { NgModule, Component }      <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
-<span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>;
-<span class="hljs-keyword">import</span> { FormsModule }   <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/forms'</span>;
-<span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>;
-<span class="hljs-keyword">import</span> { platformBrowserDynamic } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
+<span class="hljs-keyword">import</span> { NgModule, Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>
+<span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>
+<span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+<span class="hljs-keyword">import</span> { platformBrowserDynamic } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser-dynamic'</span>
 
 <span class="hljs-keyword">let</span> Root = Component({
   selector: <span class="hljs-string">'#app'</span>,
   template: <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
 }).Class({
-  <span class="hljs-keyword">constructor</span>: function() {}
-});
+  <span class="hljs-keyword">constructor</span>: function () {}
+})
 
 <span class="hljs-keyword">let</span> appModule = NgModule({
   imports: [ BrowserModule ],
   declarations: [ Clicker, Root ],
   bootstrap: [ Root ]
 }).Class({
-  <span class="hljs-keyword">constructor</span>: function() {}
-});
+  <span class="hljs-keyword">constructor</span>: function () {}
+})
 
-platformBrowserDynamic().bootstrapModule(appModule);</code></pre>
+platformBrowserDynamic().bootstrapModule(appModule)
+</code></pre>
         <h4>clicker.js (<a href=simpleclicker_angular2_javascript_clicker.html>compare</a>)</h4>
-        <pre><code><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>;
+        <pre><code><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>
 
 <span class="hljs-keyword">let</span> Clicker = Component({
   selector: <span class="hljs-string">'clicker'</span>,
@@ -68,15 +68,16 @@ platformBrowserDynamic().bootstrapModule(appModule);</code></pre>
     &lt;button (click)="more()"&gt;Buy more&lt;/button&gt;
   `</span>
 }).Class({
-  <span class="hljs-keyword">constructor</span>: function() {
+  <span class="hljs-keyword">constructor</span>: function () {
     <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
   },
-  more() {
+  more () {
     <span class="hljs-keyword">this</span>.count++
   }
-});
+})
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
+</code></pre>
 
 
 
