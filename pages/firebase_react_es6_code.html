@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Angular2 - TypeScript</title>
+    <title>React - es6 class</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,57 +14,25 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="firebase.html">firebase</a> &gt;
-    angular2 &gt;
-  </span> TypeScript
+    react &gt;
+  </span> es6 class
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="firebase_angular2_typescript_info.html">info</a>
-            </li>
-            <li class="">
-                <a href="firebase_angular2_typescript_code.html">code</a>
+                <a href="firebase_react_es6_info.html">info</a>
             </li>
             <li class="active">
-                <a href="firebase_angular2_typescript_battle.html">battle.ts</a>
+                <a href="firebase_react_es6_code.html">code</a>
             </li>
             <li class="">
-                <a href="firebase_angular2_typescript_bootstrap.html">bootstrap.ts</a>
+                <a href="firebase_react_es6_battle.html">battle.js</a>
+            </li>
+            <li class="">
+                <a href="firebase_react_es6_bootstrap.html">bootstrap.js</a>
             </li>
         </ul>
-        <h4>Code file battle.ts</h4>
-        <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
-
-<span class="hljs-keyword">import</span> {subscribe,nudge} from <span class="hljs-string">'../../../nudger.js'</span>
-
-@Component({
-  selector: <span class="hljs-string">'battle'</span>,
-  template: <span class="hljs-string">`
-    &lt;div *ngIf="loaded"&gt;
-      &lt;button *ngFor="let t of teams" (click)="nudge(t)"&gt;
-        {{t}} ({{status[t]}})
-      &lt;/button&gt;
-    &lt;/div&gt;
-    &lt;div *ngIf="!loaded"&gt;
-      Fetching data...
-    &lt;/div&gt;
-  `</span>
-})
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Battle {
-  loaded = <span class="hljs-literal">false</span>
-  status = {}
-  teams = []
-  nudge:<span class="hljs-built_in">Function</span> = nudge
-  <span class="hljs-keyword">constructor</span>() {
-    subscribe(val=&gt;{
-      <span class="hljs-keyword">this</span>.status = val
-      <span class="hljs-keyword">this</span>.teams = <span class="hljs-built_in">Object</span>.keys(<span class="hljs-keyword">this</span>.status).sort()
-      <span class="hljs-keyword">this</span>.loaded = <span class="hljs-literal">true</span>
-    })
-  }
-}</code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>React - <a href="firebase_react_es6_info.html">es6 class</a></h5>
+        <h4>battle.js (<a href=firebase_react_es6_battle.html>compare</a>)</h4>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> {subscribe, nudge} <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../nudger'</span>
 
@@ -107,6 +75,14 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Battle
 </code></pre>
+        <h4>bootstrap.js (<a href=firebase_react_es6_bootstrap.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-keyword">import</span> Battle <span class="hljs-keyword">from</span> <span class="hljs-string">'./battle'</span>
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Battle</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
 
 
 

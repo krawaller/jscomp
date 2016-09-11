@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Angular2 - TypeScript</title>
+    <title>React - es6 class</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,25 +14,34 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="firebase.html">firebase</a> &gt;
-    angular2 &gt;
-  </span> TypeScript
+    react &gt;
+  </span> es6 class
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="firebase_angular2_typescript_info.html">info</a>
+                <a href="firebase_react_es6_info.html">info</a>
             </li>
             <li class="">
-                <a href="firebase_angular2_typescript_code.html">code</a>
+                <a href="firebase_react_es6_code.html">code</a>
             </li>
             <li class="">
-                <a href="firebase_angular2_typescript_battle.html">battle.ts</a>
+                <a href="firebase_react_es6_battle.html">battle.js</a>
             </li>
             <li class="active">
-                <a href="firebase_angular2_typescript_bootstrap.html">bootstrap.ts</a>
+                <a href="firebase_react_es6_bootstrap.html">bootstrap.js</a>
             </li>
         </ul>
-        <h4>Code file bootstrap.ts</h4>
+        <h4>Code file bootstrap.js</h4>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-keyword">import</span> Battle <span class="hljs-keyword">from</span> <span class="hljs-string">'./battle'</span>
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Battle</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="firebase_angular2_typescript_info.html">TypeScript</a></h5>
         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
 
@@ -57,15 +66,6 @@
 
 platformBrowserDynamic().bootstrapModule(AppModule);
 </code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>React - <a href="firebase_react_es6_info.html">es6 class</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
-
-<span class="hljs-keyword">import</span> Battle <span class="hljs-keyword">from</span> <span class="hljs-string">'./battle'</span>
-
-ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Battle</span> /&gt;</span>, document.getElementById('app'))
-</span></code></pre>
 
 
 
