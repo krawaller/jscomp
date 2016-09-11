@@ -51,6 +51,7 @@ getDirs(source).forEach(function (demoName) {
     icount: 0,
     folderName: demoName
   }, demoReadme.attributes)
+  var lastBundleInDemo;
   getDirs(demopath).forEach(function (frameworkName) {
     data.frameworkList = uniq(data.frameworkList.concat(frameworkName))
     var niceFrameworkName = frameworkName[0].toUpperCase() + frameworkName.substr(1)
@@ -86,6 +87,7 @@ getDirs(source).forEach(function (demoName) {
           githubUrl: 'http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/' + demoName + '/' + frameworkName + '/' + implName
         }
       )
+      lastBundleInDemo = impl.bundleName
       getFiles(implpath + '/src').forEach(function (file) {
         var content = fsx.readFileSync(implpath + '/src/' + file) + ''
         var filebasename = file.replace(/\.[^.]*$/, '')
@@ -105,6 +107,7 @@ getDirs(source).forEach(function (demoName) {
     })
     demo.frameworks.push(framework)
   })
+  demo.bundleName = lastBundleInDemo
   demo.frameworks.forEach(function (framework) {
     framework.implementations.forEach(function (impl) {
       impl.files.forEach(function (file) {
