@@ -25,7 +25,7 @@
 
 <p>
 Contritbutors: 
-{{#each contributors}}<a href="http://github.com/{{this}}" target="_blank">{{this}}</a> {{/each}}
+{{#each contributors}}<a href="http://github.com/{{this}}" target="_blank"><img src="http://github.com/{{this}}.png?size=30"></a> {{/each}}
 </p>
 
 {{{ contribute }}} 
