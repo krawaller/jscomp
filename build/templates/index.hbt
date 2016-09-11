@@ -23,5 +23,9 @@
   </tbody>
 </table>
 
+<p>
+Contritbutors: 
+{{#each contributors}}<a href="http://github.com/{{this}}" target="_blank">{{this}}</a> {{/each}}
+</p>
 
-{{{ contribute }}}
+{{{ contribute }}} 

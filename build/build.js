@@ -37,7 +37,7 @@ fsx.removeSync(output);
 fsx.mkdirSync(output);
 fsx.mkdirSync(output+'scripts');
 
-var data = {dcount:0,frameworkList:[],icount:0,tlength:0,demos:[]}
+var data = {dcount:0,frameworkList:[],icount:0,tlength:0,demos:[],contributors:[]}
 getDirs(source).forEach(function(demoName){
   data.dcount += 1
   var demopath = source + demoName + '/'
@@ -63,6 +63,7 @@ getDirs(source).forEach(function(demoName){
       demo.icount += 1
       var implpath = framepath + implName + '/'
       var readme = fm(fsx.readFileSync(implpath+'README.md')+'')
+      data.contributors = uniq(data.contributors.concat(readme.attributes.author)).sort()
       var deps = require(implpath+'package.json').dependencies
       var impl = Object.assign(
         readme.attributes,{
