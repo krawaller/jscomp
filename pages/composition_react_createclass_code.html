@@ -44,71 +44,75 @@
 
 <span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">'./form'</span>
 
-ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Form</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Form</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
         <h4>confirm.js (<a href=composition_react_createclass_confirm.html>compare</a>)</h4>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> Confirm = React.createClass({
-  getInitialState: ()=&gt; ({mode:<span class="hljs-string">'waiting'</span>}),
-  maybe() { <span class="hljs-keyword">this</span>.setState({mode:<span class="hljs-string">'confirm'</span>}) },
-  changedmymind() { <span class="hljs-keyword">this</span>.setState({mode:<span class="hljs-string">'waiting'</span>}) },
-  yesimsure() {
-    <span class="hljs-keyword">this</span>.props.confirm();
-    <span class="hljs-keyword">this</span>.setState({mode:<span class="hljs-string">'waiting'</span>})
+  getInitialState: () =&gt; ({mode: <span class="hljs-string">'waiting'</span>}),
+  maybe () { <span class="hljs-keyword">this</span>.setState({mode: <span class="hljs-string">'confirm'</span>}) },
+  changedmymind () { <span class="hljs-keyword">this</span>.setState({mode: <span class="hljs-string">'waiting'</span>}) },
+  yesimsure () {
+    <span class="hljs-keyword">this</span>.props.confirm()
+    <span class="hljs-keyword">this</span>.setState({mode: <span class="hljs-string">'waiting'</span>})
   },
-  render() {
+  render () {
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.state.mode !== <span class="hljs-string">'confirm'</span>
     ? <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.maybe}</span> <span class="hljs-attr">disabled</span>=<span class="hljs-string">{this.props.disabled}</span>&gt;</span>Submit<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span></span>
     : <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">span</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.changedmymind}</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.yesimsure}</span>&gt;</span>Confirm<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-      <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.changedmymind}</span>&gt;</span>Cancel<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.yesimsure}</span>&gt;</span>Confirm<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">span</span>&gt;</span></span>
   }
 })
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Confirm</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Confirm
+</code></pre>
         <h4>field.js (<a href=composition_react_createclass_field.html>compare</a>)</h4>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
 
 <span class="hljs-keyword">let</span> Field = React.createClass({
-  getInitialState: ()=&gt; ({field:<span class="hljs-string">''</span>}),
-  onConfirm() {
-    <span class="hljs-keyword">this</span>.props.onSubmission(<span class="hljs-keyword">this</span>.state.field);
-    <span class="hljs-keyword">this</span>.setState({field:<span class="hljs-string">''</span>});
+  getInitialState: () =&gt; ({field: <span class="hljs-string">''</span>}),
+  onConfirm () {
+    <span class="hljs-keyword">this</span>.props.onSubmission(<span class="hljs-keyword">this</span>.state.field)
+    <span class="hljs-keyword">this</span>.setState({field: <span class="hljs-string">''</span>})
   },
-  onChange(e) {
-    <span class="hljs-keyword">this</span>.setState({field:e.target.value});
+  onChange (e) {
+    <span class="hljs-keyword">this</span>.setState({field: e.target.value})
   },
-  render() {
+  render () {
     <span class="hljs-keyword">return</span> (
       &lt;div&gt;
-        {this.props.instruction}: &lt;input value={this.state.field} onChange={this.onChange}/&gt;
-        &lt;Confirm disabled={!this.state.field} confirm={this.onConfirm}/&gt;
+        {this.props.instruction}: &lt;input value={this.state.field} onChange={this.onChange} /&gt;
+        &lt;Confirm disabled={!this.state.field} confirm={this.onConfirm} /&gt;
       &lt;/div&gt;
     )
   }
 })
 
-export default Field</code></pre>
+export default Field
+</code></pre>
         <h4>form.js (<a href=composition_react_createclass_form.html>compare</a>)</h4>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 
 <span class="hljs-keyword">let</span> Form = React.createClass({
-  getInitialState: ()=&gt; ({submission:<span class="hljs-string">'Steve'</span>}),
-  onSubmission(txt) { <span class="hljs-keyword">this</span>.setState({submission:txt}) },
-  render() {
+  getInitialState: () =&gt; ({submission: <span class="hljs-string">'Steve'</span>}),
+  onSubmission (txt) { <span class="hljs-keyword">this</span>.setState({submission: txt}) },
+  render () {
     <span class="hljs-keyword">return</span> (
       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-        <span class="hljs-tag">&lt;<span class="hljs-name">Field</span> <span class="hljs-attr">instruction</span>=<span class="hljs-string">"Enter name"</span> <span class="hljs-attr">onSubmission</span>=<span class="hljs-string">{this.onSubmission}</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Field</span> <span class="hljs-attr">instruction</span>=<span class="hljs-string">'Enter name'</span> <span class="hljs-attr">onSubmission</span>=<span class="hljs-string">{this.onSubmission}</span> /&gt;</span>
         <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Submitted value: {this.state.submission}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
       <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
     )
   }
 })
 
-export default Form</span></code></pre>
+export default Form
+</span></code></pre>
 
 
 

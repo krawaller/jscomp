@@ -38,20 +38,22 @@
 
 <span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
 
-ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Clicker</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Clicker</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
         <h4>clicker.js (<a href=simpleclicker_react_recompose_clicker.html>compare</a>)</h4>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> {withState} <span class="hljs-keyword">from</span> <span class="hljs-string">'recompose'</span>
 
 <span class="hljs-keyword">const</span> enhance = withState(<span class="hljs-string">'count'</span>, <span class="hljs-string">'more'</span>, <span class="hljs-number">3</span>)
-<span class="hljs-keyword">const</span> Clicker = enhance(({count,more})=&gt; (
+<span class="hljs-keyword">const</span> Clicker = enhance(({count, more}) =&gt; (
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{count} bottles of beer on the wall<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span>=&gt;</span>more(n=&gt;n+1)}&gt;Buy more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> more(n =&gt; n + 1)}&gt;Buy more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span>
 ))
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
+</code></pre>
 
 
 

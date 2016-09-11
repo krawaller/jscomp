@@ -37,11 +37,12 @@
 
 <span class="hljs-keyword">import</span> <span class="hljs-string">'./phonebooth'</span>
 
-<span class="hljs-keyword">new</span> Vue({
+<span class="hljs-keyword">new</span> Vue({ <span class="hljs-comment">// eslint-disable-line</span>
   template: <span class="hljs-string">'&lt;phonebooth/&gt;'</span>,
   replace: <span class="hljs-literal">false</span>,
   el: <span class="hljs-string">'#app'</span>
-})</code></pre>
+})
+</code></pre>
         <h4>Corresponding file in other implementations</h4>
         <h5>Angular2 - <a href="twoway_angular2_typescript_info.html">TypeScript</a></h5>
         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
@@ -69,8 +70,7 @@
 platformBrowserDynamic().bootstrapModule(AppModule);
 </code></pre>
         <h5>Cycle - <a href="twoway_cycle_xstream_info.html">xstream</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
+        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/xstream-run'</span>
 <span class="hljs-keyword">import</span> {makeDOMDriver} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
 <span class="hljs-keyword">import</span> makeFocusDriver <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
@@ -79,14 +79,16 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 run(Phonebooth, {
   DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
   focus: makeFocusDriver(<span class="hljs-string">'#app input'</span>)
-});</code></pre>
+})
+</code></pre>
         <h5>React - <a href="twoway_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
 
 <span class="hljs-keyword">import</span> Phonebooth <span class="hljs-keyword">from</span> <span class="hljs-string">'./phonebooth'</span>
 
-ReactDOM.render( <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Phonebooth</span>/&gt;</span></span>, <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>) );</code></pre>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Phonebooth</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
 
 
 

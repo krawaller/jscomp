@@ -20,4 +20,5 @@ To add an implementation to a demo, here's what you need to know!
     * a `bootstrap` file that is the entrypoint for the `bundle.js`, which initialises your app in a div with the id `app`.
     * any other file specified by the demo in question.
     * an optional `extras` file for eventual helpers. This is the only non-specified file you may create!
-* To regenerate the site after adding an implementation, navigate to the `build` folder and do `node build`.
+* To regenerate the site after adding an implementation, navigate to the project root folder and run `npm run build`.
+* All code should follow the [Javascript Standard Style](http://standardjs.com/).

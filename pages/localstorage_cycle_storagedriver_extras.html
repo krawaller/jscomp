@@ -37,17 +37,19 @@
         </ul>
         <h4>Code file extras.js</h4>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+<span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
 
-<span class="hljs-keyword">const</span> makeStoreDriver = (key)=&gt; (save$)=&gt; {
+<span class="hljs-keyword">const</span> makeStoreDriver = (key) =&gt; (save$) =&gt; {
   save$.addListener({
-    next: (i)=&gt; localStorage.setItem(key,i),
-    error: ()=&gt; {},
-    complete: ()=&gt; {}
+    next: (i) =&gt; localStorage.setItem(key, i),
+    error: () =&gt; {},
+    complete: () =&gt; {}
   })
   <span class="hljs-keyword">return</span> xs.of(localStorage.getItem(key))
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeStoreDriver</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeStoreDriver
+</code></pre>
         <h4>Corresponding file in other implementations</h4>
         <h5>Angular2 - <a href="localstorage_angular2_typescript_info.html">TypeScript</a></h5>
         <pre><code></code></pre>

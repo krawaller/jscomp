@@ -38,11 +38,12 @@
         <h4>Code file extras.js</h4>
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 
-<span class="hljs-keyword">const</span> makeIntervalDriver = (ceil,interval)=&gt; ()=&gt; {
-  <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(n=&gt;(n+<span class="hljs-number">1</span>)%ceil)
+<span class="hljs-keyword">const</span> makeIntervalDriver = (ceil, interval) =&gt; () =&gt; {
+  <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(n =&gt; (n + <span class="hljs-number">1</span>) % ceil)
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIntervalDriver</code></pre>
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIntervalDriver
+</code></pre>
         <h4>Corresponding file in other implementations</h4>
         <h5>Cycle - <a href="interval_cycle_vanilla_info.html">xstream</a></h5>
         <pre><code></code></pre>

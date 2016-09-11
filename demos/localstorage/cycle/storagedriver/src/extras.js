@@ -1,10 +1,11 @@
 import xs from 'xstream'
+const {localStorage} = window
 
-const makeStoreDriver = (key)=> (save$)=> {
+const makeStoreDriver = (key) => (save$) => {
   save$.addListener({
-    next: (i)=> localStorage.setItem(key,i),
-    error: ()=> {},
-    complete: ()=> {}
+    next: (i) => localStorage.setItem(key, i),
+    error: () => {},
+    complete: () => {}
   })
   return xs.of(localStorage.getItem(key))
 }

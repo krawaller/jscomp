@@ -33,20 +33,21 @@
             </li>
         </ul>
         <h4>bootstrap.js (<a href=simpleclicker_angular_controller_bootstrap.html>compare</a>)</h4>
-        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"app"</span>)
-app.setAttribute(<span class="hljs-string">"ng-app"</span>,<span class="hljs-string">"app"</span>)
+        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
+app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
 
 <span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
-<span class="hljs-keyword">import</span> {<span class="hljs-built_in">module</span>,template} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+<span class="hljs-keyword">import</span> {<span class="hljs-built_in">module</span>, template} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
 
 app.innerHTML = template
-angular.module(<span class="hljs-string">'app'</span>,[<span class="hljs-built_in">module</span>])</code></pre>
+angular.module(<span class="hljs-string">'app'</span>, [<span class="hljs-built_in">module</span>])
+</code></pre>
         <h4>clicker.js (<a href=simpleclicker_angular_controller_clicker.html>compare</a>)</h4>
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-angular.module(<span class="hljs-string">'app.clicker'</span>,[])
-  .controller(<span class="hljs-string">'clicker'</span>,[<span class="hljs-string">'$scope'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">$scope</span>)</span>{
-    $scope.count = <span class="hljs-number">3</span>;
+angular.module(<span class="hljs-string">'app.clicker'</span>, [])
+  .controller(<span class="hljs-string">'clicker'</span>, [<span class="hljs-string">'$scope'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope</span>) </span>{
+    $scope.count = <span class="hljs-number">3</span>
     $scope.more = () =&gt; $scope.count++
   }])
 
@@ -56,7 +57,8 @@ angular.module(<span class="hljs-string">'app.clicker'</span>,[])
     &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
     &lt;button ng-click="more()"&gt;Buy more&lt;/button&gt;
   &lt;/div&gt;
-`</span></code></pre>
+`</span>
+</code></pre>
 
 
 
