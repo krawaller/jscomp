@@ -90,6 +90,7 @@ getDirs(source).forEach(function (demoName) {
       lastBundleInDemo = impl.bundleName
       getFiles(implpath + '/src').forEach(function (file) {
         var content = fsx.readFileSync(implpath + '/src/' + file) + ''
+        content = content.replace('// eslint-disable-line', '')
         var filebasename = file.replace(/\.[^.]*$/, '')
         var suffix = file.match(/\.([^.]*)$/, '')[1]
         demo.filenames = uniq(demo.filenames.concat(filebasename))
