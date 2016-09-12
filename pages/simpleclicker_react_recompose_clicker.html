@@ -241,6 +241,34 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
 </code></pre>
+        <h5>Elm - <a href="simpleclicker_elm_vanilla_info.html">elm vanilla</a></h5>
+        <pre><code>port <span class="hljs-built_in">module</span> Clicker exposing (main)
+
+<span class="hljs-keyword">import</span> Html exposing (div, p, button, text)
+<span class="hljs-keyword">import</span> Html.App exposing (beginnerProgram)
+<span class="hljs-keyword">import</span> Html.Events exposing (onClick)
+
+
+main =
+  beginnerProgram { model = <span class="hljs-number">3</span>, view = view, update = update }
+
+
+view model =
+  div []
+    [ p []
+      [ text (toString model)
+      , text <span class="hljs-string">" bottles of beer on the wall"</span> ]
+    , button [ onClick Increment ] [ text <span class="hljs-string">"Buy more"</span> ]
+    ]
+
+
+type Msg = Increment
+
+
+update msg model =
+  <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
+    Increment -&gt;
+      model + <span class="hljs-number">1</span></code></pre>
         <h5>Vue - <a href="simpleclicker_vue_vanilla_info.html">vanilla</a></h5>
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 

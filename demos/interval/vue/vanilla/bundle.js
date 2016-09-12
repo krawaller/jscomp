@@ -54,7 +54,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	new _vue2.default({
+	new _vue2.default({ // eslint-disable-line
 	  template: '<singer/>',
 	  replace: false,
 	  el: '#app'
@@ -10330,7 +10330,7 @@
 /* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _vue = __webpack_require__(1);
 
@@ -10338,10 +10338,10 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var lyrics = ["Eeexiiit light", "Eeenteeer niight", "Taaake my haaand", "We're off to never never land"];
+	var lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', "We're off to never never land"];
 
 	_vue2.default.component('singer', {
-	  template: "<p>{{line}}</p>",
+	  template: '<p>{{line}}</p>', // eslint-disable-line
 	  data: function data() {
 	    return { pos: 0 };
 	  },
@@ -10354,7 +10354,7 @@
 	    var _this = this;
 
 	    setInterval(function () {
-	      return _this.$set("pos", (_this.pos + 1) % 4);
+	      return _this.$set('pos', (_this.pos + 1) % 4);
 	    }, 1500);
 	  }
 	});
