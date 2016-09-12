@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - xstream</title>
+    <title>Elm - elm react-elm-components</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,72 +14,25 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="twoway.html">twoway</a> &gt;
-    cycle &gt;
-  </span> xstream
+    elm &gt;
+  </span> elm react-elm-components
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="twoway_cycle_xstream_info.html">info</a>
+                <a href="twoway_elm_react-elm-components_info.html">info</a>
             </li>
             <li class="">
-                <a href="twoway_cycle_xstream_code.html">code</a>
+                <a href="twoway_elm_react-elm-components_code.html">code</a>
             </li>
             <li class="">
-                <a href="twoway_cycle_xstream_bootstrap.html">bootstrap.js</a>
-            </li>
-            <li class="">
-                <a href="twoway_cycle_xstream_extras.html">extras.js</a>
+                <a href="twoway_elm_react-elm-components_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="active">
-                <a href="twoway_cycle_xstream_phonebooth.html">phonebooth.js</a>
+                <a href="twoway_elm_react-elm-components_phonebooth.html">phonebooth.elm</a>
             </li>
         </ul>
-        <h4>Code file phonebooth.js</h4>
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">import</span> {div, input, p, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span> (<span class="hljs-params">{DOM}</span>) </span>{
-  <span class="hljs-keyword">const</span> type$ = DOM.select(<span class="hljs-string">'input'</span>)
-    .events(<span class="hljs-string">'input'</span>)
-    .map(e =&gt; e.target.value)
-    .startWith(<span class="hljs-string">'Steve'</span>)
-  <span class="hljs-keyword">const</span> click$ = DOM.select(<span class="hljs-string">'button'</span>)
-    .events(<span class="hljs-string">'click'</span>)
-    .mapTo(<span class="hljs-string">'Batman'</span>)
-  <span class="hljs-keyword">return</span> {
-    DOM: xs.merge(type$, click$).map(name =&gt; div([
-      input({props: {value: name}}),
-      p([<span class="hljs-string">'Your name is '</span> + name + <span class="hljs-string">'.'</span>]),
-      button([<span class="hljs-string">'Put on costume'</span>])
-    ])),
-    focus: click$
-  }
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Phonebooth
-</code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>Angular2 - <a href="twoway_angular2_typescript_info.html">TypeScript</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild} from <span class="hljs-string">'@angular/core'</span>;
-
-@Component({
-  selector: <span class="hljs-string">'phonebooth'</span>,
-  template: <span class="hljs-string">`
-    &lt;input #field [(ngModel)]="name"&gt;&lt;br/&gt;
-    &lt;p&gt;Your name is {{name}}.&lt;/p&gt;
-    &lt;button (click)="change()"&gt;Put on costume&lt;/button&gt;
-  `</span>
-})
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Phonebooth {
-  @ViewChild(<span class="hljs-string">'field'</span>) input
-  name = <span class="hljs-string">'Steve'</span>
-  change() {
-    <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
-    <span class="hljs-keyword">this</span>.input.nativeElement.focus()
-  }
-}</code></pre>
-        <h5>Elm - <a href="twoway_elm_react-elm-components_info.html">elm react-elm-components</a></h5>
+        <h4>Code file phonebooth.elm</h4>
         <pre><code>port <span class="hljs-built_in">module</span> Phonebooth exposing (main)
 
 <span class="hljs-keyword">import</span> Html exposing (Html, Attribute, div, input, text, button, p)
@@ -129,6 +82,50 @@ view model =
         , text model.name ]
       , button [ onClick SuitUp ] [ text <span class="hljs-string">"Put on costume"</span> ]
     ]</code></pre>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="twoway_angular2_typescript_info.html">TypeScript</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild} from <span class="hljs-string">'@angular/core'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'phonebooth'</span>,
+  template: <span class="hljs-string">`
+    &lt;input #field [(ngModel)]="name"&gt;&lt;br/&gt;
+    &lt;p&gt;Your name is {{name}}.&lt;/p&gt;
+    &lt;button (click)="change()"&gt;Put on costume&lt;/button&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Phonebooth {
+  @ViewChild(<span class="hljs-string">'field'</span>) input
+  name = <span class="hljs-string">'Steve'</span>
+  change() {
+    <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
+    <span class="hljs-keyword">this</span>.input.nativeElement.focus()
+  }
+}</code></pre>
+        <h5>Cycle - <a href="twoway_cycle_xstream_info.html">xstream</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+<span class="hljs-keyword">import</span> {div, input, p, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span> (<span class="hljs-params">{DOM}</span>) </span>{
+  <span class="hljs-keyword">const</span> type$ = DOM.select(<span class="hljs-string">'input'</span>)
+    .events(<span class="hljs-string">'input'</span>)
+    .map(e =&gt; e.target.value)
+    .startWith(<span class="hljs-string">'Steve'</span>)
+  <span class="hljs-keyword">const</span> click$ = DOM.select(<span class="hljs-string">'button'</span>)
+    .events(<span class="hljs-string">'click'</span>)
+    .mapTo(<span class="hljs-string">'Batman'</span>)
+  <span class="hljs-keyword">return</span> {
+    DOM: xs.merge(type$, click$).map(name =&gt; div([
+      input({props: {value: name}}),
+      p([<span class="hljs-string">'Your name is '</span> + name + <span class="hljs-string">'.'</span>]),
+      button([<span class="hljs-string">'Put on costume'</span>])
+    ])),
+    focus: click$
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Phonebooth
+</code></pre>
         <h5>React - <a href="twoway_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 

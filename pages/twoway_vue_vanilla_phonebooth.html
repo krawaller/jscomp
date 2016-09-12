@@ -94,6 +94,56 @@ Vue.component(<span class="hljs-string">'phonebooth'</span>, {
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Phonebooth
 </code></pre>
+        <h5>Elm - <a href="twoway_elm_react-elm-components_info.html">elm react-elm-components</a></h5>
+        <pre><code>port <span class="hljs-built_in">module</span> Phonebooth exposing (main)
+
+<span class="hljs-keyword">import</span> Html exposing (Html, Attribute, div, input, text, button, p)
+<span class="hljs-keyword">import</span> Html.App <span class="hljs-keyword">as</span> App
+<span class="hljs-keyword">import</span> Html.Attributes exposing (..)
+<span class="hljs-keyword">import</span> Html.Events exposing (onInput, onClick)
+
+
+main =
+  App.beginnerProgram { model = model, view = view, update = update }
+
+
+-- MODEL
+
+type alias Model =
+  { name : <span class="hljs-built_in">String</span>
+  }
+
+model : Model
+model =
+  { name = <span class="hljs-string">"Steve"</span> }
+
+
+-- UPDATE
+
+type Msg
+  = ChangeName <span class="hljs-built_in">String</span>
+  | SuitUp
+
+update : Msg -&gt; Model -&gt; Model
+update msg model =
+  <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
+    ChangeName newName -&gt;
+      { model | name = newName }
+    SuitUp -&gt;
+      { name = <span class="hljs-string">"Batman"</span> }
+
+
+-- VIEW
+
+view : Model -&gt; Html Msg
+view model =
+  div []
+    [ div[] [ input [ onInput ChangeName, value model.name ] [] ]
+      , p []
+        [ text <span class="hljs-string">"Your name is "</span>
+        , text model.name ]
+      , button [ onClick SuitUp ] [ text <span class="hljs-string">"Put on costume"</span> ]
+    ]</code></pre>
         <h5>React - <a href="twoway_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
