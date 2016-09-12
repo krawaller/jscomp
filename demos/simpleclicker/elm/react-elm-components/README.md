@@ -1,5 +1,5 @@
 ---
-title: elm vanilla
+title: elm react-elm-components
 author: fyrkant
 maindep: elm
 ---
