@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Elm - elm vanilla</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="simpleclicker.html">simpleclicker</a> &gt;
+    elm &gt;
+  </span> elm vanilla
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="simpleclicker_elm_vanilla_info.html">info</a>
+            </li>
+            <li class="active">
+                <a href="simpleclicker_elm_vanilla_code.html">code</a>
+            </li>
+            <li class="">
+                <a href="simpleclicker_elm_vanilla_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="">
+                <a href="simpleclicker_elm_vanilla_clicker.html">clicker.elm</a>
+            </li>
+        </ul>
+        <h4>bootstrap.js (<a href=simpleclicker_elm_vanilla_bootstrap.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+<span class="hljs-keyword">import</span> Elm <span class="hljs-keyword">from</span> <span class="hljs-string">'react-elm-components'</span>
+
+<span class="hljs-keyword">import</span> {Clicker} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker.elm'</span>
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Elm</span> <span class="hljs-attr">src</span>=<span class="hljs-string">{Clicker}</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
+        <h4>clicker.elm (<a href=simpleclicker_elm_vanilla_clicker.html>compare</a>)</h4>
+        <pre><code>port <span class="hljs-built_in">module</span> Clicker exposing (main)
+
+<span class="hljs-keyword">import</span> Html exposing (div, p, button, text)
+<span class="hljs-keyword">import</span> Html.App exposing (beginnerProgram)
+<span class="hljs-keyword">import</span> Html.Events exposing (onClick)
+
+
+main =
+  beginnerProgram { model = <span class="hljs-number">3</span>, view = view, update = update }
+
+
+view model =
+  div []
+    [ p []
+      [ text (toString model)
+      , text <span class="hljs-string">" bottles of beer on the wall"</span> ]
+    , button [ onClick Increment ] [ text <span class="hljs-string">"Buy more"</span> ]
+    ]
+
+
+type Msg = Increment
+
+
+update msg model =
+  <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
+    Increment -&gt;
+      model + <span class="hljs-number">1</span></code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>

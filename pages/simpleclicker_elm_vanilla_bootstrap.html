@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Angular - controller as</title>
+    <title>Elm - elm vanilla</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,34 +14,33 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt; 
     <a href="simpleclicker.html">simpleclicker</a> &gt;
-    angular &gt;
-  </span> controller as
+    elm &gt;
+  </span> elm vanilla
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="simpleclicker_angular_controlleras_info.html">info</a>
+                <a href="simpleclicker_elm_vanilla_info.html">info</a>
             </li>
             <li class="">
-                <a href="simpleclicker_angular_controlleras_code.html">code</a>
+                <a href="simpleclicker_elm_vanilla_code.html">code</a>
             </li>
             <li class="active">
-                <a href="simpleclicker_angular_controlleras_bootstrap.html">bootstrap.js</a>
+                <a href="simpleclicker_elm_vanilla_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="">
-                <a href="simpleclicker_angular_controlleras_clicker.html">clicker.js</a>
+                <a href="simpleclicker_elm_vanilla_clicker.html">clicker.elm</a>
             </li>
         </ul>
         <h4>Code file bootstrap.js</h4>
-        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
-app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+<span class="hljs-keyword">import</span> Elm <span class="hljs-keyword">from</span> <span class="hljs-string">'react-elm-components'</span>
 
-<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
-<span class="hljs-keyword">import</span> {<span class="hljs-built_in">module</span>, template} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+<span class="hljs-keyword">import</span> {Clicker} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker.elm'</span>
 
-app.innerHTML = template
-angular.module(<span class="hljs-string">'app'</span>, [<span class="hljs-built_in">module</span>])
-</code></pre>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Elm</span> <span class="hljs-attr">src</span>=<span class="hljs-string">{Clicker}</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
         <h4>Corresponding file in other implementations</h4>
         <h5>Angular - <a href="simpleclicker_angular_componentinline_info.html">component w/ ctrl</a></h5>
         <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
@@ -64,6 +63,16 @@ app.innerHTML = <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</spa
 angular.module(<span class="hljs-string">'app'</span>, [clicker])
 </code></pre>
         <h5>Angular - <a href="simpleclicker_angular_controller_info.html">controller</a></h5>
+        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
+app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
+
+<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+<span class="hljs-keyword">import</span> {<span class="hljs-built_in">module</span>, template} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+
+app.innerHTML = template
+angular.module(<span class="hljs-string">'app'</span>, [<span class="hljs-built_in">module</span>])
+</code></pre>
+        <h5>Angular - <a href="simpleclicker_angular_controlleras_info.html">controller as</a></h5>
         <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
 app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
 
@@ -154,15 +163,6 @@ run(Clicker, {
   DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>)
 })
 </code></pre>
-        <h5>Elm - <a href="simpleclicker_elm_vanilla_info.html">elm vanilla</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
-<span class="hljs-keyword">import</span> Elm <span class="hljs-keyword">from</span> <span class="hljs-string">'react-elm-components'</span>
-
-<span class="hljs-keyword">import</span> {Clicker} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker.elm'</span>
-
-ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Elm</span> <span class="hljs-attr">src</span>=<span class="hljs-string">{Clicker}</span> /&gt;</span>, document.getElementById('app'))
-</span></code></pre>
         <h5>React - <a href="simpleclicker_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>

@@ -165,6 +165,15 @@ run(Clicker, {
   DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>)
 })
 </code></pre>
+        <h5>Elm - <a href="simpleclicker_elm_vanilla_info.html">elm vanilla</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+<span class="hljs-keyword">import</span> Elm <span class="hljs-keyword">from</span> <span class="hljs-string">'react-elm-components'</span>
+
+<span class="hljs-keyword">import</span> {Clicker} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker.elm'</span>
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Elm</span> <span class="hljs-attr">src</span>=<span class="hljs-string">{Clicker}</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
         <h5>React - <a href="simpleclicker_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
