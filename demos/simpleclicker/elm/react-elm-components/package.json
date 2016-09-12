@@ -1,6 +1,8 @@
 {
   "scripts": {
-    "build": "elm-package install && webpack"
+    "postinstall": "npm run elm:install",
+    "elm:install": "elm-package install",
+    "build": "webpack"
   },
   "dependencies": {
     "elm": "^0.17.1",
