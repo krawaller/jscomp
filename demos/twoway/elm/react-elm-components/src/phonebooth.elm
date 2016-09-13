@@ -7,43 +7,53 @@ import Html.Events exposing (onInput, onClick)
 
 
 main =
-  App.beginnerProgram { model = model, view = view, update = update }
+    App.beginnerProgram { model = model, view = view, update = update }
+
 
 
 -- MODEL
 
+
 type alias Model =
-  { name : String
-  }
+    { name : String
+    }
+
 
 model : Model
 model =
-  { name = "Steve" }
+    { name = "Steve" }
+
 
 
 -- UPDATE
 
+
 type Msg
-  = ChangeName String
-  | SuitUp
+    = ChangeName String
+    | SuitUp
+
 
 update : Msg -> Model -> Model
 update msg model =
-  case msg of
-    ChangeName newName ->
-      { model | name = newName }
-    SuitUp ->
-      { name = "Batman" }
+    case msg of
+        ChangeName newName ->
+            { model | name = newName }
+
+        SuitUp ->
+            { name = "Batman" }
+
 
 
 -- VIEW
 
+
 view : Model -> Html Msg
 view model =
-  div []
-    [ div[] [ input [ onInput ChangeName, value model.name ] [] ]
-      , p []
-        [ text "Your name is "
-        , text model.name ]
-      , button [ onClick SuitUp ] [ text "Put on costume" ]
-    ]
+    div []
+        [ div [] [ input [ onInput ChangeName, value model.name ] [] ]
+        , p []
+            [ text "Your name is "
+            , text model.name
+            ]
+        , button [ onClick SuitUp ] [ text "Put on costume" ]
+        ]

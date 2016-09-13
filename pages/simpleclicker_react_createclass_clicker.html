@@ -250,25 +250,28 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
 
 
 main =
-  beginnerProgram { model = <span class="hljs-number">3</span>, view = view, update = update }
+    beginnerProgram { model = <span class="hljs-number">3</span>, view = view, update = update }
 
 
 view model =
-  div []
-    [ p []
-      [ text (toString model)
-      , text <span class="hljs-string">" bottles of beer on the wall"</span> ]
-    , button [ onClick Increment ] [ text <span class="hljs-string">"Buy more"</span> ]
-    ]
+    div []
+        [ p []
+            [ text (toString model)
+            , text <span class="hljs-string">" bottles of beer on the wall"</span>
+            ]
+        , button [ onClick Increment ] [ text <span class="hljs-string">"Buy more"</span> ]
+        ]
 
 
-type Msg = Increment
+type Msg
+    = Increment
 
 
 update msg model =
-  <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
-    Increment -&gt;
-      model + <span class="hljs-number">1</span></code></pre>
+    <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
+        Increment -&gt;
+            model + <span class="hljs-number">1</span>
+</code></pre>
         <h5>Vue - <a href="simpleclicker_vue_vanilla_info.html">vanilla</a></h5>
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 

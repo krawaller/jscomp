@@ -99,6 +99,80 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
 </code></pre>
+        <h5>Elm - <a href="interval_elm_react-elm-components_info.html">elm react-elm-components</a></h5>
+        <pre><code>port <span class="hljs-built_in">module</span> Singer exposing (main)
+
+<span class="hljs-keyword">import</span> Html exposing (Html, Attribute, div, input, text, button, p)
+<span class="hljs-keyword">import</span> Html.App <span class="hljs-keyword">as</span> App
+<span class="hljs-keyword">import</span> <span class="hljs-built_in">Array</span> exposing (..)
+<span class="hljs-keyword">import</span> Time exposing (Time, millisecond)
+<span class="hljs-keyword">import</span> Maybe exposing (withDefault)
+
+
+main =
+    App.program
+        { init = init
+        , view = view
+        , update = update
+        , subscriptions = subscriptions
+        }
+
+
+
+-- MODEL
+
+
+type alias Model =
+    Int
+
+
+init : ( Model, Cmd Msg )
+init =
+    ( <span class="hljs-number">0</span>, Cmd.none )
+
+
+
+-- UPDATE
+
+
+type Msg
+    = Tick Time
+
+
+update : Msg -&gt; Model -&gt; ( Model, Cmd Msg )
+update msg model =
+    <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
+        Tick index -&gt;
+            ( (model + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>, Cmd.none )
+
+
+
+-- SUBSCRIPTIONS
+
+
+subscriptions : Model -&gt; Sub Msg
+subscriptions model =
+    Time.every (millisecond * <span class="hljs-number">1500</span>) Tick
+
+
+
+-- VIEW
+
+
+lyrics : <span class="hljs-built_in">Array</span> <span class="hljs-built_in">String</span>
+lyrics =
+    <span class="hljs-built_in">Array</span>.fromList [ <span class="hljs-string">"Eeexiiit light"</span>, <span class="hljs-string">"Eeenteeer niight"</span>, <span class="hljs-string">"Taaake my haaand"</span>, <span class="hljs-string">"We're off to never never land"</span> ]
+
+
+getLyricPart : <span class="hljs-built_in">Array</span> <span class="hljs-built_in">String</span> -&gt; Int -&gt; <span class="hljs-built_in">String</span>
+getLyricPart lyricsArray index =
+    withDefault <span class="hljs-string">""</span> (get index lyricsArray)
+
+
+view : Int -&gt; Html a
+view model =
+    div [] [ text (getLyricPart lyrics model) ]
+</code></pre>
         <h5>React - <a href="interval_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 

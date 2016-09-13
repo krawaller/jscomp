@@ -86,46 +86,57 @@
 
 
 main =
-  App.beginnerProgram { model = model, view = view, update = update }
+    App.beginnerProgram { model = model, view = view, update = update }
+
 
 
 -- MODEL
 
+
 type alias Model =
-  { name : <span class="hljs-built_in">String</span>
-  }
+    { name : <span class="hljs-built_in">String</span>
+    }
+
 
 model : Model
 model =
-  { name = <span class="hljs-string">"Steve"</span> }
+    { name = <span class="hljs-string">"Steve"</span> }
+
 
 
 -- UPDATE
 
+
 type Msg
-  = ChangeName <span class="hljs-built_in">String</span>
-  | SuitUp
+    = ChangeName <span class="hljs-built_in">String</span>
+    | SuitUp
+
 
 update : Msg -&gt; Model -&gt; Model
 update msg model =
-  <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
-    ChangeName newName -&gt;
-      { model | name = newName }
-    SuitUp -&gt;
-      { name = <span class="hljs-string">"Batman"</span> }
+    <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
+        ChangeName newName -&gt;
+            { model | name = newName }
+
+        SuitUp -&gt;
+            { name = <span class="hljs-string">"Batman"</span> }
+
 
 
 -- VIEW
 
+
 view : Model -&gt; Html Msg
 view model =
-  div []
-    [ div[] [ input [ onInput ChangeName, value model.name ] [] ]
-      , p []
-        [ text <span class="hljs-string">"Your name is "</span>
-        , text model.name ]
-      , button [ onClick SuitUp ] [ text <span class="hljs-string">"Put on costume"</span> ]
-    ]</code></pre>
+    div []
+        [ div [] [ input [ onInput ChangeName, value model.name ] [] ]
+        , p []
+            [ text <span class="hljs-string">"Your name is "</span>
+            , text model.name
+            ]
+        , button [ onClick SuitUp ] [ text <span class="hljs-string">"Put on costume"</span> ]
+        ]
+</code></pre>
         <h5>React - <a href="twoway_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
