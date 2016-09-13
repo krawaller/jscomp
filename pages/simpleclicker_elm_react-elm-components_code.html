@@ -50,25 +50,28 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
 
 
 main =
-  beginnerProgram { model = <span class="hljs-number">3</span>, view = view, update = update }
+    beginnerProgram { model = <span class="hljs-number">3</span>, view = view, update = update }
 
 
 view model =
-  div []
-    [ p []
-      [ text (toString model)
-      , text <span class="hljs-string">" bottles of beer on the wall"</span> ]
-    , button [ onClick Increment ] [ text <span class="hljs-string">"Buy more"</span> ]
-    ]
+    div []
+        [ p []
+            [ text (toString model)
+            , text <span class="hljs-string">" bottles of beer on the wall"</span>
+            ]
+        , button [ onClick Increment ] [ text <span class="hljs-string">"Buy more"</span> ]
+        ]
 
 
-type Msg = Increment
+type Msg
+    = Increment
 
 
 update msg model =
-  <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
-    Increment -&gt;
-      model + <span class="hljs-number">1</span></code></pre>
+    <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
+        Increment -&gt;
+            model + <span class="hljs-number">1</span>
+</code></pre>
 
 
 

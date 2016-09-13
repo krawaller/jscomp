@@ -84,6 +84,15 @@ run(Singer, {
 
 run(Singer, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) })
 </code></pre>
+        <h5>Elm - <a href="interval_elm_react-elm-components_info.html">elm react-elm-components</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+<span class="hljs-keyword">import</span> Elm <span class="hljs-keyword">from</span> <span class="hljs-string">'react-elm-components'</span>
+
+<span class="hljs-keyword">import</span> { Singer } <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer.elm'</span>
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Elm</span> <span class="hljs-attr">src</span>=<span class="hljs-string">{Singer}</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
         <h5>React - <a href="interval_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
