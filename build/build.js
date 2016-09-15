@@ -7,6 +7,8 @@ var map = require('lodash/map')
 var reduce = require('lodash/reduce')
 var beautify = require('js-beautify')
 
+console.time('build')
+
 var marked = require('marked')
 marked.setOptions({
   highlight: function (code, lang) {
@@ -51,7 +53,7 @@ getDirs(source).forEach(function (demoName) {
     icount: 0,
     folderName: demoName
   }, demoReadme.attributes)
-  var lastBundleInDemo;
+  var lastBundleInDemo
   getDirs(demopath).forEach(function (frameworkName) {
     data.frameworkList = uniq(data.frameworkList.concat(frameworkName))
     var niceFrameworkName = frameworkName[0].toUpperCase() + frameworkName.substr(1)
@@ -93,12 +95,17 @@ getDirs(source).forEach(function (demoName) {
         content = content.replace('// eslint-disable-line', '')
         var filebasename = file.replace(/\.[^.]*$/, '')
         var suffix = file.match(/\.([^.]*)$/, '')[1]
+        var languages = {
+          'js': 'javascript',
+          'ts': 'typescript',
+          'elm': 'elm'
+        }
         demo.filenames = uniq(demo.filenames.concat(filebasename))
         impl.files.push({
           filename: filebasename,
           suffix: '.' + suffix,
           size: content.length,
-          code: hljs.highlight(readme.attributes.language || 'javascript', content).value,
+          code: hljs.highlight(languages[suffix] || 'javascript', content).value,
           codeUrl: demo.folderName + '_' + impl.framework + '_' + impl.folderName + '_' + filebasename + '.html'
         })
         impl.size += content.length
@@ -212,3 +219,5 @@ fsx.writeFileSync(output + 'code.css', codeFile.replace(/\.hljs\s*\{/, 'pre > co
 
 fsx.copySync('./style.css', output + 'style.css')
 fsx.copySync('./bootstrap.css', output + 'bootstrap.css')
+
+console.timeEnd('build')

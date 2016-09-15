@@ -12,7 +12,7 @@
     <div class="container-fluid">
         <h2>
             <span>
-    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="../index.html">JS Comp</a> &gt;
     <a href="interval.html">interval</a> &gt;
     preact &gt;
   </span> vanilla
@@ -100,17 +100,17 @@
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
 </code></pre>
         <h5>Elm - <a href="interval_elm_react-elm-components_info.html">elm react-elm-components</a></h5>
-        <pre><code>port <span class="hljs-built_in">module</span> Singer exposing (main)
+        <pre><code><span class="hljs-keyword">port</span> <span class="hljs-keyword">module</span> Singer <span class="hljs-keyword">exposing</span> (main)
 
-<span class="hljs-keyword">import</span> Html exposing (Html, Attribute, div, input, text, button, p)
+<span class="hljs-keyword">import</span> Html <span class="hljs-keyword">exposing</span> (<span class="hljs-type">Html</span>, <span class="hljs-type">Attribute</span>, div, input, text, button, p)
 <span class="hljs-keyword">import</span> Html.App <span class="hljs-keyword">as</span> App
-<span class="hljs-keyword">import</span> <span class="hljs-built_in">Array</span> exposing (..)
-<span class="hljs-keyword">import</span> Time exposing (Time, millisecond)
-<span class="hljs-keyword">import</span> Maybe exposing (withDefault)
+<span class="hljs-keyword">import</span> Array <span class="hljs-keyword">exposing</span> (..)
+<span class="hljs-keyword">import</span> Time <span class="hljs-keyword">exposing</span> (<span class="hljs-type">Time</span>, millisecond)
+<span class="hljs-keyword">import</span> Maybe <span class="hljs-keyword">exposing</span> (withDefault)
 
 
-main =
-    App.program
+<span class="hljs-title">main</span> =
+    <span class="hljs-type">App</span>.program
         { init = init
         , view = view
         , update = update
@@ -119,58 +119,58 @@ main =
 
 
 
--- MODEL
+<span class="hljs-comment">-- MODEL</span>
 
 
-type alias Model =
-    Int
+<span class="hljs-keyword">type</span> <span class="hljs-keyword">alias</span> <span class="hljs-type">Model</span> =
+    <span class="hljs-type">Int</span>
 
 
-init : ( Model, Cmd Msg )
-init =
-    ( <span class="hljs-number">0</span>, Cmd.none )
+<span class="hljs-title">init</span> : ( <span class="hljs-type">Model</span>, <span class="hljs-type">Cmd</span> <span class="hljs-type">Msg</span> )
+<span class="hljs-title">init</span> =
+    ( <span class="hljs-number">0</span>, <span class="hljs-type">Cmd</span>.none )
 
 
 
--- UPDATE
+<span class="hljs-comment">-- UPDATE</span>
 
 
-type Msg
-    = Tick Time
+<span class="hljs-keyword">type</span> <span class="hljs-type">Msg</span>
+    = <span class="hljs-type">Tick</span> <span class="hljs-type">Time</span>
 
 
-update : Msg -&gt; Model -&gt; ( Model, Cmd Msg )
-update msg model =
+<span class="hljs-title">update</span> : <span class="hljs-type">Msg</span> -&gt; <span class="hljs-type">Model</span> -&gt; ( <span class="hljs-type">Model</span>, <span class="hljs-type">Cmd</span> <span class="hljs-type">Msg</span> )
+<span class="hljs-title">update</span> msg model =
     <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
-        Tick index -&gt;
-            ( (model + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>, Cmd.none )
+        <span class="hljs-type">Tick</span> index -&gt;
+            ( (model + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>, <span class="hljs-type">Cmd</span>.none )
 
 
 
--- SUBSCRIPTIONS
+<span class="hljs-comment">-- SUBSCRIPTIONS</span>
 
 
-subscriptions : Model -&gt; Sub Msg
-subscriptions model =
-    Time.every (millisecond * <span class="hljs-number">1500</span>) Tick
+<span class="hljs-title">subscriptions</span> : <span class="hljs-type">Model</span> -&gt; <span class="hljs-type">Sub</span> <span class="hljs-type">Msg</span>
+<span class="hljs-title">subscriptions</span> model =
+    <span class="hljs-type">Time</span>.every (millisecond * <span class="hljs-number">1500</span>) <span class="hljs-type">Tick</span>
 
 
 
--- VIEW
+<span class="hljs-comment">-- VIEW</span>
 
 
-lyrics : <span class="hljs-built_in">Array</span> <span class="hljs-built_in">String</span>
-lyrics =
-    <span class="hljs-built_in">Array</span>.fromList [ <span class="hljs-string">"Eeexiiit light"</span>, <span class="hljs-string">"Eeenteeer niight"</span>, <span class="hljs-string">"Taaake my haaand"</span>, <span class="hljs-string">"We're off to never never land"</span> ]
+<span class="hljs-title">lyrics</span> : <span class="hljs-type">Array</span> <span class="hljs-type">String</span>
+<span class="hljs-title">lyrics</span> =
+    <span class="hljs-type">Array</span>.fromList [ <span class="hljs-string">"Eeexiiit light"</span>, <span class="hljs-string">"Eeenteeer niight"</span>, <span class="hljs-string">"Taaake my haaand"</span>, <span class="hljs-string">"We're off to never never land"</span> ]
 
 
-getLyricPart : <span class="hljs-built_in">Array</span> <span class="hljs-built_in">String</span> -&gt; Int -&gt; <span class="hljs-built_in">String</span>
-getLyricPart lyricsArray index =
+<span class="hljs-title">getLyricPart</span> : <span class="hljs-type">Array</span> <span class="hljs-type">String</span> -&gt; <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">String</span>
+<span class="hljs-title">getLyricPart</span> lyricsArray index =
     withDefault <span class="hljs-string">""</span> (get index lyricsArray)
 
 
-view : Int -&gt; Html a
-view model =
+<span class="hljs-title">view</span> : <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Html</span> a
+<span class="hljs-title">view</span> model =
     div [] [ text (getLyricPart lyrics model) ]
 </code></pre>
         <h5>React - <a href="interval_react_createclass_info.html">createClass</a></h5>
