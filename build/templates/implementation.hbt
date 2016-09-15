@@ -1,10 +1,10 @@
 <h2>
   <span>
-    <a href="../index.html">JS Comp</a> &gt; 
+    <a href="../index.html">JS Comp</a> &gt;
     <a href="{{demoName}}.html">{{demoName}}</a> &gt;
     {{framework}} &gt;
   </span>
-  {{title}} 
+  {{title}}
 </h2>
 
 <ul class="links">

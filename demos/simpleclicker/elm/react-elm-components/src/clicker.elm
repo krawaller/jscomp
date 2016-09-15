@@ -23,6 +23,7 @@ type Msg
     = Increment
 
 
+update : Msg -> number -> number
 update msg model =
     case msg of
         Increment ->
