@@ -172,8 +172,8 @@ data.demos.forEach(demo => {
         codeFiles: impl.files
       }).concat(impl.files)
       fsx.copySync(
-        pathHelper(`../demos/${demo.folderName}/${framework.folderName}/${impl.folderName}/bundle.js`),
-        pathHelper(`../pages/scripts/${demo.folderName}_${framework.folderName}_${impl.folderName}.js`)
+        `${source}${demo.folderName}/${framework.folderName}/${impl.folderName}/bundle.js`,
+        `${output}scripts/${demo.folderName}_${framework.folderName}_${impl.folderName}.js`
       )
       sections.forEach(file => {
         const path = `${output}${demo.folderName}_${impl.framework}_${impl.folderName}_${file.filename}.html`
