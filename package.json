@@ -1,7 +1,7 @@
 {
   "scripts": {
     "prebuild": "npm run lint",
-    "build": "cd build && node build.js",
+    "build": "node build/build.js",
     "lint": "standard 'demos/**/*.js'",
     "lint:fix": "standard 'demos/**/*.js' --fix"
   },

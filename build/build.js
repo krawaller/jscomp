@@ -1,6 +1,7 @@
 const fsx = require('fs-extra')
 const path = require('path')
 const fm = require('front-matter')
+const handlebars = require('handlebars')
 const hljs = require('highlight.js')
 const _ = require('lodash')
 const beautify = require('js-beautify')
@@ -17,16 +18,16 @@ marked.setOptions({
   }
 })
 
-const source = '../demos/'
-const output = '../pages/'
-
+const pathHelper = filePath => path.join(__dirname, filePath)
 const getDirs = srcpath => fsx.readdirSync(srcpath)
   .filter(file => fsx.statSync(path.join(srcpath, file)).isDirectory())
-
 const getFiles = srcpath => fsx.readdirSync(srcpath)
   .filter(file => file !== '.DS_Store')
 
-fsx.removeSync('../index.html')
+const source = pathHelper('../demos/')
+const output = pathHelper('../pages/')
+
+fsx.removeSync(pathHelper('../index.html'))
 fsx.removeSync(output)
 fsx.mkdirSync(output)
 fsx.mkdirSync(output + 'scripts')
@@ -37,7 +38,7 @@ const data = {
 getDirs(source).forEach(demoName => {
   data.dcount += 1
   const demopath = source + demoName + '/'
-  const demoReadme = fm(fsx.readFileSync(demopath + 'README.md') + '')
+  const demoReadme = fm(fsx.readFileSync(demopath + 'README.md', {encoding: 'utf-8'}))
   const demo = Object.assign({
     frameworks: [],
     filenames: [],
@@ -58,7 +59,7 @@ getDirs(source).forEach(demoName => {
       data.icount += 1
       demo.icount += 1
       const implpath = framepath + implName + '/'
-      const readme = fm(fsx.readFileSync(implpath + 'README.md') + '')
+      const readme = fm(fsx.readFileSync(implpath + 'README.md', {encoding: 'utf-8'}))
       data.contributors = _.uniq(data.contributors.concat(readme.attributes.author)).sort()
       const deps = require(implpath + 'package.json').dependencies
       const impl = Object.assign(
@@ -71,7 +72,7 @@ getDirs(source).forEach(demoName => {
           frameworkVersion: deps[readme.attributes.maindep].replace(/^\^/, ''),
           explanation: marked(readme.body.replace(/^\s*|\s*$/g, '')),
           files: [],
-          bundleSize: (fsx.readFileSync(implpath + 'bundle.js') + '').length,
+          bundleSize: (fsx.readFileSync(implpath + 'bundle.js', {encoding: 'utf-8'})).length,
           size: 0,
           url: `${demoName}_${frameworkName}_${implName}_info.html`,
           bundleName: `${demoName}_${frameworkName}_${implName}.js`,
@@ -79,7 +80,7 @@ getDirs(source).forEach(demoName => {
         }
       )
       getFiles(implpath + '/src').forEach(file => {
-        let content = fsx.readFileSync(implpath + '/src/' + file) + ''
+        let content = fsx.readFileSync(implpath + '/src/' + file, {encoding: 'utf-8'})
         content = content.replace('// eslint-disable-line', '')
         const filebasename = file.replace(/\.[^.]*$/, '')
         const suffix = file.match(/\.([^.]*)$/, '')[1]
@@ -138,11 +139,11 @@ data.demos.forEach(demo => {
 
 // fsx.writeFileSync(output+'_data.json',beautify(JSON.stringify(data)))
 
-const handlebars = require('handlebars')
-const masterTmpl = handlebars.compile(fsx.readFileSync('templates/master.hbt') + '')
-const implTmpl = handlebars.compile(fsx.readFileSync('templates/implementation.hbt') + '')
-const indexTmpl = handlebars.compile(fsx.readFileSync('templates/index.hbt') + '')
-const demoTmpl = handlebars.compile(fsx.readFileSync('templates/demo.hbt') + '')
+const templatesPath = pathHelper('templates/')
+const masterTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'master.hbt', {encoding: 'utf-8'}))
+const implTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'implementation.hbt', {encoding: 'utf-8'}))
+const indexTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'index.hbt', {encoding: 'utf-8'}))
+const demoTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'demo.hbt', {encoding: 'utf-8'}))
 
 const write = (path, title, content, root) => {
   fsx.writeFileSync(path, beautify.html(masterTmpl({
@@ -153,10 +154,10 @@ const write = (path, title, content, root) => {
 }
 
 const indexCtx = Object.assign(data, {
-  maintext: marked(fsx.readFileSync('mainpage.md') + ''),
-  contribute: marked(fsx.readFileSync('contribute.md') + '')
+  maintext: marked(fsx.readFileSync(pathHelper('mainpage.md'), {encoding: 'utf-8'})),
+  contribute: marked(fsx.readFileSync(pathHelper('contribute.md'), {encoding: 'utf-8'}))
 })
-write('../index.html', 'JS Comp', indexTmpl(indexCtx), true)
+write(pathHelper('../index.html'), 'JS Comp', indexTmpl(indexCtx), true)
 
 data.demos.forEach(demo => {
   write(output + demo.folderName + '.html', demo.name, demoTmpl(demo))
@@ -171,8 +172,8 @@ data.demos.forEach(demo => {
         codeFiles: impl.files
       }).concat(impl.files)
       fsx.copySync(
-        `../demos/${demo.folderName}/${framework.folderName}/${impl.folderName}/bundle.js`,
-        `../pages/scripts/${demo.folderName}_${framework.folderName}_${impl.folderName}.js`
+        pathHelper(`../demos/${demo.folderName}/${framework.folderName}/${impl.folderName}/bundle.js`),
+        pathHelper(`../pages/scripts/${demo.folderName}_${framework.folderName}_${impl.folderName}.js`)
       )
       sections.forEach(file => {
         const path = `${output}${demo.folderName}_${impl.framework}_${impl.folderName}_${file.filename}.html`
@@ -194,10 +195,10 @@ data.demos.forEach(demo => {
 /** CSS files **/
 
 const highlightTheme = 'zenburn.css'
-const codeFile = fsx.readFileSync('../node_modules/highlight.js/styles/' + highlightTheme) + ''
+const codeFile = fsx.readFileSync(pathHelper('../node_modules/highlight.js/styles/' + highlightTheme), {encoding: 'utf-8'})
 fsx.writeFileSync(output + 'code.css', codeFile.replace(/\.hljs\s*\{/, 'pre > code {'))
 
-fsx.copySync('./style.css', output + 'style.css')
-fsx.copySync('./bootstrap.css', output + 'bootstrap.css')
+fsx.copySync(pathHelper('./style.css'), output + 'style.css')
+fsx.copySync(pathHelper('./bootstrap.css'), output + 'bootstrap.css')
 
 console.timeEnd('build')
