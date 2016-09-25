@@ -38,7 +38,7 @@ const data = {
 getDirs(source).forEach(demoName => {
   data.dcount += 1
   const demopath = source + demoName + '/'
-  const demoReadme = fm(fsx.readFileSync(demopath + 'README.md', {encoding: 'utf-8'}))
+  const demoReadme = fm(fsx.readFileSync(demopath + 'README.md', 'utf-8'))
   const demo = Object.assign({
     frameworks: [],
     filenames: [],
@@ -59,7 +59,7 @@ getDirs(source).forEach(demoName => {
       data.icount += 1
       demo.icount += 1
       const implpath = framepath + implName + '/'
-      const readme = fm(fsx.readFileSync(implpath + 'README.md', {encoding: 'utf-8'}))
+      const readme = fm(fsx.readFileSync(implpath + 'README.md', 'utf-8'))
       data.contributors = _.uniq(data.contributors.concat(readme.attributes.author)).sort()
       const deps = require(implpath + 'package.json').dependencies
       const impl = Object.assign(
@@ -72,7 +72,7 @@ getDirs(source).forEach(demoName => {
           frameworkVersion: deps[readme.attributes.maindep].replace(/^\^/, ''),
           explanation: marked(readme.body.replace(/^\s*|\s*$/g, '')),
           files: [],
-          bundleSize: (fsx.readFileSync(implpath + 'bundle.js', {encoding: 'utf-8'})).length,
+          bundleSize: (fsx.readFileSync(implpath + 'bundle.js', 'utf-8')).length,
           size: 0,
           url: `${demoName}_${frameworkName}_${implName}_info.html`,
           bundleName: `${demoName}_${frameworkName}_${implName}.js`,
@@ -80,7 +80,7 @@ getDirs(source).forEach(demoName => {
         }
       )
       getFiles(implpath + '/src').forEach(file => {
-        let content = fsx.readFileSync(implpath + '/src/' + file, {encoding: 'utf-8'})
+        let content = fsx.readFileSync(implpath + '/src/' + file, 'utf-8')
         content = content.replace('// eslint-disable-line', '')
         const filebasename = file.replace(/\.[^.]*$/, '')
         const suffix = file.match(/\.([^.]*)$/, '')[1]
@@ -140,10 +140,10 @@ data.demos.forEach(demo => {
 // fsx.writeFileSync(output+'_data.json',beautify(JSON.stringify(data)))
 
 const templatesPath = pathHelper('templates/')
-const masterTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'master.hbt', {encoding: 'utf-8'}))
-const implTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'implementation.hbt', {encoding: 'utf-8'}))
-const indexTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'index.hbt', {encoding: 'utf-8'}))
-const demoTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'demo.hbt', {encoding: 'utf-8'}))
+const masterTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'master.hbs', 'utf-8'))
+const implTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'implementation.hbs', 'utf-8'))
+const indexTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'index.hbs', 'utf-8'))
+const demoTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'demo.hbs', 'utf-8'))
 
 const write = (path, title, content, root) => {
   fsx.writeFileSync(path, beautify.html(masterTmpl({
@@ -154,8 +154,8 @@ const write = (path, title, content, root) => {
 }
 
 const indexCtx = Object.assign(data, {
-  maintext: marked(fsx.readFileSync(pathHelper('mainpage.md'), {encoding: 'utf-8'})),
-  contribute: marked(fsx.readFileSync(pathHelper('contribute.md'), {encoding: 'utf-8'}))
+  maintext: marked(fsx.readFileSync(pathHelper('mainpage.md'), 'utf-8')),
+  contribute: marked(fsx.readFileSync(pathHelper('contribute.md'), 'utf-8'))
 })
 write(pathHelper('../index.html'), 'JS Comp', indexTmpl(indexCtx), true)
 
@@ -195,7 +195,7 @@ data.demos.forEach(demo => {
 /** CSS files **/
 
 const highlightTheme = 'zenburn.css'
-const codeFile = fsx.readFileSync(pathHelper('../node_modules/highlight.js/styles/' + highlightTheme), {encoding: 'utf-8'})
+const codeFile = fsx.readFileSync(pathHelper('../node_modules/highlight.js/styles/' + highlightTheme), 'utf-8')
 fsx.writeFileSync(output + 'code.css', codeFile.replace(/\.hljs\s*\{/, 'pre > code {'))
 
 fsx.copySync(pathHelper('./style.css'), output + 'style.css')
