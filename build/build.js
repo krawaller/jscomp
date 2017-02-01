@@ -1,3 +1,5 @@
+"use strict";
+
 const fsx = require('fs-extra')
 const path = require('path')
 const fm = require('front-matter')

@@ -190,6 +190,22 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
     <span class="hljs-keyword">this</span>.count++
   }
 }</code></pre>
+        <h5>Cyclow - <a href="simpleclicker_cyclow_es6_info.html">es6</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+
+<span class="hljs-keyword">const</span> Counter = () =&gt; Block({
+  events: {
+    init: () =&gt; count =&gt; <span class="hljs-number">3</span>,
+    click: () =&gt; count =&gt; count + <span class="hljs-number">1</span>
+  },
+  view: count =&gt; ({content: [
+    {content: <span class="hljs-string">`<span class="hljs-subst">${count}</span> bottles of beer on the wall`</span>},
+    {tag: <span class="hljs-string">'button'</span>, on: {click: [<span class="hljs-string">'click'</span>]}, content: <span class="hljs-string">'But more'</span>}
+  ]})
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Counter
+</code></pre>
         <h5>Elm - <a href="simpleclicker_elm_react-elm-components_info.html">elm react-elm-components</a></h5>
         <pre><code><span class="hljs-keyword">port</span> <span class="hljs-keyword">module</span> Clicker <span class="hljs-keyword">exposing</span> (main)
 
