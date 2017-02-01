@@ -15,5 +15,10 @@
     "lodash": "^4.15.0",
     "marked": "^0.3.6",
     "standard": "^8.0.0"
+  },
+  "standard": {
+    "ignore": [
+      "bundle.js"
+    ]
   }
 }
