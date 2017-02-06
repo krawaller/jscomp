@@ -171,6 +171,25 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
 </code></pre>
+        <h5>Cyclow - <a href="interval_cyclow_es6-iterator_info.html">es6-iterator</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+<span class="hljs-keyword">import</span> {Ticker, Iterator, Chain} <span class="hljs-keyword">from</span> <span class="hljs-string">'graflow'</span>
+
+<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
+
+<span class="hljs-keyword">const</span> Singer = () =&gt; Block({
+  components: {
+    lineTicker: Chain(Ticker(<span class="hljs-number">1500</span>), Iterator(lyrics, {cyclic: <span class="hljs-literal">true</span>}))
+  },
+  events: {
+    init: () =&gt; <span class="hljs-string">'lineTicker'</span>,
+    lineTicker: line =&gt; text =&gt; line
+  },
+  view: text =&gt; ({content: text})
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
+</code></pre>
         <h5>Preact - <a href="interval_preact_vanilla_info.html">vanilla</a></h5>
         <pre><code><span class="hljs-comment">/** @jsx h */</span>
 <span class="hljs-keyword">import</span> { h, Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'preact'</span>

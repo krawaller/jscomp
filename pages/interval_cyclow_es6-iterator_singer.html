@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Vue - vanilla</title>
+    <title>Cyclow - es6-iterator</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,43 +14,61 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt;
     <a href="interval.html">interval</a> &gt;
-    vue &gt;
-  </span> vanilla
+    cyclow &gt;
+  </span> es6-iterator
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="interval_vue_vanilla_info.html">info</a>
+                <a href="interval_cyclow_es6-iterator_info.html">info</a>
             </li>
             <li class="">
-                <a href="interval_vue_vanilla_code.html">code</a>
+                <a href="interval_cyclow_es6-iterator_code.html">code</a>
             </li>
             <li class="">
-                <a href="interval_vue_vanilla_bootstrap.html">bootstrap.js</a>
+                <a href="interval_cyclow_es6-iterator_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="active">
-                <a href="interval_vue_vanilla_singer.html">singer.js</a>
+                <a href="interval_cyclow_es6-iterator_singer.html">singer.js</a>
             </li>
         </ul>
         <h4>Code file singer.js</h4>
-        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+<span class="hljs-keyword">import</span> {Ticker, Iterator, Chain} <span class="hljs-keyword">from</span> <span class="hljs-string">'graflow'</span>
 
 <span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
 
-Vue.component(<span class="hljs-string">'singer'</span>, {
-  template: <span class="hljs-string">`&lt;p&gt;{{line}}&lt;/p&gt;`</span>, 
-  data: () =&gt; ({pos: <span class="hljs-number">0</span>}),
-  computed: {
-    line () {
-      <span class="hljs-keyword">return</span> lyrics[<span class="hljs-keyword">this</span>.pos]
-    }
+<span class="hljs-keyword">const</span> Singer = () =&gt; Block({
+  components: {
+    lineTicker: Chain(Ticker(<span class="hljs-number">1500</span>), Iterator(lyrics, {cyclic: <span class="hljs-literal">true</span>}))
   },
-  attached: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arg</span>) </span>{
-    setInterval(() =&gt; <span class="hljs-keyword">this</span>.$set(<span class="hljs-string">'pos'</span>, (<span class="hljs-keyword">this</span>.pos + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>), <span class="hljs-number">1500</span>)
-  }
+  events: {
+    init: () =&gt; <span class="hljs-string">'lineTicker'</span>,
+    lineTicker: line =&gt; text =&gt; line
+  },
+  view: text =&gt; ({content: text})
 })
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
 </code></pre>
         <h4>Corresponding file in other implementations</h4>
+        <h5>Cyclow - <a href="interval_cyclow_es6_info.html">es6</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+<span class="hljs-keyword">import</span> {Ticker} <span class="hljs-keyword">from</span> <span class="hljs-string">'graflow'</span>
+
+<span class="hljs-keyword">var</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
+
+<span class="hljs-keyword">const</span> Singer = () =&gt; Block({
+  components: {ticker: Ticker(<span class="hljs-number">1500</span>, {initialDelay: <span class="hljs-literal">true</span>})},
+  events: {
+    init: () =&gt; [[<span class="hljs-string">'state'</span>, pos =&gt; <span class="hljs-number">0</span>], <span class="hljs-string">'ticker'</span>],
+    ticker: () =&gt; pos =&gt; (pos + <span class="hljs-number">1</span>) % <span class="hljs-number">3</span>
+  },
+  view: pos =&gt; ({content: lyrics[pos]})
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
+</code></pre>
         <h5>Angular2 - <a href="interval_angular2_typescript_info.html">TypeScript</a></h5>
         <pre><code><span class="hljs-keyword">import</span> {Component, AfterViewInit} from <span class="hljs-string">'@angular/core'</span>;
 
@@ -95,42 +113,6 @@ Vue.component(<span class="hljs-string">'singer'</span>, {
     DOM: song$.map(line =&gt; div(line))
   }
 }
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
-</code></pre>
-        <h5>Cyclow - <a href="interval_cyclow_es6_info.html">es6</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
-<span class="hljs-keyword">import</span> {Ticker} <span class="hljs-keyword">from</span> <span class="hljs-string">'graflow'</span>
-
-<span class="hljs-keyword">var</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
-
-<span class="hljs-keyword">const</span> Singer = () =&gt; Block({
-  components: {ticker: Ticker(<span class="hljs-number">1500</span>, {initialDelay: <span class="hljs-literal">true</span>})},
-  events: {
-    init: () =&gt; [[<span class="hljs-string">'state'</span>, pos =&gt; <span class="hljs-number">0</span>], <span class="hljs-string">'ticker'</span>],
-    ticker: () =&gt; pos =&gt; (pos + <span class="hljs-number">1</span>) % <span class="hljs-number">3</span>
-  },
-  view: pos =&gt; ({content: lyrics[pos]})
-})
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
-</code></pre>
-        <h5>Cyclow - <a href="interval_cyclow_es6-iterator_info.html">es6-iterator</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
-<span class="hljs-keyword">import</span> {Ticker, Iterator, Chain} <span class="hljs-keyword">from</span> <span class="hljs-string">'graflow'</span>
-
-<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
-
-<span class="hljs-keyword">const</span> Singer = () =&gt; Block({
-  components: {
-    lineTicker: Chain(Ticker(<span class="hljs-number">1500</span>), Iterator(lyrics, {cyclic: <span class="hljs-literal">true</span>}))
-  },
-  events: {
-    init: () =&gt; <span class="hljs-string">'lineTicker'</span>,
-    lineTicker: line =&gt; text =&gt; line
-  },
-  view: text =&gt; ({content: text})
-})
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
 </code></pre>
@@ -261,6 +243,24 @@ Vue.component(<span class="hljs-string">'singer'</span>, {
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
+</code></pre>
+        <h5>Vue - <a href="interval_vue_vanilla_info.html">vanilla</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+
+<span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
+
+Vue.component(<span class="hljs-string">'singer'</span>, {
+  template: <span class="hljs-string">`&lt;p&gt;{{line}}&lt;/p&gt;`</span>, 
+  data: () =&gt; ({pos: <span class="hljs-number">0</span>}),
+  computed: {
+    line () {
+      <span class="hljs-keyword">return</span> lyrics[<span class="hljs-keyword">this</span>.pos]
+    }
+  },
+  attached: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arg</span>) </span>{
+    setInterval(() =&gt; <span class="hljs-keyword">this</span>.$set(<span class="hljs-string">'pos'</span>, (<span class="hljs-keyword">this</span>.pos + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>), <span class="hljs-number">1500</span>)
+  }
+})
 </code></pre>
 
 
