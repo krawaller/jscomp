@@ -7,7 +7,7 @@ const Counter = () => Block({
   },
   view: count => ({content: [
     {content: `${count} bottles of beer on the wall`},
-    {tag: 'button', on: {click: ['click']}, content: 'But more'}
+    {tag: 'button', on: {click: ['click']}, content: 'Buy more'}
   ]})
 })
 

@@ -2,8 +2,8 @@
   "scripts": {
     "prebuild": "npm run lint",
     "build": "node build/build.js",
-    "lint": "standard 'demos/**/*.js'",
-    "lint:fix": "standard 'demos/**/*.js' --fix"
+    "lint": "standard 'demos/*/*/*/src/*.js'",
+    "lint:fix": "standard 'demos/*/*/*/src/*.js' --fix"
   },
   "dependencies": {
     "firebase": "^3.3.1",
@@ -15,10 +15,5 @@
     "lodash": "^4.15.0",
     "marked": "^0.3.6",
     "standard": "^8.0.0"
-  },
-  "standard": {
-    "ignore": [
-      "bundle.js"
-    ]
   }
 }

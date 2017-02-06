@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Cyclow - es6</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <h2>
+            <span>
+    <a href="../index.html">JS Comp</a> &gt;
+    <a href="interval.html">interval</a> &gt;
+    cyclow &gt;
+  </span> es6
+        </h2>
+
+        <ul class="links">
+            <li class="">
+                <a href="interval_cyclow_es6_info.html">info</a>
+            </li>
+            <li class="active">
+                <a href="interval_cyclow_es6_code.html">code</a>
+            </li>
+            <li class="">
+                <a href="interval_cyclow_es6_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="">
+                <a href="interval_cyclow_es6_singer.html">singer.js</a>
+            </li>
+        </ul>
+        <h4>bootstrap.js (<a href=interval_cyclow_es6_bootstrap.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+<span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
+
+run(Singer, {target: <span class="hljs-string">'app'</span>})
+</code></pre>
+        <h4>singer.js (<a href=interval_cyclow_es6_singer.html>compare</a>)</h4>
+        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+<span class="hljs-keyword">import</span> {Ticker} <span class="hljs-keyword">from</span> <span class="hljs-string">'graflow'</span>
+
+<span class="hljs-keyword">var</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
+
+<span class="hljs-keyword">const</span> Singer = () =&gt; Block({
+  components: {ticker: Ticker(<span class="hljs-number">1500</span>, {initialDelay: <span class="hljs-literal">true</span>})},
+  events: {
+    init: () =&gt; [[<span class="hljs-string">'state'</span>, pos =&gt; <span class="hljs-number">0</span>], <span class="hljs-string">'ticker'</span>],
+    ticker: () =&gt; pos =&gt; (pos + <span class="hljs-number">1</span>) % <span class="hljs-number">3</span>
+  },
+  view: pos =&gt; ({content: lyrics[pos]})
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
+</code></pre>
+
+
+
+        <footer></footer>
+    </div>
+</body>
+
+</html>
