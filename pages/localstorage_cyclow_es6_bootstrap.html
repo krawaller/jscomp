@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>React - createClass</title>
+    <title>Cyclow - es6</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,41 +14,31 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt;
     <a href="localstorage.html">localstorage</a> &gt;
-    react &gt;
-  </span> createClass
+    cyclow &gt;
+  </span> es6
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="localstorage_react_createclass_info.html">info</a>
+                <a href="localstorage_cyclow_es6_info.html">info</a>
             </li>
             <li class="">
-                <a href="localstorage_react_createclass_code.html">code</a>
+                <a href="localstorage_cyclow_es6_code.html">code</a>
             </li>
             <li class="active">
-                <a href="localstorage_react_createclass_bootstrap.html">bootstrap.js</a>
+                <a href="localstorage_cyclow_es6_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="">
-                <a href="localstorage_react_createclass_voter.html">voter.js</a>
+                <a href="localstorage_cyclow_es6_voter.html">voter.js</a>
             </li>
         </ul>
         <h4>Code file bootstrap.js</h4>
-        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
-
+        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Voter <span class="hljs-keyword">from</span> <span class="hljs-string">'./voter'</span>
 
-ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Voter</span> /&gt;</span>, document.getElementById('app'))
-</span></code></pre>
+run(Voter, {target: <span class="hljs-string">'app'</span>})
+</code></pre>
         <h4>Corresponding file in other implementations</h4>
-        <h5>React - <a href="localstorage_react_es6class_info.html">es6 class</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
-
-<span class="hljs-keyword">import</span> Voter <span class="hljs-keyword">from</span> <span class="hljs-string">'./voter'</span>
-
-ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Voter</span> /&gt;</span>, document.getElementById('app'))
-</span></code></pre>
         <h5>Angular2 - <a href="localstorage_angular2_typescript_info.html">TypeScript</a></h5>
         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
@@ -85,12 +75,22 @@ run(Voter, {
   store: makeStoreDriver(<span class="hljs-string">'JSCOMPVOTE'</span>)
 })
 </code></pre>
-        <h5>Cyclow - <a href="localstorage_cyclow_es6_info.html">es6</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+        <h5>React - <a href="localstorage_react_createclass_info.html">createClass</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
 <span class="hljs-keyword">import</span> Voter <span class="hljs-keyword">from</span> <span class="hljs-string">'./voter'</span>
 
-run(Voter, {target: <span class="hljs-string">'app'</span>})
-</code></pre>
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Voter</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
+        <h5>React - <a href="localstorage_react_es6class_info.html">es6 class</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>
+
+<span class="hljs-keyword">import</span> Voter <span class="hljs-keyword">from</span> <span class="hljs-string">'./voter'</span>
+
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Voter</span> /&gt;</span>, document.getElementById('app'))
+</span></code></pre>
         <h5>Vue - <a href="localstorage_vue_vanilla_info.html">vanilla</a></h5>
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 

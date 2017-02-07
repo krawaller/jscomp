@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - xstream, storage driver</title>
+    <title>Cyclow - es6</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,64 +14,25 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt;
     <a href="localstorage.html">localstorage</a> &gt;
-    cycle &gt;
-  </span> xstream, storage driver
+    cyclow &gt;
+  </span> es6
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="localstorage_cycle_storagedriver_info.html">info</a>
+                <a href="localstorage_cyclow_es6_info.html">info</a>
             </li>
             <li class="">
-                <a href="localstorage_cycle_storagedriver_code.html">code</a>
+                <a href="localstorage_cyclow_es6_code.html">code</a>
             </li>
             <li class="">
-                <a href="localstorage_cycle_storagedriver_bootstrap.html">bootstrap.js</a>
-            </li>
-            <li class="">
-                <a href="localstorage_cycle_storagedriver_extras.html">extras.js</a>
+                <a href="localstorage_cyclow_es6_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="active">
-                <a href="localstorage_cycle_storagedriver_voter.html">voter.js</a>
+                <a href="localstorage_cyclow_es6_voter.html">voter.js</a>
             </li>
         </ul>
         <h4>Code file voter.js</h4>
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">import</span> {div, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
-
-<span class="hljs-keyword">let</span> teams = [<span class="hljs-string">'Valor'</span>, <span class="hljs-string">'Mystic'</span>, <span class="hljs-string">'Instinct'</span>]
-
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Voter</span> (<span class="hljs-params">{DOM, store}</span>) </span>{
-  <span class="hljs-keyword">const</span> vote$ = DOM.select(<span class="hljs-string">'button'</span>).events(<span class="hljs-string">'click'</span>).map(e =&gt; e.target.getAttribute(<span class="hljs-string">'data-t'</span>))
-  <span class="hljs-keyword">return</span> {
-    DOM: xs.merge(vote$, store).map(t =&gt; div(
-      teams.map((_, n) =&gt; button({attrs: {<span class="hljs-string">'data-t'</span>: n, <span class="hljs-string">'class'</span>: (n === +t ? <span class="hljs-string">'active'</span> : <span class="hljs-string">''</span>)}}, [teams[n]])))
-    ),
-    store: vote$
-  }
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter
-</code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>Angular2 - <a href="localstorage_angular2_typescript_info.html">TypeScript</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
-
-@Component({
-  selector: <span class="hljs-string">'voter'</span>,
-  template: <span class="hljs-string">`
-    &lt;button *ngFor="let t of teams; let i = index" (click)="vote(i)" [class.active]="team===i"&gt;{{t}}&lt;/button&gt;
-  `</span>
-})
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Voter {
-  teams = [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
-  team = +(localStorage.getItem(<span class="hljs-string">'JSCOMPVOTE'</span>) || <span class="hljs-number">1</span>)
-  vote(x) {
-    <span class="hljs-keyword">this</span>.team = x;
-    localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
-  }
-}</code></pre>
-        <h5>Cyclow - <a href="localstorage_cyclow_es6_info.html">es6</a></h5>
         <pre><code>import { Block } from 'cyclow'
 const {localStorage} = window
 
@@ -94,6 +55,42 @@ const Voter = () =&gt; Block({
 })
 
 export default Voter
+</code></pre>
+        <h4>Corresponding file in other implementations</h4>
+        <h5>Angular2 - <a href="localstorage_angular2_typescript_info.html">TypeScript</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'voter'</span>,
+  template: <span class="hljs-string">`
+    &lt;button *ngFor="let t of teams; let i = index" (click)="vote(i)" [class.active]="team===i"&gt;{{t}}&lt;/button&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Voter {
+  teams = [<span class="hljs-string">"Valor"</span>,<span class="hljs-string">"Mystic"</span>,<span class="hljs-string">"Instinct"</span>]
+  team = +(localStorage.getItem(<span class="hljs-string">'JSCOMPVOTE'</span>) || <span class="hljs-number">1</span>)
+  vote(x) {
+    <span class="hljs-keyword">this</span>.team = x;
+    localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
+  }
+}</code></pre>
+        <h5>Cycle - <a href="localstorage_cycle_storagedriver_info.html">xstream, storage driver</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+<span class="hljs-keyword">import</span> {div, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
+
+<span class="hljs-keyword">let</span> teams = [<span class="hljs-string">'Valor'</span>, <span class="hljs-string">'Mystic'</span>, <span class="hljs-string">'Instinct'</span>]
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Voter</span> (<span class="hljs-params">{DOM, store}</span>) </span>{
+  <span class="hljs-keyword">const</span> vote$ = DOM.select(<span class="hljs-string">'button'</span>).events(<span class="hljs-string">'click'</span>).map(e =&gt; e.target.getAttribute(<span class="hljs-string">'data-t'</span>))
+  <span class="hljs-keyword">return</span> {
+    DOM: xs.merge(vote$, store).map(t =&gt; div(
+      teams.map((_, n) =&gt; button({attrs: {<span class="hljs-string">'data-t'</span>: n, <span class="hljs-string">'class'</span>: (n === +t ? <span class="hljs-string">'active'</span> : <span class="hljs-string">''</span>)}}, [teams[n]])))
+    ),
+    store: vote$
+  }
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter
 </code></pre>
         <h5>React - <a href="localstorage_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>

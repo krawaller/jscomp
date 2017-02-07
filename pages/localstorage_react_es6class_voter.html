@@ -121,6 +121,30 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter
 </code></pre>
+        <h5>Cyclow - <a href="localstorage_cyclow_es6_info.html">es6</a></h5>
+        <pre><code>import { Block } from 'cyclow'
+const {localStorage} = window
+
+let teams = ['Valor', 'Mystic', 'Instinct']
+
+const Voter = () =&gt; Block({
+  events: {
+    init: () =&gt; team =&gt; +(localStorage.getItem('JSCOMPVOTE') || 1),
+    click: i =&gt; team =&gt; {
+      localStorage.setItem('JSCOMPVOTE', i)
+      return i
+    }
+  },
+  view: team =&gt; ({content: teams.map((name, i) =&gt; ({
+    tag: 'button',
+    attrs: {class: team === i ? 'active' : ''},
+    on: {click: (v, next) =&gt; next(['click', i])},
+    content: name
+  }))})
+})
+
+export default Voter
+</code></pre>
         <h5>Vue - <a href="localstorage_vue_vanilla_info.html">vanilla</a></h5>
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 <span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
