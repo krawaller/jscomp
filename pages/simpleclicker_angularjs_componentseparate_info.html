@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Angular - controller as</title>
+    <title>Angularjs - component w/o ctrl</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,27 +14,27 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt;
     <a href="simpleclicker.html">simpleclicker</a> &gt;
-    angular &gt;
-  </span> controller as
+    angularjs &gt;
+  </span> component w/o ctrl
         </h2>
 
         <ul class="links">
             <li class="active">
-                <a href="simpleclicker_angular_controlleras_info.html">info</a>
+                <a href="simpleclicker_angularjs_componentseparate_info.html">info</a>
             </li>
             <li class="">
-                <a href="simpleclicker_angular_controlleras_code.html">code</a>
+                <a href="simpleclicker_angularjs_componentseparate_code.html">code</a>
             </li>
             <li class="">
-                <a href="simpleclicker_angular_controlleras_bootstrap.html">bootstrap.js</a>
+                <a href="simpleclicker_angularjs_componentseparate_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="">
-                <a href="simpleclicker_angular_controlleras_clicker.html">clicker.js</a>
+                <a href="simpleclicker_angularjs_componentseparate_clicker.html">clicker.js</a>
             </li>
         </ul>
         <h4>Live app</h4>
         <div id='app'></div>
-        <script src="scripts/simpleclicker_angular_controlleras.js"></script>
+        <script src="scripts/simpleclicker_angularjs_componentseparate.js"></script>
         <h4>Implementation data</h4>
         <table>
             <thead>
@@ -46,17 +46,18 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Angular</td>
-                    <td>594</td>
-                    <td>1219153</td>
+                    <td>Angularjs</td>
+                    <td>604</td>
+                    <td>1219154</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
-                    <td><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/simpleclicker/angular/controlleras" target="_blank">link</a></td>
+                    <td><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/simpleclicker/angularjs/componentseparate" target="_blank">link</a></td>
                 </tr>
             </tbody>
         </table>
 
         <h4>Description</h4>
-        <p>This solution uses the controllerAs syntax. As controllers expect some HTML to already be in the document, we have to export that too from <code>clicker</code> and let <code>bootstrap</code> add it in.</p>
+        <p>This solution uses the component syntax introduced in Angular 1.5, and has the controller defined separate.</p>
+        <p>In components, <code>componentAs</code> defaults to <code>$ctrl</code> (while it defaults to <code>false</code> in directives).</p>
 
         <div class="deps">
             <h4>Dependencies</h4>

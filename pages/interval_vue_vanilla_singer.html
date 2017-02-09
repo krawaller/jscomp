@@ -108,7 +108,7 @@ Vue.component(<span class="hljs-string">'singer'</span>, {
   components: {ticker: Ticker(<span class="hljs-number">1500</span>, {initialDelay: <span class="hljs-literal">true</span>})},
   events: {
     init: () =&gt; [[<span class="hljs-string">'state'</span>, pos =&gt; <span class="hljs-number">0</span>], <span class="hljs-string">'ticker'</span>],
-    ticker: () =&gt; pos =&gt; (pos + <span class="hljs-number">1</span>) % <span class="hljs-number">3</span>
+    ticker: () =&gt; pos =&gt; (pos + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>
   },
   view: pos =&gt; ({content: lyrics[pos]})
 })

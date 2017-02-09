@@ -1879,7 +1879,7 @@
 	      },
 	      ticker: function ticker() {
 	        return function (pos) {
-	          return (pos + 1) % 3;
+	          return (pos + 1) % 4;
 	        };
 	      }
 	    },

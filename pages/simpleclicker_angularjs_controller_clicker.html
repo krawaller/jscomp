@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Angular - controller as</title>
+    <title>Angularjs - controller</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,43 +14,43 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt;
     <a href="simpleclicker.html">simpleclicker</a> &gt;
-    angular &gt;
-  </span> controller as
+    angularjs &gt;
+  </span> controller
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="simpleclicker_angular_controlleras_info.html">info</a>
+                <a href="simpleclicker_angularjs_controller_info.html">info</a>
             </li>
             <li class="">
-                <a href="simpleclicker_angular_controlleras_code.html">code</a>
+                <a href="simpleclicker_angularjs_controller_code.html">code</a>
             </li>
             <li class="">
-                <a href="simpleclicker_angular_controlleras_bootstrap.html">bootstrap.js</a>
+                <a href="simpleclicker_angularjs_controller_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="active">
-                <a href="simpleclicker_angular_controlleras_clicker.html">clicker.js</a>
+                <a href="simpleclicker_angularjs_controller_clicker.html">clicker.js</a>
             </li>
         </ul>
         <h4>Code file clicker.js</h4>
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
-  .controller(<span class="hljs-string">'clicker'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
-    <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
-    <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
-  })
+  .controller(<span class="hljs-string">'clicker'</span>, [<span class="hljs-string">'$scope'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope</span>) </span>{
+    $scope.count = <span class="hljs-number">3</span>
+    $scope.more = () =&gt; $scope.count++
+  }])
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">module</span> = <span class="hljs-string">'app.clicker'</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> template = <span class="hljs-string">`
-  &lt;div ng-controller="clicker as clckr"&gt;
-    &lt;p&gt;{{clckr.count}} bottles of beer on the wall&lt;/p&gt;
-    &lt;button ng-click="clckr.more()"&gt;Buy more&lt;/button&gt;
+  &lt;div ng-controller="clicker"&gt;
+    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button ng-click="more()"&gt;Buy more&lt;/button&gt;
   &lt;/div&gt;
 `</span>
 </code></pre>
         <h4>Corresponding file in other implementations</h4>
-        <h5>Angular - <a href="simpleclicker_angular_componentclass_info.html">component w/ class</a></h5>
+        <h5>Angularjs - <a href="simpleclicker_angularjs_componentclass_info.html">component w/ class</a></h5>
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
@@ -71,7 +71,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
 </code></pre>
-        <h5>Angular - <a href="simpleclicker_angular_componentinline_info.html">component w/ ctrl</a></h5>
+        <h5>Angularjs - <a href="simpleclicker_angularjs_componentinline_info.html">component w/ ctrl</a></h5>
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
@@ -88,7 +88,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
 </code></pre>
-        <h5>Angular - <a href="simpleclicker_angular_componentseparate_info.html">component w/o ctrl</a></h5>
+        <h5>Angularjs - <a href="simpleclicker_angularjs_componentseparate_info.html">component w/o ctrl</a></h5>
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
@@ -106,24 +106,24 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
 </code></pre>
-        <h5>Angular - <a href="simpleclicker_angular_controller_info.html">controller</a></h5>
+        <h5>Angularjs - <a href="simpleclicker_angularjs_controlleras_info.html">controller as</a></h5>
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
-  .controller(<span class="hljs-string">'clicker'</span>, [<span class="hljs-string">'$scope'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope</span>) </span>{
-    $scope.count = <span class="hljs-number">3</span>
-    $scope.more = () =&gt; $scope.count++
-  }])
+  .controller(<span class="hljs-string">'clicker'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
+    <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
+  })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">module</span> = <span class="hljs-string">'app.clicker'</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> template = <span class="hljs-string">`
-  &lt;div ng-controller="clicker"&gt;
-    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
-    &lt;button ng-click="more()"&gt;Buy more&lt;/button&gt;
+  &lt;div ng-controller="clicker as clckr"&gt;
+    &lt;p&gt;{{clckr.count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button ng-click="clckr.more()"&gt;Buy more&lt;/button&gt;
   &lt;/div&gt;
 `</span>
 </code></pre>
-        <h5>Angular - <a href="simpleclicker_angular_directive_info.html">directive</a></h5>
+        <h5>Angularjs - <a href="simpleclicker_angularjs_directive_info.html">directive</a></h5>
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
