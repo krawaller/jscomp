@@ -7,7 +7,7 @@ const Singer = () => Block({
   components: {ticker: Ticker(1500, {initialDelay: true})},
   events: {
     init: () => [['state', pos => 0], 'ticker'],
-    ticker: () => pos => (pos + 1) % 3
+    ticker: () => pos => (pos + 1) % 4
   },
   view: pos => ({content: lyrics[pos]})
 })
