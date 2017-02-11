@@ -102,6 +102,42 @@
   }
 }
 </code></pre>
+        <h5>Cyclow - <a href="composition_cyclow_es6_info.html">es6</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+
+<span class="hljs-keyword">const</span> viewConfirm = () =&gt; [
+  {tag: <span class="hljs-string">'button'</span>, content: <span class="hljs-string">'Confirm'</span>, on: {click: <span class="hljs-string">'confirm'</span>}},
+  {tag: <span class="hljs-string">'button'</span>, content: <span class="hljs-string">'Cancel'</span>, on: {click: <span class="hljs-string">'cancel'</span>}}
+]
+
+<span class="hljs-keyword">const</span> viewDefault = mode =&gt; ({
+  tag: <span class="hljs-string">'button'</span>,
+  content: <span class="hljs-string">'Submit'</span>,
+  attrs: {disabled: mode === <span class="hljs-string">'disabled'</span>},
+  on: {click: <span class="hljs-string">'maybe'</span>}
+})
+
+<span class="hljs-keyword">const</span> Confirm = () =&gt; Block({
+  inputs: [<span class="hljs-string">'disabled'</span>],
+  outputs: [<span class="hljs-string">'confirmation'</span>],
+  on: {
+    init: () =&gt; state =&gt; ({mode: <span class="hljs-string">'disabled'</span>}),
+    disabled: (disabled, {mode}) =&gt; {
+      <span class="hljs-keyword">if</span> (disabled) {
+        <span class="hljs-keyword">return</span> state =&gt; ({mode: <span class="hljs-string">'disabled'</span>})
+      } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (mode === <span class="hljs-string">'disabled'</span>) {
+        <span class="hljs-keyword">return</span> state =&gt; ({mode: <span class="hljs-string">'waiting'</span>})
+      }
+    },
+    maybe: () =&gt; state =&gt; ({mode: <span class="hljs-string">'confirm'</span>}),
+    cancel: () =&gt; state =&gt; ({mode: <span class="hljs-string">'waiting'</span>}),
+    confirm: () =&gt; [state =&gt; ({mode: <span class="hljs-string">'waiting'</span>}), [<span class="hljs-string">'out.confirmation'</span>]]
+  },
+  view: ({mode}) =&gt; mode === <span class="hljs-string">'confirm'</span> ? viewConfirm() : viewDefault(mode)
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Confirm
+</code></pre>
         <h5>React - <a href="composition_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 

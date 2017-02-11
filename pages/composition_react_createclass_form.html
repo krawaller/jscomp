@@ -98,6 +98,30 @@ export default Form
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(Form, Field, <span class="hljs-string">'instruction$'</span>)
 </code></pre>
+        <h5>Cyclow - <a href="composition_cyclow_es6_info.html">es6</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+<span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
+
+<span class="hljs-keyword">const</span> Form = () =&gt; Block({
+  components: {field: Field()},
+  on: {
+    init: () =&gt; [
+      [<span class="hljs-string">'field.init'</span>, <span class="hljs-string">'Enter name'</span>],
+      state =&gt; ({current: <span class="hljs-string">'Steve'</span>})
+    ],
+    <span class="hljs-string">'field.submission'</span>: submission =&gt; state =&gt; ({current: submission})
+  },
+  view: ({current}, {field}) =&gt; ({
+    content: [
+      field,
+      {tag: <span class="hljs-string">'p'</span>, content: <span class="hljs-string">`Submitted value: <span class="hljs-subst">${current}</span>`</span>}
+    ],
+    attrs: {id: <span class="hljs-string">'app'</span>}
+  })
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Form
+</code></pre>
 
 
 

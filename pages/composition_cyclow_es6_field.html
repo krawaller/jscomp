@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>React - createClass</title>
+    <title>Cyclow - es6</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -14,54 +14,58 @@
             <span>
     <a href="../index.html">JS Comp</a> &gt;
     <a href="composition.html">composition</a> &gt;
-    react &gt;
-  </span> createClass
+    cyclow &gt;
+  </span> es6
         </h2>
 
         <ul class="links">
             <li class="">
-                <a href="composition_react_createclass_info.html">info</a>
+                <a href="composition_cyclow_es6_info.html">info</a>
             </li>
             <li class="">
-                <a href="composition_react_createclass_code.html">code</a>
+                <a href="composition_cyclow_es6_code.html">code</a>
             </li>
             <li class="">
-                <a href="composition_react_createclass_bootstrap.html">bootstrap.js</a>
+                <a href="composition_cyclow_es6_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="">
-                <a href="composition_react_createclass_confirm.html">confirm.js</a>
+                <a href="composition_cyclow_es6_confirm.html">confirm.js</a>
             </li>
             <li class="active">
-                <a href="composition_react_createclass_field.html">field.js</a>
+                <a href="composition_cyclow_es6_field.html">field.js</a>
             </li>
             <li class="">
-                <a href="composition_react_createclass_form.html">form.js</a>
+                <a href="composition_cyclow_es6_form.html">form.js</a>
             </li>
         </ul>
         <h4>Code file field.js</h4>
-        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
 
-<span class="hljs-keyword">let</span> Field = React.createClass({
-  getInitialState: () =&gt; ({field: <span class="hljs-string">''</span>}),
-  onConfirm () {
-    <span class="hljs-keyword">this</span>.props.onSubmission(<span class="hljs-keyword">this</span>.state.field)
-    <span class="hljs-keyword">this</span>.setState({field: <span class="hljs-string">''</span>})
+<span class="hljs-keyword">const</span> Field = () =&gt; Block({
+  outputs: [<span class="hljs-string">'submission'</span>],
+  components: {confirm: Confirm()},
+  on: {
+    init: instruction =&gt; [state =&gt; ({instruction, input: <span class="hljs-string">''</span>}), <span class="hljs-string">'confirm.init'</span>],
+    text: newText =&gt; state =&gt; ({...state, input: newText}),
+    <span class="hljs-string">'confirm.confirmation'</span>: (_, {input}) =&gt; [
+      state =&gt; ({...state, input: <span class="hljs-string">''</span>}),
+      [<span class="hljs-string">'out.submission'</span>, input]
+    ],
+    state: ({input}) =&gt; [[<span class="hljs-string">'confirm.disabled'</span>, !input]]
   },
-  onChange (e) {
-    <span class="hljs-keyword">this</span>.setState({field: e.target.value})
-  },
-  render () {
-    <span class="hljs-keyword">return</span> (
-      &lt;div&gt;
-        {this.props.instruction}: &lt;input value={this.state.field} onChange={this.onChange} /&gt;
-        &lt;Confirm disabled={!this.state.field} confirm={this.onConfirm} /&gt;
-      &lt;/div&gt;
-    )
-  }
+  view: ({instruction, input}, {confirm}) =&gt; ({content: [
+    <span class="hljs-string">`<span class="hljs-subst">${instruction}</span>:`</span>,
+    {
+      tag: <span class="hljs-string">'input'</span>,
+      attrs: {value: input},
+      on: {keyup: (e, next) =&gt; next([<span class="hljs-string">'text'</span>, e.target.value])}
+    },
+    confirm
+  ]})
 })
 
-export default Field
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Field
 </code></pre>
         <h4>Corresponding file in other implementations</h4>
         <h5>Angular2 - <a href="composition_angular2_typescript_info.html">TypeScript</a></h5>
@@ -131,34 +135,30 @@ export default Field
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(Field, Confirm, <span class="hljs-string">'disabled$'</span>)
 </code></pre>
-        <h5>Cyclow - <a href="composition_cyclow_es6_info.html">es6</a></h5>
-        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+        <h5>React - <a href="composition_react_createclass_info.html">createClass</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
 
-<span class="hljs-keyword">const</span> Field = () =&gt; Block({
-  outputs: [<span class="hljs-string">'submission'</span>],
-  components: {confirm: Confirm()},
-  on: {
-    init: instruction =&gt; [state =&gt; ({instruction, input: <span class="hljs-string">''</span>}), <span class="hljs-string">'confirm.init'</span>],
-    text: newText =&gt; state =&gt; ({...state, input: newText}),
-    <span class="hljs-string">'confirm.confirmation'</span>: (_, {input}) =&gt; [
-      state =&gt; ({...state, input: <span class="hljs-string">''</span>}),
-      [<span class="hljs-string">'out.submission'</span>, input]
-    ],
-    state: ({input}) =&gt; [[<span class="hljs-string">'confirm.disabled'</span>, !input]]
+<span class="hljs-keyword">let</span> Field = React.createClass({
+  getInitialState: () =&gt; ({field: <span class="hljs-string">''</span>}),
+  onConfirm () {
+    <span class="hljs-keyword">this</span>.props.onSubmission(<span class="hljs-keyword">this</span>.state.field)
+    <span class="hljs-keyword">this</span>.setState({field: <span class="hljs-string">''</span>})
   },
-  view: ({instruction, input}, {confirm}) =&gt; ({content: [
-    <span class="hljs-string">`<span class="hljs-subst">${instruction}</span>:`</span>,
-    {
-      tag: <span class="hljs-string">'input'</span>,
-      attrs: {value: input},
-      on: {keyup: (e, next) =&gt; next([<span class="hljs-string">'text'</span>, e.target.value])}
-    },
-    confirm
-  ]})
+  onChange (e) {
+    <span class="hljs-keyword">this</span>.setState({field: e.target.value})
+  },
+  render () {
+    <span class="hljs-keyword">return</span> (
+      &lt;div&gt;
+        {this.props.instruction}: &lt;input value={this.state.field} onChange={this.onChange} /&gt;
+        &lt;Confirm disabled={!this.state.field} confirm={this.onConfirm} /&gt;
+      &lt;/div&gt;
+    )
+  }
 })
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Field
+export default Field
 </code></pre>
 
 

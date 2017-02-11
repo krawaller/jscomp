@@ -109,6 +109,35 @@
     <span class="hljs-keyword">this</span>.input.nativeElement.value = <span class="hljs-string">''</span>
   }
 }</code></pre>
+        <h5>Cyclow - <a href="composition_cyclow_es6_info.html">es6</a></h5>
+        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+<span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
+
+<span class="hljs-keyword">const</span> Field = () =&gt; Block({
+  outputs: [<span class="hljs-string">'submission'</span>],
+  components: {confirm: Confirm()},
+  on: {
+    init: instruction =&gt; [state =&gt; ({instruction, input: <span class="hljs-string">''</span>}), <span class="hljs-string">'confirm.init'</span>],
+    text: newText =&gt; state =&gt; ({...state, input: newText}),
+    <span class="hljs-string">'confirm.confirmation'</span>: (_, {input}) =&gt; [
+      state =&gt; ({...state, input: <span class="hljs-string">''</span>}),
+      [<span class="hljs-string">'out.submission'</span>, input]
+    ],
+    state: ({input}) =&gt; [[<span class="hljs-string">'confirm.disabled'</span>, !input]]
+  },
+  view: ({instruction, input}, {confirm}) =&gt; ({content: [
+    <span class="hljs-string">`<span class="hljs-subst">${instruction}</span>:`</span>,
+    {
+      tag: <span class="hljs-string">'input'</span>,
+      attrs: {value: input},
+      on: {keyup: (e, next) =&gt; next([<span class="hljs-string">'text'</span>, e.target.value])}
+    },
+    confirm
+  ]})
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Field
+</code></pre>
         <h5>React - <a href="composition_react_createclass_info.html">createClass</a></h5>
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
