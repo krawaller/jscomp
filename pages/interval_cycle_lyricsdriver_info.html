@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - xstream, driver</title>
+    <title>cycle - xstream, driver</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,36 +10,33 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="interval.html">interval</a> &gt;
-    cycle &gt;
-  </span> xstream, driver
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>an </span>xstream, driver<span> implementation <br/>
+  of the <a href="interval_info.html">interval</a> demo
+  using <a href="cycle_info.html">CycleJS</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="active">
+        <ul class="iconnav">
+            <li class="current info">
                 <a href="interval_cycle_lyricsdriver_info.html">info</a>
             </li>
-            <li class="">
-                <a href="interval_cycle_lyricsdriver_code.html">code</a>
-            </li>
-            <li class="">
+            <li class=" file">
                 <a href="interval_cycle_lyricsdriver_bootstrap.html">bootstrap.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="interval_cycle_lyricsdriver_extras.html">extras.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="interval_cycle_lyricsdriver_singer.html">singer.js</a>
             </li>
         </ul>
-        <h4>Live app</h4>
+
+
         <div id='app'></div>
         <script src="scripts/interval_cycle_lyricsdriver.js"></script>
-        <h4>Implementation data</h4>
-        <table>
+        <table class="impltable">
             <thead>
                 <th>Framework</th>
                 <th>Code size</th>
@@ -49,7 +46,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Cycle</td>
+                    <td><a href="cycle_info.html">CycleJS</a> (12.2.2)</td>
                     <td>669</td>
                     <td>271678</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
@@ -58,7 +55,6 @@
             </tbody>
         </table>
 
-        <h4>Description</h4>
         <p>In this implementation we&#39;ve opted to delegate the position pushing to an interval driver, otherwise it is identical to my other CycleJS implementation.</p>
 
         <div class="deps">

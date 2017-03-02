@@ -1,5 +1,3 @@
-#### Contribution instructions
-
 To add an implementation to a demo, here's what you need to know!
 
 * The repo for this site is [here](https://github.com/krawaller/jscomp)

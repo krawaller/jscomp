@@ -81,3 +81,57 @@ td, th {
 table {
   margin: 1em;
 }
+
+.iconnav {
+  display: flex;
+  flex-direction: row;
+  list-style-type: none;
+  margin-bottom: 3.5em;
+  justify-content: center;
+  padding-left: 0;
+}
+
+.iconnav li {
+  background-color: yellow;
+  margin: 0 1em;
+  padding-left: 0;
+}
+
+.iconnav li.current {
+  background-color: gold;
+  border: 3px solid red;
+}
+
+h3 span {
+    font-size: 0.5em;
+}
+
+h3 {
+  font-size: 37px;
+  text-align: center;
+  margin-top: 1.5em;
+}
+
+.impltable td, .impltable th {
+    border: 1px solid black;
+}
+
+#app{
+  margin-bottom: 40px;
+}
+
+#logo {
+  height: 80px;
+  width: 80px;
+  background-color: red;
+  border-radius: 15px;
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: block;
+}
+
+.container-fluid {
+    max-width: 850px;
+    position: relative;
+}

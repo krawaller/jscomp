@@ -1,0 +1,33 @@
+<h3><span>the </span>{{title}}<span> framework</span></h3>
+
+<ul class="iconnav">
+  <li class="info"><a href="{{id}}_info.html">Info</a></li>
+  <li class="list current"><a href="{{id}}_list.html">Implementations</a></li>
+</ul>
+
+<p>
+  Here are the demo implementations done using {{title}}:
+</p>
+
+<table>
+  <thead>
+    <th>Implementation</th>
+    <th>Demo</th>
+    <th>{{title}} version</th>
+    <th>Code size</th>
+    <th>Bundle size</th>
+    <th>Author</th>
+  </thead>
+  <tbody>
+    {{#each implementations}}
+      <tr>
+        <td><a href="{{url}}">{{title}}</a></td>
+        <td><a href="{{demoName}}_info.html">{{demoName}}</a></td>
+        <td>{{frameworkVersion}}</td>
+        <td>{{size}}</td>
+        <td>{{bundleSize}}</td>
+        <td><a href="http://github.com/{{author}}" target="_blank">{{author}}</a></td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

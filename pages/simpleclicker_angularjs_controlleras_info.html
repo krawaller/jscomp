@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Angularjs - controller as</title>
+    <title>angularjs - controller as</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,33 +10,30 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="simpleclicker.html">simpleclicker</a> &gt;
-    angularjs &gt;
-  </span> controller as
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>a </span>controller as<span> implementation <br/>
+  of the <a href="simpleclicker_info.html">simpleclicker</a> demo
+  using <a href="angularjs_info.html">AngularJS</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="active">
+        <ul class="iconnav">
+            <li class="current info">
                 <a href="simpleclicker_angularjs_controlleras_info.html">info</a>
             </li>
-            <li class="">
-                <a href="simpleclicker_angularjs_controlleras_code.html">code</a>
-            </li>
-            <li class="">
+            <li class=" file">
                 <a href="simpleclicker_angularjs_controlleras_bootstrap.html">bootstrap.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="simpleclicker_angularjs_controlleras_clicker.html">clicker.js</a>
             </li>
         </ul>
-        <h4>Live app</h4>
+
+
         <div id='app'></div>
         <script src="scripts/simpleclicker_angularjs_controlleras.js"></script>
-        <h4>Implementation data</h4>
-        <table>
+        <table class="impltable">
             <thead>
                 <th>Framework</th>
                 <th>Code size</th>
@@ -46,7 +43,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Angularjs</td>
+                    <td><a href="angularjs_info.html">AngularJS</a> (1.5.8)</td>
                     <td>594</td>
                     <td>1219153</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
@@ -55,7 +52,6 @@
             </tbody>
         </table>
 
-        <h4>Description</h4>
         <p>This solution uses the controllerAs syntax. As controllers expect some HTML to already be in the document, we have to export that too from <code>clicker</code> and let <code>bootstrap</code> add it in.</p>
 
         <div class="deps">

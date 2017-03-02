@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>React - recompose</title>
+    <title>react - recompose</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,29 +10,27 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="simpleclicker.html">simpleclicker</a> &gt;
-    react &gt;
-  </span> recompose
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>a </span>recompose<span> implementation <br/>
+  of the <a href="simpleclicker_info.html">simpleclicker</a> demo
+  using <a href="react_info.html">React</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="">
+        <ul class="iconnav">
+            <li class=" info">
                 <a href="simpleclicker_react_recompose_info.html">info</a>
             </li>
-            <li class="">
-                <a href="simpleclicker_react_recompose_code.html">code</a>
-            </li>
-            <li class="">
+            <li class=" file">
                 <a href="simpleclicker_react_recompose_bootstrap.html">bootstrap.js</a>
             </li>
-            <li class="active">
+            <li class="current file">
                 <a href="simpleclicker_react_recompose_clicker.html">clicker.js</a>
             </li>
         </ul>
-        <h4>Code file clicker.js</h4>
+
+
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> {withState} <span class="hljs-keyword">from</span> <span class="hljs-string">'recompose'</span>
 
@@ -46,8 +44,7 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
 </code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>React - <a href="simpleclicker_react_createclass_info.html">createClass</a></h5>
+        <br/><br/> The same file in <a href="simpleclicker_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.3.1):
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> Clicker = React.createClass({
@@ -64,8 +61,7 @@
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
-</code></pre>
-        <h5>React - <a href="simpleclicker_react_es6_info.html">es6 class</a></h5>
+</code></pre> The same file in <a href="simpleclicker_react_es6_info.html">an es6 class implementation</a> using <a href="react_info.html">React</a> (15.3.1):
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
@@ -83,8 +79,7 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
-</code></pre>
-        <h5>Angular2 - <a href="simpleclicker_angular2_javascript_info.html">JavaScript</a></h5>
+</code></pre> The same file in <a href="simpleclicker_angular_javascript_info.html">a JavaScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):
         <pre><code><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>
 
 <span class="hljs-keyword">let</span> Clicker = Component({
@@ -103,8 +98,7 @@
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
-</code></pre>
-        <h5>Angular2 - <a href="simpleclicker_angular2_typescript_info.html">TypeScript</a></h5>
+</code></pre> The same file in <a href="simpleclicker_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):
         <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
 
 @Component({
@@ -119,8 +113,7 @@
   more() {
     <span class="hljs-keyword">this</span>.count++
   }
-}</code></pre>
-        <h5>Angularjs - <a href="simpleclicker_angularjs_componentclass_info.html">component w/ class</a></h5>
+}</code></pre> The same file in <a href="simpleclicker_angularjs_componentclass_info.html">a component w/ class implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.6.1):
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
@@ -140,8 +133,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
   })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
-</code></pre>
-        <h5>Angularjs - <a href="simpleclicker_angularjs_componentinline_info.html">component w/ ctrl</a></h5>
+</code></pre> The same file in <a href="simpleclicker_angularjs_componentinline_info.html">a component w/ ctrl implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
@@ -157,8 +149,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
   })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
-</code></pre>
-        <h5>Angularjs - <a href="simpleclicker_angularjs_componentseparate_info.html">component w/o ctrl</a></h5>
+</code></pre> The same file in <a href="simpleclicker_angularjs_componentseparate_info.html">a component w/o ctrl implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
@@ -175,8 +166,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
   })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
-</code></pre>
-        <h5>Angularjs - <a href="simpleclicker_angularjs_controller_info.html">controller</a></h5>
+</code></pre> The same file in <a href="simpleclicker_angularjs_controller_info.html">a controller implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
@@ -192,8 +182,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
     &lt;button ng-click="more()"&gt;Buy more&lt;/button&gt;
   &lt;/div&gt;
 `</span>
-</code></pre>
-        <h5>Angularjs - <a href="simpleclicker_angularjs_controlleras_info.html">controller as</a></h5>
+</code></pre> The same file in <a href="simpleclicker_angularjs_controlleras_info.html">a controller as implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
@@ -209,8 +198,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
     &lt;button ng-click="clckr.more()"&gt;Buy more&lt;/button&gt;
   &lt;/div&gt;
 `</span>
-</code></pre>
-        <h5>Angularjs - <a href="simpleclicker_angularjs_directive_info.html">directive</a></h5>
+</code></pre> The same file in <a href="simpleclicker_angularjs_directive_info.html">a directive implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):
         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
 angular.module(<span class="hljs-string">'app.clicker'</span>, [])
@@ -229,8 +217,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
   })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
-</code></pre>
-        <h5>Cycle - <a href="simpleclicker_cycle_rxjs_info.html">rxjs</a></h5>
+</code></pre> The same file in <a href="simpleclicker_cycle_rxjs_info.html">a rxjs implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
         <pre><code><span class="hljs-keyword">import</span> {div, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Clicker</span> (<span class="hljs-params">{DOM}</span>) </span>{
@@ -245,8 +232,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
-</code></pre>
-        <h5>Cycle - <a href="simpleclicker_cycle_xstream_info.html">xstream</a></h5>
+</code></pre> The same file in <a href="simpleclicker_cycle_xstream_info.html">an xstream implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
         <pre><code><span class="hljs-keyword">import</span> {div, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Clicker</span> (<span class="hljs-params">{DOM}</span>) </span>{
@@ -261,8 +247,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
-</code></pre>
-        <h5>Cyclow - <a href="simpleclicker_cyclow_es6_info.html">es6</a></h5>
+</code></pre> The same file in <a href="simpleclicker_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.2.0):
         <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 
 <span class="hljs-keyword">const</span> Counter = () =&gt; Block({
@@ -277,8 +262,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Counter
-</code></pre>
-        <h5>Elm - <a href="simpleclicker_elm_react-elm-components_info.html">elm react-elm-components</a></h5>
+</code></pre> The same file in <a href="simpleclicker_elm_react-elm-comps_info.html">a react-elm-components implementation</a> using <a href="elm_info.html">Elm</a> (0.17.1):
         <pre><code><span class="hljs-keyword">port</span> <span class="hljs-keyword">module</span> Clicker <span class="hljs-keyword">exposing</span> (main)
 
 <span class="hljs-keyword">import</span> Html <span class="hljs-keyword">exposing</span> (div, p, button, text)
@@ -309,8 +293,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
     <span class="hljs-keyword">case</span> msg <span class="hljs-keyword">of</span>
         <span class="hljs-type">Increment</span> -&gt;
             model + <span class="hljs-number">1</span>
-</code></pre>
-        <h5>Vue - <a href="simpleclicker_vue_vanilla_info.html">vanilla</a></h5>
+</code></pre> The same file in <a href="simpleclicker_vue_vanilla_info.html">a vanilla implementation</a> using <a href="vue_info.html">Vue</a> (1.0.26):
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
 Vue.component(<span class="hljs-string">'clicker'</span>, {

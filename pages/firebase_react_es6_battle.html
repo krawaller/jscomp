@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>React - es6 class</title>
+    <title>react - es6 class</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,29 +10,27 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="firebase.html">firebase</a> &gt;
-    react &gt;
-  </span> es6 class
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>an </span>es6 class<span> implementation <br/>
+  of the <a href="firebase_info.html">firebase</a> demo
+  using <a href="react_info.html">React</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="">
+        <ul class="iconnav">
+            <li class=" info">
                 <a href="firebase_react_es6_info.html">info</a>
             </li>
-            <li class="">
-                <a href="firebase_react_es6_code.html">code</a>
-            </li>
-            <li class="active">
+            <li class="current file">
                 <a href="firebase_react_es6_battle.html">battle.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="firebase_react_es6_bootstrap.html">bootstrap.js</a>
             </li>
         </ul>
-        <h4>Code file battle.js</h4>
+
+
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> {subscribe, nudge} <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../nudger'</span>
 
@@ -74,8 +72,7 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Battle
 </code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>Angular2 - <a href="firebase_angular2_typescript_info.html">TypeScript</a></h5>
+        <br/><br/> The same file in <a href="firebase_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):
         <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
 
 <span class="hljs-keyword">import</span> {subscribe,nudge} from <span class="hljs-string">'../../../nudger.js'</span>
@@ -105,8 +102,7 @@
       <span class="hljs-keyword">this</span>.loaded = <span class="hljs-literal">true</span>
     })
   }
-}</code></pre>
-        <h5>Cyclow - <a href="firebase_cyclow_es6_info.html">es6</a></h5>
+}</code></pre> The same file in <a href="firebase_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.3.0):
         <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'graflow'</span>
 <span class="hljs-keyword">import</span> {subscribe, nudge} <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../nudger'</span>

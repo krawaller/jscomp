@@ -34,41 +34,58 @@ fsx.removeSync(output)
 fsx.mkdirSync(output)
 fsx.mkdirSync(output + 'scripts')
 
-const data = {
-  dcount: 0, frameworkList: [], icount: 0, tlength: 0, demos: [], contributors: []
-}
-getDirs(source).forEach(demoName => {
-  data.dcount += 1
+// Collect framework data from framework files
+let frameworks = getFiles(source+'../frameworks/').reduce(function(mem,frameworkFile){
+  let frameworkName = frameworkFile.split(".")[0];
+  let contents = fm(fsx.readFileSync(source+'../frameworks/'+frameworkFile, 'utf-8'));
+  mem[frameworkName] = {
+    id: frameworkName,
+    title: contents.attributes.name,
+    homepage: contents.attributes.homepage,
+    description: contents.body,
+    demos: {},
+    implementations: []
+  };
+  return mem;
+},{});
+
+// collect demo, implementation and contrib data by looping demo + demo/impl folders
+let res = getDirs(source).reduce((mem,demoName)=>{
   const demopath = source + demoName + '/'
   const demoReadme = fm(fsx.readFileSync(demopath + 'README.md', 'utf-8'))
+  const demoDevInstr = fsx.readFileSync(demopath + 'DEVINSTR.md', 'utf-8')
   const demo = Object.assign({
-    frameworks: [],
     filenames: [],
     description: marked(demoReadme.body),
     icount: 0,
-    folderName: demoName
+    folderName: demoName,
+    devInstr: marked(demoDevInstr),
+    frameworks: [],
+    implementations: [],
+    frameworks: Object.keys(frameworks).reduce((mem,fname)=>{
+      mem[fname] = []
+      return mem
+    },{})
   }, demoReadme.attributes)
   getDirs(demopath).forEach(frameworkName => {
-    data.frameworkList = _.uniq(data.frameworkList.concat(frameworkName))
-    const niceFrameworkName = _.capitalize(frameworkName)
-    const framework = {
-      name: niceFrameworkName,
-      folderName: frameworkName,
-      implementations: []
+    if (!frameworks[frameworkName]){
+      throw `Demo ${demoName} contains unknown framework ${frameworkName}. Must add a file to the frameworks folder!`;
     }
     const framepath = demopath + frameworkName + '/'
+    const niceFrameworkName = frameworks[frameworkName].title
+    // loop over each implementation
     getDirs(framepath).forEach(implName => {
-      data.icount += 1
-      demo.icount += 1
       const implpath = framepath + implName + '/'
       const readme = fm(fsx.readFileSync(implpath + 'README.md', 'utf-8'))
-      data.contributors = _.uniq(data.contributors.concat(readme.attributes.author)).sort()
+      mem.contributors[readme.attributes.author] = mem.contributors[readme.attributes.author] || {implementations:[],id:readme.attributes.author}
+      mem.contributors[readme.attributes.author].implementations.push(implName)
       const deps = require(implpath + 'package.json').dependencies
       const impl = Object.assign(
         readme.attributes, {
           folderName: implName,
+          prefix: {a:1,o:1,u:1,e:1,i:1,x:1}[readme.attributes.title[0].toLowerCase()] ? 'an' : 'a',
           demoName: demoName,
-          framework: frameworkName,
+          framework: frameworks[frameworkName].id,
           niceFrameworkName: niceFrameworkName,
           deps: _.map(deps, (v, pkg) => ({package: pkg, version: v})),
           frameworkVersion: deps[readme.attributes.maindep].replace(/^\^/, ''),
@@ -80,7 +97,105 @@ getDirs(source).forEach(demoName => {
           bundleName: `${demoName}_${frameworkName}_${implName}.js`,
           githubUrl: `http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/${demoName}/${frameworkName}/${implName}`
         }
-      )
+      );
+      // loop over each source file in this implementation
+      getFiles(implpath + '/src').forEach(file => {
+        let content = fsx.readFileSync(implpath + '/src/' + file, 'utf-8')
+        content = content.replace('// eslint-disable-line', '')
+        const filebasename = file.replace(/\.[^.]*$/, '')
+        const suffix = file.match(/\.([^.]*)$/, '')[1]
+        const languages = {
+          'js': 'javascript',
+          'ts': 'typescript',
+          'elm': 'elm'
+        }
+        demo.filenames = _.uniq(demo.filenames.concat(filebasename))
+        impl.files.push({
+          filename: filebasename,
+          suffix: '.' + suffix,
+          size: content.length,
+          code: hljs.highlight(languages[suffix] || 'javascript', content).value,
+          codeUrl: `${demo.folderName}_${impl.framework}_${impl.folderName}_${filebasename}.html`
+        })
+        impl.size += content.length
+      })
+      frameworks[frameworkName].demos[demoName] = frameworks[frameworkName].demos[demoName] || []
+      frameworks[frameworkName].demos[demoName].push(impl);
+      frameworks[frameworkName].implementations.push(impl);
+      demo.frameworks[frameworkName].push(impl)
+      demo.implementations.push(impl)
+      mem.implementations[frameworkName+'__'+demoName+'__'+implName] = impl
+    })
+    demo.bundleName =frameworks[frameworkName].demos[demoName][Object.keys(frameworks[frameworkName].demos[demoName])[0]].bundleName
+  })
+  mem.demos[demoName] = demo;
+  return mem;
+}, {demos:{}, implementations: {}, contributors: {}});
+let demos = res.demos
+let implementations = res.implementations
+let contributors = res.contributors
+
+
+_.each(implementations,impl => {
+  impl.files.forEach(file => {
+    const others = _.reduce(frameworks, (mem, f) => {
+      _.each(f.implementations,i => {
+        if (i.url !== impl.url) {
+          const fpos = i.files.findIndex(testFile => testFile.filename === file.filename)
+          mem.push(Object.assign({
+            url: i.url,
+            title: i.title,
+            prefix: i.prefix,
+            version: i.frameworkVersion,
+            niceFrameworkName: i.niceFrameworkName,
+            framework: i.framework,
+          }, i.files[fpos] || {missing: true}))
+        }
+      })
+      return mem
+    }, [])
+    const othersWithSame = others.filter(i => i.niceFrameworkName === impl.niceFrameworkName)
+    const othersWithDifferent = others.filter(i => i.niceFrameworkName !== impl.niceFrameworkName)
+    file.allOthers = othersWithSame.concat(othersWithDifferent)
+  })
+})
+
+/*
+getDirs(source).forEach(demoName => {
+
+  getDirs(demopath).forEach(frameworkName => {
+    if (!frameworks[frameworkName]){
+      throw `Demo ${demoName} contains unknown framework ${frameworkName}. Must add a file to the frameworks folder!`;
+    }
+    data.frameworkList = _.uniq(data.frameworkList.concat(frameworkName))
+    const niceFrameworkName = frameworks[frameworkName].title;
+    frameworks[frameworkName].demos[demoName] = frameworks[frameworkName].demos[demoName] || [];
+    const framepath = demopath + frameworkName + '/'
+    getDirs(framepath).forEach(implName => {
+      data.icount += 1
+      demo.icount += 1
+      const implpath = framepath + implName + '/'
+      const readme = fm(fsx.readFileSync(implpath + 'README.md', 'utf-8'))
+      data.contributors = _.uniq(data.contributors.concat(readme.attributes.author)).sort()
+      const deps = require(implpath + 'package.json').dependencies
+      const impl = Object.assign(
+        readme.attributes, {
+          folderName: implName,
+          prefix: {a:1,o:1,u:1,e:1,i:1}[implName[0].toLowerCase()] ? 'an' : 'a',
+          demoName: demoName,
+          framework: frameworks[frameworkName].id,
+          niceFrameworkName: niceFrameworkName,
+          deps: _.map(deps, (v, pkg) => ({package: pkg, version: v})),
+          frameworkVersion: deps[readme.attributes.maindep].replace(/^\^/, ''),
+          explanation: marked(readme.body.replace(/^\s*|\s*$/g, '')),
+          files: [],
+          bundleSize: (fsx.readFileSync(implpath + 'bundle.js', 'utf-8')).length,
+          size: 0,
+          url: `${demoName}_${frameworkName}_${implName}_info.html`,
+          bundleName: `${demoName}_${frameworkName}_${implName}.js`,
+          githubUrl: `http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/${demoName}/${frameworkName}/${implName}`
+        }
+      );
       getFiles(implpath + '/src').forEach(file => {
         let content = fsx.readFileSync(implpath + '/src/' + file, 'utf-8')
         content = content.replace('// eslint-disable-line', '')
@@ -102,50 +217,63 @@ getDirs(source).forEach(demoName => {
         impl.size += content.length
         data.tlength += content.length
       })
-      framework.implementations.push(impl)
+      frameworks[frameworkName].demos[demoName].push(impl);
+      demo.frameworks[frameworkName] = demo.frameworks[frameworkName] || []
+      demo.frameworks[frameworkName].push(impl)
     })
-    demo.frameworks.push(framework)
+    demo.bundleName =frameworks[frameworkName].demos[demoName][Object.keys(frameworks[frameworkName].demos[demoName])[0]].bundleName
   })
-  demo.bundleName = demo.frameworks[demo.frameworks.length - 1].implementations[0].bundleName
-  demo.frameworks.forEach(framework => {
-    framework.implementations.forEach(impl => {
-      impl.files.forEach(file => {
-        const others = _.reduce(demo.frameworks, (mem, f) => {
-          f.implementations.forEach(i => {
-            if (i.url !== impl.url) {
-              const fpos = i.files.findIndex(testFile => testFile.filename === file.filename)
-              mem.push(Object.assign({
-                url: i.url,
-                title: i.title,
-                niceFrameworkName: i.niceFrameworkName
-              }, i.files[fpos] || {missing: true}))
-            }
-          })
-          return mem
-        }, [])
-        const othersWithSame = others.filter(i => i.niceFrameworkName === impl.niceFrameworkName)
-        const othersWithDifferent = others.filter(i => i.niceFrameworkName !== impl.niceFrameworkName)
-        file.allOthers = othersWithSame.concat(othersWithDifferent)
+  _.each(frameworks,(fdef,frameworkName) => {
+    _.each(fdef.demos,(ddef,demoName) => {
+      _.each(ddef.implementations,impl => {
+        impl.files.forEach(file => {
+          const others = _.reduce(demo.frameworks, (mem, f) => {
+            f.implementations.forEach(i => {
+              if (i.url !== impl.url) {
+                const fpos = i.files.findIndex(testFile => testFile.filename === file.filename)
+                mem.push(Object.assign({
+                  url: i.url,
+                  title: i.title,
+                  niceFrameworkName: i.niceFrameworkName
+                }, i.files[fpos] || {missing: true}))
+              }
+            })
+            return mem
+          }, [])
+          const othersWithSame = others.filter(i => i.niceFrameworkName === impl.niceFrameworkName)
+          const othersWithDifferent = others.filter(i => i.niceFrameworkName !== impl.niceFrameworkName)
+          file.allOthers = othersWithSame.concat(othersWithDifferent)
+        })
       })
     })
+    data.demos[demoName] = demo;
   })
-  data.demos.push(demo)
 })
+*/
 
-data.demos.forEach(demo => {
-  demo.frameworkCount = data.frameworkList.map(f => {
-    const where = demo.frameworks.findIndex(demof => demof.folderName === f)
-    return where === -1 ? 0 : demo.frameworks[where].implementations.length
-  })
-})
+
 
 // fsx.writeFileSync(output+'_data.json',beautify(JSON.stringify(data)))
+
+
+/******************** DENORMALISING ******************/
+
+
+
+/******************** WRITING FILES! :D ******************/
 
 const templatesPath = pathHelper('templates/')
 const masterTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'master.hbs', 'utf-8'))
 const implTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'implementation.hbs', 'utf-8'))
-const indexTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'index.hbs', 'utf-8'))
-const demoTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'demo.hbs', 'utf-8'))
+const indexInfoTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'index_info.hbs', 'utf-8'))
+const indexListTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'index_list.hbs', 'utf-8'))
+const indexDevTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'index_dev.hbs', 'utf-8'))
+const demoInfoTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'demo_info.hbs', 'utf-8'))
+const demoImplTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'demo_impl.hbs', 'utf-8'))
+const demoDevTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'demo_dev.hbs', 'utf-8'))
+const frameworkInfoTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'framework_info.hbs', 'utf-8'))
+const frameworkListTmpl = handlebars.compile(fsx.readFileSync(templatesPath + 'framework_list.hbs', 'utf-8'))
+
 
 const write = (path, title, content, root) => {
   fsx.writeFileSync(path, beautify.html(masterTmpl({
@@ -155,43 +283,61 @@ const write = (path, title, content, root) => {
   })))
 }
 
-const indexCtx = Object.assign(data, {
+const indexCtx = {
+  frameworks,
+  demos,
+  contributors,
   maintext: marked(fsx.readFileSync(pathHelper('mainpage.md'), 'utf-8')),
   contribute: marked(fsx.readFileSync(pathHelper('contribute.md'), 'utf-8'))
-})
-write(pathHelper('../index.html'), 'JS Comp', indexTmpl(indexCtx), true)
+}
 
-data.demos.forEach(demo => {
-  write(output + demo.folderName + '.html', demo.name, demoTmpl(demo))
-  demo.frameworks.forEach(framework => {
-    framework.implementations.forEach(impl => {
-      const sections = [{
-        filename: 'info',
-        isInfo: true
-      }].concat({
-        filename: 'code',
-        isCode: true,
-        codeFiles: impl.files
-      }).concat(impl.files)
-      fsx.copySync(
-        `${source}${demo.folderName}/${framework.folderName}/${impl.folderName}/bundle.js`,
-        `${output}scripts/${demo.folderName}_${framework.folderName}_${impl.folderName}.js`
-      )
-      sections.forEach(file => {
-        const path = `${output}${demo.folderName}_${impl.framework}_${impl.folderName}_${file.filename}.html`
-        const ctx = Object.assign({
-          links: sections.map(linkTo => {
-            return {
-              to: linkTo.filename + (linkTo.suffix || ''),
-              active: linkTo.filename === file.filename,
-              url: `${demo.folderName}_${impl.framework}_${impl.folderName}_${linkTo.filename}.html`
-            }
-          })
-        }, impl, file)
-        write(path, framework.name + ' - ' + impl.title, implTmpl(ctx))
+write(pathHelper('../index.html'), 'JS Comp', indexInfoTmpl(indexCtx), true)
+write(output + 'home_demos.html', 'JS Comp', indexListTmpl(indexCtx))
+write(output + 'home_dev.html', 'JS Comp', indexDevTmpl(indexCtx))
+
+
+// Draw all demo pages
+_.each(demos,demo => {
+  write(output + demo.folderName + '_info.html', demo.name, demoInfoTmpl(demo))
+  write(output + demo.folderName + '_impl.html', demo.name, demoImplTmpl(demo))
+  write(output + demo.folderName + '_dev.html', demo.name, demoDevTmpl(demo))
+})
+
+// Draw all implementation pages
+_.each(implementations,impl=>{
+  const sections = [{
+    filename: 'info',
+    isInfo: true
+  }]/*.concat({
+    filename: 'code',
+    isCode: true,
+    codeFiles: impl.files
+  })*/.concat(impl.files)
+  fsx.copySync(
+    `${source}${impl.demoName}/${impl.framework}/${impl.folderName}/bundle.js`,
+    `${output}scripts/${impl.demoName}_${impl.framework}_${impl.folderName}.js`
+  )
+  sections.forEach(file => {
+    const path = `${output}${impl.demoName}_${impl.framework}_${impl.folderName}_${file.filename}.html`
+    const ctx = Object.assign({
+      links: sections.map(linkTo => {
+        return {
+          to: linkTo.filename + (linkTo.suffix || ''),
+          active: linkTo.filename === file.filename,
+          info: linkTo.isInfo,
+          url: `${impl.demoName}_${impl.framework}_${impl.folderName}_${linkTo.filename}.html`
+        }
       })
-    })
+    }, impl, file)
+    write(path, impl.framework + ' - ' + impl.title, implTmpl(ctx))
   })
+})
+
+// draw all framework pages
+
+_.each(frameworks,framework=>{
+  write(output+framework.id+'_info.html', framework.title + ' - Info' , frameworkInfoTmpl(framework))
+  write(output+framework.id+'_list.html', framework.title + ' - List' , frameworkListTmpl(framework))
 })
 
 /** CSS files **/

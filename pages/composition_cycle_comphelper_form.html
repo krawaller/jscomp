@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - composition helper</title>
+    <title>cycle - composition helper</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,38 +10,36 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="composition.html">composition</a> &gt;
-    cycle &gt;
-  </span> composition helper
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>a </span>composition helper<span> implementation <br/>
+  of the <a href="composition_info.html">composition</a> demo
+  using <a href="cycle_info.html">CycleJS</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="">
+        <ul class="iconnav">
+            <li class=" info">
                 <a href="composition_cycle_comphelper_info.html">info</a>
             </li>
-            <li class="">
-                <a href="composition_cycle_comphelper_code.html">code</a>
-            </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_bootstrap.html">bootstrap.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_confirm.html">confirm.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_extras.html">extras.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_field.html">field.js</a>
             </li>
-            <li class="active">
+            <li class="current file">
                 <a href="composition_cycle_comphelper_form.html">form.js</a>
             </li>
         </ul>
-        <h4>Code file form.js</h4>
+
+
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div, p} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
@@ -63,8 +61,7 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(Form, Field, <span class="hljs-string">'instruction$'</span>)
 </code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>Angular2 - <a href="composition_angular2_typescript_info.html">TypeScript</a></h5>
+        <br/><br/> The same file in <a href="composition_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.4):
         <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Output} from <span class="hljs-string">'@angular/core'</span>
 <span class="hljs-keyword">import</span> {Field} from <span class="hljs-string">'./field.ts'</span>
 
@@ -81,8 +78,7 @@
   onSubmission(txt) {
     <span class="hljs-keyword">this</span>.submission = txt;
   }
-}</code></pre>
-        <h5>Cyclow - <a href="composition_cyclow_es6_info.html">es6</a></h5>
+}</code></pre> The same file in <a href="composition_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.4.0):
         <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 
@@ -105,8 +101,7 @@
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Form
-</code></pre>
-        <h5>React - <a href="composition_react_createclass_info.html">createClass</a></h5>
+</code></pre> The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 

@@ -9,169 +9,18 @@
 
 <body>
     <div class="container-fluid">
-        <h2>JS Comp</h2>
+        <a id="logo" href="index.html"></a>
+        <h3><span>the </span>JSCOMP<span> site</span></h3>
 
-        <h4 id="where-am-i-">Where am I?</h4>
-        <p>Welcome! This is a small site with a collection of demos, where each demo has a number of implementations across various JS frameworks. Each demo is focuses on a few particular problems that frameworks need to solve.</p>
-        <p>The purpose of this is to allow you to <strong>compare JS frameworks</strong> in an easy way. Sort of like <a href="http://todomvc.com/">TodoMVC</a> but on a much smaller and more accessible scale!</p>
-        <p>The seed was <a href="http://blog.krawaller.se/posts/composition-in-cyclejs-choo-react-and-angular2/">this blog post</a> where we compared component composition across a number of frameworks, which we were happy with, but, truth be told it wasn&#39;t
-            very accessible.</p>
-
-
-        <h4>Demos</h4>
-
-        <p>
-            There are a total of 44 implementations covering angular2,cycle,cyclow,react,elm,preact,vue,angularjs. To see a demo, click the description link in the `Demo` column!
-        </p>
-
-        <table class="demolist">
-            <thead>
-                <th>Demo</th>
-                <th>Description</th>
-                <th class="fcount">
-                    <div><span>angular2</span></div>
-                </th>
-                <th class="fcount">
-                    <div><span>cycle</span></div>
-                </th>
-                <th class="fcount">
-                    <div><span>cyclow</span></div>
-                </th>
-                <th class="fcount">
-                    <div><span>react</span></div>
-                </th>
-                <th class="fcount">
-                    <div><span>elm</span></div>
-                </th>
-                <th class="fcount">
-                    <div><span>preact</span></div>
-                </th>
-                <th class="fcount">
-                    <div><span>vue</span></div>
-                </th>
-                <th class="fcount">
-                    <div><span>angularjs</span></div>
-                </th>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><a href="pages/composition.html">Composition</a></td>
-                    <td>How to do composition</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">0</td>
-                </tr>
-                <tr>
-                    <td><a href="pages/firebase.html">Firebase</a></td>
-                    <td>conditional rendering, async, services</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">0</td>
-                </tr>
-                <tr>
-                    <td><a href="pages/interval.html">Interval</a></td>
-                    <td>interval, life cycle, computed props</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">2</td>
-                    <td class="fcount">2</td>
-                    <td class="fcount">2</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">0</td>
-                </tr>
-                <tr>
-                    <td><a href="pages/localstorage.html">Local Storage</a></td>
-                    <td>Showing how to integrate localStorage reads and writes</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">2</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">0</td>
-                </tr>
-                <tr>
-                    <td><a href="pages/simpleclicker.html">Simple Clicker</a></td>
-                    <td>Super-simple demo showing click handling and state</td>
-                    <td class="fcount">2</td>
-                    <td class="fcount">2</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">3</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">6</td>
-                </tr>
-                <tr>
-                    <td><a href="pages/twoway.html">Twoway</a></td>
-                    <td>Demonstrating two-way data binding</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">0</td>
-                    <td class="fcount">1</td>
-                    <td class="fcount">0</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <p>
-            Contributors:
-            <a href="http://github.com/fyrkant" target="_blank"><img src="http://github.com/fyrkant.png?size=30"></a>
-            <a href="http://github.com/krawaller" target="_blank"><img src="http://github.com/krawaller.png?size=30"></a>
-            <a href="http://github.com/pmros" target="_blank"><img src="http://github.com/pmros.png?size=30"></a>
-        </p>
-
-        <h4 id="contribution-instructions">Contribution instructions</h4>
-        <p>To add an implementation to a demo, here&#39;s what you need to know!</p>
-        <ul>
-            <li>The repo for this site is <a href="https://github.com/krawaller/jscomp">here</a></li>
-            <li>The implementations for a demo are located in the <code>implementations</code> folder inside the <code>demo</code> folder</li>
-            <li>In that, the demos are sorted in framework-specific folders</li>
-            <li>Give your implementation folder a very short, descriptive name</li>
-            <li>In the implementation folder, you need...
-                <ul>
-                    <li>A <code>README.md</code> markdown file with...
-                        <ul>
-                            <li>YAML frontmatter defining
-                                <ul>
-                                    <li>author: your github username</li>
-                                    <li>title: a short list of techniques you&#39;ve used. If there really is nothing to say, just say <code>&quot;vanilla&quot;</code>.</li>
-                                    <li>maindep: the name of the npm package that is your main dependency (the framework entrypoint)</li>
-                                    <li>language: optional, defaults to <code>javascript</code>.</li>
-                                </ul>
-                            </li>
-                            <li>a descriptive text of what&#39;s going on in your solution</li>
-                        </ul>
-                    </li>
-                    <li>a <code>package.json</code> file containing your dependencies. Be sure to split build-step stuff into <code>devDependencies</code>. You must also define an <code>npm run build</code> script</li>
-                    <li>a <code>bundle.js</code> generated by the build script that</li>
-                    <li>a <code>src</code> folder containing...
-                        <ul>
-                            <li>a <code>bootstrap</code> file that is the entrypoint for the <code>bundle.js</code>, which initialises your app in a div with the id <code>app</code>.</li>
-                            <li>any other file specified by the demo in question.</li>
-                            <li>an optional <code>extras</code> file for eventual helpers. This is the only non-specified file you may create!</li>
-                        </ul>
-                    </li>
-                </ul>
-            </li>
-            <li>To regenerate the site after adding an implementation, navigate to the project root folder and run <code>npm run build</code>.</li>
-            <li>All code should follow the <a href="http://standardjs.com/">Javascript Standard Style</a>.</li>
+        <ul class="iconnav">
+            <li class="info current"><a href="index.html">Home</a></li>
+            <li class="list"><a href="pages/home_demos.html">Demos</a></li>
+            <li class="dev"><a href="pages/home_dev.html">Contribute</a></li>
         </ul>
+
+        <p>Welcome! This site has a <strong>collection of demos</strong>, where each has <strong>many implementations across various JS frameworks</strong>. Each demo is focuses on a few particular problems that frameworks need to solve.</p>
+        <p>The purpose of this is to allow you to <strong>compare JS frameworks</strong> in an easy way. Sort of like <a href="http://todomvc.com/">TodoMVC</a> but on a much smaller and more accessible scale!</p>
+
 
         <footer></footer>
     </div>

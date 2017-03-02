@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - composition helper</title>
+    <title>cycle - composition helper</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,42 +10,39 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="composition.html">composition</a> &gt;
-    cycle &gt;
-  </span> composition helper
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>a </span>composition helper<span> implementation <br/>
+  of the <a href="composition_info.html">composition</a> demo
+  using <a href="cycle_info.html">CycleJS</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="active">
+        <ul class="iconnav">
+            <li class="current info">
                 <a href="composition_cycle_comphelper_info.html">info</a>
             </li>
-            <li class="">
-                <a href="composition_cycle_comphelper_code.html">code</a>
-            </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_bootstrap.html">bootstrap.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_confirm.html">confirm.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_extras.html">extras.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_field.html">field.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_form.html">form.js</a>
             </li>
         </ul>
-        <h4>Live app</h4>
+
+
         <div id='app'></div>
         <script src="scripts/composition_cycle_comphelper.js"></script>
-        <h4>Implementation data</h4>
-        <table>
+        <table class="impltable">
             <thead>
                 <th>Framework</th>
                 <th>Code size</th>
@@ -55,7 +52,7 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>Cycle</td>
+                    <td><a href="cycle_info.html">CycleJS</a> (10.0.5)</td>
                     <td>3529</td>
                     <td>228871</td>
                     <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
@@ -64,7 +61,6 @@
             </tbody>
         </table>
 
-        <h4>Description</h4>
         <p>This CycleJS implementation of the app leans heavily on the composition helper introduced <a href="https://twitter.com/krawaller/status/743150786117517312">here</a>.</p>
         <p>This means that the parent-&gt;child communications are visible in the <code>withComponent</code> calls. For instance here&#39;s the corresponding line from the <code>field</code> component...</p>
         <pre><code><span class="hljs-title">export</span> <span class="hljs-keyword">default</span> withComponent(<span class="hljs-type">Field</span>,<span class="hljs-type">Confirm</span>,'<span class="hljs-title">disabled</span>$')

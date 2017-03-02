@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - composition helper</title>
+    <title>cycle - composition helper</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,38 +10,36 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="composition.html">composition</a> &gt;
-    cycle &gt;
-  </span> composition helper
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>a </span>composition helper<span> implementation <br/>
+  of the <a href="composition_info.html">composition</a> demo
+  using <a href="cycle_info.html">CycleJS</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="">
+        <ul class="iconnav">
+            <li class=" info">
                 <a href="composition_cycle_comphelper_info.html">info</a>
             </li>
-            <li class="">
-                <a href="composition_cycle_comphelper_code.html">code</a>
-            </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_bootstrap.html">bootstrap.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_confirm.html">confirm.js</a>
             </li>
-            <li class="active">
+            <li class="current file">
                 <a href="composition_cycle_comphelper_extras.html">extras.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_field.html">field.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cycle_comphelper_form.html">form.js</a>
             </li>
         </ul>
-        <h4>Code file extras.js</h4>
+
+
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> (parent, child, ...dependencies) =&gt; sources =&gt; {
@@ -55,13 +53,37 @@
   <span class="hljs-keyword">return</span> sinks
 }
 </code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>Angular2 - <a href="composition_angular2_typescript_info.html">TypeScript</a></h5>
-        <pre><code></code></pre>
-        <h5>Cyclow - <a href="composition_cyclow_es6_info.html">es6</a></h5>
-        <pre><code></code></pre>
-        <h5>React - <a href="composition_react_createclass_info.html">createClass</a></h5>
-        <pre><code></code></pre>
+        <br/><br/> The same file in <a href="interval_cycle_lyricsdriver_info.html">an xstream, driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+
+<span class="hljs-keyword">const</span> makeIntervalDriver = (ceil, interval) =&gt; () =&gt; {
+  <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(n =&gt; (n + <span class="hljs-number">1</span>) % ceil)
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIntervalDriver
+</code></pre> The same file in <a href="localstorage_cycle_storagedriver_info.html">an xstream, storage driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
+        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+<span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
+
+<span class="hljs-keyword">const</span> makeStoreDriver = (key) =&gt; (save$) =&gt; {
+  save$.addListener({
+    next: (i) =&gt; localStorage.setItem(key, i),
+    error: () =&gt; {},
+    complete: () =&gt; {}
+  })
+  <span class="hljs-keyword">return</span> xs.of(localStorage.getItem(key))
+}
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeStoreDriver
+</code></pre> The same file in <a href="twoway_cycle_xstream_info.html">an xstream implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
+        <pre><code><span class="hljs-keyword">const</span> focusDriver = (selector) =&gt; (stream) =&gt; stream.addListener({
+  next: () =&gt; <span class="hljs-built_in">document</span>.querySelector(selector).focus(),
+  error: () =&gt; {},
+  complete: () =&gt; {}
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> focusDriver
+</code></pre>
 
 
 

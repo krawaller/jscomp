@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cyclow - es6</title>
+    <title>cyclow - es6</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,35 +10,33 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="composition.html">composition</a> &gt;
-    cyclow &gt;
-  </span> es6
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>an </span>es6<span> implementation <br/>
+  of the <a href="composition_info.html">composition</a> demo
+  using <a href="cyclow_info.html">Cyclow</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="">
+        <ul class="iconnav">
+            <li class=" info">
                 <a href="composition_cyclow_es6_info.html">info</a>
             </li>
-            <li class="">
-                <a href="composition_cyclow_es6_code.html">code</a>
-            </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cyclow_es6_bootstrap.html">bootstrap.js</a>
             </li>
-            <li class="active">
+            <li class="current file">
                 <a href="composition_cyclow_es6_confirm.html">confirm.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cyclow_es6_field.html">field.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="composition_cyclow_es6_form.html">form.js</a>
             </li>
         </ul>
-        <h4>Code file confirm.js</h4>
+
+
         <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 
 <span class="hljs-keyword">const</span> viewConfirm = () =&gt; [
@@ -74,8 +72,7 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Confirm
 </code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>Angular2 - <a href="composition_angular2_typescript_info.html">TypeScript</a></h5>
+        <br/><br/> The same file in <a href="composition_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.4):
         <pre><code><span class="hljs-keyword">import</span> {Component,Input,Output,EventEmitter} from <span class="hljs-string">'@angular/core'</span>;
 
 @Component({
@@ -102,8 +99,7 @@
     <span class="hljs-keyword">this</span>.confirm.emit();
     <span class="hljs-keyword">this</span>.mode = <span class="hljs-string">'waiting'</span>
   }
-}</code></pre>
-        <h5>Cycle - <a href="composition_cycle_comphelper_info.html">composition helper</a></h5>
+}</code></pre> The same file in <a href="composition_cycle_comphelper_info.html">a composition helper implementation</a> using <a href="cycle_info.html">CycleJS</a> (10.0.5):
         <pre><code><span class="hljs-keyword">import</span> {span, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 <span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 
@@ -137,8 +133,7 @@
     confirm$: action$.filter(i =&gt; i === <span class="hljs-string">'CONFIRM'</span>)
   }
 }
-</code></pre>
-        <h5>React - <a href="composition_react_createclass_info.html">createClass</a></h5>
+</code></pre> The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> Confirm = React.createClass({

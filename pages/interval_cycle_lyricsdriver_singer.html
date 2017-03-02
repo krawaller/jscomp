@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Cycle - xstream, driver</title>
+    <title>cycle - xstream, driver</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,32 +10,30 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="interval.html">interval</a> &gt;
-    cycle &gt;
-  </span> xstream, driver
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>an </span>xstream, driver<span> implementation <br/>
+  of the <a href="interval_info.html">interval</a> demo
+  using <a href="cycle_info.html">CycleJS</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="">
+        <ul class="iconnav">
+            <li class=" info">
                 <a href="interval_cycle_lyricsdriver_info.html">info</a>
             </li>
-            <li class="">
-                <a href="interval_cycle_lyricsdriver_code.html">code</a>
-            </li>
-            <li class="">
+            <li class=" file">
                 <a href="interval_cycle_lyricsdriver_bootstrap.html">bootstrap.js</a>
             </li>
-            <li class="">
+            <li class=" file">
                 <a href="interval_cycle_lyricsdriver_extras.html">extras.js</a>
             </li>
-            <li class="active">
+            <li class="current file">
                 <a href="interval_cycle_lyricsdriver_singer.html">singer.js</a>
             </li>
         </ul>
-        <h4>Code file singer.js</h4>
+
+
         <pre><code><span class="hljs-keyword">import</span> {div} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
 <span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
@@ -48,8 +46,7 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
 </code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>Cycle - <a href="interval_cycle_vanilla_info.html">xstream</a></h5>
+        <br/><br/> The same file in <a href="interval_cycle_vanilla_info.html">an xstream implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
@@ -63,8 +60,7 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
-</code></pre>
-        <h5>Angular2 - <a href="interval_angular2_typescript_info.html">TypeScript</a></h5>
+</code></pre> The same file in <a href="interval_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):
         <pre><code><span class="hljs-keyword">import</span> {Component, AfterViewInit} from <span class="hljs-string">'@angular/core'</span>;
 
 <span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">"Eeexiiit light"</span>,<span class="hljs-string">"Eeenteeer niight"</span>,<span class="hljs-string">"Taaake my haaand"</span>,<span class="hljs-string">"We're off to never never land"</span>]
@@ -82,8 +78,7 @@
     setInterval(()=&gt; <span class="hljs-keyword">this</span>.pos = (<span class="hljs-keyword">this</span>.pos+<span class="hljs-number">1</span>)%<span class="hljs-number">4</span>, <span class="hljs-number">1500</span>)
   }
 }
-</code></pre>
-        <h5>Cyclow - <a href="interval_cyclow_es6_info.html">es6</a></h5>
+</code></pre> The same file in <a href="interval_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.3.0):
         <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> {Ticker} <span class="hljs-keyword">from</span> <span class="hljs-string">'graflow'</span>
 
@@ -99,8 +94,7 @@
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
-</code></pre>
-        <h5>Cyclow - <a href="interval_cyclow_es6-iterator_info.html">es6-iterator</a></h5>
+</code></pre> The same file in <a href="interval_cyclow_es6-iterator_info.html">an es6-iterator implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.3.0):
         <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> {Ticker, Iterator, Chain} <span class="hljs-keyword">from</span> <span class="hljs-string">'graflow'</span>
 
@@ -118,8 +112,7 @@
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
-</code></pre>
-        <h5>Elm - <a href="interval_elm_react-elm-components_info.html">elm react-elm-components</a></h5>
+</code></pre> The same file in <a href="interval_elm_react-elm-comps_info.html">a react-elm-comps implementation</a> using <a href="elm_info.html">Elm</a> (0.17.1):
         <pre><code><span class="hljs-keyword">port</span> <span class="hljs-keyword">module</span> Singer <span class="hljs-keyword">exposing</span> (main)
 
 <span class="hljs-keyword">import</span> Html <span class="hljs-keyword">exposing</span> (<span class="hljs-type">Html</span>, <span class="hljs-type">Attribute</span>, div, input, text, button, p)
@@ -192,8 +185,7 @@
 <span class="hljs-title">view</span> : <span class="hljs-type">Int</span> -&gt; <span class="hljs-type">Html</span> a
 <span class="hljs-title">view</span> model =
     div [] [ text (getLyricPart lyrics model) ]
-</code></pre>
-        <h5>Preact - <a href="interval_preact_vanilla_info.html">vanilla</a></h5>
+</code></pre> The same file in <a href="interval_preact_vanilla_info.html">a vanilla implementation</a> using <a href="preact_info.html">Preact</a> (5.7.0):
         <pre><code><span class="hljs-comment">/** @jsx h */</span>
 <span class="hljs-keyword">import</span> { h, Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'preact'</span>
 
@@ -211,8 +203,7 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
-</code></pre>
-        <h5>React - <a href="interval_react_createclass_info.html">createClass</a></h5>
+</code></pre> The same file in <a href="interval_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.3.1):
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
@@ -228,8 +219,7 @@
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
-</code></pre>
-        <h5>React - <a href="interval_react_es6_info.html">es6 class</a></h5>
+</code></pre> The same file in <a href="interval_react_es6_info.html">an es6 class implementation</a> using <a href="react_info.html">React</a> (15.3.1):
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]
@@ -246,8 +236,7 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
-</code></pre>
-        <h5>Vue - <a href="interval_vue_vanilla_info.html">vanilla</a></h5>
+</code></pre> The same file in <a href="interval_vue_vanilla_info.html">a vanilla implementation</a> using <a href="vue_info.html">Vue</a> (1.0.26):
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
 <span class="hljs-keyword">let</span> lyrics = [<span class="hljs-string">'Eeexiiit light'</span>, <span class="hljs-string">'Eeenteeer niight'</span>, <span class="hljs-string">'Taaake my haaand'</span>, <span class="hljs-string">"We're off to never never land"</span>]

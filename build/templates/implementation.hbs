@@ -1,31 +1,29 @@
-<h2>
-  <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="{{demoName}}.html">{{demoName}}</a> &gt;
-    {{framework}} &gt;
+<h3>
+  <span>{{prefix}} </span>{{title}}<span> implementation <br/>
+  of the <a href="{{demoName}}_info.html">{{demoName}}</a> demo
+  using <a href="{{framework}}_info.html">{{niceFrameworkName}}</a>
   </span>
-  {{title}}
-</h2>
+</h3>
 
-<ul class="links">
+<ul class="iconnav">
   {{#each links}}
-    <li class="{{#if active}}active{{/if}}">
+    <li class="{{#if active}}current{{/if}} {{#if info}}info{{else}}file{{/if}}">
       <a href="{{url}}">{{to}}</a>
     </li>
   {{/each}}
 </ul>
+
+
 {{#if isInfo}}
-  <h4>Live app</h4>
   <div id='app'></div>
   <script src="scripts/{{bundleName}}"></script>
-  <h4>Implementation data</h4>
-  <table>
+  <table class="impltable">
     <thead>
       <th>Framework</th><th>Code size</th><th>Bundle size</th><th>Author</th><th>Github</th>
     </thead>
     <tbody>
       <tr>
-        <td>{{niceFrameworkName}}</td>
+        <td><a href="{{framework}}_info.html">{{niceFrameworkName}}</a> ({{frameworkVersion}})</td>
         <td>{{size}}</td>
         <td>{{bundleSize}}</td>
         <td><a href="http://github.com/{{author}}" target="_blank">{{author}}</a></td>
@@ -34,7 +32,6 @@
     </tbody>
   </table>
 
-  <h4>Description</h4>
   {{{explanation}}}
   <div class="deps">
     <h4>Dependencies</h4>
@@ -50,12 +47,13 @@
     <pre><code>{{{code}}}</code></pre>
   {{/each}}
 {{else}}
-  <h4>Code file {{filename}}{{suffix}}</h4>
   <pre><code>{{{code}}}</code></pre>
-  <h4>Corresponding file in other implementations</h4>
+  <br/><br/>
   {{#each allOthers}}
-    <h5>{{niceFrameworkName}} - <a href="{{url}}">{{title}}</a></h5>
-    <pre><code>{{{code}}}</code></pre>
+    {{#if code}}
+      The same file in <a href="{{url}}">{{prefix}} {{title}} implementation</a> using <a href="{{framework}}_info.html">{{niceFrameworkName}}</a> ({{version}}):
+      <pre><code>{{{code}}}</code></pre>
+    {{/if}}
   {{/each}}
 {{/if}}
 

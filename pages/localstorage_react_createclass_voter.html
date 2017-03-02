@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>React - createClass</title>
+    <title>react - createClass</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -10,29 +10,27 @@
 
 <body>
     <div class="container-fluid">
-        <h2>
-            <span>
-    <a href="../index.html">JS Comp</a> &gt;
-    <a href="localstorage.html">localstorage</a> &gt;
-    react &gt;
-  </span> createClass
-        </h2>
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>a </span>createClass<span> implementation <br/>
+  of the <a href="localstorage_info.html">localstorage</a> demo
+  using <a href="react_info.html">React</a>
+  </span>
+        </h3>
 
-        <ul class="links">
-            <li class="">
+        <ul class="iconnav">
+            <li class=" info">
                 <a href="localstorage_react_createclass_info.html">info</a>
             </li>
-            <li class="">
-                <a href="localstorage_react_createclass_code.html">code</a>
-            </li>
-            <li class="">
+            <li class=" file">
                 <a href="localstorage_react_createclass_bootstrap.html">bootstrap.js</a>
             </li>
-            <li class="active">
+            <li class="current file">
                 <a href="localstorage_react_createclass_voter.html">voter.js</a>
             </li>
         </ul>
-        <h4>Code file voter.js</h4>
+
+
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> classNames <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
 <span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
@@ -57,8 +55,7 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter
 </code></pre>
-        <h4>Corresponding file in other implementations</h4>
-        <h5>React - <a href="localstorage_react_es6class_info.html">es6 class</a></h5>
+        <br/><br/> The same file in <a href="localstorage_react_es6class_info.html">an es6 class implementation</a> using <a href="react_info.html">React</a> (15.3.1):
         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> classNames <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
 <span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
@@ -85,8 +82,7 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter
-</code></pre>
-        <h5>Angular2 - <a href="localstorage_angular2_typescript_info.html">TypeScript</a></h5>
+</code></pre> The same file in <a href="localstorage_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):
         <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
 
 @Component({
@@ -102,8 +98,7 @@
     <span class="hljs-keyword">this</span>.team = x;
     localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
   }
-}</code></pre>
-        <h5>Cycle - <a href="localstorage_cycle_storagedriver_info.html">xstream, storage driver</a></h5>
+}</code></pre> The same file in <a href="localstorage_cycle_storagedriver_info.html">an xstream, storage driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
         <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
@@ -120,8 +115,7 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter
-</code></pre>
-        <h5>Cyclow - <a href="localstorage_cyclow_es6_info.html">es6</a></h5>
+</code></pre> The same file in <a href="localstorage_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.3.0):
         <pre><code>import { Block } from 'cyclow'
 const {localStorage} = window
 
@@ -144,8 +138,7 @@ const Voter = () =&gt; Block({
 })
 
 export default Voter
-</code></pre>
-        <h5>Vue - <a href="localstorage_vue_vanilla_info.html">vanilla</a></h5>
+</code></pre> The same file in <a href="localstorage_vue_vanilla_info.html">a vanilla implementation</a> using <a href="vue_info.html">Vue</a> (1.0.26):
         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 <span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
 
