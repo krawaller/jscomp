@@ -1,7 +1,6 @@
 ---
 title: rxjs
 author: krawaller
-maindep: '@cycle/dom'
 ---
 
 Same as the `xstream` implementation but using `rxjs` instead, to see difference in bundle size.

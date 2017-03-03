@@ -42,6 +42,7 @@ let frameworks = getFiles(source+'../frameworks/').reduce(function(mem,framework
     id: frameworkName,
     title: contents.attributes.name,
     homepage: contents.attributes.homepage,
+    maindep: contents.attributes.maindep,
     description: contents.body,
     demos: {},
     implementations: []
@@ -88,7 +89,7 @@ let res = getDirs(source).reduce((mem,demoName)=>{
           framework: frameworks[frameworkName].id,
           niceFrameworkName: niceFrameworkName,
           deps: _.map(deps, (v, pkg) => ({package: pkg, version: v})),
-          frameworkVersion: deps[readme.attributes.maindep].replace(/^\^/, ''),
+          frameworkVersion: deps[frameworks[frameworkName].maindep].replace(/^\^/, ''),
           explanation: marked(readme.body.replace(/^\s*|\s*$/g, '')),
           files: [],
           bundleSize: (fsx.readFileSync(implpath + 'bundle.js', 'utf-8')).length,

@@ -1,7 +1,6 @@
 ---
 title: es6 class
 author: krawaller
-maindep: react
 ---
 
 No surprises here, this is a vanilla React implementation.
