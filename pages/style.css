@@ -146,3 +146,16 @@ button[disabled] {
   text-decoration: line-through;
   color: #777;
 }
+
+.version {
+  color: #777;
+  font-size: 0.8em;
+}
+
+.version:before {
+  content: "(";
+}
+
+.version:after {
+  content: ")";
+}

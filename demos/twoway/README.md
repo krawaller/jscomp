@@ -12,3 +12,4 @@ The functionality is that...
 
 * typing in the field changes the name
 * clicking the button changes the name too, which also updates the field
+* clicking the button also focuses the input
