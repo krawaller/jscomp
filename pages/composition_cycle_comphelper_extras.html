@@ -39,8 +39,9 @@
             </li>
         </ul>
 
+        <div class="content">
 
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+            <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> (parent, child, ...dependencies) =&gt; sources =&gt; {
   <span class="hljs-keyword">let</span> proxies = dependencies.reduce((proxies, dep) =&gt; ({
@@ -53,16 +54,18 @@
   <span class="hljs-keyword">return</span> sinks
 }
 </code></pre>
-        <br/><br/> The same file in <a href="interval_cycle_lyricsdriver_info.html">an xstream, driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+            <br/><br/>
+            <p>The same file in <a href="interval_cycle_lyricsdriver_info.html">an xstream, driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
+            <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 
 <span class="hljs-keyword">const</span> makeIntervalDriver = (ceil, interval) =&gt; () =&gt; {
   <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(n =&gt; (n + <span class="hljs-number">1</span>) % ceil)
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIntervalDriver
-</code></pre> The same file in <a href="localstorage_cycle_storagedriver_info.html">an xstream, storage driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
-        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+</code></pre>
+            <p>The same file in <a href="localstorage_cycle_storagedriver_info.html">an xstream, storage driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
+            <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
 
 <span class="hljs-keyword">const</span> makeStoreDriver = (key) =&gt; (save$) =&gt; {
@@ -75,8 +78,9 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeStoreDriver
-</code></pre> The same file in <a href="twoway_cycle_xstream_info.html">an xstream implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):
-        <pre><code><span class="hljs-keyword">const</span> focusDriver = (selector) =&gt; (stream) =&gt; stream.addListener({
+</code></pre>
+            <p>The same file in <a href="twoway_cycle_xstream_info.html">an xstream implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
+            <pre><code><span class="hljs-keyword">const</span> focusDriver = (selector) =&gt; (stream) =&gt; stream.addListener({
   next: () =&gt; <span class="hljs-built_in">document</span>.querySelector(selector).focus(),
   error: () =&gt; {},
   complete: () =&gt; {}
@@ -85,8 +89,7 @@
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> focusDriver
 </code></pre>
 
-
-
+        </div>
         <footer></footer>
     </div>
 </body>

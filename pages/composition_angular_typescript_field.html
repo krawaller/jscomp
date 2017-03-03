@@ -36,8 +36,9 @@
             </li>
         </ul>
 
+        <div class="content">
 
-        <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Input,Output} from <span class="hljs-string">'@angular/core'</span>
+            <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Input,Output} from <span class="hljs-string">'@angular/core'</span>
 <span class="hljs-keyword">import</span> {Confirm} from <span class="hljs-string">'./confirm.ts'</span>
 
 @Component({
@@ -57,8 +58,9 @@
     <span class="hljs-keyword">this</span>.input.nativeElement.value = <span class="hljs-string">''</span>
   }
 }</code></pre>
-        <br/><br/> The same file in <a href="composition_cycle_comphelper_info.html">a composition helper implementation</a> using <a href="cycle_info.html">CycleJS</a> (10.0.5):
-        <pre><code><span class="hljs-keyword">import</span> {div, input} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
+            <br/><br/>
+            <p>The same file in <a href="composition_cycle_comphelper_info.html">a composition helper implementation</a> using <a href="cycle_info.html">CycleJS</a> (10.0.5):</p>
+            <pre><code><span class="hljs-keyword">import</span> {div, input} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
 <span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> withComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
@@ -102,8 +104,9 @@
 }
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(Field, Confirm, <span class="hljs-string">'disabled$'</span>)
-</code></pre> The same file in <a href="composition_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.4.0):
-        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+</code></pre>
+            <p>The same file in <a href="composition_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.4.0):</p>
+            <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
 
 <span class="hljs-keyword">const</span> Field = () =&gt; Block({
@@ -130,8 +133,9 @@
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Field
-</code></pre> The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):
-        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+</code></pre>
+            <p>The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):</p>
+            <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
 
 <span class="hljs-keyword">let</span> Field = React.createClass({
@@ -156,8 +160,7 @@
 export default Field
 </code></pre>
 
-
-
+        </div>
         <footer></footer>
     </div>
 </body>

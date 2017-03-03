@@ -19,9 +19,11 @@
             <li class="dev current"><a href="firebase_dev.html">Contribute</a></li>
         </ul>
 
-        <p>Create a file <code>battle</code> that is rendered from <code>bootstrap</code>.</p>
-        <p>This demo uses a common module, available at &#39;../../../nudger.js&#39;. Here&#39;s the source:</p>
-        <pre><code><span class="hljs-keyword">var</span> firebase = <span class="hljs-built_in">require</span>(<span class="hljs-string">'firebase/app'</span>)
+        <div class="content">
+
+            <p>Create a file <code>battle</code> that is rendered from <code>bootstrap</code>.</p>
+            <p>This demo uses a common module, available at &#39;../../../nudger.js&#39;. Here&#39;s the source:</p>
+            <pre><code><span class="hljs-keyword">var</span> firebase = <span class="hljs-built_in">require</span>(<span class="hljs-string">'firebase/app'</span>)
 <span class="hljs-built_in">require</span>(<span class="hljs-string">'firebase/database'</span>)
 
 firebase.initializeApp({
@@ -43,9 +45,11 @@ firebase.initializeApp({
   }
 }
 </code></pre>
-        <p>Thus you get access to <code>.subscribe(cb)</code> and <code>.nudge(housename)</code> methods, to be called at compile time and when a button is clicked respectively.</p>
-        <p>If possible you should introduce this module in the framework&#39;s service-handling functionality.</p>
+            <p>Thus you get access to <code>.subscribe(cb)</code> and <code>.nudge(housename)</code> methods, to be called at compile time and when a button is clicked respectively.</p>
+            <p>If possible you should introduce this module in the framework&#39;s service-handling functionality.</p>
 
+
+        </div>
         <footer></footer>
     </div>
 </body>

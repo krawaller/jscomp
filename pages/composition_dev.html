@@ -19,37 +19,41 @@
             <li class="dev current"><a href="composition_dev.html">Contribute</a></li>
         </ul>
 
-        <p>You will be creating three components having the following hierarchy:</p>
-        <p><img src="../images/components.svg" alt=""></p>
-        <ul>
-            <li>The <code>form</code> component...
-                <ul>
-                    <li>is rendered from <code>bootstrap</code></li>
-                    <li>holds the <code>current</code> submission</li>
-                    <li>renders the <code>field</code> component</li>
-                    <li>provides field with an <code>instruction</code> input, which is just plain text that never changes</li>
-                    <li>listens to <code>submission</code> events from <code>field</code></li>
-                </ul>
-            </li>
-            <li>The <code>field</code> component...
-                <ul>
-                    <li>contains an <code>input</code> field</li>
-                    <li>keeps track of the contents of the <code>field</code></li>
-                    <li>renders a <code>confirm</code> button component</li>
-                    <li>tells <code>confirm</code> when it should be disabled</li>
-                    <li>captures <code>confirmation</code> events from the <code>confirm</code> component</li>
-                    <li>provides <code>submission</code> events to <code>form</code> parent</li>
-                </ul>
-            </li>
-            <li>The <code>confirm</code> component
-                <ul>
-                    <li>can be in different <code>mode</code>s: <code>disabled</code>, <code>waiting</code> and <code>confirm</code>.</li>
-                    <li>listens to <code>disabled</code> boolean from <code>field</code> parent</li>
-                    <li>provides <code>confirmation</code> event to <code>field</code> parent</li>
-                </ul>
-            </li>
-        </ul>
+        <div class="content">
 
+            <p>You will be creating three components having the following hierarchy:</p>
+            <p><img src="../images/components.svg" alt=""></p>
+            <ul>
+                <li>The <code>form</code> component...
+                    <ul>
+                        <li>is rendered from <code>bootstrap</code></li>
+                        <li>holds the <code>current</code> submission</li>
+                        <li>renders the <code>field</code> component</li>
+                        <li>provides field with an <code>instruction</code> input, which is just plain text that never changes</li>
+                        <li>listens to <code>submission</code> events from <code>field</code></li>
+                    </ul>
+                </li>
+                <li>The <code>field</code> component...
+                    <ul>
+                        <li>contains an <code>input</code> field</li>
+                        <li>keeps track of the contents of the <code>field</code></li>
+                        <li>renders a <code>confirm</code> button component</li>
+                        <li>tells <code>confirm</code> when it should be disabled</li>
+                        <li>captures <code>confirmation</code> events from the <code>confirm</code> component</li>
+                        <li>provides <code>submission</code> events to <code>form</code> parent</li>
+                    </ul>
+                </li>
+                <li>The <code>confirm</code> component
+                    <ul>
+                        <li>can be in different <code>mode</code>s: <code>disabled</code>, <code>waiting</code> and <code>confirm</code>.</li>
+                        <li>listens to <code>disabled</code> boolean from <code>field</code> parent</li>
+                        <li>provides <code>confirmation</code> event to <code>field</code> parent</li>
+                    </ul>
+                </li>
+            </ul>
+
+
+        </div>
         <footer></footer>
     </div>
 </body>

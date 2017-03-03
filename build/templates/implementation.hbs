@@ -13,6 +13,7 @@
   {{/each}}
 </ul>
 
+<div class="content">
 
 {{#if isInfo}}
   <div id='app'></div>
@@ -51,10 +52,10 @@
   <br/><br/>
   {{#each allOthers}}
     {{#if code}}
-      The same file in <a href="{{url}}">{{prefix}} {{title}} implementation</a> using <a href="{{framework}}_info.html">{{niceFrameworkName}}</a> ({{version}}):
+      <p>The same file in <a href="{{url}}">{{prefix}} {{title}} implementation</a> using <a href="{{framework}}_info.html">{{niceFrameworkName}}</a> ({{version}}):</p>
       <pre><code>{{{code}}}</code></pre>
     {{/if}}
   {{/each}}
 {{/if}}
 
-
+</div>
