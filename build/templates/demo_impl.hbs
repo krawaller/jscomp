@@ -12,13 +12,13 @@ To see a specific implementation of this demo, click the description links in th
 
 <table>
   <thead>
-    <th>Framework</th><th>Implementation</th><th>Code size</th><th>Bundle size</th><th>Author</th>
+    <th>Implementation</th><th>Framework</th><th>Code size</th><th>Bundle size</th><th>Author</th>
   </thead>
   <tbody>
     {{#each implementations}}
       <tr>
+        <td><a href="{{url}}">{{title}}</a></td>        
         <td><a href="{{framework}}_info.html">{{niceFrameworkName}}</a> <span class="version">{{frameworkVersion}}</span></td>
-        <td><a href="{{url}}">{{title}}</a></td>
         <td class="text-right">{{size}}</td>
         <td class="text-right">{{bundleSize}}</td>
         <td><a href="http://github.com/{{author}}" target="_blank">{{author}}</a></td>
