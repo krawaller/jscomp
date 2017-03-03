@@ -66,8 +66,13 @@
   }
 }</code></pre>
             <br/><br/>
-            <p>The same file in <a href="composition_cycle_comphelper_info.html">a composition helper implementation</a> using <a href="cycle_info.html">CycleJS</a> (10.0.5):</p>
-            <pre><code><span class="hljs-keyword">import</span> {span, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
+            <div id="codeselector" style="display:none;">
+                Compare to the same file in <select id="choosecode"></select>
+            </div>
+            <br/>
+            <div class="othercode" data-name="a composition helper implementation using CycleJS">
+                <p class="codeheadline">The same file in <a href="composition_cycle_comphelper_info.html">a composition helper implementation</a> using <a href="cycle_info.html">CycleJS</a> (10.0.5):</p>
+                <pre><code><span class="hljs-keyword">import</span> {span, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 <span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 
 <span class="hljs-keyword">const</span> intent = sources =&gt; xs.merge(
@@ -101,8 +106,11 @@
   }
 }
 </code></pre>
-            <p>The same file in <a href="composition_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.4.0):</p>
-            <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+                <a href="composition_cycle_comphelper_info.html" class="codelink" style="display:none;">visit this implementation</a>
+            </div>
+            <div class="othercode" data-name="an es6 implementation using Cyclow">
+                <p class="codeheadline">The same file in <a href="composition_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.4.0):</p>
+                <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 
 <span class="hljs-keyword">const</span> viewConfirm = () =&gt; [
   {tag: <span class="hljs-string">'button'</span>, content: <span class="hljs-string">'Confirm'</span>, on: {click: <span class="hljs-string">'confirm'</span>}},
@@ -137,8 +145,11 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Confirm
 </code></pre>
-            <p>The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):</p>
-            <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+                <a href="composition_cyclow_es6_info.html" class="codelink" style="display:none;">visit this implementation</a>
+            </div>
+            <div class="othercode" data-name="a createClass implementation using React">
+                <p class="codeheadline">The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):</p>
+                <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> Confirm = React.createClass({
   getInitialState: () =&gt; ({mode: <span class="hljs-string">'waiting'</span>}),
@@ -160,10 +171,15 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Confirm
 </code></pre>
+                <a href="composition_react_createclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
+            </div>
 
         </div>
         <footer></footer>
     </div>
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/code.js"></script>
 </body>
 
 </html>

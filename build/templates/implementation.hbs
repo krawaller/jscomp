@@ -50,10 +50,17 @@
 {{else}}
   <pre><code>{{{code}}}</code></pre>
   <br/><br/>
+  <div id="codeselector" style="display:none;">
+    Compare to the same file in <select id="choosecode"></select>
+  </div>
+  <br/>
   {{#each allOthers}}
     {{#if code}}
-      <p>The same file in <a href="{{url}}">{{prefix}} {{title}} implementation</a> using <a href="{{framework}}_info.html">{{niceFrameworkName}}</a> ({{version}}):</p>
-      <pre><code>{{{code}}}</code></pre>
+      <div class="othercode" data-name="{{prefix}} {{title}} implementation using {{niceFrameworkName}}">
+        <p class="codeheadline">The same file in <a href="{{url}}">{{prefix}} {{title}} implementation</a> using <a href="{{framework}}_info.html">{{niceFrameworkName}}</a> ({{version}}):</p>
+        <pre><code>{{{code}}}</code></pre>
+        <a href="{{url}}" class="codelink" style="display:none;">visit this implementation</a>
+      </div>
     {{/if}}
   {{/each}}
 {{/if}}

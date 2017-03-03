@@ -350,4 +350,9 @@ fsx.writeFileSync(output + 'code.css', codeFile.replace(/\.hljs\s*\{/, 'pre > co
 fsx.copySync(pathHelper('./style.css'), output + 'style.css')
 fsx.copySync(pathHelper('./bootstrap.css'), output + 'bootstrap.css')
 
+/** Code files **/
+
+fsx.copySync(pathHelper('../node_modules/jquery/dist/jquery.min.js'), output + 'scripts/jquery.js')
+fsx.copySync(pathHelper('./code.js'), output + 'scripts/code.js')
+
 console.timeEnd('build')

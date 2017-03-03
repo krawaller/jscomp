@@ -51,8 +51,13 @@
   }
 }</code></pre>
             <br/><br/>
-            <p>The same file in <a href="twoway_cycle_xstream_info.html">an xstream implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
-            <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+            <div id="codeselector" style="display:none;">
+                Compare to the same file in <select id="choosecode"></select>
+            </div>
+            <br/>
+            <div class="othercode" data-name="an xstream implementation using CycleJS">
+                <p class="codeheadline">The same file in <a href="twoway_cycle_xstream_info.html">an xstream implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
+                <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div, input, p, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span> (<span class="hljs-params">{DOM}</span>) </span>{
@@ -75,8 +80,11 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Phonebooth
 </code></pre>
-            <p>The same file in <a href="twoway_elm_react-elm-components_info.html">a react-elm-components implementation</a> using <a href="elm_info.html">Elm</a> (0.17.1):</p>
-            <pre><code><span class="hljs-keyword">port</span> <span class="hljs-keyword">module</span> Phonebooth <span class="hljs-keyword">exposing</span> (main)
+                <a href="twoway_cycle_xstream_info.html" class="codelink" style="display:none;">visit this implementation</a>
+            </div>
+            <div class="othercode" data-name="a react-elm-components implementation using Elm">
+                <p class="codeheadline">The same file in <a href="twoway_elm_react-elm-components_info.html">a react-elm-components implementation</a> using <a href="elm_info.html">Elm</a> (0.17.1):</p>
+                <pre><code><span class="hljs-keyword">port</span> <span class="hljs-keyword">module</span> Phonebooth <span class="hljs-keyword">exposing</span> (main)
 
 <span class="hljs-keyword">import</span> Html <span class="hljs-keyword">exposing</span> (<span class="hljs-type">Html</span>, <span class="hljs-type">Attribute</span>, div, input, text, button, p)
 <span class="hljs-keyword">import</span> Html.App <span class="hljs-keyword">as</span> App
@@ -136,8 +144,11 @@
         , button [ onClick <span class="hljs-type">SuitUp</span> ] [ text <span class="hljs-string">"Put on costume"</span> ]
         ]
 </code></pre>
-            <p>The same file in <a href="twoway_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.3.1):</p>
-            <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+                <a href="twoway_elm_react-elm-components_info.html" class="codelink" style="display:none;">visit this implementation</a>
+            </div>
+            <div class="othercode" data-name="a createClass implementation using React">
+                <p class="codeheadline">The same file in <a href="twoway_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.3.1):</p>
+                <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> Phonebooth = React.createClass({
   getInitialState: () =&gt; ({name: <span class="hljs-string">'Steve'</span>}),
@@ -160,8 +171,11 @@
 
 export default Phonebooth
 </span></code></pre>
-            <p>The same file in <a href="twoway_vue_vanilla_info.html">a vanilla implementation</a> using <a href="vue_info.html">Vue</a> (1.0.26):</p>
-            <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+                <a href="twoway_react_createclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
+            </div>
+            <div class="othercode" data-name="a vanilla implementation using Vue">
+                <p class="codeheadline">The same file in <a href="twoway_vue_vanilla_info.html">a vanilla implementation</a> using <a href="vue_info.html">Vue</a> (1.0.26):</p>
+                <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
 Vue.component(<span class="hljs-string">'phonebooth'</span>, {
   template: <span class="hljs-string">`
@@ -178,10 +192,15 @@ Vue.component(<span class="hljs-string">'phonebooth'</span>, {
   }
 })
 </code></pre>
+                <a href="twoway_vue_vanilla_info.html" class="codelink" style="display:none;">visit this implementation</a>
+            </div>
 
         </div>
         <footer></footer>
     </div>
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/code.js"></script>
 </body>
 
 </html>
