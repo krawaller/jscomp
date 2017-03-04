@@ -210,7 +210,6 @@ const indexCtx = {
   demos,
   contributors,
   splashdemo,
-  maintext: marked(fsx.readFileSync(pathHelper('mainpage.md'), 'utf-8')),
   contribute: marked(fsx.readFileSync(pathHelper('contribute.md'), 'utf-8'))
 }
 
