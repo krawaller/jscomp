@@ -38,7 +38,13 @@
 
         <div class="content">
 
-            <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Output} from <span class="hljs-string">'@angular/core'</span>
+            <div id="codeselector" style="display:none;">
+                Compare <code>form.ts</code> to corresponding file in <select id="choosecode"></select>
+            </div>
+            <br/><br/>
+            <div class="sidebyside">
+                <div>
+                    <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Output} from <span class="hljs-string">'@angular/core'</span>
 <span class="hljs-keyword">import</span> {Field} from <span class="hljs-string">'./field.ts'</span>
 
 @Component({
@@ -55,14 +61,11 @@
     <span class="hljs-keyword">this</span>.submission = txt;
   }
 }</code></pre>
-            <br/><br/>
-            <div id="codeselector" style="display:none;">
-                Compare to the same file in <select id="choosecode"></select>
-            </div>
-            <br/>
-            <div class="othercode" data-name="a composition helper implementation using CycleJS">
-                <p class="codeheadline">The same file in <a href="composition_cycle_comphelper_info.html">a composition helper implementation</a> using <a href="cycle_info.html">CycleJS</a> (10.0.5):</p>
-                <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+                </div>
+                <div>
+                    <div class="othercode" data-name="a composition helper implementation using CycleJS">
+                        <p class="codeheadline">The same file in <a href="composition_cycle_comphelper_info.html">a composition helper implementation</a> using <a href="cycle_info.html">CycleJS</a> (10.0.5):</p>
+                        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div, p} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 <span class="hljs-keyword">import</span> withComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
@@ -83,11 +86,13 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(Form, Field, <span class="hljs-string">'instruction$'</span>)
 </code></pre>
-                <a href="composition_cycle_comphelper_info.html" class="codelink" style="display:none;">visit this implementation</a>
-            </div>
-            <div class="othercode" data-name="an es6 implementation using Cyclow">
-                <p class="codeheadline">The same file in <a href="composition_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.4.0):</p>
-                <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+                        <a href="composition_cycle_comphelper_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="an es6 implementation using Cyclow">
+                        <p class="codeheadline">The same file in <a href="composition_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.4.0):</p>
+                        <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 
 <span class="hljs-keyword">const</span> Form = () =&gt; Block({
@@ -110,11 +115,13 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Form
 </code></pre>
-                <a href="composition_cyclow_es6_info.html" class="codelink" style="display:none;">visit this implementation</a>
-            </div>
-            <div class="othercode" data-name="a createClass implementation using React">
-                <p class="codeheadline">The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):</p>
-                <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+                        <a href="composition_cyclow_es6_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a createClass implementation using React">
+                        <p class="codeheadline">The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):</p>
+                        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 
 <span class="hljs-keyword">let</span> Form = React.createClass({
@@ -132,7 +139,11 @@
 
 export default Form
 </span></code></pre>
-                <a href="composition_react_createclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <a href="composition_react_createclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                </div>
             </div>
 
         </div>

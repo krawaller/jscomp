@@ -32,7 +32,13 @@
 
         <div class="content">
 
-            <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
+            <div id="codeselector" style="display:none;">
+                Compare <code>voter.js</code> to corresponding file in <select id="choosecode"></select>
+            </div>
+            <br/><br/>
+            <div class="sidebyside">
+                <div>
+                    <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 <span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
 
 Vue.component(<span class="hljs-string">'voter'</span>, {
@@ -51,14 +57,11 @@ Vue.component(<span class="hljs-string">'voter'</span>, {
   }
 })
 </code></pre>
-            <br/><br/>
-            <div id="codeselector" style="display:none;">
-                Compare to the same file in <select id="choosecode"></select>
-            </div>
-            <br/>
-            <div class="othercode" data-name="a TypeScript implementation using Angular">
-                <p class="codeheadline">The same file in <a href="localstorage_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):</p>
-                <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
+                </div>
+                <div>
+                    <div class="othercode" data-name="a TypeScript implementation using Angular">
+                        <p class="codeheadline">The same file in <a href="localstorage_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):</p>
+                        <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
 
 @Component({
   selector: <span class="hljs-string">'voter'</span>,
@@ -74,11 +77,13 @@ Vue.component(<span class="hljs-string">'voter'</span>, {
     localStorage.setItem(<span class="hljs-string">'JSCOMPVOTE'</span>,x)
   }
 }</code></pre>
-                <a href="localstorage_angular_typescript_info.html" class="codelink" style="display:none;">visit this implementation</a>
-            </div>
-            <div class="othercode" data-name="an xstream, storage driver implementation using CycleJS">
-                <p class="codeheadline">The same file in <a href="localstorage_cycle_storagedriver_info.html">an xstream, storage driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
-                <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
+                        <a href="localstorage_angular_typescript_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="an xstream, storage driver implementation using CycleJS">
+                        <p class="codeheadline">The same file in <a href="localstorage_cycle_storagedriver_info.html">an xstream, storage driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
+                        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> {div, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 
 <span class="hljs-keyword">let</span> teams = [<span class="hljs-string">'Valor'</span>, <span class="hljs-string">'Mystic'</span>, <span class="hljs-string">'Instinct'</span>]
@@ -95,11 +100,13 @@ Vue.component(<span class="hljs-string">'voter'</span>, {
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter
 </code></pre>
-                <a href="localstorage_cycle_storagedriver_info.html" class="codelink" style="display:none;">visit this implementation</a>
-            </div>
-            <div class="othercode" data-name="an es6 implementation using Cyclow">
-                <p class="codeheadline">The same file in <a href="localstorage_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.3.0):</p>
-                <pre><code>import { Block } from 'cyclow'
+                        <a href="localstorage_cycle_storagedriver_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="an es6 implementation using Cyclow">
+                        <p class="codeheadline">The same file in <a href="localstorage_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.3.0):</p>
+                        <pre><code>import { Block } from 'cyclow'
 const {localStorage} = window
 
 let teams = ['Valor', 'Mystic', 'Instinct']
@@ -122,11 +129,13 @@ const Voter = () =&gt; Block({
 
 export default Voter
 </code></pre>
-                <a href="localstorage_cyclow_es6_info.html" class="codelink" style="display:none;">visit this implementation</a>
-            </div>
-            <div class="othercode" data-name="a createClass implementation using React">
-                <p class="codeheadline">The same file in <a href="localstorage_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.3.1):</p>
-                <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+                        <a href="localstorage_cyclow_es6_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a createClass implementation using React">
+                        <p class="codeheadline">The same file in <a href="localstorage_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.3.1):</p>
+                        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> classNames <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
 <span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
 
@@ -150,11 +159,13 @@ export default Voter
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter
 </code></pre>
-                <a href="localstorage_react_createclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
-            </div>
-            <div class="othercode" data-name="an es6 class implementation using React">
-                <p class="codeheadline">The same file in <a href="localstorage_react_es6class_info.html">an es6 class implementation</a> using <a href="react_info.html">React</a> (15.3.1):</p>
-                <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+                        <a href="localstorage_react_createclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="an es6 class implementation using React">
+                        <p class="codeheadline">The same file in <a href="localstorage_react_es6class_info.html">an es6 class implementation</a> using <a href="react_info.html">React</a> (15.3.1):</p>
+                        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> classNames <span class="hljs-keyword">from</span> <span class="hljs-string">'classnames'</span>
 <span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
 
@@ -181,7 +192,11 @@ export default Voter
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Voter
 </code></pre>
-                <a href="localstorage_react_es6class_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <a href="localstorage_react_es6class_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                </div>
             </div>
 
         </div>

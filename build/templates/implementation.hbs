@@ -48,21 +48,28 @@
     <pre><code>{{{code}}}</code></pre>
   {{/each}}
 {{else}}
-  <pre><code>{{{code}}}</code></pre>
-  <br/><br/>
   <div id="codeselector" style="display:none;">
-    Compare to the same file in <select id="choosecode"></select>
+    Compare <code>{{filename}}{{suffix}}</code> to corresponding file in <select id="choosecode"></select>
   </div>
-  <br/>
-  {{#each allOthers}}
-    {{#if code}}
-      <div class="othercode" data-name="{{prefix}} {{title}} implementation using {{niceFrameworkName}}">
-        <p class="codeheadline">The same file in <a href="{{url}}">{{prefix}} {{title}} implementation</a> using <a href="{{framework}}_info.html">{{niceFrameworkName}}</a> ({{version}}):</p>
-        <pre><code>{{{code}}}</code></pre>
-        <a href="{{url}}" class="codelink" style="display:none;">visit this implementation</a>
-      </div>
-    {{/if}}
-  {{/each}}
+  <br/><br/>
+  <div class="sidebyside">
+    <div>
+      <pre><code>{{{code}}}</code></pre>
+    </div>
+    <div>
+    {{#each allOthers}}
+      {{#if code}}
+        <div class="othercode" data-name="{{prefix}} {{title}} implementation using {{niceFrameworkName}}">
+          <p class="codeheadline">The same file in <a href="{{url}}">{{prefix}} {{title}} implementation</a> using <a href="{{framework}}_info.html">{{niceFrameworkName}}</a> ({{version}}):</p>
+          <pre><code>{{{code}}}</code></pre>
+          <a href="{{url}}" class="codelink" style="display:none;">visit this implementation</a>
+          <br/>
+          <button class="codelink hider" style="display:none;">hide</button>
+        </div>
+      {{/if}}
+    {{/each}}
+    </div>
+  </div>
 {{/if}}
 
 </div>

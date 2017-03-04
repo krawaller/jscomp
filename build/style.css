@@ -132,7 +132,7 @@ h3 {
 }
 
 .container-fluid {
-    max-width: 850px;
+    max-width: 900px;
     position: relative;
 }
 
@@ -158,4 +158,32 @@ button[disabled] {
 
 .version:after {
   content: ")";
+}
+
+.sidebyside {
+    display: flex;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.sidebyside > div:first-child {
+  flex: 1;
+}
+
+.sidebyside.comparing > div:last-child {
+  width: 49%;
+}
+
+.sidebyside pre {
+  transition: font-size 0.3s ease;
+}
+
+.sidebyside.comparing pre {
+  font-size: 10px;
+}
+
+.sidebyside > div:last-child {
+  width: 0;
+  margin-left: 15px;
+  transition: width 0.3s ease;
 }

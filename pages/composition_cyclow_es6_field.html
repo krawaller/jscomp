@@ -38,7 +38,13 @@
 
         <div class="content">
 
-            <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
+            <div id="codeselector" style="display:none;">
+                Compare <code>field.js</code> to corresponding file in <select id="choosecode"></select>
+            </div>
+            <br/><br/>
+            <div class="sidebyside">
+                <div>
+                    <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
 
 <span class="hljs-keyword">const</span> Field = () =&gt; Block({
@@ -66,14 +72,11 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Field
 </code></pre>
-            <br/><br/>
-            <div id="codeselector" style="display:none;">
-                Compare to the same file in <select id="choosecode"></select>
-            </div>
-            <br/>
-            <div class="othercode" data-name="a TypeScript implementation using Angular">
-                <p class="codeheadline">The same file in <a href="composition_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.4):</p>
-                <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Input,Output} from <span class="hljs-string">'@angular/core'</span>
+                </div>
+                <div>
+                    <div class="othercode" data-name="a TypeScript implementation using Angular">
+                        <p class="codeheadline">The same file in <a href="composition_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.4):</p>
+                        <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Input,Output} from <span class="hljs-string">'@angular/core'</span>
 <span class="hljs-keyword">import</span> {Confirm} from <span class="hljs-string">'./confirm.ts'</span>
 
 @Component({
@@ -93,11 +96,13 @@
     <span class="hljs-keyword">this</span>.input.nativeElement.value = <span class="hljs-string">''</span>
   }
 }</code></pre>
-                <a href="composition_angular_typescript_info.html" class="codelink" style="display:none;">visit this implementation</a>
-            </div>
-            <div class="othercode" data-name="a composition helper implementation using CycleJS">
-                <p class="codeheadline">The same file in <a href="composition_cycle_comphelper_info.html">a composition helper implementation</a> using <a href="cycle_info.html">CycleJS</a> (10.0.5):</p>
-                <pre><code><span class="hljs-keyword">import</span> {div, input} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
+                        <a href="composition_angular_typescript_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a composition helper implementation using CycleJS">
+                        <p class="codeheadline">The same file in <a href="composition_cycle_comphelper_info.html">a composition helper implementation</a> using <a href="cycle_info.html">CycleJS</a> (10.0.5):</p>
+                        <pre><code><span class="hljs-keyword">import</span> {div, input} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
 <span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 <span class="hljs-keyword">import</span> withComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
@@ -142,11 +147,13 @@
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withComponent(Field, Confirm, <span class="hljs-string">'disabled$'</span>)
 </code></pre>
-                <a href="composition_cycle_comphelper_info.html" class="codelink" style="display:none;">visit this implementation</a>
-            </div>
-            <div class="othercode" data-name="a createClass implementation using React">
-                <p class="codeheadline">The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):</p>
-                <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+                        <a href="composition_cycle_comphelper_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a createClass implementation using React">
+                        <p class="codeheadline">The same file in <a href="composition_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.2.0):</p>
+                        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 <span class="hljs-keyword">import</span> Confirm <span class="hljs-keyword">from</span> <span class="hljs-string">'./confirm'</span>
 
 <span class="hljs-keyword">let</span> Field = React.createClass({
@@ -170,7 +177,11 @@
 
 export default Field
 </code></pre>
-                <a href="composition_react_createclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <a href="composition_react_createclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                </div>
             </div>
 
         </div>
