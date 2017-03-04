@@ -8,7 +8,7 @@ if ($drop.length){
     $("<option>").attr("value","NONE").text(" --- Choose another implementation --- ").appendTo($drop);
     $(".othercode").each(function(idx,elem){
         var name = $(elem).attr("data-name");
-        $("<option>").attr("value",name).text(name+":").appendTo($drop);
+        $("<option>").attr("value",name).text(name).appendTo($drop);
         $(elem).hide();
     });
     $drop.on("change",function(){
