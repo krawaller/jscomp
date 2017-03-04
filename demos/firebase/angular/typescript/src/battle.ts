@@ -3,7 +3,7 @@ import {Component} from '@angular/core';
 import {subscribe,nudge} from '../../../nudger.js'
 
 @Component({
-  selector: 'battle',
+  selector: '#app',
   template: `
     <div *ngIf="loaded">
       <button *ngFor="let t of teams" (click)="nudge(t)">

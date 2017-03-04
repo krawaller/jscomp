@@ -60,26 +60,14 @@
 	var platform_browser_1 = __webpack_require__(23);
 	var voter_ts_1 = __webpack_require__(25);
 	var platform_browser_dynamic_1 = __webpack_require__(26);
-	var Root = (function () {
-	    function Root() {
-	    }
-	    Root = __decorate([
-	        core_1.Component({
-	            selector: '#app',
-	            template: "<voter></voter>"
-	        }), 
-	        __metadata('design:paramtypes', [])
-	    ], Root);
-	    return Root;
-	}());
 	var AppModule = (function () {
 	    function AppModule() {
 	    }
 	    AppModule = __decorate([
 	        core_1.NgModule({
 	            imports: [platform_browser_1.BrowserModule],
-	            declarations: [voter_ts_1.Voter, Root],
-	            bootstrap: [Root]
+	            declarations: [voter_ts_1.Voter],
+	            bootstrap: [voter_ts_1.Voter]
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], AppModule);
@@ -22737,7 +22725,7 @@
 	    };
 	    Voter = __decorate([
 	        core_1.Component({
-	            selector: 'voter',
+	            selector: '#app',
 	            template: "\n    <button *ngFor=\"let t of teams; let i = index\" (click)=\"vote(i)\" [class.active]=\"team===i\">{{t}}</button>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])

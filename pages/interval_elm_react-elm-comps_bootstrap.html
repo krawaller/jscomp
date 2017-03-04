@@ -58,16 +58,10 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
 <span class="hljs-keyword">import</span> { Singer } from <span class="hljs-string">'./singer.ts'</span>;
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
 
-@Component({
-  selector: <span class="hljs-string">'#app'</span>,
-  template: <span class="hljs-string">`&lt;singer&gt;&lt;/singer&gt;`</span>
-})
-<span class="hljs-keyword">class</span> Root {}
-
 @NgModule({
     imports:      [ BrowserModule ],
-    declarations: [ Singer,Root ],
-    bootstrap:    [ Root ]
+    declarations: [ Singer ],
+    bootstrap:    [ Singer ]
 })
 <span class="hljs-keyword">class</span> AppModule {}
 

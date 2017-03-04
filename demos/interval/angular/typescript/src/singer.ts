@@ -3,7 +3,7 @@ import {Component, AfterViewInit} from '@angular/core';
 let lyrics = ["Eeexiiit light","Eeenteeer niight","Taaake my haaand","We're off to never never land"]
 
 @Component({
-  selector: 'singer',
+  selector: '#app',
   template: `{{line}}`
 })
 export class Singer implements AfterViewInit {

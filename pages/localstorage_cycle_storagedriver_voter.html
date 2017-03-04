@@ -65,7 +65,7 @@
                         <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
 
 @Component({
-  selector: <span class="hljs-string">'voter'</span>,
+  selector: <span class="hljs-string">'#app'</span>,
   template: <span class="hljs-string">`
     &lt;button *ngFor="let t of teams; let i = index" (click)="vote(i)" [class.active]="team===i"&gt;{{t}}&lt;/button&gt;
   `</span>

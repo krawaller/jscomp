@@ -47,16 +47,10 @@
 <span class="hljs-keyword">import</span> { Battle } from <span class="hljs-string">'./battle.ts'</span>;
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
 
-@Component({
-  selector: <span class="hljs-string">'#app'</span>,
-  template: <span class="hljs-string">`&lt;battle&gt;&lt;/battle&gt;`</span>
-})
-<span class="hljs-keyword">class</span> Root {}
-
 @NgModule({
     imports:      [ BrowserModule, FormsModule ],
-    declarations: [ Battle,Root ],
-    bootstrap:    [ Root ]
+    declarations: [ Battle ],
+    bootstrap:    [ Battle ]
 })
 <span class="hljs-keyword">class</span> AppModule {}
 

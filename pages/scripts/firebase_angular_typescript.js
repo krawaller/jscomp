@@ -61,26 +61,14 @@
 	var forms_1 = __webpack_require__(25);
 	var battle_ts_1 = __webpack_require__(65);
 	var platform_browser_dynamic_1 = __webpack_require__(71);
-	var Root = (function () {
-	    function Root() {
-	    }
-	    Root = __decorate([
-	        core_1.Component({
-	            selector: '#app',
-	            template: "<battle></battle>"
-	        }), 
-	        __metadata('design:paramtypes', [])
-	    ], Root);
-	    return Root;
-	}());
 	var AppModule = (function () {
 	    function AppModule() {
 	    }
 	    AppModule = __decorate([
 	        core_1.NgModule({
 	            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-	            declarations: [battle_ts_1.Battle, Root],
-	            bootstrap: [Root]
+	            declarations: [battle_ts_1.Battle],
+	            bootstrap: [battle_ts_1.Battle]
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], AppModule);
@@ -27607,7 +27595,7 @@
 	    }
 	    Battle = __decorate([
 	        core_1.Component({
-	            selector: 'battle',
+	            selector: '#app',
 	            template: "\n    <div *ngIf=\"loaded\">\n      <button *ngFor=\"let t of teams\" (click)=\"nudge(t)\">\n        {{t}} ({{status[t]}})\n      </button>\n    </div>\n    <div *ngIf=\"!loaded\">\n      Fetching data...\n    </div>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])
@@ -27625,23 +27613,24 @@
 	__webpack_require__(69)
 
 	firebase.initializeApp({
-	  apiKey: "AIzaSyAqWWr5VIuGMdLD8cAY-C2bmUp-9_tYJM8",
-	  authDomain: "jscomp-potter.firebaseapp.com",
-	  databaseURL: "https://jscomp-potter.firebaseio.com"
-	});
+	  apiKey: 'AIzaSyAqWWr5VIuGMdLD8cAY-C2bmUp-9_tYJM8',
+	  authDomain: 'jscomp-potter.firebaseapp.com',
+	  databaseURL: 'https://jscomp-potter.firebaseio.com'
+	})
 
 	module.exports = {
-	  subscribe: function(cb){
-	    firebase.database().ref('/').on('value',function(snapshot){
+	  subscribe: function (cb) {
+	    firebase.database().ref('/').on('value', function (snapshot) {
 	      cb(snapshot.val())
 	    })
 	  },
-	  nudge: function(team){
-	    firebase.database().ref(team).transaction(function(c){
-	      return c+1
+	  nudge: function (team) {
+	    firebase.database().ref(team).transaction(function (c) {
+	      return c + 1
 	    })
 	  }
 	}
+
 
 /***/ },
 /* 67 */

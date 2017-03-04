@@ -60,26 +60,14 @@
 	var platform_browser_1 = __webpack_require__(23);
 	var singer_ts_1 = __webpack_require__(25);
 	var platform_browser_dynamic_1 = __webpack_require__(26);
-	var Root = (function () {
-	    function Root() {
-	    }
-	    Root = __decorate([
-	        core_1.Component({
-	            selector: '#app',
-	            template: "<singer></singer>"
-	        }), 
-	        __metadata('design:paramtypes', [])
-	    ], Root);
-	    return Root;
-	}());
 	var AppModule = (function () {
 	    function AppModule() {
 	    }
 	    AppModule = __decorate([
 	        core_1.NgModule({
 	            imports: [platform_browser_1.BrowserModule],
-	            declarations: [singer_ts_1.Singer, Root],
-	            bootstrap: [Root]
+	            declarations: [singer_ts_1.Singer],
+	            bootstrap: [singer_ts_1.Singer]
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], AppModule);
@@ -22744,7 +22732,7 @@
 	    };
 	    Singer = __decorate([
 	        core_1.Component({
-	            selector: 'singer',
+	            selector: '#app',
 	            template: "{{line}}"
 	        }), 
 	        __metadata('design:paramtypes', [])

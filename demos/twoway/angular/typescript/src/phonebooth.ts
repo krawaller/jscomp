@@ -1,7 +1,7 @@
 import {Component,ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'phonebooth',
+  selector: '#app',
   template: `
     <input #field [(ngModel)]="name"><br/>
     <p>Your name is {{name}}.</p>

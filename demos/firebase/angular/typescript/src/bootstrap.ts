@@ -7,16 +7,10 @@ import { FormsModule }   from '@angular/forms';
 import { Battle } from './battle.ts';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-@Component({
-  selector: '#app',
-  template: `<battle></battle>`
-})
-class Root {}
-
 @NgModule({
     imports:      [ BrowserModule, FormsModule ],
-    declarations: [ Battle,Root ],
-    bootstrap:    [ Root ]
+    declarations: [ Battle ],
+    bootstrap:    [ Battle ]
 })
 class AppModule {}
 

@@ -48,31 +48,12 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-	    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-	    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-	    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-	    return c > 3 && r && Object.defineProperty(target, key, r), r;
-	};
 	__webpack_require__(/*! core-js */ 1);
 	__webpack_require__(/*! zone.js */ 308);
 	__webpack_require__(/*! reflect-metadata */ 310);
 	var platform_browser_dynamic_1 = __webpack_require__(/*! @angular/platform-browser-dynamic */ 333);
-	var core_1 = __webpack_require__(/*! @angular/core */ 337);
 	var form_ts_1 = __webpack_require__(/*! ./form.ts */ 660);
-	var Root = (function () {
-	    function Root() {
-	    }
-	    Root = __decorate([
-	        core_1.Component({
-	            selector: '#app',
-	            template: "<form></form>",
-	            directives: [form_ts_1.Form]
-	        })
-	    ], Root);
-	    return Root;
-	}());
-	platform_browser_dynamic_1.bootstrap(Root);
+	platform_browser_dynamic_1.bootstrap(form_ts_1.Form);
 
 
 /***/ },
@@ -64984,7 +64965,7 @@
 	    };
 	    Form = __decorate([
 	        core_1.Component({
-	            selector: 'form',
+	            selector: '#app',
 	            template: "\n    <field instruction=\"Enter name\" (submission)=\"onSubmission($event)\"></field>\n    <p>Submitted name: {{submission}}</p>\n  ",
 	            directives: [field_ts_1.Field]
 	        })

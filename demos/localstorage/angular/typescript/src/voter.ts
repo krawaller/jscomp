@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 
 @Component({
-  selector: 'voter',
+  selector: '#app',
   template: `
     <button *ngFor="let t of teams; let i = index" (click)="vote(i)" [class.active]="team===i">{{t}}</button>
   `

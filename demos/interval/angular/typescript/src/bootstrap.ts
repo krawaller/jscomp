@@ -6,16 +6,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { Singer } from './singer.ts';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-@Component({
-  selector: '#app',
-  template: `<singer></singer>`
-})
-class Root {}
-
 @NgModule({
     imports:      [ BrowserModule ],
-    declarations: [ Singer,Root ],
-    bootstrap:    [ Root ]
+    declarations: [ Singer ],
+    bootstrap:    [ Singer ]
 })
 class AppModule {}
 

@@ -1,7 +1,7 @@
 import {Component} from '@angular/core'
 
 let Clicker = Component({
-  selector: 'clicker',
+  selector: '#app',
   template: `
     <p>{{count}} bottles of beer on the wall</p>
     <button (click)="more()">Buy more</button>

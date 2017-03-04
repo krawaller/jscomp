@@ -61,26 +61,14 @@
 	var forms_1 = __webpack_require__(25);
 	var clicker_ts_1 = __webpack_require__(65);
 	var platform_browser_dynamic_1 = __webpack_require__(66);
-	var Root = (function () {
-	    function Root() {
-	    }
-	    Root = __decorate([
-	        core_1.Component({
-	            selector: '#app',
-	            template: "<clicker></clicker>"
-	        }), 
-	        __metadata('design:paramtypes', [])
-	    ], Root);
-	    return Root;
-	}());
 	var AppModule = (function () {
 	    function AppModule() {
 	    }
 	    AppModule = __decorate([
 	        core_1.NgModule({
 	            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-	            declarations: [clicker_ts_1.Clicker, Root],
-	            bootstrap: [Root]
+	            declarations: [clicker_ts_1.Clicker],
+	            bootstrap: [clicker_ts_1.Clicker]
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], AppModule);
@@ -27600,7 +27588,7 @@
 	    };
 	    Clicker = __decorate([
 	        core_1.Component({
-	            selector: 'clicker',
+	            selector: '#app',
 	            template: "\n    <p>{{count}} bottles of beer on the wall</p>\n    <button (click)=\"more()\">Buy more</button>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])

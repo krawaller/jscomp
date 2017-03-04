@@ -60,16 +60,10 @@
 <span class="hljs-keyword">import</span> { Voter } from <span class="hljs-string">'./voter.ts'</span>;
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
 
-@Component({
-  selector: <span class="hljs-string">'#app'</span>,
-  template: <span class="hljs-string">`&lt;voter&gt;&lt;/voter&gt;`</span>
-})
-<span class="hljs-keyword">class</span> Root {}
-
 @NgModule({
     imports:      [ BrowserModule ],
-    declarations: [ Voter,Root ],
-    bootstrap:    [ Root ]
+    declarations: [ Voter ],
+    bootstrap:    [ Voter ]
 })
 <span class="hljs-keyword">class</span> AppModule {}
 

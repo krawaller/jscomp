@@ -61,26 +61,14 @@
 	var forms_1 = __webpack_require__(25);
 	var phonebooth_ts_1 = __webpack_require__(65);
 	var platform_browser_dynamic_1 = __webpack_require__(66);
-	var Root = (function () {
-	    function Root() {
-	    }
-	    Root = __decorate([
-	        core_1.Component({
-	            selector: '#app',
-	            template: "<phonebooth></phonebooth>"
-	        }), 
-	        __metadata('design:paramtypes', [])
-	    ], Root);
-	    return Root;
-	}());
 	var AppModule = (function () {
 	    function AppModule() {
 	    }
 	    AppModule = __decorate([
 	        core_1.NgModule({
 	            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-	            declarations: [phonebooth_ts_1.Phonebooth, Root],
-	            bootstrap: [Root]
+	            declarations: [phonebooth_ts_1.Phonebooth],
+	            bootstrap: [phonebooth_ts_1.Phonebooth]
 	        }), 
 	        __metadata('design:paramtypes', [])
 	    ], AppModule);
@@ -27605,7 +27593,7 @@
 	    ], Phonebooth.prototype, "input");
 	    Phonebooth = __decorate([
 	        core_1.Component({
-	            selector: 'phonebooth',
+	            selector: '#app',
 	            template: "\n    <input #field [(ngModel)]=\"name\"><br/>\n    <p>Your name is {{name}}.</p>\n    <button (click)=\"change()\">Put on costume</button>\n  "
 	        }), 
 	        __metadata('design:paramtypes', [])

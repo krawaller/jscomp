@@ -53,22 +53,15 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
                         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
 
-<span class="hljs-keyword">import</span> { NgModule, Component } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>
+<span class="hljs-keyword">import</span> { NgModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>
 <span class="hljs-keyword">import</span> { BrowserModule } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser'</span>
 <span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser-dynamic'</span>
 
-<span class="hljs-keyword">let</span> Root = Component({
-  selector: <span class="hljs-string">'#app'</span>,
-  template: <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
-}).Class({
-  <span class="hljs-keyword">constructor</span>: function () {}
-})
-
 <span class="hljs-keyword">let</span> appModule = NgModule({
   imports: [ BrowserModule ],
-  declarations: [ Clicker, Root ],
-  bootstrap: [ Root ]
+  declarations: [ Clicker ],
+  bootstrap: [ Clicker ]
 }).Class({
   <span class="hljs-keyword">constructor</span>: function () {}
 })
@@ -84,22 +77,16 @@ platformBrowserDynamic().bootstrapModule(appModule)
                         <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
 
-<span class="hljs-keyword">import</span> { NgModule, Component }      from <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { NgModule }      from <span class="hljs-string">'@angular/core'</span>;
 <span class="hljs-keyword">import</span> { BrowserModule } from <span class="hljs-string">'@angular/platform-browser'</span>;
 <span class="hljs-keyword">import</span> { FormsModule }   from <span class="hljs-string">'@angular/forms'</span>;
 <span class="hljs-keyword">import</span> { Clicker } from <span class="hljs-string">'./clicker.ts'</span>;
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
 
-@Component({
-  selector: <span class="hljs-string">'#app'</span>,
-  template: <span class="hljs-string">`&lt;clicker&gt;&lt;/clicker&gt;`</span>
-})
-<span class="hljs-keyword">class</span> Root {}
-
 @NgModule({
     imports:      [ BrowserModule, FormsModule ],
-    declarations: [ Clicker,Root ],
-    bootstrap:    [ Root ]
+    declarations: [ Clicker ],
+    bootstrap:    [ Clicker ]
 })
 <span class="hljs-keyword">class</span> AppModule {}
 
