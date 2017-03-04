@@ -113,6 +113,8 @@ let res = getDirs(source).reduce((mem,demoName)=>{
         demo.filenames = _.uniq(demo.filenames.concat(filebasename))
         impl.files.push({
           filename: filebasename,
+          demoname: impl.demoName,
+          implname: impl.title,
           suffix: '.' + suffix,
           size: content.length,
           code: hljs.highlight(languages[suffix] || 'javascript', content).value,
@@ -139,9 +141,8 @@ let contributors = res.contributors
 
 _.each(implementations,impl => {
   impl.files.forEach(file => {
-    const others = _.reduce(frameworks, (mem, f) => {
-      _.each(f.implementations,i => {
-        if (i.url !== impl.url) {
+    const others = _.reduce(implementations, (mem, i) => {
+        if (i.url !== impl.url && i.demoName === impl.demoName) {
           const fpos = i.files.findIndex(testFile => testFile.filename === file.filename)
           mem.push(Object.assign({
             url: i.url,
@@ -152,7 +153,6 @@ _.each(implementations,impl => {
             framework: i.framework,
           }, i.files[fpos] || {missing: true}))
         }
-      })
       return mem
     }, [])
     const othersWithSame = others.filter(i => i.niceFrameworkName === impl.niceFrameworkName)

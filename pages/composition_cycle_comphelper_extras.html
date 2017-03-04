@@ -62,54 +62,6 @@
 </code></pre>
                 </div>
                 <div>
-                    <div class="othercode" data-name="an xstream, driver implementation using CycleJS">
-                        <p class="codeheadline">The same file in <a href="interval_cycle_lyricsdriver_info.html">an xstream, driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
-                        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-
-<span class="hljs-keyword">const</span> makeIntervalDriver = (ceil, interval) =&gt; () =&gt; {
-  <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(n =&gt; (n + <span class="hljs-number">1</span>) % ceil)
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIntervalDriver
-</code></pre>
-                        <a href="interval_cycle_lyricsdriver_info.html" class="codelink" style="display:none;">visit this implementation</a>
-                        <br/>
-                        <button class="codelink hider" style="display:none;">hide</button>
-                    </div>
-                    <div class="othercode" data-name="an xstream, storage driver implementation using CycleJS">
-                        <p class="codeheadline">The same file in <a href="localstorage_cycle_storagedriver_info.html">an xstream, storage driver implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
-                        <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
-<span class="hljs-keyword">const</span> {localStorage} = <span class="hljs-built_in">window</span>
-
-<span class="hljs-keyword">const</span> makeStoreDriver = (key) =&gt; (save$) =&gt; {
-  save$.addListener({
-    next: (i) =&gt; localStorage.setItem(key, i),
-    error: () =&gt; {},
-    complete: () =&gt; {}
-  })
-  <span class="hljs-keyword">return</span> xs.of(localStorage.getItem(key))
-}
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeStoreDriver
-</code></pre>
-                        <a href="localstorage_cycle_storagedriver_info.html" class="codelink" style="display:none;">visit this implementation</a>
-                        <br/>
-                        <button class="codelink hider" style="display:none;">hide</button>
-                    </div>
-                    <div class="othercode" data-name="an xstream implementation using CycleJS">
-                        <p class="codeheadline">The same file in <a href="twoway_cycle_xstream_info.html">an xstream implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
-                        <pre><code><span class="hljs-keyword">const</span> focusDriver = (selector) =&gt; (stream) =&gt; stream.addListener({
-  next: () =&gt; <span class="hljs-built_in">document</span>.querySelector(selector).focus(),
-  error: () =&gt; {},
-  complete: () =&gt; {}
-})
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> focusDriver
-</code></pre>
-                        <a href="twoway_cycle_xstream_info.html" class="codelink" style="display:none;">visit this implementation</a>
-                        <br/>
-                        <button class="codelink hider" style="display:none;">hide</button>
-                    </div>
                 </div>
             </div>
 
