@@ -10,7 +10,7 @@ Vue.component('singer', {
       return lyrics[this.pos]
     }
   },
-  attached: function (arg) {
+  attached (arg) {
     setInterval(() => this.$set('pos', (this.pos + 1) % 4), 1500)
   }
 })

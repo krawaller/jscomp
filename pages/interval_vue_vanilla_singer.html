@@ -50,7 +50,7 @@ Vue.component(<span class="hljs-string">'singer'</span>, {
       <span class="hljs-keyword">return</span> lyrics[<span class="hljs-keyword">this</span>.pos]
     }
   },
-  attached: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">arg</span>) </span>{
+  attached (arg) {
     setInterval(() =&gt; <span class="hljs-keyword">this</span>.$set(<span class="hljs-string">'pos'</span>, (<span class="hljs-keyword">this</span>.pos + <span class="hljs-number">1</span>) % <span class="hljs-number">4</span>), <span class="hljs-number">1500</span>)
   }
 })
