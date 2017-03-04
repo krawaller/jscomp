@@ -1,6 +1,6 @@
 import angular from 'angular'
 
-angular.module('app.clicker', [])
+angular.module('clickerapp')
   .directive('clicker', function () {
     return {
       restrict: 'E',
@@ -14,5 +14,3 @@ angular.module('app.clicker', [])
       }
     }
   })
-
-export default 'app.clicker'

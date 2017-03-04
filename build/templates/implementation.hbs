@@ -16,7 +16,13 @@
 <div class="content">
 
 {{#if isInfo}}
-  <div id='app'></div>
+  <div id='appcontainer'>
+    {{#if appTemplate}}
+      {{{appTemplate}}}
+    {{else}}
+      <div id='app'></div>
+    {{/if}}
+  </div>
   <script src="scripts/{{bundleName}}"></script>
   <table class="impltable">
     <thead>

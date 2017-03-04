@@ -44,23 +44,17 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _angular = __webpack_require__(1);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _clicker = __webpack_require__(3);
-
-	var _clicker2 = _interopRequireDefault(_clicker);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var app = document.getElementById("app");
-	app.setAttribute("ng-app", "app");
-	app.innerHTML = '<clicker></clicker>';
+	_angular2.default.module('clickerapp', []);
 
-	_angular2.default.module('app', [_clicker2.default]);
+	__webpack_require__(3);
 
 /***/ },
 /* 1 */
@@ -31849,17 +31843,13 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
 	var _angular = __webpack_require__(1);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_angular2.default.module('app.clicker', []).directive('clicker', function () {
+	_angular2.default.module('clickerapp').directive('clicker', function () {
 	  return {
 	    restrict: 'E',
 	    template: '\n        <p>{{count}} bottles of beer on the wall</p>\n        <button ng-click="more()">Buy more</button>\n      ',
@@ -31871,8 +31861,6 @@
 	    }
 	  };
 	});
-
-	exports.default = 'app.clicker';
 
 /***/ }
 /******/ ]);

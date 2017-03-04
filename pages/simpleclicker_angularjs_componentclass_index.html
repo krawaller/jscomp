@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>angularjs - component w/ class</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>a </span>component w/ class<span> implementation <br/>
+  of the <a href="simpleclicker_info.html">simpleclicker</a> demo
+  using <a href="angularjs_info.html">AngularJS</a>
+  </span>
+        </h3>
+
+        <ul class="iconnav">
+            <li class=" info">
+                <a href="simpleclicker_angularjs_componentclass_info.html">info</a>
+            </li>
+            <li class=" file">
+                <a href="simpleclicker_angularjs_componentclass_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class=" file">
+                <a href="simpleclicker_angularjs_componentclass_clicker.html">clicker.js</a>
+            </li>
+            <li class="current file">
+                <a href="simpleclicker_angularjs_componentclass_index.html">index.html</a>
+            </li>
+        </ul>
+
+        <div class="content">
+
+            <div id="codeselector" style="display:none;">
+                Compare <code>index.html</code> to corresponding file in <select id="choosecode"></select>:
+            </div>
+            <br/><br/>
+            <div class="sidebyside">
+                <div>
+                    <pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"clickerapp"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">clicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">clicker</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+                </div>
+                <div>
+                    <div class="othercode" data-name="a component w/ ctrl implementation using AngularJS">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_componentinline_info.html">a component w/ ctrl implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
+                        <pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"clickerapp"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">clicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">clicker</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+                        <a href="simpleclicker_angularjs_componentinline_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a component w/o ctrl implementation using AngularJS">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_componentseparate_info.html">a component w/o ctrl implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
+                        <pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"clickerapp"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">clicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">clicker</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+                        <a href="simpleclicker_angularjs_componentseparate_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a controller implementation using AngularJS">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_controller_info.html">a controller implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
+                        <pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"clickerapp"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"clicker"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{{count}} bottles of beer on the wall<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ng-click</span>=<span class="hljs-string">"more()"</span>&gt;</span>Buy more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+                        <a href="simpleclicker_angularjs_controller_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a controller as implementation using AngularJS">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_controlleras_info.html">a controller as implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
+                        <pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"clickerapp"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-controller</span>=<span class="hljs-string">"clicker"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{{count}} bottles of beer on the wall<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">ng-click</span>=<span class="hljs-string">"more()"</span>&gt;</span>Buy more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+                        <a href="simpleclicker_angularjs_controlleras_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a directive implementation using AngularJS">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_directive_info.html">a directive implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
+                        <pre><code><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">ng-app</span>=<span class="hljs-string">"clickerapp"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">clicker</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">clicker</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></code></pre>
+                        <a href="simpleclicker_angularjs_directive_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <footer></footer>
+    </div>
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/code.js"></script>
+</body>
+
+</html>

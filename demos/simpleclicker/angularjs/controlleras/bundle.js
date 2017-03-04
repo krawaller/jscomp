@@ -44,21 +44,17 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	var _angular = __webpack_require__(1);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _clicker = __webpack_require__(3);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var app = document.getElementById("app");
-	app.setAttribute("ng-app", "app");
+	_angular2.default.module('clickerapp', []);
 
-	app.innerHTML = _clicker.template;
-	_angular2.default.module('app', [_clicker.module]);
+	__webpack_require__(3);
 
 /***/ },
 /* 1 */
@@ -31847,27 +31843,20 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.template = exports.module = undefined;
-
 	var _angular = __webpack_require__(1);
 
 	var _angular2 = _interopRequireDefault(_angular);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_angular2.default.module('app.clicker', []).controller('clicker', ['$scope', function ($scope) {
-	  $scope.count = 3;
-	  $scope.more = function () {
-	    return $scope.count++;
-	  };
-	}]);
+	_angular2.default.module('clickerapp').controller('clicker', function () {
+	  var _this = this;
 
-	var _module = 'app.clicker';
-	exports.module = _module;
-	var template = exports.template = '\n  <div ng-controller="clicker">\n    <p>{{count}} bottles of beer on the wall</p>\n    <button ng-click="more()">Buy more</button>\n  </div>\n';
+	  this.count = 3;
+	  this.more = function () {
+	    return _this.count++;
+	  };
+	});
 
 /***/ }
 /******/ ]);

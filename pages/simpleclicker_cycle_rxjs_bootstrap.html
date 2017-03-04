@@ -127,14 +127,11 @@ platformBrowserDynamic().bootstrapModule(AppModule);
                     </div>
                     <div class="othercode" data-name="a component w/ class implementation using AngularJS">
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_componentclass_info.html">a component w/ class implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.6.1):</p>
-                        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
-app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
-app.innerHTML = <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
+                        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
-<span class="hljs-keyword">import</span> clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+angular.module(<span class="hljs-string">'clickerapp'</span>, [])
 
-angular.module(<span class="hljs-string">'app'</span>, [clicker])
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'./clicker'</span>)
 </code></pre>
                         <a href="simpleclicker_angularjs_componentclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -142,14 +139,11 @@ angular.module(<span class="hljs-string">'app'</span>, [clicker])
                     </div>
                     <div class="othercode" data-name="a component w/ ctrl implementation using AngularJS">
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_componentinline_info.html">a component w/ ctrl implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
-                        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
-app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
-app.innerHTML = <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
+                        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
-<span class="hljs-keyword">import</span> clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+angular.module(<span class="hljs-string">'clickerapp'</span>, [])
 
-angular.module(<span class="hljs-string">'app'</span>, [clicker])
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'./clicker'</span>)
 </code></pre>
                         <a href="simpleclicker_angularjs_componentinline_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -157,14 +151,11 @@ angular.module(<span class="hljs-string">'app'</span>, [clicker])
                     </div>
                     <div class="othercode" data-name="a component w/o ctrl implementation using AngularJS">
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_componentseparate_info.html">a component w/o ctrl implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
-                        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
-app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
-app.innerHTML = <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
+                        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
-<span class="hljs-keyword">import</span> clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+angular.module(<span class="hljs-string">'clickerapp'</span>, [])
 
-angular.module(<span class="hljs-string">'app'</span>, [clicker])
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'./clicker'</span>)
 </code></pre>
                         <a href="simpleclicker_angularjs_componentseparate_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -172,14 +163,11 @@ angular.module(<span class="hljs-string">'app'</span>, [clicker])
                     </div>
                     <div class="othercode" data-name="a controller implementation using AngularJS">
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_controller_info.html">a controller implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
-                        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
-app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
+                        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
-<span class="hljs-keyword">import</span> {<span class="hljs-built_in">module</span>, template} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+angular.module(<span class="hljs-string">'clickerapp'</span>, [])
 
-app.innerHTML = template
-angular.module(<span class="hljs-string">'app'</span>, [<span class="hljs-built_in">module</span>])
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'./clicker'</span>)
 </code></pre>
                         <a href="simpleclicker_angularjs_controller_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -187,14 +175,11 @@ angular.module(<span class="hljs-string">'app'</span>, [<span class="hljs-built_
                     </div>
                     <div class="othercode" data-name="a controller as implementation using AngularJS">
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_controlleras_info.html">a controller as implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
-                        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
-app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
+                        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
-<span class="hljs-keyword">import</span> {<span class="hljs-built_in">module</span>, template} <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+angular.module(<span class="hljs-string">'clickerapp'</span>, [])
 
-app.innerHTML = template
-angular.module(<span class="hljs-string">'app'</span>, [<span class="hljs-built_in">module</span>])
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'./clicker'</span>)
 </code></pre>
                         <a href="simpleclicker_angularjs_controlleras_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -202,14 +187,11 @@ angular.module(<span class="hljs-string">'app'</span>, [<span class="hljs-built_
                     </div>
                     <div class="othercode" data-name="a directive implementation using AngularJS">
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_directive_info.html">a directive implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
-                        <pre><code><span class="hljs-keyword">var</span> app = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
-app.setAttribute(<span class="hljs-string">'ng-app'</span>, <span class="hljs-string">'app'</span>)
-app.innerHTML = <span class="hljs-string">'&lt;clicker&gt;&lt;/clicker&gt;'</span>
+                        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-<span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
-<span class="hljs-keyword">import</span> clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
+angular.module(<span class="hljs-string">'clickerapp'</span>, [])
 
-angular.module(<span class="hljs-string">'app'</span>, [clicker])
+<span class="hljs-built_in">require</span>(<span class="hljs-string">'./clicker'</span>)
 </code></pre>
                         <a href="simpleclicker_angularjs_directive_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>

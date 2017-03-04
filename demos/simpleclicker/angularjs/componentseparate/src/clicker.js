@@ -1,6 +1,6 @@
 import angular from 'angular'
 
-angular.module('app.clicker', [])
+angular.module('clickerapp')
   .controller('clickerctrl', function () {
     this.count = 3
     this.more = () => this.count++
@@ -12,5 +12,3 @@ angular.module('app.clicker', [])
     `,
     controller: 'clickerctrl'
   })
-
-export default 'app.clicker'

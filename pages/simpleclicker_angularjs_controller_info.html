@@ -28,11 +28,21 @@
             <li class=" file">
                 <a href="simpleclicker_angularjs_controller_clicker.html">clicker.js</a>
             </li>
+            <li class=" file">
+                <a href="simpleclicker_angularjs_controller_index.html">index.html</a>
+            </li>
         </ul>
 
         <div class="content">
 
-            <div id='app'></div>
+            <div id='appcontainer'>
+                <div ng-app="clickerapp">
+                    <div ng-controller="clicker">
+                        <p>{{count}} bottles of beer on the wall</p>
+                        <button ng-click="more()">Buy more</button>
+                    </div>
+                </div>
+            </div>
             <script src="scripts/simpleclicker_angularjs_controller.js"></script>
             <table class="impltable">
                 <thead>
@@ -45,8 +55,8 @@
                 <tbody>
                     <tr>
                         <td><a href="angularjs_info.html">AngularJS</a> <span class="version">1.5.8</span></td>
-                        <td class="text-right">597</td>
-                        <td class="text-right">1219153</td>
+                        <td class="text-right">438</td>
+                        <td class="text-right">1218651</td>
                         <td><a href="http://github.com/krawaller" target="_blank">krawaller</a></td>
                         <td><a href="http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/simpleclicker/angularjs/controller" target="_blank">link</a></td>
                     </tr>

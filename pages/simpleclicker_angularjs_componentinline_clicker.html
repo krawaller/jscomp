@@ -28,6 +28,9 @@
             <li class="current file">
                 <a href="simpleclicker_angularjs_componentinline_clicker.html">clicker.js</a>
             </li>
+            <li class=" file">
+                <a href="simpleclicker_angularjs_componentinline_index.html">index.html</a>
+            </li>
         </ul>
 
         <div class="content">
@@ -40,7 +43,7 @@
                 <div>
                     <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-angular.module(<span class="hljs-string">'app.clicker'</span>, [])
+angular.module(<span class="hljs-string">'clickerapp'</span>)
   .component(<span class="hljs-string">'clicker'</span>, {
     template: <span class="hljs-string">`
       &lt;p&gt;{{$ctrl.count}} bottles of beer on the wall&lt;/p&gt;
@@ -51,8 +54,6 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
       <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
     }
   })
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
 </code></pre>
                 </div>
                 <div>
@@ -60,7 +61,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_componentclass_info.html">a component w/ class implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.6.1):</p>
                         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-angular.module(<span class="hljs-string">'app.clicker'</span>, [])
+angular.module(<span class="hljs-string">'clickerapp'</span>)
   .component(<span class="hljs-string">'clicker'</span>, {
     template: <span class="hljs-string">`
       &lt;p&gt;{{$ctrl.count}} bottles of beer on the wall&lt;/p&gt;
@@ -75,8 +76,6 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
       }
     }
   })
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
 </code></pre>
                         <a href="simpleclicker_angularjs_componentclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -86,7 +85,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_componentseparate_info.html">a component w/o ctrl implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
                         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-angular.module(<span class="hljs-string">'app.clicker'</span>, [])
+angular.module(<span class="hljs-string">'clickerapp'</span>)
   .controller(<span class="hljs-string">'clickerctrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
     <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
@@ -98,8 +97,6 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
     `</span>,
     controller: <span class="hljs-string">'clickerctrl'</span>
   })
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
 </code></pre>
                         <a href="simpleclicker_angularjs_componentseparate_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -109,19 +106,11 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_controller_info.html">a controller implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
                         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-angular.module(<span class="hljs-string">'app.clicker'</span>, [])
+angular.module(<span class="hljs-string">'clickerapp'</span>)
   .controller(<span class="hljs-string">'clicker'</span>, [<span class="hljs-string">'$scope'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope</span>) </span>{
     $scope.count = <span class="hljs-number">3</span>
     $scope.more = () =&gt; $scope.count++
   }])
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">module</span> = <span class="hljs-string">'app.clicker'</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> template = <span class="hljs-string">`
-  &lt;div ng-controller="clicker"&gt;
-    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
-    &lt;button ng-click="more()"&gt;Buy more&lt;/button&gt;
-  &lt;/div&gt;
-`</span>
 </code></pre>
                         <a href="simpleclicker_angularjs_controller_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -131,19 +120,11 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_controlleras_info.html">a controller as implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
                         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-angular.module(<span class="hljs-string">'app.clicker'</span>, [])
+angular.module(<span class="hljs-string">'clickerapp'</span>)
   .controller(<span class="hljs-string">'clicker'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
     <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
   })
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> <span class="hljs-built_in">module</span> = <span class="hljs-string">'app.clicker'</span>
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> template = <span class="hljs-string">`
-  &lt;div ng-controller="clicker as clckr"&gt;
-    &lt;p&gt;{{clckr.count}} bottles of beer on the wall&lt;/p&gt;
-    &lt;button ng-click="clckr.more()"&gt;Buy more&lt;/button&gt;
-  &lt;/div&gt;
-`</span>
 </code></pre>
                         <a href="simpleclicker_angularjs_controlleras_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -153,7 +134,7 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_directive_info.html">a directive implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
                         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-angular.module(<span class="hljs-string">'app.clicker'</span>, [])
+angular.module(<span class="hljs-string">'clickerapp'</span>)
   .directive(<span class="hljs-string">'clicker'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> {
       restrict: <span class="hljs-string">'E'</span>,
@@ -167,8 +148,6 @@ angular.module(<span class="hljs-string">'app.clicker'</span>, [])
       }
     }
   })
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-string">'app.clicker'</span>
 </code></pre>
                         <a href="simpleclicker_angularjs_directive_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>

@@ -1,6 +1,6 @@
 import angular from 'angular'
 
-angular.module('app.clicker', [])
+angular.module('clickerapp')
   .component('clicker', {
     template: `
       <p>{{$ctrl.count}} bottles of beer on the wall</p>
@@ -11,5 +11,3 @@ angular.module('app.clicker', [])
       this.more = () => this.count++
     }
   })
-
-export default 'app.clicker'

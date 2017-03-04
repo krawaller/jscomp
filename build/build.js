@@ -123,7 +123,8 @@ let res = getDirs(source).reduce((mem,demoName)=>{
         const languages = {
           'js': 'javascript',
           'ts': 'typescript',
-          'elm': 'elm'
+          'elm': 'elm',
+          'html': 'html'
         }
         demo.filenames = _.uniq(demo.filenames.concat(filebasename))
         let newfile = {
@@ -135,6 +136,9 @@ let res = getDirs(source).reduce((mem,demoName)=>{
           code: hljs.highlight(languages[suffix] || 'javascript', content).value,
           codeUrl: `${demo.folderName}_${impl.framework}_${impl.folderName}_${filebasename}.html`
         };
+        if (file === 'index.html'){
+          impl.appTemplate = content
+        }
         if (filebasename === splashdemo.useFile && splashdemo.useImplementationUrls.indexOf(impl.url)!== -1){
           splashdemo.codes.push(newfile.code);
           splashdemo.script = impl.bundleName;

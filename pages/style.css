@@ -2,10 +2,11 @@ ul.links .active {
     border-bottom: 3px solid red;
 }
 
-#app {
+#appcontainer {
     padding: 1em;
     border-radius: 15px;
     background-color: #f4e4f1;
+    margin-bottom: 40px;
 }
 
 body {
@@ -114,10 +115,6 @@ h3 {
 
 .impltable td, .impltable th {
     border: 1px solid black;
-}
-
-#app{
-  margin-bottom: 40px;
 }
 
 #logo {

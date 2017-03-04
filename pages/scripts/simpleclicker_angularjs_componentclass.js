@@ -50,17 +50,11 @@
 
 	var _angular2 = _interopRequireDefault(_angular);
 
-	var _clicker = __webpack_require__(3);
-
-	var _clicker2 = _interopRequireDefault(_clicker);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var app = document.getElementById('app');
-	app.setAttribute('ng-app', 'app');
-	app.innerHTML = '<clicker></clicker>';
+	_angular2.default.module('clickerapp', []);
 
-	_angular2.default.module('app', [_clicker2.default]);
+	__webpack_require__(3);
 
 /***/ },
 /* 1 */
@@ -33063,10 +33057,6 @@
 
 	'use strict';
 
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _angular = __webpack_require__(1);
@@ -33077,7 +33067,7 @@
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	_angular2.default.module('app.clicker', []).component('clicker', {
+	_angular2.default.module('clickerapp').component('clicker', {
 	  template: '\n      <p>{{$ctrl.count}} bottles of beer on the wall</p>\n      <button ng-click="$ctrl.more()">Buy more</button>\n    ',
 	  controller: function () {
 	    function Clicker() {
@@ -33099,8 +33089,6 @@
 	    return Clicker;
 	  }()
 	});
-
-	exports.default = 'app.clicker';
 
 /***/ }
 /******/ ]);
