@@ -8,6 +8,18 @@
 
 <div class="content">
 
-{{{ maintext }}}
+<p>Welcome! This site has a <strong>bunch of small demos</strong> like this one:</p>
 
+<div id="app"></div>
+
+<p>Each demo has <strong>many implementations</strong> to let you <strong>compare frameworks and solutions</strong>:</p>
+
+<div class="splashcodes">
+  {{#each splashdemo.codes}}
+    <pre><code>{{{this}}}</code></pre>
+  {{/each}}
 </div>
+
+<p>Sort of like <a href="http://todomvc.com/" target="_blank">TodoMVC</a> but on a smaller and more accessible scale!</p>
+
+<script src="pages/scripts/{{splashdemo.script}}"></script>

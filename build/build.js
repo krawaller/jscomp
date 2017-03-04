@@ -50,6 +50,21 @@ let frameworks = getFiles(source+'../frameworks/').reduce(function(mem,framework
   return mem;
 },{});
 
+// front page stuff
+
+let splashdemo = {
+  useImplementationUrls: [
+    'simpleclicker_angular_typescript_info.html',
+    'simpleclicker_react_es6_info.html',
+    'simpleclicker_cyclow_es6_info.html',
+    'simpleclicker_vue_vanilla_info.html'
+  ],
+  useFile: 'clicker',
+  codes: [],
+  script: ''
+};
+
+
 // collect demo, implementation and contrib data by looping demo + demo/impl folders
 let res = getDirs(source).reduce((mem,demoName)=>{
   const demopath = source + demoName + '/'
@@ -111,7 +126,7 @@ let res = getDirs(source).reduce((mem,demoName)=>{
           'elm': 'elm'
         }
         demo.filenames = _.uniq(demo.filenames.concat(filebasename))
-        impl.files.push({
+        let newfile = {
           filename: filebasename,
           demoname: impl.demoName,
           implname: impl.title,
@@ -119,7 +134,12 @@ let res = getDirs(source).reduce((mem,demoName)=>{
           size: content.length,
           code: hljs.highlight(languages[suffix] || 'javascript', content).value,
           codeUrl: `${demo.folderName}_${impl.framework}_${impl.folderName}_${filebasename}.html`
-        })
+        };
+        if (filebasename === splashdemo.useFile && splashdemo.useImplementationUrls.indexOf(impl.url)!== -1){
+          splashdemo.codes.push(newfile.code);
+          splashdemo.script = impl.bundleName;
+        }
+        impl.files.push(newfile)
         impl.size += content.length
       })
       frameworks[frameworkName].demos[demoName] = frameworks[frameworkName].demos[demoName] || []
@@ -161,105 +181,6 @@ _.each(implementations,impl => {
   })
 })
 
-/*
-getDirs(source).forEach(demoName => {
-
-  getDirs(demopath).forEach(frameworkName => {
-    if (!frameworks[frameworkName]){
-      throw `Demo ${demoName} contains unknown framework ${frameworkName}. Must add a file to the frameworks folder!`;
-    }
-    data.frameworkList = _.uniq(data.frameworkList.concat(frameworkName))
-    const niceFrameworkName = frameworks[frameworkName].title;
-    frameworks[frameworkName].demos[demoName] = frameworks[frameworkName].demos[demoName] || [];
-    const framepath = demopath + frameworkName + '/'
-    getDirs(framepath).forEach(implName => {
-      data.icount += 1
-      demo.icount += 1
-      const implpath = framepath + implName + '/'
-      const readme = fm(fsx.readFileSync(implpath + 'README.md', 'utf-8'))
-      data.contributors = _.uniq(data.contributors.concat(readme.attributes.author)).sort()
-      const deps = require(implpath + 'package.json').dependencies
-      const impl = Object.assign(
-        readme.attributes, {
-          folderName: implName,
-          prefix: {a:1,o:1,u:1,e:1,i:1}[implName[0].toLowerCase()] ? 'an' : 'a',
-          demoName: demoName,
-          framework: frameworks[frameworkName].id,
-          niceFrameworkName: niceFrameworkName,
-          deps: _.map(deps, (v, pkg) => ({package: pkg, version: v})),
-          frameworkVersion: deps[readme.attributes.maindep].replace(/^\^/, ''),
-          explanation: marked(readme.body.replace(/^\s*|\s*$/g, '')),
-          files: [],
-          bundleSize: (fsx.readFileSync(implpath + 'bundle.js', 'utf-8')).length,
-          size: 0,
-          url: `${demoName}_${frameworkName}_${implName}_info.html`,
-          bundleName: `${demoName}_${frameworkName}_${implName}.js`,
-          githubUrl: `http://www.github.com/krawaller/jscomp/tree/gh-pages/demos/${demoName}/${frameworkName}/${implName}`
-        }
-      );
-      getFiles(implpath + '/src').forEach(file => {
-        let content = fsx.readFileSync(implpath + '/src/' + file, 'utf-8')
-        content = content.replace('// eslint-disable-line', '')
-        const filebasename = file.replace(/\.[^.]*$/, '')
-        const suffix = file.match(/\.([^.]*)$/, '')[1]
-        const languages = {
-          'js': 'javascript',
-          'ts': 'typescript',
-          'elm': 'elm'
-        }
-        demo.filenames = _.uniq(demo.filenames.concat(filebasename))
-        impl.files.push({
-          filename: filebasename,
-          suffix: '.' + suffix,
-          size: content.length,
-          code: hljs.highlight(languages[suffix] || 'javascript', content).value,
-          codeUrl: `${demo.folderName}_${impl.framework}_${impl.folderName}_${filebasename}.html`
-        })
-        impl.size += content.length
-        data.tlength += content.length
-      })
-      frameworks[frameworkName].demos[demoName].push(impl);
-      demo.frameworks[frameworkName] = demo.frameworks[frameworkName] || []
-      demo.frameworks[frameworkName].push(impl)
-    })
-    demo.bundleName =frameworks[frameworkName].demos[demoName][Object.keys(frameworks[frameworkName].demos[demoName])[0]].bundleName
-  })
-  _.each(frameworks,(fdef,frameworkName) => {
-    _.each(fdef.demos,(ddef,demoName) => {
-      _.each(ddef.implementations,impl => {
-        impl.files.forEach(file => {
-          const others = _.reduce(demo.frameworks, (mem, f) => {
-            f.implementations.forEach(i => {
-              if (i.url !== impl.url) {
-                const fpos = i.files.findIndex(testFile => testFile.filename === file.filename)
-                mem.push(Object.assign({
-                  url: i.url,
-                  title: i.title,
-                  niceFrameworkName: i.niceFrameworkName
-                }, i.files[fpos] || {missing: true}))
-              }
-            })
-            return mem
-          }, [])
-          const othersWithSame = others.filter(i => i.niceFrameworkName === impl.niceFrameworkName)
-          const othersWithDifferent = others.filter(i => i.niceFrameworkName !== impl.niceFrameworkName)
-          file.allOthers = othersWithSame.concat(othersWithDifferent)
-        })
-      })
-    })
-    data.demos[demoName] = demo;
-  })
-})
-*/
-
-
-
-// fsx.writeFileSync(output+'_data.json',beautify(JSON.stringify(data)))
-
-
-/******************** DENORMALISING ******************/
-
-
 
 /******************** WRITING FILES! :D ******************/
 
@@ -288,6 +209,7 @@ const indexCtx = {
   frameworks,
   demos,
   contributors,
+  splashdemo,
   maintext: marked(fsx.readFileSync(pathHelper('mainpage.md'), 'utf-8')),
   contribute: marked(fsx.readFileSync(pathHelper('contribute.md'), 'utf-8'))
 }
