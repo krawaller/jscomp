@@ -61,6 +61,31 @@ angular.module(<span class="hljs-string">'dropdownapp'</span>, [])
                         <br/>
                         <button class="codelink hider" style="display:none;">hide</button>
                     </div>
+                    <div class="othercode" data-name="a vanilla implementation using Angular">
+                        <p class="codeheadline">The same file in <a href="dropdown_angular_vanilla_info.html">a vanilla implementation</a> using <a href="angular_info.html">Angular</a> (2.4.9):</p>
+                        <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>;
+
+<span class="hljs-keyword">import</span> { NgModule } from <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { BrowserModule } from <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { FormsModule } from <span class="hljs-string">'@angular/forms'</span>;
+<span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
+
+<span class="hljs-keyword">import</span> { Dropdown } from <span class="hljs-string">'./dropdown'</span>;
+
+@NgModule({
+    imports: [ BrowserModule, FormsModule ],
+    declarations: [ Dropdown ],
+    bootstrap: [ Dropdown ]
+})
+<span class="hljs-keyword">class</span> AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
+</code></pre>
+                        <a href="dropdown_angular_vanilla_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
                 </div>
             </div>
 

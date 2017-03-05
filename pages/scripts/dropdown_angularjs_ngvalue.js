@@ -33217,14 +33217,12 @@
 
 	var _goods = __webpack_require__(4);
 
-	var _goods2 = _interopRequireDefault(_goods);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 	_angular2.default.module('dropdownapp').component('dropdown', {
-	  template: '\n      <div ng-class="{fruit: $ctrl.chosen.type === \'fruit\', veggie: $ctrl.chosen.type === \'vegetable\'}">\n        I posit that \n        <select ng-model="$ctrl.chosen">\n           <option ng-repeat="g in $ctrl.list" ng-value="g">{{g.name}}</option>\n        </select>\n        {{$ctrl.chosen.quote}}\n      </div>\n    ',
+	  template: '\n      <div ng-class="{fruit: $ctrl.chosen.type === \'fruit\', veggie: $ctrl.chosen.type === \'vegetable\'}">\n        I posit that \n        <select ng-model="$ctrl.chosen">\n           <option ng-repeat="g in $ctrl.goods" ng-value="g">{{g.name}}</option>\n        </select>\n        {{$ctrl.chosen.quote}}\n      </div>\n    ',
 	  controller: function () {
 	    function Clicker() {
 	      _classCallCheck(this, Clicker);
@@ -33233,8 +33231,8 @@
 	    _createClass(Clicker, [{
 	      key: '$onInit',
 	      value: function $onInit() {
-	        this.list = _goods2.default;
-	        this.chosen = _goods2.default[0];
+	        this.goods = _goods.goods;
+	        this.chosen = _goods.goods[0];
 	      }
 	    }]);
 
@@ -33248,7 +33246,7 @@
 
 	'use strict';
 
-	module.exports = [{ name: 'carrots', quote: 'are for bunnies', type: 'vegetable' }, { name: 'peas', quote: 'are perfect for flicking at your mum', type: 'vegetable' }, { name: 'apples', quote: 'keep the doctors away', type: 'fruit' }, { name: 'pears', quote: 'rhymes with bears', type: 'fruit' }];
+	exports.goods = [{ name: 'carrots', quote: 'are for bunnies', type: 'vegetable' }, { name: 'peas', quote: 'are perfect for flicking at your mum', type: 'vegetable' }, { name: 'apples', quote: 'keep the doctors away', type: 'fruit' }, { name: 'pears', quote: 'rhymes with bears', type: 'fruit' }];
 
 /***/ }
 /******/ ]);
