@@ -27,18 +27,18 @@
 <span class="hljs-built_in">require</span>(<span class="hljs-string">'firebase/database'</span>)
 
 firebase.initializeApp({
-  apiKey: <span class="hljs-string">"AIzaSyAqWWr5VIuGMdLD8cAY-C2bmUp-9_tYJM8"</span>,
-  authDomain: <span class="hljs-string">"jscomp-potter.firebaseapp.com"</span>,
-  databaseURL: <span class="hljs-string">"https://jscomp-potter.firebaseio.com"</span>
+  <span class="hljs-attr">apiKey</span>: <span class="hljs-string">"AIzaSyAqWWr5VIuGMdLD8cAY-C2bmUp-9_tYJM8"</span>,
+  <span class="hljs-attr">authDomain</span>: <span class="hljs-string">"jscomp-potter.firebaseapp.com"</span>,
+  <span class="hljs-attr">databaseURL</span>: <span class="hljs-string">"https://jscomp-potter.firebaseio.com"</span>
 });
 
 <span class="hljs-built_in">module</span>.exports = {
-  subscribe: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">cb</span>)</span>{
+  <span class="hljs-attr">subscribe</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">cb</span>)</span>{
     firebase.database().ref(<span class="hljs-string">'/'</span>).on(<span class="hljs-string">'value'</span>,<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">snapshot</span>)</span>{
       cb(snapshot.val())
     })
   },
-  nudge: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">team</span>)</span>{
+  <span class="hljs-attr">nudge</span>: <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">team</span>)</span>{
     firebase.database().ref(team).transaction(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">c</span>)</span>{
       <span class="hljs-keyword">return</span> c+<span class="hljs-number">1</span>
     })

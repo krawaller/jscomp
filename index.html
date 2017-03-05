@@ -30,7 +30,7 @@
             <div class="splashcodes">
                 <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
 
-@Component({
+<span class="hljs-meta">@Component</span>({
   selector: <span class="hljs-string">'#app'</span>,
   template: <span class="hljs-string">`
     &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
@@ -45,14 +45,14 @@
 }</code></pre>
                 <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 
-<span class="hljs-keyword">const</span> Counter = () =&gt; Block({
-  events: {
-    init: () =&gt; count =&gt; <span class="hljs-number">3</span>,
-    click: () =&gt; count =&gt; count + <span class="hljs-number">1</span>
+<span class="hljs-keyword">const</span> Counter = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Block({
+  <span class="hljs-attr">events</span>: {
+    <span class="hljs-attr">init</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count =&gt; <span class="hljs-number">3</span>,
+    <span class="hljs-attr">click</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count =&gt; count + <span class="hljs-number">1</span>
   },
-  view: count =&gt; ({content: [
-    {content: <span class="hljs-string">`<span class="hljs-subst">${count}</span> bottles of beer on the wall`</span>},
-    {tag: <span class="hljs-string">'button'</span>, on: {click: [<span class="hljs-string">'click'</span>]}, content: <span class="hljs-string">'Buy more'</span>}
+  <span class="hljs-attr">view</span>: <span class="hljs-function"><span class="hljs-params">count</span> =&gt;</span> ({<span class="hljs-attr">content</span>: [
+    {<span class="hljs-attr">content</span>: <span class="hljs-string">`<span class="hljs-subst">${count}</span> bottles of beer on the wall`</span>},
+    {<span class="hljs-attr">tag</span>: <span class="hljs-string">'button'</span>, <span class="hljs-attr">on</span>: {<span class="hljs-attr">click</span>: [<span class="hljs-string">'click'</span>]}, <span class="hljs-attr">content</span>: <span class="hljs-string">'Buy more'</span>}
   ]})
 })
 
@@ -63,8 +63,8 @@
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
   <span class="hljs-keyword">constructor</span> () {
     <span class="hljs-keyword">super</span>()
-    <span class="hljs-keyword">this</span>.state = {count: <span class="hljs-number">3</span>}
-    <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.setState({count: <span class="hljs-keyword">this</span>.state.count + <span class="hljs-number">1</span>})
+    <span class="hljs-keyword">this</span>.state = {<span class="hljs-attr">count</span>: <span class="hljs-number">3</span>}
+    <span class="hljs-keyword">this</span>.more = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">count</span>: <span class="hljs-keyword">this</span>.state.count + <span class="hljs-number">1</span>})
   }
   render () {
     <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
@@ -79,12 +79,12 @@
                 <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
 Vue.component(<span class="hljs-string">'clicker'</span>, {
-  template: <span class="hljs-string">`
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
     &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
     &lt;button v-on:click="more"&gt;Buy more&lt;/button&gt;
   `</span>,
-  data: () =&gt; ({count: <span class="hljs-number">3</span>}),
-  methods: {
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">count</span>: <span class="hljs-number">3</span>}),
+  <span class="hljs-attr">methods</span>: {
     more () {
       <span class="hljs-keyword">this</span>.count++
     }
