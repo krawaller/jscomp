@@ -90,7 +90,7 @@ let res = getDirs(source).reduce((mem,demoName)=>{
     const framepath = demopath + frameworkName + '/'
     const niceFrameworkName = frameworks[frameworkName].title
     // loop over each implementation
-    getDirs(framepath).forEach(implName => {
+    getDirs(framepath).forEach((implName,idx) => {
       const implpath = framepath + implName + '/'
       const readme = fm(fsx.readFileSync(implpath + 'README.md', 'utf-8'))
       mem.contributors[readme.attributes.author] = mem.contributors[readme.attributes.author] || {implementations:[],id:readme.attributes.author}
@@ -115,7 +115,7 @@ let res = getDirs(source).reduce((mem,demoName)=>{
         }
       );
       // loop over each source file in this implementation
-      getFiles(implpath + '/src').forEach(file => {
+      getFiles(implpath + '/src').forEach((file) => {
         let content = fsx.readFileSync(implpath + '/src/' + file, 'utf-8')
         content = content.replace('// eslint-disable-line', '')
         const filebasename = file.replace(/\.[^.]*$/, '')
@@ -146,6 +146,10 @@ let res = getDirs(source).reduce((mem,demoName)=>{
         impl.files.push(newfile)
         impl.size += content.length
       })
+      if (!idx){
+        demo.bundleName = impl.bundleName
+        demo.appTemplate = (impl.appTemplate || '<div id="app"></div>')
+      }
       frameworks[frameworkName].demos[demoName] = frameworks[frameworkName].demos[demoName] || []
       frameworks[frameworkName].demos[demoName].push(impl);
       frameworks[frameworkName].implementations.push(impl);
@@ -153,7 +157,6 @@ let res = getDirs(source).reduce((mem,demoName)=>{
       demo.implementations.push(impl)
       mem.implementations[frameworkName+'__'+demoName+'__'+implName] = impl
     })
-    demo.bundleName =frameworks[frameworkName].demos[demoName][Object.keys(frameworks[frameworkName].demos[demoName])[0]].bundleName
   })
   mem.demos[demoName] = demo;
   return mem;

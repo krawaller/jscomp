@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>angularjs - ng-options</title>
+    <link rel="stylesheet" href="bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="code.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <a id="logo" href="../index.html"></a>
+        <h3>
+            <span>a </span>ng-options<span> implementation <br/>
+  of the <a href="dropdown_info.html">dropdown</a> demo
+  using <a href="angularjs_info.html">AngularJS</a>
+  </span>
+        </h3>
+
+        <ul class="iconnav">
+            <li class=" info">
+                <a href="dropdown_angularjs_ngoptions_info.html">info</a>
+            </li>
+            <li class=" file">
+                <a href="dropdown_angularjs_ngoptions_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class="current file">
+                <a href="dropdown_angularjs_ngoptions_dropdown.html">dropdown.js</a>
+            </li>
+            <li class=" file">
+                <a href="dropdown_angularjs_ngoptions_index.html">index.html</a>
+            </li>
+        </ul>
+
+        <div class="content">
+
+            <div id="codeselector" style="display:none;">
+                Compare <code>dropdown.js</code> to corresponding file in <select id="choosecode"></select>:
+            </div>
+            <br/><br/>
+            <div class="sidebyside">
+                <div>
+                    <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+
+<span class="hljs-keyword">import</span> list <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../goods'</span>
+
+angular.module(<span class="hljs-string">'dropdownapp'</span>)
+  .component(<span class="hljs-string">'dropdown'</span>, {
+    template: <span class="hljs-string">`
+      &lt;div ng-class="{fruit: $ctrl.chosen.type === 'fruit', veggie: $ctrl.chosen.type === 'vegetable'}"&gt;
+        I posit that 
+        &lt;select ng-model="$ctrl.chosen" ng-options="g.name for g in $ctrl.list"&gt;&lt;/select&gt;
+        {{$ctrl.chosen.quote}}
+      &lt;/div&gt;
+    `</span>,
+    controller: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> </span>{
+      $onInit () {
+        <span class="hljs-keyword">this</span>.list = list
+        <span class="hljs-keyword">this</span>.chosen = list[<span class="hljs-number">0</span>]
+      }
+    }
+  })
+</code></pre>
+                </div>
+                <div>
+                </div>
+            </div>
+
+        </div>
+        <footer></footer>
+    </div>
+
+    <script src="scripts/jquery.js"></script>
+    <script src="scripts/code.js"></script>
+</body>
+
+</html>

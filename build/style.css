@@ -219,3 +219,15 @@ button[disabled] {
 .content p {
   margin-bottom: 1em;
 }
+
+/***** APP stuff *****/
+
+#appcontainer .fruit {
+  border: 3px solid red;
+  padding: 3px;
+}
+
+#appcontainer .veggie {
+  border: 3px solid green;
+  padding: 3px;
+}
