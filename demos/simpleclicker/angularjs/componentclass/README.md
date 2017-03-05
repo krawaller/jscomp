@@ -3,4 +3,4 @@ title: component w/ class
 author: krawaller
 ---
 
-This solution uses the component syntax introduced in Angular 1.5, and has the controller defined inline.
+Here the component controller is defined as a class, making it pretty close to what a component looks like in the new Angular.
