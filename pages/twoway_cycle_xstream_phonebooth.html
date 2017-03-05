@@ -90,6 +90,33 @@
                         <br/>
                         <button class="codelink hider" style="display:none;">hide</button>
                     </div>
+                    <div class="othercode" data-name="a component implementation using AngularJS">
+                        <p class="codeheadline">The same file in <a href="twoway_angularjs_component_info.html">a component implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
+                        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+
+angular.module(<span class="hljs-string">'phoneboothapp'</span>)
+  .component(<span class="hljs-string">'phonebooth'</span>, {
+    template: <span class="hljs-string">`
+      &lt;input ng-model="$ctrl.name"&gt;&lt;br/&gt;
+      &lt;p&gt;Your name is {{$ctrl.name}}.&lt;/p&gt;
+      &lt;button ng-click="$ctrl.change()"&gt;Put on costume&lt;/button&gt;
+    `</span>,
+    controller: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Phonebooth</span> </span>{
+      <span class="hljs-keyword">constructor</span> ($element) {
+        <span class="hljs-keyword">this</span>.field = $element.find(<span class="hljs-string">'input'</span>)[<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Steve'</span>
+      }
+      change () {
+        <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
+        <span class="hljs-keyword">this</span>.field.focus()
+      }
+    }
+  })
+</code></pre>
+                        <a href="twoway_angularjs_component_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
                     <div class="othercode" data-name="a react-elm-components implementation using Elm">
                         <p class="codeheadline">The same file in <a href="twoway_elm_react-elm-components_info.html">a react-elm-components implementation</a> using <a href="elm_info.html">Elm</a> (0.17.1):</p>
                         <pre><code><span class="hljs-keyword">port</span> <span class="hljs-keyword">module</span> Phonebooth <span class="hljs-keyword">exposing</span> (main)

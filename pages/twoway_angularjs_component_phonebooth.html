@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>react - createClass</title>
+    <title>angularjs - component</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -12,21 +12,24 @@
     <div class="container-fluid">
         <a id="logo" href="../index.html"></a>
         <h3>
-            <span>a </span>createClass<span> implementation <br/>
+            <span>a </span>component<span> implementation <br/>
   of the <a href="twoway_info.html">twoway</a> demo
-  using <a href="react_info.html">React</a>
+  using <a href="angularjs_info.html">AngularJS</a>
   </span>
         </h3>
 
         <ul class="iconnav">
             <li class=" info">
-                <a href="twoway_react_createclass_info.html">info</a>
+                <a href="twoway_angularjs_component_info.html">info</a>
             </li>
             <li class=" file">
-                <a href="twoway_react_createclass_bootstrap.html">bootstrap.js</a>
+                <a href="twoway_angularjs_component_bootstrap.html">bootstrap.js</a>
+            </li>
+            <li class=" file">
+                <a href="twoway_angularjs_component_index.html">index.html</a>
             </li>
             <li class="current file">
-                <a href="twoway_react_createclass_phonebooth.html">phonebooth.js</a>
+                <a href="twoway_angularjs_component_phonebooth.html">phonebooth.js</a>
             </li>
         </ul>
 
@@ -38,29 +41,27 @@
             <br/><br/>
             <div class="sidebyside">
                 <div>
-                    <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+                    <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
 
-<span class="hljs-keyword">let</span> Phonebooth = React.createClass({
-  getInitialState: () =&gt; ({name: <span class="hljs-string">'Steve'</span>}),
-  change () {
-    <span class="hljs-keyword">this</span>.setState({name: <span class="hljs-string">'Batman'</span>})
-    <span class="hljs-keyword">this</span>.refs.field.focus()
-  },
-  type (e) {
-    <span class="hljs-keyword">this</span>.setState({name: e.target.value})
-  },
-  render () {
-    <span class="hljs-keyword">let</span> name = <span class="hljs-keyword">this</span>.state.name
-    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">'field'</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.type}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Your name is {name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.change}</span>&gt;</span>Put on costume<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
-  }
-})
-
-export default Phonebooth
-</span></code></pre>
+angular.module(<span class="hljs-string">'phoneboothapp'</span>)
+  .component(<span class="hljs-string">'phonebooth'</span>, {
+    template: <span class="hljs-string">`
+      &lt;input ng-model="$ctrl.name"&gt;&lt;br/&gt;
+      &lt;p&gt;Your name is {{$ctrl.name}}.&lt;/p&gt;
+      &lt;button ng-click="$ctrl.change()"&gt;Put on costume&lt;/button&gt;
+    `</span>,
+    controller: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Phonebooth</span> </span>{
+      <span class="hljs-keyword">constructor</span> ($element) {
+        <span class="hljs-keyword">this</span>.field = $element.find(<span class="hljs-string">'input'</span>)[<span class="hljs-number">0</span>]
+        <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Steve'</span>
+      }
+      change () {
+        <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
+        <span class="hljs-keyword">this</span>.field.focus()
+      }
+    }
+  })
+</code></pre>
                 </div>
                 <div>
                     <div class="othercode" data-name="a TypeScript implementation using Angular">
@@ -84,33 +85,6 @@ export default Phonebooth
   }
 }</code></pre>
                         <a href="twoway_angular_typescript_info.html" class="codelink" style="display:none;">visit this implementation</a>
-                        <br/>
-                        <button class="codelink hider" style="display:none;">hide</button>
-                    </div>
-                    <div class="othercode" data-name="a component implementation using AngularJS">
-                        <p class="codeheadline">The same file in <a href="twoway_angularjs_component_info.html">a component implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
-                        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
-
-angular.module(<span class="hljs-string">'phoneboothapp'</span>)
-  .component(<span class="hljs-string">'phonebooth'</span>, {
-    template: <span class="hljs-string">`
-      &lt;input ng-model="$ctrl.name"&gt;&lt;br/&gt;
-      &lt;p&gt;Your name is {{$ctrl.name}}.&lt;/p&gt;
-      &lt;button ng-click="$ctrl.change()"&gt;Put on costume&lt;/button&gt;
-    `</span>,
-    controller: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Phonebooth</span> </span>{
-      <span class="hljs-keyword">constructor</span> ($element) {
-        <span class="hljs-keyword">this</span>.field = $element.find(<span class="hljs-string">'input'</span>)[<span class="hljs-number">0</span>]
-        <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Steve'</span>
-      }
-      change () {
-        <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
-        <span class="hljs-keyword">this</span>.field.focus()
-      }
-    }
-  })
-</code></pre>
-                        <a href="twoway_angularjs_component_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
                         <button class="codelink hider" style="display:none;">hide</button>
                     </div>
@@ -206,6 +180,35 @@ angular.module(<span class="hljs-string">'phoneboothapp'</span>)
         ]
 </code></pre>
                         <a href="twoway_elm_react-elm-components_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a createClass implementation using React">
+                        <p class="codeheadline">The same file in <a href="twoway_react_createclass_info.html">a createClass implementation</a> using <a href="react_info.html">React</a> (15.3.1):</p>
+                        <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
+
+<span class="hljs-keyword">let</span> Phonebooth = React.createClass({
+  getInitialState: () =&gt; ({name: <span class="hljs-string">'Steve'</span>}),
+  change () {
+    <span class="hljs-keyword">this</span>.setState({name: <span class="hljs-string">'Batman'</span>})
+    <span class="hljs-keyword">this</span>.refs.field.focus()
+  },
+  type (e) {
+    <span class="hljs-keyword">this</span>.setState({name: e.target.value})
+  },
+  render () {
+    <span class="hljs-keyword">let</span> name = <span class="hljs-keyword">this</span>.state.name
+    <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">input</span> <span class="hljs-attr">ref</span>=<span class="hljs-string">'field'</span> <span class="hljs-attr">onChange</span>=<span class="hljs-string">{this.type}</span> <span class="hljs-attr">value</span>=<span class="hljs-string">{name}</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>Your name is {name}<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{this.change}</span>&gt;</span>Put on costume<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span>
+  }
+})
+
+export default Phonebooth
+</span></code></pre>
+                        <a href="twoway_react_createclass_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
                         <button class="codelink hider" style="display:none;">hide</button>
                     </div>
