@@ -58,7 +58,7 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
 <span class="hljs-keyword">import</span> { Battle } from <span class="hljs-string">'./battle.ts'</span>;
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
 
-@NgModule({
+<span class="hljs-meta">@NgModule</span>({
     imports:      [ BrowserModule, FormsModule ],
     declarations: [ Battle ],
     bootstrap:    [ Battle ]
@@ -76,7 +76,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
                         <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Battle <span class="hljs-keyword">from</span> <span class="hljs-string">'./battle'</span>
 
-run(Battle, {target: <span class="hljs-string">'app'</span>})
+run(Battle, {<span class="hljs-attr">target</span>: <span class="hljs-string">'app'</span>})
 </code></pre>
                         <a href="firebase_cyclow_es6_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>

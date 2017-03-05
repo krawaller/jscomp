@@ -47,7 +47,7 @@
 
 angular.module(<span class="hljs-string">'dropdownapp'</span>)
   .component(<span class="hljs-string">'dropdown'</span>, {
-    template: <span class="hljs-string">`
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
       &lt;div ng-class="{fruit: $ctrl.chosen.type === 'fruit', veggie: $ctrl.chosen.type === 'vegetable'}"&gt;
         I posit that 
         &lt;select ng-model="$ctrl.chosen"&gt;
@@ -56,7 +56,7 @@ angular.module(<span class="hljs-string">'dropdownapp'</span>)
         {{$ctrl.chosen.quote}}
       &lt;/div&gt;
     `</span>,
-    controller: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> </span>{
+    <span class="hljs-attr">controller</span>: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> </span>{
       $onInit () {
         <span class="hljs-keyword">this</span>.goods = goods
         <span class="hljs-keyword">this</span>.chosen = goods[<span class="hljs-number">0</span>]
@@ -74,14 +74,14 @@ angular.module(<span class="hljs-string">'dropdownapp'</span>)
 
 angular.module(<span class="hljs-string">'dropdownapp'</span>)
   .component(<span class="hljs-string">'dropdown'</span>, {
-    template: <span class="hljs-string">`
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
       &lt;div ng-class="{fruit: $ctrl.chosen.type === 'fruit', veggie: $ctrl.chosen.type === 'vegetable'}"&gt;
         I posit that 
         &lt;select ng-model="$ctrl.chosen" ng-options="g.name for g in $ctrl.goods"&gt;&lt;/select&gt;
         {{$ctrl.chosen.quote}}
       &lt;/div&gt;
     `</span>,
-    controller: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> </span>{
+    <span class="hljs-attr">controller</span>: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> </span>{
       $onInit () {
         <span class="hljs-keyword">this</span>.goods = goods
         <span class="hljs-keyword">this</span>.chosen = goods[<span class="hljs-number">0</span>]
