@@ -262,6 +262,30 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
                         <br/>
                         <button class="codelink hider" style="display:none;">hide</button>
                     </div>
+                    <div class="othercode" data-name="a vanilla implementation using Choo">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_choo_vanilla_info.html">a vanilla implementation</a> using <a href="choo_info.html">Choo</a> (4.1.0):</p>
+                        <pre><code><span class="hljs-keyword">const</span> html = <span class="hljs-built_in">require</span>(<span class="hljs-string">'choo/html'</span>)
+
+<span class="hljs-keyword">const</span> model = {
+  state: { count: <span class="hljs-number">3</span> },
+  reducers: {
+    buyMore: (state, data) =&gt; ({ count: state.count + <span class="hljs-number">1</span> })
+  }
+}
+
+<span class="hljs-keyword">const</span> view = (state, prev, send) =&gt; html<span class="hljs-string">`
+  &lt;main&gt;
+    &lt;p&gt;<span class="hljs-subst">${state.count}</span> bottles of beer on the wall&lt;/p&gt;
+    &lt;button onclick=<span class="hljs-subst">${e =&gt; send('buyMore')}</span>&gt;Buy more&lt;/button&gt;
+  &lt;/main&gt;
+`</span>
+
+<span class="hljs-built_in">module</span>.exports = {model: model, view: view}
+</code></pre>
+                        <a href="simpleclicker_choo_vanilla_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
                     <div class="othercode" data-name="a rxjs implementation using CycleJS">
                         <p class="codeheadline">The same file in <a href="simpleclicker_cycle_rxjs_info.html">a rxjs implementation</a> using <a href="cycle_info.html">CycleJS</a> (12.2.2):</p>
                         <pre><code><span class="hljs-keyword">import</span> {div, button} <span class="hljs-keyword">from</span> <span class="hljs-string">'@cycle/dom'</span>

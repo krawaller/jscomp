@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>angularjs - controller</title>
+    <title>choo - vanilla</title>
     <link rel="stylesheet" href="bootstrap.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="code.css">
@@ -12,24 +12,21 @@
     <div class="container-fluid">
         <a id="logo" href="../index.html"></a>
         <h3>
-            <span>a </span>controller<span> implementation <br/>
+            <span>a </span>vanilla<span> implementation <br/>
   of the <a href="simpleclicker_info.html">simpleclicker</a> demo
-  using <a href="angularjs_info.html">AngularJS</a>
+  using <a href="choo_info.html">Choo</a>
   </span>
         </h3>
 
         <ul class="iconnav">
             <li class=" info">
-                <a href="simpleclicker_angularjs_controller_info.html">info</a>
+                <a href="simpleclicker_choo_vanilla_info.html">info</a>
             </li>
             <li class=" file">
-                <a href="simpleclicker_angularjs_controller_bootstrap.html">bootstrap.js</a>
+                <a href="simpleclicker_choo_vanilla_bootstrap.html">bootstrap.js</a>
             </li>
             <li class="current file">
-                <a href="simpleclicker_angularjs_controller_clicker.html">clicker.js</a>
-            </li>
-            <li class=" file">
-                <a href="simpleclicker_angularjs_controller_index.html">index.html</a>
+                <a href="simpleclicker_choo_vanilla_clicker.html">clicker.js</a>
             </li>
         </ul>
 
@@ -41,16 +38,72 @@
             <br/><br/>
             <div class="sidebyside">
                 <div>
-                    <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+                    <pre><code><span class="hljs-keyword">const</span> html = <span class="hljs-built_in">require</span>(<span class="hljs-string">'choo/html'</span>)
 
-angular.module(<span class="hljs-string">'clickerapp'</span>)
-  .controller(<span class="hljs-string">'clicker'</span>, [<span class="hljs-string">'$scope'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope</span>) </span>{
-    $scope.count = <span class="hljs-number">3</span>
-    $scope.more = () =&gt; $scope.count++
-  }])
+<span class="hljs-keyword">const</span> model = {
+  state: { count: <span class="hljs-number">3</span> },
+  reducers: {
+    buyMore: (state, data) =&gt; ({ count: state.count + <span class="hljs-number">1</span> })
+  }
+}
+
+<span class="hljs-keyword">const</span> view = (state, prev, send) =&gt; html<span class="hljs-string">`
+  &lt;main&gt;
+    &lt;p&gt;<span class="hljs-subst">${state.count}</span> bottles of beer on the wall&lt;/p&gt;
+    &lt;button onclick=<span class="hljs-subst">${e =&gt; send('buyMore')}</span>&gt;Buy more&lt;/button&gt;
+  &lt;/main&gt;
+`</span>
+
+<span class="hljs-built_in">module</span>.exports = {model: model, view: view}
 </code></pre>
                 </div>
                 <div>
+                    <div class="othercode" data-name="a JavaScript implementation using Angular">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_angular_javascript_info.html">a JavaScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):</p>
+                        <pre><code><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>
+
+<span class="hljs-keyword">let</span> Clicker = Component({
+  selector: <span class="hljs-string">'#app'</span>,
+  template: <span class="hljs-string">`
+    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button (click)="more()"&gt;Buy more&lt;/button&gt;
+  `</span>
+}).Class({
+  <span class="hljs-keyword">constructor</span>: function () {
+    <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
+  },
+  more () {
+    <span class="hljs-keyword">this</span>.count++
+  }
+})
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
+</code></pre>
+                        <a href="simpleclicker_angular_javascript_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
+                    <div class="othercode" data-name="a TypeScript implementation using Angular">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):</p>
+                        <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
+
+@Component({
+  selector: <span class="hljs-string">'#app'</span>,
+  template: <span class="hljs-string">`
+    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
+    &lt;button (click)="more()"&gt;Buy more&lt;/button&gt;
+  `</span>
+})
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Clicker {
+  count = <span class="hljs-number">3</span>
+  more() {
+    <span class="hljs-keyword">this</span>.count++
+  }
+}</code></pre>
+                        <a href="simpleclicker_angular_typescript_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
                     <div class="othercode" data-name="a component w/ class implementation using AngularJS">
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_componentclass_info.html">a component w/ class implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.6.1):</p>
                         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
@@ -116,6 +169,20 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
                         <br/>
                         <button class="codelink hider" style="display:none;">hide</button>
                     </div>
+                    <div class="othercode" data-name="a controller implementation using AngularJS">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_controller_info.html">a controller implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
+                        <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
+
+angular.module(<span class="hljs-string">'clickerapp'</span>)
+  .controller(<span class="hljs-string">'clicker'</span>, [<span class="hljs-string">'$scope'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope</span>) </span>{
+    $scope.count = <span class="hljs-number">3</span>
+    $scope.more = () =&gt; $scope.count++
+  }])
+</code></pre>
+                        <a href="simpleclicker_angularjs_controller_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
                     <div class="othercode" data-name="a controller as implementation using AngularJS">
                         <p class="codeheadline">The same file in <a href="simpleclicker_angularjs_controlleras_info.html">a controller as implementation</a> using <a href="angularjs_info.html">AngularJS</a> (1.5.8):</p>
                         <pre><code><span class="hljs-keyword">import</span> angular <span class="hljs-keyword">from</span> <span class="hljs-string">'angular'</span>
@@ -150,76 +217,6 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
   })
 </code></pre>
                         <a href="simpleclicker_angularjs_directive_info.html" class="codelink" style="display:none;">visit this implementation</a>
-                        <br/>
-                        <button class="codelink hider" style="display:none;">hide</button>
-                    </div>
-                    <div class="othercode" data-name="a JavaScript implementation using Angular">
-                        <p class="codeheadline">The same file in <a href="simpleclicker_angular_javascript_info.html">a JavaScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):</p>
-                        <pre><code><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>
-
-<span class="hljs-keyword">let</span> Clicker = Component({
-  selector: <span class="hljs-string">'#app'</span>,
-  template: <span class="hljs-string">`
-    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
-    &lt;button (click)="more()"&gt;Buy more&lt;/button&gt;
-  `</span>
-}).Class({
-  <span class="hljs-keyword">constructor</span>: function () {
-    <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
-  },
-  more () {
-    <span class="hljs-keyword">this</span>.count++
-  }
-})
-
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Clicker
-</code></pre>
-                        <a href="simpleclicker_angular_javascript_info.html" class="codelink" style="display:none;">visit this implementation</a>
-                        <br/>
-                        <button class="codelink hider" style="display:none;">hide</button>
-                    </div>
-                    <div class="othercode" data-name="a TypeScript implementation using Angular">
-                        <p class="codeheadline">The same file in <a href="simpleclicker_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):</p>
-                        <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
-
-@Component({
-  selector: <span class="hljs-string">'#app'</span>,
-  template: <span class="hljs-string">`
-    &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
-    &lt;button (click)="more()"&gt;Buy more&lt;/button&gt;
-  `</span>
-})
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Clicker {
-  count = <span class="hljs-number">3</span>
-  more() {
-    <span class="hljs-keyword">this</span>.count++
-  }
-}</code></pre>
-                        <a href="simpleclicker_angular_typescript_info.html" class="codelink" style="display:none;">visit this implementation</a>
-                        <br/>
-                        <button class="codelink hider" style="display:none;">hide</button>
-                    </div>
-                    <div class="othercode" data-name="a vanilla implementation using Choo">
-                        <p class="codeheadline">The same file in <a href="simpleclicker_choo_vanilla_info.html">a vanilla implementation</a> using <a href="choo_info.html">Choo</a> (4.1.0):</p>
-                        <pre><code><span class="hljs-keyword">const</span> html = <span class="hljs-built_in">require</span>(<span class="hljs-string">'choo/html'</span>)
-
-<span class="hljs-keyword">const</span> model = {
-  state: { count: <span class="hljs-number">3</span> },
-  reducers: {
-    buyMore: (state, data) =&gt; ({ count: state.count + <span class="hljs-number">1</span> })
-  }
-}
-
-<span class="hljs-keyword">const</span> view = (state, prev, send) =&gt; html<span class="hljs-string">`
-  &lt;main&gt;
-    &lt;p&gt;<span class="hljs-subst">${state.count}</span> bottles of beer on the wall&lt;/p&gt;
-    &lt;button onclick=<span class="hljs-subst">${e =&gt; send('buyMore')}</span>&gt;Buy more&lt;/button&gt;
-  &lt;/main&gt;
-`</span>
-
-<span class="hljs-built_in">module</span>.exports = {model: model, view: view}
-</code></pre>
-                        <a href="simpleclicker_choo_vanilla_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
                         <button class="codelink hider" style="display:none;">hide</button>
                     </div>

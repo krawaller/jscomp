@@ -184,6 +184,22 @@ angular.module(<span class="hljs-string">'clickerapp'</span>, [])
                         <br/>
                         <button class="codelink hider" style="display:none;">hide</button>
                     </div>
+                    <div class="othercode" data-name="a vanilla implementation using Choo">
+                        <p class="codeheadline">The same file in <a href="simpleclicker_choo_vanilla_info.html">a vanilla implementation</a> using <a href="choo_info.html">Choo</a> (4.1.0):</p>
+                        <pre><code><span class="hljs-keyword">const</span> choo = <span class="hljs-built_in">require</span>(<span class="hljs-string">'choo'</span>)
+
+<span class="hljs-keyword">const</span> clicker = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./clicker'</span>)
+<span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
+<span class="hljs-keyword">const</span> app = choo({href: <span class="hljs-literal">false</span>, history: <span class="hljs-literal">false</span>, hash: <span class="hljs-literal">false</span>})
+
+app.model(clicker.model)
+app.router({root: root}, [<span class="hljs-built_in">document</span>.location.pathname, clicker.view])
+root.appendChild(app.start())
+</code></pre>
+                        <a href="simpleclicker_choo_vanilla_info.html" class="codelink" style="display:none;">visit this implementation</a>
+                        <br/>
+                        <button class="codelink hider" style="display:none;">hide</button>
+                    </div>
                     <div class="othercode" data-name="an es6 implementation using Cyclow">
                         <p class="codeheadline">The same file in <a href="simpleclicker_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.2.0):</p>
                         <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>

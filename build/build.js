@@ -43,7 +43,7 @@ let frameworks = getFiles(source+'../frameworks/').reduce(function(mem,framework
     title: contents.attributes.name,
     homepage: contents.attributes.homepage,
     maindep: contents.attributes.maindep,
-    description: contents.body,
+    description: marked(contents.body),
     demos: {},
     implementations: []
   };

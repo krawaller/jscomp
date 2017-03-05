@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "build": "browserify src/bootstrap.js -o bundle.js -t es2020"
+  },
+  "dependencies": {
+    "choo": "^4.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^14.1.0",
+    "es2020": "^1.1.9"
+  }
+}
