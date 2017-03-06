@@ -41,7 +41,7 @@
                     <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Battle <span class="hljs-keyword">from</span> <span class="hljs-string">'./battle'</span>
 
-run(Battle, {target: <span class="hljs-string">'app'</span>})
+run(Battle, {<span class="hljs-attr">target</span>: <span class="hljs-string">'app'</span>})
 </code></pre>
                 </div>
                 <div>
@@ -57,7 +57,7 @@ run(Battle, {target: <span class="hljs-string">'app'</span>})
 
 <span class="hljs-keyword">import</span> { Battle } from <span class="hljs-string">'./battle'</span>;
 
-@NgModule({
+<span class="hljs-meta">@NgModule</span>({
     imports:      [ BrowserModule, FormsModule ],
     declarations: [ Battle ],
     bootstrap:    [ Battle ]

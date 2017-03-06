@@ -119,7 +119,7 @@
 
 <span class="hljs-keyword">import</span> {lyrics} from <span class="hljs-string">'../../../lyrics'</span>
 
-@Component({
+<span class="hljs-meta">@Component</span>({
   selector: <span class="hljs-string">'#app'</span>,
   template: <span class="hljs-string">`{{line}}`</span>
 })
@@ -143,7 +143,7 @@
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Singer</span> (<span class="hljs-params">{line$}</span>) </span>{
   <span class="hljs-keyword">return</span> {
-    DOM: line$.map(line =&gt; div(line))
+    <span class="hljs-attr">DOM</span>: line$.map(<span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> div(line))
   }
 }
 
@@ -162,10 +162,10 @@
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Singer</span> (<span class="hljs-params">sources</span>) </span>{
   <span class="hljs-keyword">let</span> song$ = xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(
-    n =&gt; lyrics[(n + <span class="hljs-number">1</span>) % lyrics.length]
+    <span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> lyrics[(n + <span class="hljs-number">1</span>) % lyrics.length]
   )
   <span class="hljs-keyword">return</span> {
-    DOM: song$.map(line =&gt; div(line))
+    <span class="hljs-attr">DOM</span>: song$.map(<span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> div(line))
   }
 }
 
@@ -182,13 +182,13 @@
 
 <span class="hljs-keyword">import</span> {lyrics} <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../lyrics'</span>
 
-<span class="hljs-keyword">const</span> Singer = () =&gt; Block({
-  components: {ticker: Ticker(<span class="hljs-number">1500</span>, {initialDelay: <span class="hljs-literal">true</span>})},
-  events: {
-    init: () =&gt; [[<span class="hljs-string">'state'</span>, pos =&gt; <span class="hljs-number">0</span>], <span class="hljs-string">'ticker'</span>],
-    ticker: () =&gt; pos =&gt; (pos + <span class="hljs-number">1</span>) % lyrics.length
+<span class="hljs-keyword">const</span> Singer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Block({
+  <span class="hljs-attr">components</span>: {<span class="hljs-attr">ticker</span>: Ticker(<span class="hljs-number">1500</span>, {<span class="hljs-attr">initialDelay</span>: <span class="hljs-literal">true</span>})},
+  <span class="hljs-attr">events</span>: {
+    <span class="hljs-attr">init</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> [[<span class="hljs-string">'state'</span>, pos =&gt; <span class="hljs-number">0</span>], <span class="hljs-string">'ticker'</span>],
+    <span class="hljs-attr">ticker</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> pos =&gt; (pos + <span class="hljs-number">1</span>) % lyrics.length
   },
-  view: pos =&gt; ({content: lyrics[pos]})
+  <span class="hljs-attr">view</span>: <span class="hljs-function"><span class="hljs-params">pos</span> =&gt;</span> ({<span class="hljs-attr">content</span>: lyrics[pos]})
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
@@ -204,15 +204,15 @@
 
 <span class="hljs-keyword">import</span> {lyrics} <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../lyrics'</span>
 
-<span class="hljs-keyword">const</span> Singer = () =&gt; Block({
-  components: {
-    lineTicker: Chain(Ticker(<span class="hljs-number">1500</span>), Iterator(lyrics, {cyclic: <span class="hljs-literal">true</span>}))
+<span class="hljs-keyword">const</span> Singer = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Block({
+  <span class="hljs-attr">components</span>: {
+    <span class="hljs-attr">lineTicker</span>: Chain(Ticker(<span class="hljs-number">1500</span>), Iterator(lyrics, {<span class="hljs-attr">cyclic</span>: <span class="hljs-literal">true</span>}))
   },
-  events: {
-    init: () =&gt; <span class="hljs-string">'lineTicker'</span>,
-    lineTicker: line =&gt; text =&gt; line
+  <span class="hljs-attr">events</span>: {
+    <span class="hljs-attr">init</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-string">'lineTicker'</span>,
+    <span class="hljs-attr">lineTicker</span>: <span class="hljs-function"><span class="hljs-params">line</span> =&gt;</span> text =&gt; line
   },
-  view: text =&gt; ({content: text})
+  <span class="hljs-attr">view</span>: <span class="hljs-function"><span class="hljs-params">text</span> =&gt;</span> ({<span class="hljs-attr">content</span>: text})
 })
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Singer
@@ -232,8 +232,8 @@
   <span class="hljs-keyword">constructor</span> () {
     <span class="hljs-keyword">super</span>()
     <span class="hljs-keyword">this</span>.state.pos = <span class="hljs-number">0</span>
-    setInterval(() =&gt; <span class="hljs-keyword">this</span>.setState({
-      pos: (<span class="hljs-keyword">this</span>.state.pos + <span class="hljs-number">1</span>) % lyrics.length
+    setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.setState({
+      <span class="hljs-attr">pos</span>: (<span class="hljs-keyword">this</span>.state.pos + <span class="hljs-number">1</span>) % lyrics.length
     }), <span class="hljs-number">1500</span>)
   }
   render () {
@@ -254,10 +254,10 @@
 <span class="hljs-keyword">import</span> {lyrics} <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../lyrics'</span>
 
 <span class="hljs-keyword">let</span> Singer = React.createClass({
-  getInitialState: () =&gt; ({pos: <span class="hljs-number">0</span>}),
+  <span class="hljs-attr">getInitialState</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">pos</span>: <span class="hljs-number">0</span>}),
   componentDidMount () {
-    setInterval(() =&gt; <span class="hljs-keyword">this</span>.setState({
-      pos: (<span class="hljs-keyword">this</span>.state.pos + <span class="hljs-number">1</span>) % lyrics.length
+    setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.setState({
+      <span class="hljs-attr">pos</span>: (<span class="hljs-keyword">this</span>.state.pos + <span class="hljs-number">1</span>) % lyrics.length
     }), <span class="hljs-number">1500</span>)
   },
   render () {
@@ -280,9 +280,9 @@
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Singer</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
   <span class="hljs-keyword">constructor</span> () {
     <span class="hljs-keyword">super</span>()
-    <span class="hljs-keyword">this</span>.state = {pos: <span class="hljs-number">0</span>}
-    setInterval(() =&gt; <span class="hljs-keyword">this</span>.setState({
-      pos: (<span class="hljs-keyword">this</span>.state.pos + <span class="hljs-number">1</span>) % lyrics.length
+    <span class="hljs-keyword">this</span>.state = {<span class="hljs-attr">pos</span>: <span class="hljs-number">0</span>}
+    setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.setState({
+      <span class="hljs-attr">pos</span>: (<span class="hljs-keyword">this</span>.state.pos + <span class="hljs-number">1</span>) % lyrics.length
     }), <span class="hljs-number">1500</span>)
   }
   render () {
@@ -303,15 +303,15 @@
 <span class="hljs-keyword">import</span> {lyrics} <span class="hljs-keyword">from</span> <span class="hljs-string">'../../../lyrics'</span>
 
 Vue.component(<span class="hljs-string">'singer'</span>, {
-  template: <span class="hljs-string">`&lt;p&gt;{{line}}&lt;/p&gt;`</span>,
-  data: () =&gt; ({pos: <span class="hljs-number">0</span>}),
-  computed: {
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`&lt;p&gt;{{line}}&lt;/p&gt;`</span>,
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">pos</span>: <span class="hljs-number">0</span>}),
+  <span class="hljs-attr">computed</span>: {
     line () {
       <span class="hljs-keyword">return</span> lyrics[<span class="hljs-keyword">this</span>.pos]
     }
   },
   attached (arg) {
-    setInterval(() =&gt; <span class="hljs-keyword">this</span>.$set(
+    setInterval(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.$set(
       <span class="hljs-string">'pos'</span>, (<span class="hljs-keyword">this</span>.pos + <span class="hljs-number">1</span>) % lyrics.length
     ), <span class="hljs-number">1500</span>)
   }

@@ -43,7 +43,7 @@
 
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
-run(Singer, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) })
+run(Singer, { <span class="hljs-attr">DOM</span>: makeDOMDriver(<span class="hljs-string">'#app'</span>) })
 </code></pre>
                 </div>
                 <div>
@@ -57,8 +57,8 @@ run(Singer, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) })
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
 run(Singer, {
-  DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
-  line$: makeIteratorDriver(lyrics)
+  <span class="hljs-attr">DOM</span>: makeDOMDriver(<span class="hljs-string">'#app'</span>),
+  <span class="hljs-attr">line$</span>: makeIteratorDriver(lyrics)
 })
 </code></pre>
                         <a href="interval_cycle_lyricsdriver_info.html" class="codelink" style="display:none;">visit this implementation</a>
@@ -75,7 +75,7 @@ run(Singer, {
 <span class="hljs-keyword">import</span> { Singer } from <span class="hljs-string">'./singer.ts'</span>;
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
 
-@NgModule({
+<span class="hljs-meta">@NgModule</span>({
     imports:      [ BrowserModule ],
     declarations: [ Singer ],
     bootstrap:    [ Singer ]
@@ -93,7 +93,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
                         <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
-run(Singer, {target: <span class="hljs-string">'app'</span>})
+run(Singer, {<span class="hljs-attr">target</span>: <span class="hljs-string">'app'</span>})
 </code></pre>
                         <a href="interval_cyclow_es6_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -104,7 +104,7 @@ run(Singer, {target: <span class="hljs-string">'app'</span>})
                         <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Singer <span class="hljs-keyword">from</span> <span class="hljs-string">'./singer'</span>
 
-run(Singer, {target: <span class="hljs-string">'app'</span>})
+run(Singer, {<span class="hljs-attr">target</span>: <span class="hljs-string">'app'</span>})
 </code></pre>
                         <a href="interval_cyclow_es6-iterator_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -169,9 +169,9 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
 <span class="hljs-keyword">import</span> <span class="hljs-string">'./singer'</span>
 
 <span class="hljs-keyword">new</span> Vue({ 
-  template: <span class="hljs-string">'&lt;singer/&gt;'</span>,
-  replace: <span class="hljs-literal">false</span>,
-  el: <span class="hljs-string">'#app'</span>
+  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;singer/&gt;'</span>,
+  <span class="hljs-attr">replace</span>: <span class="hljs-literal">false</span>,
+  <span class="hljs-attr">el</span>: <span class="hljs-string">'#app'</span>
 })
 </code></pre>
                         <a href="interval_vue_vanilla_info.html" class="codelink" style="display:none;">visit this implementation</a>

@@ -41,13 +41,13 @@
                     <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> Phonebooth = React.createClass({
-  getInitialState: () =&gt; ({name: <span class="hljs-string">'Steve'</span>}),
+  <span class="hljs-attr">getInitialState</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">name</span>: <span class="hljs-string">'Steve'</span>}),
   change () {
-    <span class="hljs-keyword">this</span>.setState({name: <span class="hljs-string">'Batman'</span>})
+    <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">name</span>: <span class="hljs-string">'Batman'</span>})
     <span class="hljs-keyword">this</span>.refs.field.focus()
   },
   type (e) {
-    <span class="hljs-keyword">this</span>.setState({name: e.target.value})
+    <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">name</span>: e.target.value})
   },
   render () {
     <span class="hljs-keyword">let</span> name = <span class="hljs-keyword">this</span>.state.name
@@ -67,7 +67,7 @@ export default Phonebooth
                         <p class="codeheadline">The same file in <a href="twoway_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.4.9):</p>
                         <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild} from <span class="hljs-string">'@angular/core'</span>;
 
-@Component({
+<span class="hljs-meta">@Component</span>({
   selector: <span class="hljs-string">'#app'</span>,
   template: <span class="hljs-string">`
     &lt;input #field [(ngModel)]="name"&gt;&lt;br/&gt;
@@ -76,7 +76,7 @@ export default Phonebooth
   `</span>
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Phonebooth {
-  @ViewChild(<span class="hljs-string">'field'</span>) input
+  <span class="hljs-meta">@ViewChild</span>(<span class="hljs-string">'field'</span>) input
   name = <span class="hljs-string">'Steve'</span>
   change() {
     <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
@@ -93,12 +93,12 @@ export default Phonebooth
 
 angular.module(<span class="hljs-string">'phoneboothapp'</span>)
   .component(<span class="hljs-string">'phonebooth'</span>, {
-    template: <span class="hljs-string">`
+    <span class="hljs-attr">template</span>: <span class="hljs-string">`
       &lt;input ng-model="$ctrl.name"&gt;&lt;br/&gt;
       &lt;p&gt;Your name is {{$ctrl.name}}.&lt;/p&gt;
       &lt;button ng-click="$ctrl.change()"&gt;Put on costume&lt;/button&gt;
     `</span>,
-    controller: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Phonebooth</span> </span>{
+    <span class="hljs-attr">controller</span>: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Phonebooth</span> </span>{
       <span class="hljs-keyword">constructor</span> ($element) {
         <span class="hljs-keyword">this</span>.field = $element.find(<span class="hljs-string">'input'</span>)[<span class="hljs-number">0</span>]
         <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Steve'</span>
@@ -122,18 +122,18 @@ angular.module(<span class="hljs-string">'phoneboothapp'</span>)
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Phonebooth</span> (<span class="hljs-params">{DOM}</span>) </span>{
   <span class="hljs-keyword">const</span> type$ = DOM.select(<span class="hljs-string">'input'</span>)
     .events(<span class="hljs-string">'input'</span>)
-    .map(e =&gt; e.target.value)
+    .map(<span class="hljs-function"><span class="hljs-params">e</span> =&gt;</span> e.target.value)
     .startWith(<span class="hljs-string">'Steve'</span>)
   <span class="hljs-keyword">const</span> click$ = DOM.select(<span class="hljs-string">'button'</span>)
     .events(<span class="hljs-string">'click'</span>)
     .mapTo(<span class="hljs-string">'Batman'</span>)
   <span class="hljs-keyword">return</span> {
-    DOM: xs.merge(type$, click$).map(name =&gt; div([
-      input({props: {value: name}}),
+    <span class="hljs-attr">DOM</span>: xs.merge(type$, click$).map(<span class="hljs-function"><span class="hljs-params">name</span> =&gt;</span> div([
+      input({<span class="hljs-attr">props</span>: {<span class="hljs-attr">value</span>: name}}),
       p([<span class="hljs-string">'Your name is '</span> + name + <span class="hljs-string">'.'</span>]),
       button([<span class="hljs-string">'Put on costume'</span>])
     ])),
-    focus: click$
+    <span class="hljs-attr">focus</span>: click$
   }
 }
 
@@ -214,13 +214,13 @@ angular.module(<span class="hljs-string">'phoneboothapp'</span>)
                         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
 Vue.component(<span class="hljs-string">'phonebooth'</span>, {
-  template: <span class="hljs-string">`
+  <span class="hljs-attr">template</span>: <span class="hljs-string">`
     &lt;input v-model="name" v-el:input&gt;&lt;br/&gt;
     &lt;p&gt;Your name is {{name}}.&lt;/p&gt;
     &lt;button v-on:click="change"&gt;Put on costume&lt;/button&gt;
   `</span>,
-  data: () =&gt; ({name: <span class="hljs-string">'Steve'</span>}),
-  methods: {
+  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">name</span>: <span class="hljs-string">'Steve'</span>}),
+  <span class="hljs-attr">methods</span>: {
     change () {
       <span class="hljs-keyword">this</span>.name = <span class="hljs-string">'Batman'</span>
       <span class="hljs-keyword">this</span>.$els.input.focus()

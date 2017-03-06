@@ -53,7 +53,7 @@
 <span class="hljs-keyword">import</span> withComponent <span class="hljs-keyword">from</span> <span class="hljs-string">'./extras'</span>
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">view</span> (<span class="hljs-params">{childsinks: {submit$, DOM}}</span>) </span>{
-  <span class="hljs-keyword">return</span> xs.combine(submit$.startWith(<span class="hljs-string">'Steve'</span>), DOM).map(([submission, childvtree]) =&gt; div([
+  <span class="hljs-keyword">return</span> xs.combine(submit$.startWith(<span class="hljs-string">'Steve'</span>), DOM).map(<span class="hljs-function">(<span class="hljs-params">[submission, childvtree]</span>) =&gt;</span> div([
     childvtree,
     p(<span class="hljs-string">'Submitted value: '</span> + submission)
   ]))
@@ -61,8 +61,8 @@
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Form</span> (<span class="hljs-params">sources</span>) </span>{
   <span class="hljs-keyword">return</span> {
-    DOM: view(sources),
-    instruction$: xs.of(<span class="hljs-string">'Enter name'</span>)
+    <span class="hljs-attr">DOM</span>: view(sources),
+    <span class="hljs-attr">instruction$</span>: xs.of(<span class="hljs-string">'Enter name'</span>)
   }
 }
 
@@ -74,7 +74,7 @@
                         <p class="codeheadline">The same file in <a href="composition_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.4.9):</p>
                         <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>
 
-@Component({
+<span class="hljs-meta">@Component</span>({
   selector: <span class="hljs-string">'#app'</span>,
   template: <span class="hljs-string">`
     &lt;field instruction="Enter name" (submission)="onSubmission($event)"&gt;&lt;/field&gt;
@@ -96,21 +96,21 @@
                         <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 
-<span class="hljs-keyword">const</span> Form = () =&gt; Block({
-  components: {field: Field()},
-  on: {
-    init: () =&gt; [
+<span class="hljs-keyword">const</span> Form = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Block({
+  <span class="hljs-attr">components</span>: {<span class="hljs-attr">field</span>: Field()},
+  <span class="hljs-attr">on</span>: {
+    <span class="hljs-attr">init</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> [
       [<span class="hljs-string">'field.init'</span>, <span class="hljs-string">'Enter name'</span>],
-      state =&gt; ({current: <span class="hljs-string">'Steve'</span>})
+      state =&gt; ({<span class="hljs-attr">current</span>: <span class="hljs-string">'Steve'</span>})
     ],
-    <span class="hljs-string">'field.submission'</span>: submission =&gt; state =&gt; ({current: submission})
+    <span class="hljs-string">'field.submission'</span>: <span class="hljs-function"><span class="hljs-params">submission</span> =&gt;</span> state =&gt; ({<span class="hljs-attr">current</span>: submission})
   },
-  view: ({current}, {field}) =&gt; ({
-    content: [
+  <span class="hljs-attr">view</span>: <span class="hljs-function">(<span class="hljs-params">{current}, {field}</span>) =&gt;</span> ({
+    <span class="hljs-attr">content</span>: [
       field,
-      {tag: <span class="hljs-string">'p'</span>, content: <span class="hljs-string">`Submitted value: <span class="hljs-subst">${current}</span>`</span>}
+      {<span class="hljs-attr">tag</span>: <span class="hljs-string">'p'</span>, <span class="hljs-attr">content</span>: <span class="hljs-string">`Submitted value: <span class="hljs-subst">${current}</span>`</span>}
     ],
-    attrs: {id: <span class="hljs-string">'app'</span>}
+    <span class="hljs-attr">attrs</span>: {<span class="hljs-attr">id</span>: <span class="hljs-string">'app'</span>}
   })
 })
 
@@ -126,8 +126,8 @@
 <span class="hljs-keyword">import</span> Field <span class="hljs-keyword">from</span> <span class="hljs-string">'./field'</span>
 
 <span class="hljs-keyword">let</span> Form = React.createClass({
-  getInitialState: () =&gt; ({submission: <span class="hljs-string">'Steve'</span>}),
-  onSubmission (txt) { <span class="hljs-keyword">this</span>.setState({submission: txt}) },
+  <span class="hljs-attr">getInitialState</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">submission</span>: <span class="hljs-string">'Steve'</span>}),
+  onSubmission (txt) { <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">submission</span>: txt}) },
   render () {
     <span class="hljs-keyword">return</span> (
       <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>

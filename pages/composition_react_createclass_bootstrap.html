@@ -66,7 +66,7 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
 <span class="hljs-keyword">import</span> {Field} from <span class="hljs-string">'./field'</span>
 <span class="hljs-keyword">import</span> {Confirm} from <span class="hljs-string">'./confirm'</span>
 
-@NgModule({
+<span class="hljs-meta">@NgModule</span>({
     imports:      [ BrowserModule ],
     declarations: [ Form, Field, Confirm ],
     bootstrap:    [ Form ]
@@ -86,7 +86,7 @@ platformBrowserDynamic().bootstrapModule(AppModule);
 
 <span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">'./form'</span>
 
-run(Form, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) })
+run(Form, { <span class="hljs-attr">DOM</span>: makeDOMDriver(<span class="hljs-string">'#app'</span>) })
 </code></pre>
                         <a href="composition_cycle_comphelper_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -97,7 +97,7 @@ run(Form, { DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>) })
                         <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Form <span class="hljs-keyword">from</span> <span class="hljs-string">'./form'</span>
 
-run(Form, {target: <span class="hljs-string">'app'</span>})
+run(Form, {<span class="hljs-attr">target</span>: <span class="hljs-string">'app'</span>})
 </code></pre>
                         <a href="composition_cyclow_es6_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
