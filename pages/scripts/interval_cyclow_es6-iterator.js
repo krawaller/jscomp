@@ -1866,12 +1866,12 @@
 
 	var _graflow = __webpack_require__(3);
 
-	var lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', "We're off to never never land"];
+	var _lyrics = __webpack_require__(4);
 
 	var Singer = function Singer() {
 	  return (0, _cyclow.Block)({
 	    components: {
-	      lineTicker: (0, _graflow.Chain)((0, _graflow.Ticker)(1500), (0, _graflow.Iterator)(lyrics, { cyclic: true }))
+	      lineTicker: (0, _graflow.Chain)((0, _graflow.Ticker)(1500), (0, _graflow.Iterator)(_lyrics.lyrics, { cyclic: true }))
 	    },
 	    events: {
 	      init: function init() {
@@ -2969,6 +2969,14 @@
 	});
 	;
 	//# sourceMappingURL=graflow.js.map
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', 'We\'re off to never never land'];
 
 /***/ }
 /******/ ]);

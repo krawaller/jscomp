@@ -1,6 +1,6 @@
 import {Component, AfterViewInit} from '@angular/core';
 
-let lyrics = ["Eeexiiit light","Eeenteeer niight","Taaake my haaand","We're off to never never land"]
+import {lyrics} from '../../../lyrics'
 
 @Component({
   selector: '#app',

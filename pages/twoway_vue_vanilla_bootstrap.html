@@ -43,9 +43,9 @@
 <span class="hljs-keyword">import</span> <span class="hljs-string">'./phonebooth'</span>
 
 <span class="hljs-keyword">new</span> Vue({ 
-  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;phonebooth/&gt;'</span>,
-  <span class="hljs-attr">replace</span>: <span class="hljs-literal">false</span>,
-  <span class="hljs-attr">el</span>: <span class="hljs-string">'#app'</span>
+  template: <span class="hljs-string">'&lt;phonebooth/&gt;'</span>,
+  replace: <span class="hljs-literal">false</span>,
+  el: <span class="hljs-string">'#app'</span>
 })
 </code></pre>
                 </div>
@@ -61,7 +61,7 @@
 <span class="hljs-keyword">import</span> { Phonebooth } from <span class="hljs-string">'./phonebooth.ts'</span>;
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
 
-<span class="hljs-meta">@NgModule</span>({
+@NgModule({
     imports:      [ BrowserModule, FormsModule ],
     declarations: [ Phonebooth ],
     bootstrap:    [ Phonebooth ]
@@ -95,8 +95,8 @@ angular.module(<span class="hljs-string">'phoneboothapp'</span>, [])
 <span class="hljs-keyword">import</span> Phonebooth <span class="hljs-keyword">from</span> <span class="hljs-string">'./phonebooth'</span>
 
 run(Phonebooth, {
-  <span class="hljs-attr">DOM</span>: makeDOMDriver(<span class="hljs-string">'#app'</span>),
-  <span class="hljs-attr">focus</span>: makeFocusDriver(<span class="hljs-string">'#app input'</span>)
+  DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>),
+  focus: makeFocusDriver(<span class="hljs-string">'#app input'</span>)
 })
 </code></pre>
                         <a href="twoway_cycle_xstream_info.html" class="codelink" style="display:none;">visit this implementation</a>

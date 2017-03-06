@@ -1,10 +1,8 @@
 import {div} from '@cycle/dom'
 
-let lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', "We're off to never never land"]
-
-function Singer ({pos$}) {
+function Singer ({line$}) {
   return {
-    DOM: pos$.map(pos => div(lyrics[pos]))
+    DOM: line$.map(line => div(line))
   }
 }
 

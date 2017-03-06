@@ -1,13 +1,13 @@
 import {Block} from 'cyclow'
 import {Ticker} from 'graflow'
 
-var lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', "We're off to never never land"]
+import {lyrics} from '../../../lyrics'
 
 const Singer = () => Block({
   components: {ticker: Ticker(1500, {initialDelay: true})},
   events: {
     init: () => [['state', pos => 0], 'ticker'],
-    ticker: () => pos => (pos + 1) % 4
+    ticker: () => pos => (pos + 1) % lyrics.length
   },
   view: pos => ({content: lyrics[pos]})
 })

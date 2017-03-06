@@ -47,11 +47,11 @@
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/platform-browser-dynamic'</span>
 
 <span class="hljs-keyword">let</span> appModule = NgModule({
-  <span class="hljs-attr">imports</span>: [ BrowserModule ],
-  <span class="hljs-attr">declarations</span>: [ Clicker ],
-  <span class="hljs-attr">bootstrap</span>: [ Clicker ]
+  imports: [ BrowserModule ],
+  declarations: [ Clicker ],
+  bootstrap: [ Clicker ]
 }).Class({
-  <span class="hljs-attr">constructor</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{}
+  <span class="hljs-keyword">constructor</span>: function () {}
 })
 
 platformBrowserDynamic().bootstrapModule(appModule)
@@ -69,7 +69,7 @@ platformBrowserDynamic().bootstrapModule(appModule)
 <span class="hljs-keyword">import</span> { Clicker } from <span class="hljs-string">'./clicker.ts'</span>;
 <span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
 
-<span class="hljs-meta">@NgModule</span>({
+@NgModule({
     imports:      [ BrowserModule, FormsModule ],
     declarations: [ Clicker ],
     bootstrap:    [ Clicker ]
@@ -160,10 +160,10 @@ angular.module(<span class="hljs-string">'clickerapp'</span>, [])
 
 <span class="hljs-keyword">const</span> clicker = <span class="hljs-built_in">require</span>(<span class="hljs-string">'./clicker'</span>)
 <span class="hljs-keyword">const</span> root = <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">'app'</span>)
-<span class="hljs-keyword">const</span> app = choo({<span class="hljs-attr">href</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">history</span>: <span class="hljs-literal">false</span>, <span class="hljs-attr">hash</span>: <span class="hljs-literal">false</span>})
+<span class="hljs-keyword">const</span> app = choo({href: <span class="hljs-literal">false</span>, history: <span class="hljs-literal">false</span>, hash: <span class="hljs-literal">false</span>})
 
 app.model(clicker.model)
-app.router({<span class="hljs-attr">root</span>: root}, [<span class="hljs-built_in">document</span>.location.pathname, clicker.view])
+app.router({root: root}, [<span class="hljs-built_in">document</span>.location.pathname, clicker.view])
 root.appendChild(app.start())
 </code></pre>
                         <a href="simpleclicker_choo_vanilla_info.html" class="codelink" style="display:none;">visit this implementation</a>
@@ -178,7 +178,7 @@ root.appendChild(app.start())
 <span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
 
 run(Clicker, {
-  <span class="hljs-attr">DOM</span>: makeDOMDriver(<span class="hljs-string">'#app'</span>)
+  DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>)
 })
 </code></pre>
                         <a href="simpleclicker_cycle_rxjs_info.html" class="codelink" style="display:none;">visit this implementation</a>
@@ -193,7 +193,7 @@ run(Clicker, {
 <span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
 
 run(Clicker, {
-  <span class="hljs-attr">DOM</span>: makeDOMDriver(<span class="hljs-string">'#app'</span>)
+  DOM: makeDOMDriver(<span class="hljs-string">'#app'</span>)
 })
 </code></pre>
                         <a href="simpleclicker_cycle_xstream_info.html" class="codelink" style="display:none;">visit this implementation</a>
@@ -205,7 +205,7 @@ run(Clicker, {
                         <pre><code><span class="hljs-keyword">import</span> {run} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 <span class="hljs-keyword">import</span> Clicker <span class="hljs-keyword">from</span> <span class="hljs-string">'./clicker'</span>
 
-run(Clicker, {<span class="hljs-attr">target</span>: <span class="hljs-string">'app'</span>})
+run(Clicker, {target: <span class="hljs-string">'app'</span>})
 </code></pre>
                         <a href="simpleclicker_cyclow_es6_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -271,9 +271,9 @@ ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-n
 <span class="hljs-keyword">import</span> <span class="hljs-string">'./clicker'</span>
 
 <span class="hljs-keyword">new</span> Vue({ 
-  <span class="hljs-attr">template</span>: <span class="hljs-string">'&lt;clicker/&gt;'</span>,
-  <span class="hljs-attr">replace</span>: <span class="hljs-literal">false</span>,
-  <span class="hljs-attr">el</span>: <span class="hljs-string">'#app'</span>
+  template: <span class="hljs-string">'&lt;clicker/&gt;'</span>,
+  replace: <span class="hljs-literal">false</span>,
+  el: <span class="hljs-string">'#app'</span>
 })
 </code></pre>
                         <a href="simpleclicker_vue_vanilla_info.html" class="codelink" style="display:none;">visit this implementation</a>

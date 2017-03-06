@@ -1,9 +1,9 @@
 import Vue from 'vue'
 
-let lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', "We're off to never never land"]
+import {lyrics} from '../../../lyrics'
 
 Vue.component('singer', {
-  template: `<p>{{line}}</p>`, // eslint-disable-line
+  template: `<p>{{line}}</p>`,
   data: () => ({pos: 0}),
   computed: {
     line () {
@@ -11,6 +11,8 @@ Vue.component('singer', {
     }
   },
   attached (arg) {
-    setInterval(() => this.$set('pos', (this.pos + 1) % 4), 1500)
+    setInterval(() => this.$set(
+      'pos', (this.pos + 1) % lyrics.length
+    ), 1500)
   }
 })

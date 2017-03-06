@@ -1,7 +1,10 @@
 {
   "compilerOptions": {
+    "target": "es5",
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "moduleResolution": "node"
-  }
+    "moduleResolution": "node",
+    "allowJs": true
+  },
+  "types": ["core-js"]
 }

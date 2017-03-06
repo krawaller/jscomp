@@ -1866,7 +1866,7 @@
 
 	var _graflow = __webpack_require__(3);
 
-	var lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', "We're off to never never land"];
+	var _lyrics = __webpack_require__(4);
 
 	var Singer = function Singer() {
 	  return (0, _cyclow.Block)({
@@ -1879,12 +1879,12 @@
 	      },
 	      ticker: function ticker() {
 	        return function (pos) {
-	          return (pos + 1) % 4;
+	          return (pos + 1) % _lyrics.lyrics.length;
 	        };
 	      }
 	    },
 	    view: function view(pos) {
-	      return { content: lyrics[pos] };
+	      return { content: _lyrics.lyrics[pos] };
 	    }
 	  });
 	};
@@ -2969,6 +2969,14 @@
 	});
 	;
 	//# sourceMappingURL=graflow.js.map
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', 'We\'re off to never never land'];
 
 /***/ }
 /******/ ]);

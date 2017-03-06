@@ -10336,28 +10336,36 @@
 
 	var _vue2 = _interopRequireDefault(_vue);
 
+	var _lyrics = __webpack_require__(4);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', "We're off to never never land"];
-
 	_vue2.default.component('singer', {
-	  template: '<p>{{line}}</p>', // eslint-disable-line
+	  template: '<p>{{line}}</p>',
 	  data: function data() {
 	    return { pos: 0 };
 	  },
 	  computed: {
 	    line: function line() {
-	      return lyrics[this.pos];
+	      return _lyrics.lyrics[this.pos];
 	    }
 	  },
 	  attached: function attached(arg) {
 	    var _this = this;
 
 	    setInterval(function () {
-	      return _this.$set('pos', (_this.pos + 1) % 4);
+	      return _this.$set('pos', (_this.pos + 1) % _lyrics.lyrics.length);
 	    }, 1500);
 	  }
 	});
+
+/***/ },
+/* 4 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', 'We\'re off to never never land'];
 
 /***/ }
 /******/ ]);

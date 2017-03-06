@@ -42,9 +42,9 @@
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Clicker</span> (<span class="hljs-params">{DOM}</span>) </span>{
   <span class="hljs-keyword">const</span> click$ = DOM.select(<span class="hljs-string">'button'</span>).events(<span class="hljs-string">'click'</span>)
-  <span class="hljs-keyword">const</span> count$ = click$.mapTo(<span class="hljs-number">1</span>).startWith(<span class="hljs-number">3</span>).fold(<span class="hljs-function">(<span class="hljs-params">acc, seed</span>) =&gt;</span> (acc || <span class="hljs-number">0</span>) + seed)
+  <span class="hljs-keyword">const</span> count$ = click$.mapTo(<span class="hljs-number">1</span>).startWith(<span class="hljs-number">3</span>).fold((acc, seed) =&gt; (acc || <span class="hljs-number">0</span>) + seed)
   <span class="hljs-keyword">return</span> {
-    <span class="hljs-attr">DOM</span>: count$.map(<span class="hljs-function"><span class="hljs-params">count</span> =&gt;</span> div([
+    DOM: count$.map(count =&gt; div([
       div([count + <span class="hljs-string">' bottles of beer on the wall'</span>]),
       button([<span class="hljs-string">'Buy more'</span>])
     ]))
@@ -61,9 +61,9 @@
 
 <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Clicker</span> (<span class="hljs-params">{DOM}</span>) </span>{
   <span class="hljs-keyword">const</span> click$ = DOM.select(<span class="hljs-string">'button'</span>).events(<span class="hljs-string">'click'</span>)
-  <span class="hljs-keyword">const</span> count$ = click$.mapTo(<span class="hljs-number">1</span>).startWith(<span class="hljs-number">3</span>).scan(<span class="hljs-function">(<span class="hljs-params">acc, seed</span>) =&gt;</span> (acc || <span class="hljs-number">0</span>) + seed)
+  <span class="hljs-keyword">const</span> count$ = click$.mapTo(<span class="hljs-number">1</span>).startWith(<span class="hljs-number">3</span>).scan((acc, seed) =&gt; (acc || <span class="hljs-number">0</span>) + seed)
   <span class="hljs-keyword">return</span> {
-    <span class="hljs-attr">DOM</span>: count$.map(<span class="hljs-function"><span class="hljs-params">count</span> =&gt;</span> div([
+    DOM: count$.map(count =&gt; div([
       div([count + <span class="hljs-string">' bottles of beer on the wall'</span>]),
       button([<span class="hljs-string">'Buy more'</span>])
     ]))
@@ -81,13 +81,13 @@
                         <pre><code><span class="hljs-keyword">import</span> {Component} <span class="hljs-keyword">from</span> <span class="hljs-string">'@angular/core'</span>
 
 <span class="hljs-keyword">let</span> Clicker = Component({
-  <span class="hljs-attr">selector</span>: <span class="hljs-string">'#app'</span>,
-  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+  selector: <span class="hljs-string">'#app'</span>,
+  template: <span class="hljs-string">`
     &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
     &lt;button (click)="more()"&gt;Buy more&lt;/button&gt;
   `</span>
 }).Class({
-  <span class="hljs-attr">constructor</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+  <span class="hljs-keyword">constructor</span>: function () {
     <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
   },
   more () {
@@ -105,7 +105,7 @@
                         <p class="codeheadline">The same file in <a href="simpleclicker_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.6):</p>
                         <pre><code><span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>;
 
-<span class="hljs-meta">@Component</span>({
+@Component({
   selector: <span class="hljs-string">'#app'</span>,
   template: <span class="hljs-string">`
     &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
@@ -128,11 +128,11 @@
 
 angular.module(<span class="hljs-string">'clickerapp'</span>)
   .component(<span class="hljs-string">'clicker'</span>, {
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    template: <span class="hljs-string">`
       &lt;p&gt;{{$ctrl.count}} bottles of beer on the wall&lt;/p&gt;
       &lt;button ng-click="$ctrl.more()"&gt;Buy more&lt;/button&gt;
     `</span>,
-    <span class="hljs-attr">controller</span>: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> </span>{
+    controller: <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> </span>{
       $onInit () {
         <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
       }
@@ -152,13 +152,13 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
 
 angular.module(<span class="hljs-string">'clickerapp'</span>)
   .component(<span class="hljs-string">'clicker'</span>, {
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    template: <span class="hljs-string">`
       &lt;p&gt;{{$ctrl.count}} bottles of beer on the wall&lt;/p&gt;
       &lt;button ng-click="$ctrl.more()"&gt;Buy more&lt;/button&gt;
     `</span>,
-    <span class="hljs-attr">controller</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
+    controller: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
       <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
-      <span class="hljs-keyword">this</span>.more = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.count++
+      <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
     }
   })
 </code></pre>
@@ -173,14 +173,14 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
 angular.module(<span class="hljs-string">'clickerapp'</span>)
   .controller(<span class="hljs-string">'clickerctrl'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
-    <span class="hljs-keyword">this</span>.more = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.count++
+    <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
   })
   .component(<span class="hljs-string">'clicker'</span>, {
-    <span class="hljs-attr">template</span>: <span class="hljs-string">`
+    template: <span class="hljs-string">`
       &lt;p&gt;{{$ctrl.count}} bottles of beer on the wall&lt;/p&gt;
       &lt;button ng-click="$ctrl.more()"&gt;Buy more&lt;/button&gt;
     `</span>,
-    <span class="hljs-attr">controller</span>: <span class="hljs-string">'clickerctrl'</span>
+    controller: <span class="hljs-string">'clickerctrl'</span>
   })
 </code></pre>
                         <a href="simpleclicker_angularjs_componentseparate_info.html" class="codelink" style="display:none;">visit this implementation</a>
@@ -194,7 +194,7 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
 angular.module(<span class="hljs-string">'clickerapp'</span>)
   .controller(<span class="hljs-string">'clicker'</span>, [<span class="hljs-string">'$scope'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">$scope</span>) </span>{
     $scope.count = <span class="hljs-number">3</span>
-    $scope.more = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> $scope.count++
+    $scope.more = () =&gt; $scope.count++
   }])
 </code></pre>
                         <a href="simpleclicker_angularjs_controller_info.html" class="codelink" style="display:none;">visit this implementation</a>
@@ -208,7 +208,7 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
 angular.module(<span class="hljs-string">'clickerapp'</span>)
   .controller(<span class="hljs-string">'clicker'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">this</span>.count = <span class="hljs-number">3</span>
-    <span class="hljs-keyword">this</span>.more = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.count++
+    <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.count++
   })
 </code></pre>
                         <a href="simpleclicker_angularjs_controlleras_info.html" class="codelink" style="display:none;">visit this implementation</a>
@@ -222,14 +222,14 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
 angular.module(<span class="hljs-string">'clickerapp'</span>)
   .directive(<span class="hljs-string">'clicker'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>{
     <span class="hljs-keyword">return</span> {
-      <span class="hljs-attr">restrict</span>: <span class="hljs-string">'E'</span>,
-      <span class="hljs-attr">template</span>: <span class="hljs-string">`
+      restrict: <span class="hljs-string">'E'</span>,
+      template: <span class="hljs-string">`
         &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
         &lt;button ng-click="more()"&gt;Buy more&lt;/button&gt;
       `</span>,
-      <span class="hljs-attr">link</span>: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">scope</span>) </span>{
+      link: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">scope</span>) </span>{
         scope.count = <span class="hljs-number">3</span>
-        scope.more = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> scope.count++
+        scope.more = () =&gt; scope.count++
       }
     }
   })
@@ -243,20 +243,20 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
                         <pre><code><span class="hljs-keyword">const</span> html = <span class="hljs-built_in">require</span>(<span class="hljs-string">'choo/html'</span>)
 
 <span class="hljs-keyword">const</span> model = {
-  <span class="hljs-attr">state</span>: { <span class="hljs-attr">count</span>: <span class="hljs-number">3</span> },
-  <span class="hljs-attr">reducers</span>: {
-    <span class="hljs-attr">buyMore</span>: <span class="hljs-function">(<span class="hljs-params">state, data</span>) =&gt;</span> ({ <span class="hljs-attr">count</span>: state.count + <span class="hljs-number">1</span> })
+  state: { count: <span class="hljs-number">3</span> },
+  reducers: {
+    buyMore: (state, data) =&gt; ({ count: state.count + <span class="hljs-number">1</span> })
   }
 }
 
-<span class="hljs-keyword">const</span> view = <span class="hljs-function">(<span class="hljs-params">state, prev, send</span>) =&gt;</span> html<span class="hljs-string">`
+<span class="hljs-keyword">const</span> view = (state, prev, send) =&gt; html<span class="hljs-string">`
   &lt;main&gt;
     &lt;p&gt;<span class="hljs-subst">${state.count}</span> bottles of beer on the wall&lt;/p&gt;
-    &lt;button onclick=<span class="hljs-subst">${e =&gt; send(<span class="hljs-string">'buyMore'</span>)}</span>&gt;Buy more&lt;/button&gt;
+    &lt;button onclick=<span class="hljs-subst">${e =&gt; send('buyMore')}</span>&gt;Buy more&lt;/button&gt;
   &lt;/main&gt;
 `</span>
 
-<span class="hljs-built_in">module</span>.exports = {<span class="hljs-attr">model</span>: model, <span class="hljs-attr">view</span>: view}
+<span class="hljs-built_in">module</span>.exports = {model: model, view: view}
 </code></pre>
                         <a href="simpleclicker_choo_vanilla_info.html" class="codelink" style="display:none;">visit this implementation</a>
                         <br/>
@@ -266,14 +266,14 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
                         <p class="codeheadline">The same file in <a href="simpleclicker_cyclow_es6_info.html">an es6 implementation</a> using <a href="cyclow_info.html">Cyclow</a> (0.2.0):</p>
                         <pre><code><span class="hljs-keyword">import</span> {Block} <span class="hljs-keyword">from</span> <span class="hljs-string">'cyclow'</span>
 
-<span class="hljs-keyword">const</span> Counter = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> Block({
-  <span class="hljs-attr">events</span>: {
-    <span class="hljs-attr">init</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count =&gt; <span class="hljs-number">3</span>,
-    <span class="hljs-attr">click</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> count =&gt; count + <span class="hljs-number">1</span>
+<span class="hljs-keyword">const</span> Counter = () =&gt; Block({
+  events: {
+    init: () =&gt; count =&gt; <span class="hljs-number">3</span>,
+    click: () =&gt; count =&gt; count + <span class="hljs-number">1</span>
   },
-  <span class="hljs-attr">view</span>: <span class="hljs-function"><span class="hljs-params">count</span> =&gt;</span> ({<span class="hljs-attr">content</span>: [
-    {<span class="hljs-attr">content</span>: <span class="hljs-string">`<span class="hljs-subst">${count}</span> bottles of beer on the wall`</span>},
-    {<span class="hljs-attr">tag</span>: <span class="hljs-string">'button'</span>, <span class="hljs-attr">on</span>: {<span class="hljs-attr">click</span>: [<span class="hljs-string">'click'</span>]}, <span class="hljs-attr">content</span>: <span class="hljs-string">'Buy more'</span>}
+  view: count =&gt; ({content: [
+    {content: <span class="hljs-string">`<span class="hljs-subst">${count}</span> bottles of beer on the wall`</span>},
+    {tag: <span class="hljs-string">'button'</span>, on: {click: [<span class="hljs-string">'click'</span>]}, content: <span class="hljs-string">'Buy more'</span>}
   ]})
 })
 
@@ -325,9 +325,9 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
                         <pre><code><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>
 
 <span class="hljs-keyword">let</span> Clicker = React.createClass({
-  <span class="hljs-attr">getInitialState</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">count</span>: <span class="hljs-number">3</span>}),
+  getInitialState: () =&gt; ({count: <span class="hljs-number">3</span>}),
   more () {
-    <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">count</span>: <span class="hljs-keyword">this</span>.state.count + <span class="hljs-number">1</span>})
+    <span class="hljs-keyword">this</span>.setState({count: <span class="hljs-keyword">this</span>.state.count + <span class="hljs-number">1</span>})
   },
   render () {
     <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
@@ -350,8 +350,8 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
 <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Clicker</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">React</span>.<span class="hljs-title">Component</span> </span>{
   <span class="hljs-keyword">constructor</span> () {
     <span class="hljs-keyword">super</span>()
-    <span class="hljs-keyword">this</span>.state = {<span class="hljs-attr">count</span>: <span class="hljs-number">3</span>}
-    <span class="hljs-keyword">this</span>.more = <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">this</span>.setState({<span class="hljs-attr">count</span>: <span class="hljs-keyword">this</span>.state.count + <span class="hljs-number">1</span>})
+    <span class="hljs-keyword">this</span>.state = {count: <span class="hljs-number">3</span>}
+    <span class="hljs-keyword">this</span>.more = () =&gt; <span class="hljs-keyword">this</span>.setState({count: <span class="hljs-keyword">this</span>.state.count + <span class="hljs-number">1</span>})
   }
   render () {
     <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
@@ -373,7 +373,7 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
 <span class="hljs-keyword">import</span> {withState} <span class="hljs-keyword">from</span> <span class="hljs-string">'recompose'</span>
 
 <span class="hljs-keyword">const</span> enhance = withState(<span class="hljs-string">'count'</span>, <span class="hljs-string">'more'</span>, <span class="hljs-number">3</span>)
-<span class="hljs-keyword">const</span> Clicker = enhance(<span class="hljs-function">(<span class="hljs-params">{count, more}</span>) =&gt;</span> (
+<span class="hljs-keyword">const</span> Clicker = enhance(({count, more}) =&gt; (
   <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>{count} bottles of beer on the wall<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">onClick</span>=<span class="hljs-string">{()</span> =&gt;</span> more(n =&gt; n + 1)}&gt;Buy more<span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span>
@@ -391,12 +391,12 @@ angular.module(<span class="hljs-string">'clickerapp'</span>)
                         <pre><code><span class="hljs-keyword">import</span> Vue <span class="hljs-keyword">from</span> <span class="hljs-string">'vue'</span>
 
 Vue.component(<span class="hljs-string">'clicker'</span>, {
-  <span class="hljs-attr">template</span>: <span class="hljs-string">`
+  template: <span class="hljs-string">`
     &lt;p&gt;{{count}} bottles of beer on the wall&lt;/p&gt;
     &lt;button v-on:click="more"&gt;Buy more&lt;/button&gt;
   `</span>,
-  <span class="hljs-attr">data</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> ({<span class="hljs-attr">count</span>: <span class="hljs-number">3</span>}),
-  <span class="hljs-attr">methods</span>: {
+  data: () =&gt; ({count: <span class="hljs-number">3</span>}),
+  methods: {
     more () {
       <span class="hljs-keyword">this</span>.count++
     }

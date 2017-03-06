@@ -43,11 +43,13 @@
                 <div>
                     <pre><code><span class="hljs-keyword">import</span> xs <span class="hljs-keyword">from</span> <span class="hljs-string">'xstream'</span>
 
-<span class="hljs-keyword">const</span> makeIntervalDriver = <span class="hljs-function">(<span class="hljs-params">ceil, interval</span>) =&gt;</span> () =&gt; {
-  <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(<span class="hljs-function"><span class="hljs-params">n</span> =&gt;</span> (n + <span class="hljs-number">1</span>) % ceil)
+<span class="hljs-keyword">const</span> makeIteratorDriver = arr =&gt; () =&gt; {
+  <span class="hljs-keyword">return</span> xs.periodic(<span class="hljs-number">1500</span>).startWith(<span class="hljs-number">-1</span>).map(
+    n =&gt; arr[(n + <span class="hljs-number">1</span>) % arr.length]
+  )
 }
 
-<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIntervalDriver
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> makeIteratorDriver
 </code></pre>
                 </div>
                 <div>

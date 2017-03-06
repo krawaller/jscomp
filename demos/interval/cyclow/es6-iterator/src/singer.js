@@ -1,7 +1,7 @@
 import {Block} from 'cyclow'
 import {Ticker, Iterator, Chain} from 'graflow'
 
-let lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', "We're off to never never land"]
+import {lyrics} from '../../../lyrics'
 
 const Singer = () => Block({
   components: {

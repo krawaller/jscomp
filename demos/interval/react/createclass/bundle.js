@@ -60,7 +60,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_singer2.default, null), document.getElementById("app"));
+	_reactDom2.default.render(_react2.default.createElement(_singer2.default, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -21437,7 +21437,7 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -21447,12 +21447,12 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _lyrics = __webpack_require__(173);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var lyrics = ["Eeexiiit light", "Eeenteeer niight", "Taaake my haaand", "We're off to never never land"];
-
 	var Singer = _react2.default.createClass({
-	  displayName: "Singer",
+	  displayName: 'Singer',
 
 	  getInitialState: function getInitialState() {
 	    return { pos: 0 };
@@ -21461,19 +21461,29 @@
 	    var _this = this;
 
 	    setInterval(function () {
-	      return _this.setState({ pos: (_this.state.pos + 1) % 4 });
+	      return _this.setState({
+	        pos: (_this.state.pos + 1) % _lyrics.lyrics.length
+	      });
 	    }, 1500);
 	  },
 	  render: function render() {
 	    return _react2.default.createElement(
-	      "div",
+	      'div',
 	      null,
-	      lyrics[this.state.pos]
+	      _lyrics.lyrics[this.state.pos]
 	    );
 	  }
 	});
 
 	exports.default = Singer;
+
+/***/ },
+/* 173 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', 'We\'re off to never never land'];
 
 /***/ }
 /******/ ]);

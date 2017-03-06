@@ -46,11 +46,7 @@
 
 	'use strict';
 
-	var _xstream = __webpack_require__(1);
-
-	var _xstream2 = _interopRequireDefault(_xstream);
-
-	var _xstreamRun = __webpack_require__(3);
+	var _xstreamRun = __webpack_require__(1);
 
 	var _dom = __webpack_require__(6);
 
@@ -58,7 +54,9 @@
 
 	var _extras2 = _interopRequireDefault(_extras);
 
-	var _singer = __webpack_require__(123);
+	var _lyrics = __webpack_require__(123);
+
+	var _singer = __webpack_require__(124);
 
 	var _singer2 = _interopRequireDefault(_singer);
 
@@ -66,7 +64,7 @@
 
 	(0, _xstreamRun.run)(_singer2.default, {
 	  DOM: (0, _dom.makeDOMDriver)('#app'),
-	  pos$: (0, _extras2.default)(4, 1500)
+	  line$: (0, _extras2.default)(_lyrics.lyrics)
 	});
 
 /***/ },
@@ -74,7 +72,254 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var core_1 = __webpack_require__(2);
+	var base_1 = __webpack_require__(2);
+	var xstream_adapter_1 = __webpack_require__(3);
+	/**
+	 * Takes a `main` function and circularly connects it to the given collection
+	 * of driver functions.
+	 *
+	 * **Example:**
+	 * ```js
+	 * import {run} from '@cycle/xstream-run';
+	 * const dispose = run(main, drivers);
+	 * // ...
+	 * dispose();
+	 * ```
+	 *
+	 * The `main` function expects a collection of "source" streams (returned from
+	 * drivers) as input, and should return a collection of "sink" streams (to be
+	 * given to drivers). A "collection of streams" is a JavaScript object where
+	 * keys match the driver names registered by the `drivers` object, and values
+	 * are the streams. Refer to the documentation of each driver to see more
+	 * details on what types of sources it outputs and sinks it receives.
+	 *
+	 * @param {Function} main a function that takes `sources` as input and outputs
+	 * `sinks`.
+	 * @param {Object} drivers an object where keys are driver names and values
+	 * are driver functions.
+	 * @return {Function} a dispose function, used to terminate the execution of the
+	 * Cycle.js program, cleaning up resources used.
+	 * @function run
+	 */
+	function run(main, drivers) {
+	    var _a = base_1.default(main, drivers, { streamAdapter: xstream_adapter_1.default }), run = _a.run, sinks = _a.sinks;
+	    if (typeof window !== 'undefined' && window['CyclejsDevTool_startGraphSerializer']) {
+	        window['CyclejsDevTool_startGraphSerializer'](sinks);
+	    }
+	    return run();
+	}
+	exports.run = run;
+	/**
+	 * A function that prepares the Cycle application to be executed. Takes a `main`
+	 * function and prepares to circularly connects it to the given collection of
+	 * driver functions. As an output, `Cycle()` returns an object with three
+	 * properties: `sources`, `sinks` and `run`. Only when `run()` is called will
+	 * the application actually execute. Refer to the documentation of `run()` for
+	 * more details.
+	 *
+	 * **Example:**
+	 * ```js
+	 * import Cycle from '@cycle/xstream-run';
+	 * const {sources, sinks, run} = Cycle(main, drivers);
+	 * // ...
+	 * const dispose = run(); // Executes the application
+	 * // ...
+	 * dispose();
+	 * ```
+	 *
+	 * @param {Function} main a function that takes `sources` as input and outputs
+	 * `sinks`.
+	 * @param {Object} drivers an object where keys are driver names and values
+	 * are driver functions.
+	 * @return {Object} an object with three properties: `sources`, `sinks` and
+	 * `run`. `sources` is the collection of driver sources, `sinks` is the
+	 * collection of driver sinks, these can be used for debugging or testing. `run`
+	 * is the function that once called will execute the application.
+	 * @function Cycle
+	 */
+	var Cycle = function (main, drivers) {
+	    var out = base_1.default(main, drivers, { streamAdapter: xstream_adapter_1.default });
+	    if (typeof window !== 'undefined' && window['CyclejsDevTool_startGraphSerializer']) {
+	        window['CyclejsDevTool_startGraphSerializer'](out.sinks);
+	    }
+	    return out;
+	};
+	Cycle.run = run;
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Cycle;
+	//# sourceMappingURL=index.js.map
+
+/***/ },
+/* 2 */
+/***/ function(module, exports) {
+
+	"use strict";
+	function logToConsoleError(err) {
+	    var target = err.stack || err;
+	    if (console && console.error) {
+	        console.error(target);
+	    }
+	    else if (console && console.log) {
+	        console.log(target);
+	    }
+	}
+	function makeSinkProxies(drivers, streamAdapter) {
+	    var sinkProxies = {};
+	    for (var name_1 in drivers) {
+	        if (drivers.hasOwnProperty(name_1)) {
+	            var holdSubject = streamAdapter.makeSubject();
+	            var driverStreamAdapter = drivers[name_1].streamAdapter || streamAdapter;
+	            var stream = driverStreamAdapter.adapt(holdSubject.stream, streamAdapter.streamSubscribe);
+	            sinkProxies[name_1] = {
+	                stream: stream,
+	                observer: holdSubject.observer,
+	            };
+	        }
+	    }
+	    return sinkProxies;
+	}
+	function callDrivers(drivers, sinkProxies, streamAdapter) {
+	    var sources = {};
+	    for (var name_2 in drivers) {
+	        if (drivers.hasOwnProperty(name_2)) {
+	            var driverOutput = drivers[name_2](sinkProxies[name_2].stream, streamAdapter, name_2);
+	            var driverStreamAdapter = drivers[name_2].streamAdapter;
+	            if (driverStreamAdapter && driverStreamAdapter.isValidStream(driverOutput)) {
+	                sources[name_2] = streamAdapter.adapt(driverOutput, driverStreamAdapter.streamSubscribe);
+	            }
+	            else {
+	                sources[name_2] = driverOutput;
+	            }
+	            if (sources[name_2] && typeof sources[name_2] === 'object') {
+	                sources[name_2]._isCycleSource = name_2;
+	            }
+	        }
+	    }
+	    return sources;
+	}
+	function replicateMany(sinks, sinkProxies, streamAdapter) {
+	    var results = Object.keys(sinks)
+	        .filter(function (name) { return !!sinkProxies[name]; })
+	        .map(function (name) {
+	        return streamAdapter.streamSubscribe(sinks[name], {
+	            next: function (x) { sinkProxies[name].observer.next(x); },
+	            error: function (err) {
+	                logToConsoleError(err);
+	                sinkProxies[name].observer.error(err);
+	            },
+	            complete: function (x) {
+	                sinkProxies[name].observer.complete(x);
+	            }
+	        });
+	    });
+	    var disposeFunctions = results
+	        .filter(function (dispose) { return typeof dispose === 'function'; });
+	    return function () {
+	        disposeFunctions.forEach(function (dispose) { return dispose(); });
+	    };
+	}
+	function disposeSources(sources) {
+	    for (var k in sources) {
+	        if (sources.hasOwnProperty(k) && sources[k]
+	            && typeof sources[k].dispose === 'function') {
+	            sources[k].dispose();
+	        }
+	    }
+	}
+	var isObjectEmpty = function (obj) { return Object.keys(obj).length === 0; };
+	function Cycle(main, drivers, options) {
+	    if (typeof main !== "function") {
+	        throw new Error("First argument given to Cycle must be the 'main' " +
+	            "function.");
+	    }
+	    if (typeof drivers !== "object" || drivers === null) {
+	        throw new Error("Second argument given to Cycle must be an object " +
+	            "with driver functions as properties.");
+	    }
+	    if (isObjectEmpty(drivers)) {
+	        throw new Error("Second argument given to Cycle must be an object " +
+	            "with at least one driver function declared as a property.");
+	    }
+	    var streamAdapter = options.streamAdapter;
+	    if (!streamAdapter || isObjectEmpty(streamAdapter)) {
+	        throw new Error("Third argument given to Cycle must be an options object " +
+	            "with the streamAdapter key supplied with a valid stream adapter.");
+	    }
+	    var sinkProxies = makeSinkProxies(drivers, streamAdapter);
+	    var sources = callDrivers(drivers, sinkProxies, streamAdapter);
+	    var sinks = main(sources);
+	    if (typeof window !== 'undefined') {
+	        window.Cyclejs = { sinks: sinks };
+	    }
+	    var run = function () {
+	        var disposeReplication = replicateMany(sinks, sinkProxies, streamAdapter);
+	        return function () {
+	            disposeSources(sources);
+	            disposeReplication();
+	        };
+	    };
+	    return { sinks: sinks, sources: sources, run: run };
+	}
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = Cycle;
+	//# sourceMappingURL=index.js.map
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var xstream_1 = __webpack_require__(4);
+	var XStreamAdapter = {
+	    adapt: function (originStream, originStreamSubscribe) {
+	        if (XStreamAdapter.isValidStream(originStream)) {
+	            return originStream;
+	        }
+	        ;
+	        var dispose = null;
+	        return xstream_1.default.create({
+	            start: function (out) {
+	                var observer = out;
+	                dispose = originStreamSubscribe(originStream, observer);
+	            },
+	            stop: function () {
+	                if (typeof dispose === 'function') {
+	                    dispose();
+	                }
+	            }
+	        });
+	    },
+	    makeSubject: function () {
+	        var stream = xstream_1.default.create();
+	        var observer = {
+	            next: function (x) { stream.shamefullySendNext(x); },
+	            error: function (err) { stream.shamefullySendError(err); },
+	            complete: function () { stream.shamefullySendComplete(); }
+	        };
+	        return { observer: observer, stream: stream };
+	    },
+	    remember: function (stream) {
+	        return stream.remember();
+	    },
+	    isValidStream: function (stream) {
+	        return (typeof stream.addListener === 'function' &&
+	            typeof stream.shamefullySendNext === 'function');
+	    },
+	    streamSubscribe: function (stream, observer) {
+	        stream.addListener(observer);
+	        return function () { return stream.removeListener(observer); };
+	    }
+	};
+	Object.defineProperty(exports, "__esModule", { value: true });
+	exports.default = XStreamAdapter;
+	//# sourceMappingURL=index.js.map
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	var core_1 = __webpack_require__(5);
 	exports.Stream = core_1.Stream;
 	exports.MemoryStream = core_1.MemoryStream;
 	Object.defineProperty(exports, "__esModule", { value: true });
@@ -82,7 +327,7 @@
 	//# sourceMappingURL=index.js.map
 
 /***/ },
-/* 2 */
+/* 5 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -1838,253 +2083,6 @@
 	//# sourceMappingURL=core.js.map
 
 /***/ },
-/* 3 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var base_1 = __webpack_require__(4);
-	var xstream_adapter_1 = __webpack_require__(5);
-	/**
-	 * Takes a `main` function and circularly connects it to the given collection
-	 * of driver functions.
-	 *
-	 * **Example:**
-	 * ```js
-	 * import {run} from '@cycle/xstream-run';
-	 * const dispose = run(main, drivers);
-	 * // ...
-	 * dispose();
-	 * ```
-	 *
-	 * The `main` function expects a collection of "source" streams (returned from
-	 * drivers) as input, and should return a collection of "sink" streams (to be
-	 * given to drivers). A "collection of streams" is a JavaScript object where
-	 * keys match the driver names registered by the `drivers` object, and values
-	 * are the streams. Refer to the documentation of each driver to see more
-	 * details on what types of sources it outputs and sinks it receives.
-	 *
-	 * @param {Function} main a function that takes `sources` as input and outputs
-	 * `sinks`.
-	 * @param {Object} drivers an object where keys are driver names and values
-	 * are driver functions.
-	 * @return {Function} a dispose function, used to terminate the execution of the
-	 * Cycle.js program, cleaning up resources used.
-	 * @function run
-	 */
-	function run(main, drivers) {
-	    var _a = base_1.default(main, drivers, { streamAdapter: xstream_adapter_1.default }), run = _a.run, sinks = _a.sinks;
-	    if (typeof window !== 'undefined' && window['CyclejsDevTool_startGraphSerializer']) {
-	        window['CyclejsDevTool_startGraphSerializer'](sinks);
-	    }
-	    return run();
-	}
-	exports.run = run;
-	/**
-	 * A function that prepares the Cycle application to be executed. Takes a `main`
-	 * function and prepares to circularly connects it to the given collection of
-	 * driver functions. As an output, `Cycle()` returns an object with three
-	 * properties: `sources`, `sinks` and `run`. Only when `run()` is called will
-	 * the application actually execute. Refer to the documentation of `run()` for
-	 * more details.
-	 *
-	 * **Example:**
-	 * ```js
-	 * import Cycle from '@cycle/xstream-run';
-	 * const {sources, sinks, run} = Cycle(main, drivers);
-	 * // ...
-	 * const dispose = run(); // Executes the application
-	 * // ...
-	 * dispose();
-	 * ```
-	 *
-	 * @param {Function} main a function that takes `sources` as input and outputs
-	 * `sinks`.
-	 * @param {Object} drivers an object where keys are driver names and values
-	 * are driver functions.
-	 * @return {Object} an object with three properties: `sources`, `sinks` and
-	 * `run`. `sources` is the collection of driver sources, `sinks` is the
-	 * collection of driver sinks, these can be used for debugging or testing. `run`
-	 * is the function that once called will execute the application.
-	 * @function Cycle
-	 */
-	var Cycle = function (main, drivers) {
-	    var out = base_1.default(main, drivers, { streamAdapter: xstream_adapter_1.default });
-	    if (typeof window !== 'undefined' && window['CyclejsDevTool_startGraphSerializer']) {
-	        window['CyclejsDevTool_startGraphSerializer'](out.sinks);
-	    }
-	    return out;
-	};
-	Cycle.run = run;
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = Cycle;
-	//# sourceMappingURL=index.js.map
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	"use strict";
-	function logToConsoleError(err) {
-	    var target = err.stack || err;
-	    if (console && console.error) {
-	        console.error(target);
-	    }
-	    else if (console && console.log) {
-	        console.log(target);
-	    }
-	}
-	function makeSinkProxies(drivers, streamAdapter) {
-	    var sinkProxies = {};
-	    for (var name_1 in drivers) {
-	        if (drivers.hasOwnProperty(name_1)) {
-	            var holdSubject = streamAdapter.makeSubject();
-	            var driverStreamAdapter = drivers[name_1].streamAdapter || streamAdapter;
-	            var stream = driverStreamAdapter.adapt(holdSubject.stream, streamAdapter.streamSubscribe);
-	            sinkProxies[name_1] = {
-	                stream: stream,
-	                observer: holdSubject.observer,
-	            };
-	        }
-	    }
-	    return sinkProxies;
-	}
-	function callDrivers(drivers, sinkProxies, streamAdapter) {
-	    var sources = {};
-	    for (var name_2 in drivers) {
-	        if (drivers.hasOwnProperty(name_2)) {
-	            var driverOutput = drivers[name_2](sinkProxies[name_2].stream, streamAdapter, name_2);
-	            var driverStreamAdapter = drivers[name_2].streamAdapter;
-	            if (driverStreamAdapter && driverStreamAdapter.isValidStream(driverOutput)) {
-	                sources[name_2] = streamAdapter.adapt(driverOutput, driverStreamAdapter.streamSubscribe);
-	            }
-	            else {
-	                sources[name_2] = driverOutput;
-	            }
-	            if (sources[name_2] && typeof sources[name_2] === 'object') {
-	                sources[name_2]._isCycleSource = name_2;
-	            }
-	        }
-	    }
-	    return sources;
-	}
-	function replicateMany(sinks, sinkProxies, streamAdapter) {
-	    var results = Object.keys(sinks)
-	        .filter(function (name) { return !!sinkProxies[name]; })
-	        .map(function (name) {
-	        return streamAdapter.streamSubscribe(sinks[name], {
-	            next: function (x) { sinkProxies[name].observer.next(x); },
-	            error: function (err) {
-	                logToConsoleError(err);
-	                sinkProxies[name].observer.error(err);
-	            },
-	            complete: function (x) {
-	                sinkProxies[name].observer.complete(x);
-	            }
-	        });
-	    });
-	    var disposeFunctions = results
-	        .filter(function (dispose) { return typeof dispose === 'function'; });
-	    return function () {
-	        disposeFunctions.forEach(function (dispose) { return dispose(); });
-	    };
-	}
-	function disposeSources(sources) {
-	    for (var k in sources) {
-	        if (sources.hasOwnProperty(k) && sources[k]
-	            && typeof sources[k].dispose === 'function') {
-	            sources[k].dispose();
-	        }
-	    }
-	}
-	var isObjectEmpty = function (obj) { return Object.keys(obj).length === 0; };
-	function Cycle(main, drivers, options) {
-	    if (typeof main !== "function") {
-	        throw new Error("First argument given to Cycle must be the 'main' " +
-	            "function.");
-	    }
-	    if (typeof drivers !== "object" || drivers === null) {
-	        throw new Error("Second argument given to Cycle must be an object " +
-	            "with driver functions as properties.");
-	    }
-	    if (isObjectEmpty(drivers)) {
-	        throw new Error("Second argument given to Cycle must be an object " +
-	            "with at least one driver function declared as a property.");
-	    }
-	    var streamAdapter = options.streamAdapter;
-	    if (!streamAdapter || isObjectEmpty(streamAdapter)) {
-	        throw new Error("Third argument given to Cycle must be an options object " +
-	            "with the streamAdapter key supplied with a valid stream adapter.");
-	    }
-	    var sinkProxies = makeSinkProxies(drivers, streamAdapter);
-	    var sources = callDrivers(drivers, sinkProxies, streamAdapter);
-	    var sinks = main(sources);
-	    if (typeof window !== 'undefined') {
-	        window.Cyclejs = { sinks: sinks };
-	    }
-	    var run = function () {
-	        var disposeReplication = replicateMany(sinks, sinkProxies, streamAdapter);
-	        return function () {
-	            disposeSources(sources);
-	            disposeReplication();
-	        };
-	    };
-	    return { sinks: sinks, sources: sources, run: run };
-	}
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = Cycle;
-	//# sourceMappingURL=index.js.map
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	var xstream_1 = __webpack_require__(1);
-	var XStreamAdapter = {
-	    adapt: function (originStream, originStreamSubscribe) {
-	        if (XStreamAdapter.isValidStream(originStream)) {
-	            return originStream;
-	        }
-	        ;
-	        var dispose = null;
-	        return xstream_1.default.create({
-	            start: function (out) {
-	                var observer = out;
-	                dispose = originStreamSubscribe(originStream, observer);
-	            },
-	            stop: function () {
-	                if (typeof dispose === 'function') {
-	                    dispose();
-	                }
-	            }
-	        });
-	    },
-	    makeSubject: function () {
-	        var stream = xstream_1.default.create();
-	        var observer = {
-	            next: function (x) { stream.shamefullySendNext(x); },
-	            error: function (err) { stream.shamefullySendError(err); },
-	            complete: function () { stream.shamefullySendComplete(); }
-	        };
-	        return { observer: observer, stream: stream };
-	    },
-	    remember: function (stream) {
-	        return stream.remember();
-	    },
-	    isValidStream: function (stream) {
-	        return (typeof stream.addListener === 'function' &&
-	            typeof stream.shamefullySendNext === 'function');
-	    },
-	    streamSubscribe: function (stream, observer) {
-	        stream.addListener(observer);
-	        return function () { return stream.removeListener(observer); };
-	    }
-	};
-	Object.defineProperty(exports, "__esModule", { value: true });
-	exports.default = XStreamAdapter;
-	//# sourceMappingURL=index.js.map
-
-/***/ },
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -2491,14 +2489,14 @@
 
 	"use strict";
 	var snabbdom_1 = __webpack_require__(12);
-	var xstream_1 = __webpack_require__(1);
+	var xstream_1 = __webpack_require__(4);
 	var MainDOMSource_1 = __webpack_require__(14);
 	var VNodeWrapper_1 = __webpack_require__(24);
 	var utils_1 = __webpack_require__(20);
 	var modules_1 = __webpack_require__(29);
 	var isolateModule_1 = __webpack_require__(36);
 	var transposition_1 = __webpack_require__(90);
-	var xstream_adapter_1 = __webpack_require__(5);
+	var xstream_adapter_1 = __webpack_require__(3);
 	var MapPolyfill = __webpack_require__(37);
 	function makeDOMDriverInputGuard(modules) {
 	    if (!Array.isArray(modules)) {
@@ -2878,10 +2876,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_adapter_1 = __webpack_require__(5);
+	var xstream_adapter_1 = __webpack_require__(3);
 	var DocumentDOMSource_1 = __webpack_require__(15);
 	var BodyDOMSource_1 = __webpack_require__(17);
-	var xstream_1 = __webpack_require__(1);
+	var xstream_1 = __webpack_require__(4);
 	var ElementFinder_1 = __webpack_require__(18);
 	var fromEvent_1 = __webpack_require__(16);
 	var isolate_1 = __webpack_require__(22);
@@ -3071,8 +3069,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_1 = __webpack_require__(1);
-	var xstream_adapter_1 = __webpack_require__(5);
+	var xstream_1 = __webpack_require__(4);
+	var xstream_adapter_1 = __webpack_require__(3);
 	var fromEvent_1 = __webpack_require__(16);
 	var DocumentDOMSource = (function () {
 	    function DocumentDOMSource(_runStreamAdapter, _name) {
@@ -3112,7 +3110,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_1 = __webpack_require__(1);
+	var xstream_1 = __webpack_require__(4);
 	function fromEvent(element, eventName, useCapture) {
 	    if (useCapture === void 0) { useCapture = false; }
 	    return xstream_1.Stream.create({
@@ -3135,8 +3133,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_1 = __webpack_require__(1);
-	var xstream_adapter_1 = __webpack_require__(5);
+	var xstream_1 = __webpack_require__(4);
+	var xstream_adapter_1 = __webpack_require__(3);
 	var fromEvent_1 = __webpack_require__(16);
 	var BodyDOMSource = (function () {
 	    function BodyDOMSource(_runStreamAdapter, _name) {
@@ -5869,8 +5867,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_adapter_1 = __webpack_require__(5);
-	var xstream_1 = __webpack_require__(1);
+	var xstream_adapter_1 = __webpack_require__(3);
+	var xstream_1 = __webpack_require__(4);
 	function createVTree(vnode, children) {
 	    return {
 	        sel: vnode.sel,
@@ -5921,7 +5919,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_adapter_1 = __webpack_require__(5);
+	var xstream_adapter_1 = __webpack_require__(3);
 	var transposition_1 = __webpack_require__(90);
 	var HTMLSource_1 = __webpack_require__(92);
 	var toHTML = __webpack_require__(93);
@@ -5956,8 +5954,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_1 = __webpack_require__(1);
-	var xstream_adapter_1 = __webpack_require__(5);
+	var xstream_1 = __webpack_require__(4);
+	var xstream_adapter_1 = __webpack_require__(3);
 	var HTMLSource = (function () {
 	    function HTMLSource(html$, runSA, _name) {
 	        this.runSA = runSA;
@@ -8556,8 +8554,8 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var xstream_adapter_1 = __webpack_require__(5);
-	var xstream_1 = __webpack_require__(1);
+	var xstream_adapter_1 = __webpack_require__(3);
+	var xstream_1 = __webpack_require__(4);
 	var SCOPE_PREFIX = '___';
 	var MockedDOMSource = (function () {
 	    function MockedDOMSource(_streamAdapter, _mockConfig) {
@@ -8713,27 +8711,35 @@
 	  value: true
 	});
 
-	var _xstream = __webpack_require__(1);
+	var _xstream = __webpack_require__(4);
 
 	var _xstream2 = _interopRequireDefault(_xstream);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var makeIntervalDriver = function makeIntervalDriver(ceil, interval) {
+	var makeIteratorDriver = function makeIteratorDriver(arr) {
 	  return function () {
 	    return _xstream2.default.periodic(1500).startWith(-1).map(function (n) {
-	      return (n + 1) % ceil;
+	      return arr[(n + 1) % arr.length];
 	    });
 	  };
 	};
 
-	exports.default = makeIntervalDriver;
+	exports.default = makeIteratorDriver;
 
 /***/ },
 /* 123 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	exports.lyrics = ['Eeexiiit light', 'Eeenteeer niight', 'Taaake my haaand', 'We\'re off to never never land'];
+
+/***/ },
+/* 124 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -8741,14 +8747,12 @@
 
 	var _dom = __webpack_require__(6);
 
-	var lyrics = ["Eeexiiit light", "Eeenteeer niight", "Taaake my haaand", "We're off to never never land"];
-
 	function Singer(_ref) {
-	  var pos$ = _ref.pos$;
+	  var line$ = _ref.line$;
 
 	  return {
-	    DOM: pos$.map(function (pos) {
-	      return (0, _dom.div)(lyrics[pos]);
+	    DOM: line$.map(function (line) {
+	      return (0, _dom.div)(line);
 	    })
 	  };
 	}

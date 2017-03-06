@@ -1,10 +1,11 @@
 import {run} from '@cycle/xstream-run'
 import {makeDOMDriver} from '@cycle/dom'
-import makeIntervalDriver from './extras'
 
+import makeIteratorDriver from './extras'
+import {lyrics} from '../../../lyrics'
 import Singer from './singer'
 
 run(Singer, {
   DOM: makeDOMDriver('#app'),
-  pos$: makeIntervalDriver(4, 1500)
+  line$: makeIteratorDriver(lyrics)
 })

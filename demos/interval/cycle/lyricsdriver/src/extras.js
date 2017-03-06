@@ -1,7 +1,9 @@
 import xs from 'xstream'
 
-const makeIntervalDriver = (ceil, interval) => () => {
-  return xs.periodic(1500).startWith(-1).map(n => (n + 1) % ceil)
+const makeIteratorDriver = arr => () => {
+  return xs.periodic(1500).startWith(-1).map(
+    n => arr[(n + 1) % arr.length]
+  )
 }
 
-export default makeIntervalDriver
+export default makeIteratorDriver
