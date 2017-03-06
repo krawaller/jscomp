@@ -1,14 +1,17 @@
 module.exports = {
   entry: './src/bootstrap.ts',
   output: {
-    filename: './bundle.js'
+    path: './',
+    filename: 'bundle.js',
   },
   resolve: {
-    extensions: ['', '.webpack.js', '.web.js', '.ts', '.tsx', '.js']
+    extensions: [".ts",".js",""]
   },
   module: {
-    loaders: [
-      { test: /\.tsx?$/, loader: 'ts-loader' }
-    ]
+    loaders: [{
+      test: /\.ts$/,
+      loader: 'ts-loader',
+      exclude: ['node_modules']
+    }]
   }
 }

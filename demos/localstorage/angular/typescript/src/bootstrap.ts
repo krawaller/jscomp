@@ -3,7 +3,7 @@ import 'reflect-metadata'
 
 import { NgModule, Component }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { Voter } from './voter.ts';
+import { Voter } from './voter';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @NgModule({
