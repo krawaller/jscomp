@@ -4,7 +4,7 @@ import 'reflect-metadata'
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms';
-import { Clicker } from './clicker.ts';
+import { Clicker } from './clicker';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 @NgModule({

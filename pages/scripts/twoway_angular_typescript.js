@@ -57,7 +57,7 @@
 	var core_1 = __webpack_require__(4);
 	var platform_browser_1 = __webpack_require__(22);
 	var forms_1 = __webpack_require__(24);
-	var phonebooth_ts_1 = __webpack_require__(28);
+	var phonebooth_1 = __webpack_require__(28);
 	var platform_browser_dynamic_1 = __webpack_require__(29);
 	var AppModule = (function () {
 	    function AppModule() {
@@ -67,8 +67,8 @@
 	AppModule = __decorate([
 	    core_1.NgModule({
 	        imports: [platform_browser_1.BrowserModule, forms_1.FormsModule],
-	        declarations: [phonebooth_ts_1.Phonebooth],
-	        bootstrap: [phonebooth_ts_1.Phonebooth]
+	        declarations: [phonebooth_1.Phonebooth],
+	        bootstrap: [phonebooth_1.Phonebooth]
 	    })
 	], AppModule);
 	platform_browser_dynamic_1.platformBrowserDynamic().bootstrapModule(AppModule);
