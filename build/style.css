@@ -1,3 +1,24 @@
+.backnav {
+    position: absolute;
+    text-align: right;
+    right: 0;
+    top: 10px;
+}
+
+.backnav a {
+    display: block;
+    padding: 2px 10px;
+    background-color: #ebf1cd;
+    margin-bottom: 4px;
+    border-radius: 5px;
+    font-size: 12px;
+}
+
+.backnav a:hover {
+  background-color: #bbc19b;
+  text-decoration: none;
+}
+
 ul.links .active {
     border-bottom: 3px solid red;
 }

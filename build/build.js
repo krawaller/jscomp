@@ -102,6 +102,7 @@ let res = getDirs(source).reduce((mem,demoName)=>{
           folderName: implName,
           prefix: {a:1,o:1,u:1,e:1,i:1,x:1}[readme.attributes.title[0].toLowerCase()] ? 'an' : 'a',
           demoName: demoName,
+          niceDemoName: demo.name,
           framework: frameworks[frameworkName].id,
           niceFrameworkName: niceFrameworkName,
           deps: _.map(deps, (v, pkg) => ({package: pkg, version: v})),
