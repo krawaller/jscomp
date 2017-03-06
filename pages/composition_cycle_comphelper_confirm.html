@@ -84,7 +84,7 @@
                 </div>
                 <div>
                     <div class="othercode" data-name="a TypeScript implementation using Angular">
-                        <p class="codeheadline">The same file in <a href="composition_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.4):</p>
+                        <p class="codeheadline">The same file in <a href="composition_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.4.9):</p>
                         <pre><code><span class="hljs-keyword">import</span> {Component,Input,Output,EventEmitter} from <span class="hljs-string">'@angular/core'</span>;
 
 @Component({
@@ -108,7 +108,7 @@
   maybe() { <span class="hljs-keyword">this</span>.mode = <span class="hljs-string">'confirm'</span> }
   changedmymind() { <span class="hljs-keyword">this</span>.mode = <span class="hljs-string">'waiting'</span> }
   yesimsure() {
-    <span class="hljs-keyword">this</span>.confirm.emit();
+    <span class="hljs-keyword">this</span>.confirm.emit()
     <span class="hljs-keyword">this</span>.mode = <span class="hljs-string">'waiting'</span>
   }
 }</code></pre>

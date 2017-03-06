@@ -44,15 +44,25 @@
             <br/><br/>
             <div class="sidebyside">
                 <div>
-                    <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'core-js'</span>
-<span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
+                    <pre><code><span class="hljs-keyword">import</span> <span class="hljs-string">'zone.js'</span>
 <span class="hljs-keyword">import</span> <span class="hljs-string">'reflect-metadata'</span>
 
-<span class="hljs-keyword">import</span> {bootstrap} from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
-<span class="hljs-keyword">import</span> {Component} from <span class="hljs-string">'@angular/core'</span>
-<span class="hljs-keyword">import</span> {Form} from <span class="hljs-string">'./form.ts'</span>;
+<span class="hljs-keyword">import</span> { NgModule, Component }      from <span class="hljs-string">'@angular/core'</span>;
+<span class="hljs-keyword">import</span> { BrowserModule } from <span class="hljs-string">'@angular/platform-browser'</span>;
+<span class="hljs-keyword">import</span> { platformBrowserDynamic } from <span class="hljs-string">'@angular/platform-browser-dynamic'</span>;
 
-bootstrap(Form);
+<span class="hljs-keyword">import</span> {Form} from <span class="hljs-string">'./form'</span>;
+<span class="hljs-keyword">import</span> {Field} from <span class="hljs-string">'./field'</span>
+<span class="hljs-keyword">import</span> {Confirm} from <span class="hljs-string">'./confirm'</span>
+
+@NgModule({
+    imports:      [ BrowserModule ],
+    declarations: [ Form, Field, Confirm ],
+    bootstrap:    [ Form ]
+})
+<span class="hljs-keyword">class</span> AppModule {}
+
+platformBrowserDynamic().bootstrapModule(AppModule);
 </code></pre>
                 </div>
                 <div>

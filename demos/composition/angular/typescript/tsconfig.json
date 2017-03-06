@@ -2,10 +2,10 @@
   "compilerOptions": {
     "target": "es5",
     "sourceMap": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowJs": true
   },
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"],
+  "types": ["core-js"]
 }

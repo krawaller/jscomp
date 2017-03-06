@@ -95,17 +95,15 @@
                 </div>
                 <div>
                     <div class="othercode" data-name="a TypeScript implementation using Angular">
-                        <p class="codeheadline">The same file in <a href="composition_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.0.0-rc.4):</p>
+                        <p class="codeheadline">The same file in <a href="composition_angular_typescript_info.html">a TypeScript implementation</a> using <a href="angular_info.html">Angular</a> (2.4.9):</p>
                         <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Input,Output} from <span class="hljs-string">'@angular/core'</span>
-<span class="hljs-keyword">import</span> {Confirm} from <span class="hljs-string">'./confirm.ts'</span>
 
 @Component({
   selector: <span class="hljs-string">'field'</span>,
   template: <span class="hljs-string">`
     {{instruction}}: &lt;input #field (input)="0"&gt;
     &lt;confirm (confirm)="onConfirm()" [disabled]="!field.value.length"&gt;&lt;/confirm&gt;
-  `</span>,
-  directives: [Confirm]
+  `</span>
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Field {
   @ViewChild(<span class="hljs-string">'field'</span>) input: <span class="hljs-built_in">any</span>

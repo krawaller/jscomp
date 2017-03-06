@@ -21,7 +21,7 @@ export class Confirm {
   maybe() { this.mode = 'confirm' }
   changedmymind() { this.mode = 'waiting' }
   yesimsure() {
-    this.confirm.emit();
+    this.confirm.emit()
     this.mode = 'waiting'
   }
 }

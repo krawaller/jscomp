@@ -45,15 +45,13 @@
             <div class="sidebyside">
                 <div>
                     <pre><code><span class="hljs-keyword">import</span> {Component,ViewChild,EventEmitter,Input,Output} from <span class="hljs-string">'@angular/core'</span>
-<span class="hljs-keyword">import</span> {Confirm} from <span class="hljs-string">'./confirm.ts'</span>
 
 @Component({
   selector: <span class="hljs-string">'field'</span>,
   template: <span class="hljs-string">`
     {{instruction}}: &lt;input #field (input)="0"&gt;
     &lt;confirm (confirm)="onConfirm()" [disabled]="!field.value.length"&gt;&lt;/confirm&gt;
-  `</span>,
-  directives: [Confirm]
+  `</span>
 })
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">class</span> Field {
   @ViewChild(<span class="hljs-string">'field'</span>) input: <span class="hljs-built_in">any</span>
