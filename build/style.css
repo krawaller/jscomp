@@ -208,7 +208,6 @@ button[disabled] {
 
 .splashcodes {
     position: relative;
-    overflow: hidden;
     height: 350px;
     width: 85%;
     user-select: none;
@@ -252,8 +251,8 @@ button[disabled] {
 }
 
 .splashcodes > [data-order="5"]{
-  top: 0px;
-  left: 0px;
+  top: -30px;
+  left: -30px;
   opacity: 0;
   z-index: 0;
 }
