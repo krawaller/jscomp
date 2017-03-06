@@ -1,1 +1,1 @@
-What is this?! Go [here](http://blog.krawaller.se/jscomp/) where the site is published, and all will become clear! :)
+What is this?! Go [here](http://jscomp.netlify.com/index.html) where the site is published, and all will become clear! :)
