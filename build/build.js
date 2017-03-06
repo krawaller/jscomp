@@ -27,10 +27,11 @@ const getFiles = srcpath => fsx.readdirSync(srcpath)
   .filter(file => file !== '.DS_Store')
 
 const source = pathHelper('../demos/')
-const output = pathHelper('../pages/')
+const output = pathHelper('../site/pages/')
 
-fsx.removeSync(pathHelper('../index.html'))
 fsx.removeSync(output)
+fsx.removeSync(pathHelper('../site'))
+fsx.mkdirSync(pathHelper('../site/'))
 fsx.mkdirSync(output)
 fsx.mkdirSync(output + 'scripts')
 
@@ -220,7 +221,7 @@ const indexCtx = {
   contribute: marked(fsx.readFileSync(pathHelper('contribute.md'), 'utf-8'))
 }
 
-write(pathHelper('../index.html'), 'JS Comp', indexInfoTmpl(indexCtx), true)
+write(pathHelper('../site/index.html'), 'JS Comp', indexInfoTmpl(indexCtx), true)
 write(output + 'home_demos.html', 'JS Comp', indexListTmpl(indexCtx))
 write(output + 'home_dev.html', 'JS Comp', indexDevTmpl(indexCtx))
 
