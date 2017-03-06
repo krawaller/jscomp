@@ -3,7 +3,7 @@
     "build": "webpack"
   },
   "dependencies": {
-    "angular": "1.5.8"
+    "angular": "1.6.1"
   },
   "devDependencies": {
     "babel-core": "6.14.0",
