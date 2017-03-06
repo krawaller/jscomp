@@ -211,30 +211,51 @@ button[disabled] {
     overflow: hidden;
     height: 350px;
     width: 85%;
+    user-select: none;
+    cursor: pointer;
 }
 
 .splashcodes > pre {
     position: absolute;
     width: 80%;
     font-size: 9px;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 1;
+    transition: top 0.3s ease, left 0.3s ease, z-index 0.3s ease, opacity 0.3s ease;
 }
 
-.splashcodes > :nth-child(1){
+.splashcodes > [data-order="1"]{
   top: 30px;
   left: 30px;
   z-index: 1;
 }
 
-.splashcodes > :nth-child(2){
+.splashcodes > [data-order="2"]{
   top: 60px;
   left: 60px;
   z-index: 2;
 }
 
-.splashcodes > :nth-child(3){
+.splashcodes > [data-order="3"]{
   top: 90px;
   left: 90px;
   z-index: 3;
+}
+
+.splashcodes > [data-order="4"]{
+  top: 120px;
+  left: 120px;
+  z-index: 4;
+  opacity: 0;
+}
+
+.splashcodes > [data-order="5"]{
+  top: 0px;
+  left: 0px;
+  opacity: 0;
+  z-index: 0;
 }
 
 .content p {

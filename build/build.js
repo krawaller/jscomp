@@ -56,9 +56,11 @@ let frameworks = getFiles(source+'../frameworks/').reduce(function(mem,framework
 let splashdemo = {
   useImplementationUrls: [
     'simpleclicker_angular_typescript_info.html',
+    'simpleclicker_angularjs_componentclass_info.html',
     'simpleclicker_react_es6_info.html',
     'simpleclicker_cyclow_es6_info.html',
-    'simpleclicker_vue_vanilla_info.html'
+    'simpleclicker_vue_vanilla_info.html',
+    'simpleclicker_choo_vanilla_info.html'
   ],
   useFile: 'clicker',
   codes: [],

@@ -32,3 +32,9 @@ if ($drop.length){
     });
     window.onhashchange();
 }
+
+$(".splashcodes").click(function(){
+    $(this).find("pre").each(function(idx,elem){
+        $(elem).attr("data-order", (+$(elem).attr("data-order") + 1) % 6)
+    })
+})
