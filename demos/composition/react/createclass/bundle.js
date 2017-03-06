@@ -54,13 +54,13 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _app = __webpack_require__(170);
+	var _form = __webpack_require__(170);
 
-	var _app2 = _interopRequireDefault(_app);
+	var _form2 = _interopRequireDefault(_form);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_app2.default, null), document.getElementById("app"));
+	_reactDom2.default.render(_react2.default.createElement(_form2.default, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -20997,8 +20997,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var App = _react2.default.createClass({
-	  displayName: 'App',
+	var Form = _react2.default.createClass({
+	  displayName: 'Form',
 
 	  getInitialState: function getInitialState() {
 	    return { submission: 'Steve' };
@@ -21021,7 +21021,7 @@
 	  }
 	});
 
-	exports.default = App;
+	exports.default = Form;
 
 /***/ },
 /* 171 */

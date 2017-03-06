@@ -60,7 +60,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	_reactDom2.default.render(_react2.default.createElement(_voter2.default, null), document.getElementById("app"));
+	_reactDom2.default.render(_react2.default.createElement(_voter2.default, null), document.getElementById('app'));
 
 /***/ },
 /* 1 */
@@ -21453,7 +21453,11 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var teams = ["Valor", "Mystic", "Instinct"];
+	var _window = window;
+	var localStorage = _window.localStorage;
+
+
+	var teams = ['Valor', 'Mystic', 'Instinct'];
 
 	var Voter = _react2.default.createClass({
 	  displayName: 'Voter',

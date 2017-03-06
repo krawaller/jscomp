@@ -54,7 +54,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	new _vue2.default({
+	new _vue2.default({ // eslint-disable-line
 	  template: '<clicker/>',
 	  replace: false,
 	  el: '#app'

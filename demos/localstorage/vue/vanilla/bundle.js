@@ -54,7 +54,7 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	new _vue2.default({
+	new _vue2.default({ // eslint-disable-line
 	  template: '<voter/>',
 	  replace: false,
 	  el: '#app'
@@ -10338,12 +10338,16 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var _window = window;
+	var localStorage = _window.localStorage;
+
+
 	_vue2.default.component('voter', {
 	  template: '\n    <button v-for="t of teams" v-bind:class="{active: $index === team}" v-on:click="vote($index)">{{t}}</button>\n  ',
 	  data: function data() {
 	    return {
 	      team: +(localStorage.getItem('JSCOMPVOTE') || 1),
-	      teams: ["Valor", "Mystic", "Instinct"]
+	      teams: ['Valor', 'Mystic', 'Instinct']
 	    };
 	  },
 	  methods: {

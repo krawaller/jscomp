@@ -20860,10 +20860,8 @@
 	        this._isolateModule = _isolateModule;
 	        this._delegators = _delegators;
 	        this._name = _name;
-	        this.__JANI_EVAKALLIO_WE_WILL_MISS_YOU_PLEASE_COME_BACK_EVENTUALLY = false;
 	        this.isolateSource = isolate_1.isolateSource;
 	        this.isolateSink = isolate_1.isolateSink;
-	        this.__JANI_EVAKALLIO_WE_WILL_MISS_YOU_PLEASE_COME_BACK_EVENTUALLY = true;
 	    }
 	    MainDOMSource.prototype.elements = function () {
 	        var output$;
@@ -21007,7 +21005,7 @@
 	                if (typeof dispose === 'function') {
 	                    dispose();
 	                }
-	            }
+	            },
 	        });
 	    },
 	    makeSubject: function () {
@@ -21015,7 +21013,7 @@
 	        var observer = {
 	            next: function (x) { stream.shamefullySendNext(x); },
 	            error: function (err) { stream.shamefullySendError(err); },
-	            complete: function () { stream.shamefullySendComplete(); }
+	            complete: function () { stream.shamefullySendComplete(); },
 	        };
 	        return { observer: observer, stream: stream };
 	    },
@@ -21029,7 +21027,7 @@
 	    streamSubscribe: function (stream, observer) {
 	        stream.addListener(observer);
 	        return function () { return stream.removeListener(observer); };
-	    }
+	    },
 	};
 	Object.defineProperty(exports, "__esModule", { value: true });
 	exports.default = XStreamAdapter;
@@ -21484,9 +21482,7 @@
 	        var elementId = id ? "#" + id : "";
 	        var elementClassName = className ?
 	            "." + className.split(" ").join(".") : "";
-	        return hyperscript_1.h("" + tagName.toLowerCase() + elementId + elementClassName, {}, [
-	            vnode
-	        ]);
+	        return hyperscript_1.h("" + tagName + elementId + elementClassName, {}, [vnode]);
 	    };
 	    return VNodeWrapper;
 	}());
