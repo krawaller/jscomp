@@ -31,8 +31,8 @@ if ($drop.length){
         window.location.hash = "#";
     });
     window.onhashchange();
-    $("li.file a").click(e,function(){
-        $(this).attr("href", $(this).attr("href").split("#"[0] + window.location.hash));
+    $("li.file a").click(function(e){
+        e.originalEvent.currentTarget.href = $(this).attr("href").split("#")[0] + window.location.hash;
     });
 }
 
