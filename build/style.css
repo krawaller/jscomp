@@ -192,7 +192,7 @@ button[disabled] {
   width: 49%;
 }
 
-.sidebyside pre {
+.sidebyside.doanim pre {
   transition: font-size 0.3s ease;
 }
 
@@ -203,6 +203,10 @@ button[disabled] {
 .sidebyside > div:last-child {
   width: 0;
   margin-left: 15px;
+  
+}
+
+.sidebyside.doanim > :last-child {
   transition: width 0.3s ease;
 }
 

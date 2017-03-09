@@ -8,6 +8,9 @@ if ($drop.length){
     $(".codeheadline").hide();
     $("<option>").attr("value","NONE").text(" --- Choose another implementation --- ").appendTo($drop);
     window.onhashchange = function(e){
+        if (e){
+            $(".sidebyside").addClass("doanim");
+        }
         var target = decodeURI(window.location.hash.replace("#","") || "NONE");
         if (target === "NONE"){
             $(".sidebyside").removeClass("comparing");
