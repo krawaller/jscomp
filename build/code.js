@@ -31,6 +31,9 @@ if ($drop.length){
         window.location.hash = "#";
     });
     window.onhashchange();
+    $("li.file a").click(e,function(){
+        $(this).attr("href", $(this).attr("href").split("#"[0] + window.location.hash));
+    });
 }
 
 $(".splashcodes").click(function(){
